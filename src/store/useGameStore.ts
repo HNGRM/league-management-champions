@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { SaveSlot, Team, ManagerProfile, PredefinedTeam, LeagueLanguage, CustomTeamInfo } from "@/types/game";
+import { Player } from "@/types/player";
 import { createDefaultAvatarDna } from "@/types/avatar";
 
 export type GameScreen = "TITLE" | "SLOT_SELECT" | "MANAGER_CREATE" | "TEAM_CREATE" | "DASHBOARD";
@@ -33,6 +34,11 @@ interface GameState {
   // 활성화된 팀
   currentTeam: Team | null;
   setCurrentTeam: (team: Team | null) => void;
+
+  // 나의 팀 선수단 (기본 팀 선수 데이터와 별개로 영입/방출/교체 등을 자유롭게 수행하는 독립 저장 공간)
+  myPlayers: Player[];
+  setMyPlayers: (players: Player[]) => void;
+  updateMyPlayer: (playerId: string, updater: Partial<Player> | ((prev: Player) => Player)) => void;
 
   // 날짜 및 턴 진행
   currentYear: number;
@@ -140,10 +146,25 @@ export const useGameStore = create<GameState>((set) => ({
         playerManagement: null,
         languages: [],
       },
+      myPlayers: [],
     }),
 
   currentTeam: null,
   setCurrentTeam: (team) => set({ currentTeam: team }),
+
+  // 나의 팀 선수단 초기값 및 액션
+  myPlayers: [],
+  setMyPlayers: (players) => set({ myPlayers: players }),
+  updateMyPlayer: (playerId, updater) =>
+    set((state) => ({
+      myPlayers: state.myPlayers.map((p) => {
+        if (p.profile.playerId !== playerId) return p;
+        if (typeof updater === "function") {
+          return updater(p);
+        }
+        return { ...p, ...updater };
+      }),
+    })),
 
   currentYear: 2026,
   currentWeek: 1,

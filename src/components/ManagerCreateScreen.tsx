@@ -4,20 +4,16 @@ import React, { useState, useRef } from "react";
 import {
   ArrowLeft,
   User,
-  Sparkles,
   ChevronRight,
   ChevronLeft,
   Check,
   Globe,
-  Sliders,
   Shield,
   Coins,
   Users,
-  AlertCircle,
   HelpCircle,
   RotateCcw,
   Plus,
-  Trophy,
   Dices,
   Palette,
   ThumbsUp,
@@ -38,6 +34,8 @@ import {
   createDefaultAvatarDna,
   createRandomAvatarDna,
 } from "@/types/avatar";
+import { getPlayersByTeamId } from "@/data/players";
+import { Player } from "@/types/player";
 
 // 언어 상세 설명 메타데이터
 interface LanguageInfo {
@@ -327,8 +325,25 @@ export default function ManagerCreateScreen() {
 
       // 최종 팀 창단 및 감독 취임 완료 처리
       const finalTeamNameKo = customTeamInfo.nameKo || selectedTeam?.nameKo || "새 팀";
-      const finalTeamNameEn = customTeamInfo.nameEn || selectedTeam?.nameEn || "New Team";
       const finalShortName = customTeamInfo.shortName || selectedTeam?.shortName || "NEW";
+
+      // 내가 고른 팀의 기본 선수들을 깊은 복사하여 '나의 팀 선수' 독립 저장 공간에 초기화
+      const defaultPlayers = selectedTeam ? getPlayersByTeamId(selectedTeam.id) : [];
+      const initialMyPlayers: Player[] = defaultPlayers.map((p) =>
+        JSON.parse(JSON.stringify(p))
+      );
+
+      const newTeamData = {
+        id: selectedTeam?.id || "TEAM-01",
+        name: finalTeamNameKo,
+        shortName: finalShortName,
+        foundedYear: 2026,
+        balance: 500000000,
+        fans: 15000,
+        reputation: 50,
+        roster: initialMyPlayers,
+        staff: [],
+      };
 
       if (selectedSlotId) {
         useGameStore.setState((state) => ({
@@ -337,38 +352,28 @@ export default function ManagerCreateScreen() {
               ? {
                   ...s,
                   isCreated: true,
-                  team: {
-                    id: selectedTeam?.id || "TEAM-01",
-                    name: finalTeamNameKo,
-                    shortName: finalShortName,
-                    foundedYear: 2026,
-                    balance: 500000000,
-                    fans: 15000,
-                    reputation: 50,
-                    roster: [],
-                    staff: [],
-                  },
+                  team: newTeamData,
+                  myPlayers: initialMyPlayers,
+                  managerProfile: { ...state.managerProfile },
+                  customTeamInfo: { ...state.customTeamInfo },
+                  selectedLeague: state.selectedLeague,
+                  selectedTeam: state.selectedTeam,
                   lastPlayedAt: "방금 전",
                 }
               : s
           ),
-          currentTeam: {
-            id: selectedTeam?.id || "TEAM-01",
-            name: finalTeamNameKo,
-            shortName: finalShortName,
-            foundedYear: 2026,
-            balance: 500000000,
-            fans: 15000,
-            reputation: 50,
-            roster: [],
-            staff: [],
-          },
+          currentTeam: newTeamData,
+          myPlayers: initialMyPlayers,
         }));
+      } else {
+        useGameStore.setState({
+          currentTeam: newTeamData,
+          myPlayers: initialMyPlayers,
+        });
       }
 
-      showToast(`'${finalTeamNameKo}' 팀 창단 및 취임이 완료되었습니다!`);
-      // 슬롯 선택 화면으로 복귀하여 생성된 팀 슬롯 확인 가능
-      setScreen("SLOT_SELECT");
+      // 팀 생성 완료 -> 메인 게임 화면(대시보드)으로 진입
+      setScreen("DASHBOARD");
     }
   };
 

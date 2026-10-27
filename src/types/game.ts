@@ -1,6 +1,7 @@
 // Core Types for League Management: Champions
 
 import { AvatarDna } from "./avatar";
+import { Player as RosterPlayer } from "./player";
 
 export type Position = "TOP" | "JUG" | "MID" | "ADC" | "SUP";
 
@@ -86,8 +87,8 @@ export interface Team {
   balance: number;       // 팀 잔고 (자금)
   fans: number;          // 팬덤 수
   reputation: number;    // 팀 명성 (0 ~ 100)
-  roster: Player[];      // 1군 로스터
-  subRoster?: Player[];  // 2군/후보 로스터
+  roster: RosterPlayer[]; // 1군 로스터 (최신 Player 스키마)
+  subRoster?: RosterPlayer[]; // 2군/후보 로스터
   staff: Manager[];      // 코칭스태프
 }
 
@@ -127,5 +128,10 @@ export interface SaveSlot {
   isCreated: boolean;
   isLocked: boolean;
   team?: Team;
+  myPlayers?: RosterPlayer[];
+  managerProfile?: ManagerProfile;
+  customTeamInfo?: CustomTeamInfo;
+  selectedLeague?: LeagueLanguage | null;
+  selectedTeam?: PredefinedTeam | null;
   lastPlayedAt?: string;
 }

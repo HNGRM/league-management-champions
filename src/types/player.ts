@@ -28,7 +28,7 @@ export interface PlayerContractAndRole {
 }
 
 export interface PlayerStats {
-  physical: number;          // 피지컬 (1~100)
+  mechanics: number;          // 피지컬 (1~100)
   decision: number;          // 판단력 (1~100)
   mental: number;            // 정신력 (1~100)
   execution: number;         // 결정력 (1~100)

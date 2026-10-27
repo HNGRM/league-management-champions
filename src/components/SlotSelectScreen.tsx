@@ -35,6 +35,22 @@ export default function SlotSelectScreen() {
       return;
     }
 
+    // 이미 생성된 팀 슬롯이면 바로 메인 게임 화면으로 진입
+    const targetSlot = slots.find((s) => s.id === slotId);
+    if (targetSlot?.isCreated && targetSlot.team) {
+      setSelectedSlotId(slotId);
+      useGameStore.setState({
+        currentTeam: targetSlot.team,
+        myPlayers: targetSlot.myPlayers || targetSlot.team.roster || [],
+        ...(targetSlot.customTeamInfo ? { customTeamInfo: targetSlot.customTeamInfo } : {}),
+        ...(targetSlot.managerProfile ? { managerProfile: targetSlot.managerProfile } : {}),
+        ...(targetSlot.selectedLeague ? { selectedLeague: targetSlot.selectedLeague } : {}),
+        ...(targetSlot.selectedTeam ? { selectedTeam: targetSlot.selectedTeam } : {}),
+      });
+      setScreen("DASHBOARD");
+      return;
+    }
+
     // 신규 생성 시 이전 생성 데이터 완전 초기화
     resetCreationState();
     setSelectedSlotId(slotId);

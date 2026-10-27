@@ -6,6 +6,7 @@ import TitleScreen from "@/components/TitleScreen";
 import SlotSelectScreen from "@/components/SlotSelectScreen";
 import TeamCreateScreen from "@/components/TeamCreateScreen";
 import ManagerCreateScreen from "@/components/ManagerCreateScreen";
+import DashboardScreen from "@/components/DashboardScreen";
 
 export default function Home() {
   const currentScreen = useGameStore((state) => state.currentScreen);
@@ -28,6 +29,7 @@ export default function Home() {
       {currentScreen === "SLOT_SELECT" && <SlotSelectScreen />}
       {currentScreen === "TEAM_CREATE" && <TeamCreateScreen />}
       {currentScreen === "MANAGER_CREATE" && <ManagerCreateScreen />}
+      {currentScreen === "DASHBOARD" && <DashboardScreen />}
     </div>
   );
 }

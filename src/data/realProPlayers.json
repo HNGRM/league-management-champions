@@ -1,0 +1,2194 @@
+[
+  {
+    "kr": "페이커",
+    "en": "Faker"
+  },
+  {
+    "kr": "벵기",
+    "en": "Bengi"
+  },
+  {
+    "kr": "임팩트",
+    "en": "Impact"
+  },
+  {
+    "kr": "피글렛",
+    "en": "Piglet"
+  },
+  {
+    "kr": "푸만두",
+    "en": "PoohManDu"
+  },
+  {
+    "kr": "이지훈",
+    "en": "Easyhoon"
+  },
+  {
+    "kr": "마린",
+    "en": "MaRin"
+  },
+  {
+    "kr": "뱅",
+    "en": "Bang"
+  },
+  {
+    "kr": "울프",
+    "en": "Wolf"
+  },
+  {
+    "kr": "톰",
+    "en": "Tom"
+  },
+  {
+    "kr": "스카웃",
+    "en": "Scout"
+  },
+  {
+    "kr": "블랭크",
+    "en": "Blank"
+  },
+  {
+    "kr": "듀크",
+    "en": "Duke"
+  },
+  {
+    "kr": "후니",
+    "en": "Huni"
+  },
+  {
+    "kr": "피넛",
+    "en": "Peanut"
+  },
+  {
+    "kr": "스카이",
+    "en": "Sky"
+  },
+  {
+    "kr": "운타라",
+    "en": "Untara"
+  },
+  {
+    "kr": "트할",
+    "en": "Thal"
+  },
+  {
+    "kr": "블라썸",
+    "en": "Blossom"
+  },
+  {
+    "kr": "에포트",
+    "en": "Effort"
+  },
+  {
+    "kr": "피레안",
+    "en": "Pirean"
+  },
+  {
+    "kr": "레오",
+    "en": "Leo"
+  },
+  {
+    "kr": "칸",
+    "en": "Khan"
+  },
+  {
+    "kr": "클리드",
+    "en": "Clid"
+  },
+  {
+    "kr": "테디",
+    "en": "Teddy"
+  },
+  {
+    "kr": "하루",
+    "en": "Haru"
+  },
+  {
+    "kr": "크레이지",
+    "en": "Crazy"
+  },
+  {
+    "kr": "로치",
+    "en": "Roach"
+  },
+  {
+    "kr": "커즈",
+    "en": "Cuzz"
+  },
+  {
+    "kr": "엘림",
+    "en": "Ellim"
+  },
+  {
+    "kr": "클로저",
+    "en": "Clozer"
+  },
+  {
+    "kr": "칸나",
+    "en": "Canna"
+  },
+  {
+    "kr": "구마유시",
+    "en": "Gumayusi"
+  },
+  {
+    "kr": "오너",
+    "en": "Oner"
+  },
+  {
+    "kr": "제우스",
+    "en": "Zeus"
+  },
+  {
+    "kr": "케리아",
+    "en": "Keria"
+  },
+  {
+    "kr": "포비",
+    "en": "Poby"
+  },
+  {
+    "kr": "스매시",
+    "en": "Smash"
+  },
+  {
+    "kr": "달",
+    "en": "Dal"
+  },
+  {
+    "kr": "구원",
+    "en": "Guwon"
+  },
+  {
+    "kr": "댄디",
+    "en": "DanDy"
+  },
+  {
+    "kr": "폰",
+    "en": "Pawn"
+  },
+  {
+    "kr": "임프",
+    "en": "imp"
+  },
+  {
+    "kr": "마타",
+    "en": "Mata"
+  },
+  {
+    "kr": "루퍼",
+    "en": "Looper"
+  },
+  {
+    "kr": "다데",
+    "en": "dade"
+  },
+  {
+    "kr": "데프트",
+    "en": "Deft"
+  },
+  {
+    "kr": "에이콘",
+    "en": "Acorn"
+  },
+  {
+    "kr": "스피릿",
+    "en": "Spirit"
+  },
+  {
+    "kr": "하트",
+    "en": "Heart"
+  },
+  {
+    "kr": "큐베",
+    "en": "CuVee"
+  },
+  {
+    "kr": "앰비션",
+    "en": "Ambition"
+  },
+  {
+    "kr": "크라운",
+    "en": "Crown"
+  },
+  {
+    "kr": "룰러",
+    "en": "Ruler"
+  },
+  {
+    "kr": "코어장전",
+    "en": "CoreJJ"
+  },
+  {
+    "kr": "레이스",
+    "en": "Wraith"
+  },
+  {
+    "kr": "헬퍼",
+    "en": "Helper"
+  },
+  {
+    "kr": "스티치",
+    "en": "Stitch"
+  },
+  {
+    "kr": "플라이",
+    "en": "Fly"
+  },
+  {
+    "kr": "라이프",
+    "en": "Life"
+  },
+  {
+    "kr": "리치",
+    "en": "Rich"
+  },
+  {
+    "kr": "켈린",
+    "en": "Kellin"
+  },
+  {
+    "kr": "비디디",
+    "en": "Bdd"
+  },
+  {
+    "kr": "라스칼",
+    "en": "Rascal"
+  },
+  {
+    "kr": "쵸비",
+    "en": "Chovy"
+  },
+  {
+    "kr": "도란",
+    "en": "Doran"
+  },
+  {
+    "kr": "리헨즈",
+    "en": "Lehends"
+  },
+  {
+    "kr": "딜라이트",
+    "en": "Delight"
+  },
+  {
+    "kr": "페이즈",
+    "en": "Peyz"
+  },
+  {
+    "kr": "기인",
+    "en": "Kiin"
+  },
+  {
+    "kr": "캐니언",
+    "en": "Canyon"
+  },
+  {
+    "kr": "듀로",
+    "en": "Duro"
+  },
+  {
+    "kr": "류",
+    "en": "Ryu"
+  },
+  {
+    "kr": "인섹",
+    "en": "inSec"
+  },
+  {
+    "kr": "스코어",
+    "en": "Score"
+  },
+  {
+    "kr": "마파",
+    "en": "Mafa"
+  },
+  {
+    "kr": "카카오",
+    "en": "KaKao"
+  },
+  {
+    "kr": "썸데이",
+    "en": "Ssumday"
+  },
+  {
+    "kr": "루키",
+    "en": "Rookie"
+  },
+  {
+    "kr": "애로우",
+    "en": "Arrow"
+  },
+  {
+    "kr": "하차니",
+    "en": "Hachani"
+  },
+  {
+    "kr": "나그네",
+    "en": "Nagne"
+  },
+  {
+    "kr": "픽서",
+    "en": "Fixer"
+  },
+  {
+    "kr": "스멥",
+    "en": "Smeb"
+  },
+  {
+    "kr": "유칼",
+    "en": "Ucal"
+  },
+  {
+    "kr": "러시",
+    "en": "Rush"
+  },
+  {
+    "kr": "말랑",
+    "en": "Malrang"
+  },
+  {
+    "kr": "소환",
+    "en": "SoHwan"
+  },
+  {
+    "kr": "보노",
+    "en": "Bono"
+  },
+  {
+    "kr": "쿠로",
+    "en": "Kuro"
+  },
+  {
+    "kr": "에이밍",
+    "en": "Aiming"
+  },
+  {
+    "kr": "투신",
+    "en": "TusiN"
+  },
+  {
+    "kr": "레이",
+    "en": "Ray"
+  },
+  {
+    "kr": "기드온",
+    "en": "Gideon"
+  },
+  {
+    "kr": "하이브리드",
+    "en": "Hybrid"
+  },
+  {
+    "kr": "아리아",
+    "en": "Aria"
+  },
+  {
+    "kr": "빅라",
+    "en": "VicLa"
+  },
+  {
+    "kr": "표식",
+    "en": "Pyosik"
+  },
+  {
+    "kr": "베릴",
+    "en": "BeryL"
+  },
+  {
+    "kr": "퍼펙트",
+    "en": "PerfecT"
+  },
+  {
+    "kr": "함박",
+    "en": "HamBak"
+  },
+  {
+    "kr": "웨이",
+    "en": "Way"
+  },
+  {
+    "kr": "캐스팅",
+    "en": "Casting"
+  },
+  {
+    "kr": "노아",
+    "en": "Noah"
+  },
+  {
+    "kr": "하프",
+    "en": "Harp"
+  },
+  {
+    "kr": "쭈스",
+    "en": "Zzus"
+  },
+  {
+    "kr": "매드라이프",
+    "en": "MadLife"
+  },
+  {
+    "kr": "샤이",
+    "en": "Shy"
+  },
+  {
+    "kr": "플레임",
+    "en": "Flame"
+  },
+  {
+    "kr": "스페이스",
+    "en": "Space"
+  },
+  {
+    "kr": "코코",
+    "en": "Coco"
+  },
+  {
+    "kr": "프로즌",
+    "en": "Frozen"
+  },
+  {
+    "kr": "헬리오스",
+    "en": "Helios"
+  },
+  {
+    "kr": "빠른별",
+    "en": "RapidStar"
+  },
+  {
+    "kr": "클템",
+    "en": "CloudTemplar"
+  },
+  {
+    "kr": "클라우드템플러",
+    "en": "CloudTemplar"
+  },
+  {
+    "kr": "막눈",
+    "en": "MakNoon"
+  },
+  {
+    "kr": "로코도코",
+    "en": "Locodoco"
+  },
+  {
+    "kr": "캡틴잭",
+    "en": "Captain Jack"
+  },
+  {
+    "kr": "러스트보이",
+    "en": "Lustboy"
+  },
+  {
+    "kr": "건웅",
+    "en": "Woong"
+  },
+  {
+    "kr": "와치",
+    "en": "Watch"
+  },
+  {
+    "kr": "프레이",
+    "en": "Pray"
+  },
+  {
+    "kr": "카인",
+    "en": "Cain"
+  },
+  {
+    "kr": "꿍",
+    "en": "Ggoong"
+  },
+  {
+    "kr": "고릴라",
+    "en": "GorillA"
+  },
+  {
+    "kr": "세이브",
+    "en": "Save"
+  },
+  {
+    "kr": "퓨어",
+    "en": "Pure"
+  },
+  {
+    "kr": "오뀨",
+    "en": "Ohq"
+  },
+  {
+    "kr": "호진",
+    "en": "Hojin"
+  },
+  {
+    "kr": "탱크",
+    "en": "Tank"
+  },
+  {
+    "kr": "엑스페션",
+    "en": "Expession"
+  },
+  {
+    "kr": "체이서",
+    "en": "Chaser"
+  },
+  {
+    "kr": "트레이스",
+    "en": "Trace"
+  },
+  {
+    "kr": "갱맘",
+    "en": "GBM"
+  },
+  {
+    "kr": "체이",
+    "en": "Chei"
+  },
+  {
+    "kr": "파일럿",
+    "en": "Pilot"
+  },
+  {
+    "kr": "쿠잔",
+    "en": "Kuzan"
+  },
+  {
+    "kr": "윙드",
+    "en": "Winged"
+  },
+  {
+    "kr": "크라이",
+    "en": "Cry"
+  },
+  {
+    "kr": "린다랑",
+    "en": "Lindarang"
+  },
+  {
+    "kr": "성환",
+    "en": "SeongHwan"
+  },
+  {
+    "kr": "미키",
+    "en": "Mickey"
+  },
+  {
+    "kr": "상윤",
+    "en": "Sangyoon"
+  },
+  {
+    "kr": "키",
+    "en": "Key"
+  },
+  {
+    "kr": "라바",
+    "en": "Lava"
+  },
+  {
+    "kr": "모글리",
+    "en": "Mowgli"
+  },
+  {
+    "kr": "템트",
+    "en": "Tempt"
+  },
+  {
+    "kr": "무진",
+    "en": "Moojin"
+  },
+  {
+    "kr": "바이퍼",
+    "en": "Viper"
+  },
+  {
+    "kr": "뷔스타",
+    "en": "Vsta"
+  },
+  {
+    "kr": "아서",
+    "en": "Arthur"
+  },
+  {
+    "kr": "윌러",
+    "en": "Willer"
+  },
+  {
+    "kr": "온플릭",
+    "en": "OnFleek"
+  },
+  {
+    "kr": "카리스",
+    "en": "Karis"
+  },
+  {
+    "kr": "쌈디",
+    "en": "SamD"
+  },
+  {
+    "kr": "제카",
+    "en": "Zeka"
+  },
+  {
+    "kr": "킹겐",
+    "en": "Kingen"
+  },
+  {
+    "kr": "그리즐리",
+    "en": "Grizzly"
+  },
+  {
+    "kr": "두두",
+    "en": "DuDu"
+  },
+  {
+    "kr": "영재",
+    "en": "YoungJae"
+  },
+  {
+    "kr": "모건",
+    "en": "Morgan"
+  },
+  {
+    "kr": "요한",
+    "en": "yoHan"
+  },
+  {
+    "kr": "미르",
+    "en": "Mireu"
+  },
+  {
+    "kr": "너구리",
+    "en": "Nuguri"
+  },
+  {
+    "kr": "쇼메이커",
+    "en": "ShowMaker"
+  },
+  {
+    "kr": "뉴클리어",
+    "en": "Nuclear"
+  },
+  {
+    "kr": "호잇",
+    "en": "Hoit"
+  },
+  {
+    "kr": "고스트",
+    "en": "Ghost"
+  },
+  {
+    "kr": "버돌",
+    "en": "Burdol"
+  },
+  {
+    "kr": "호야",
+    "en": "Hoya"
+  },
+  {
+    "kr": "덕담",
+    "en": "deokdam"
+  },
+  {
+    "kr": "바이블",
+    "en": "Bible"
+  },
+  {
+    "kr": "루시드",
+    "en": "Lucid"
+  },
+  {
+    "kr": "모함",
+    "en": "Moham"
+  },
+  {
+    "kr": "시우",
+    "en": "Siwoo"
+  },
+  {
+    "kr": "크래시",
+    "en": "Crash"
+  },
+  {
+    "kr": "내현",
+    "en": "Naehyun"
+  },
+  {
+    "kr": "쿼드",
+    "en": "Quad"
+  },
+  {
+    "kr": "주한",
+    "en": "Juhan"
+  },
+  {
+    "kr": "크로코",
+    "en": "Croco"
+  },
+  {
+    "kr": "페이트",
+    "en": "FATE"
+  },
+  {
+    "kr": "예후",
+    "en": "Yehoo"
+  },
+  {
+    "kr": "스펀지",
+    "en": "Sponge"
+  },
+  {
+    "kr": "세탭",
+    "en": "Setab"
+  },
+  {
+    "kr": "파덕",
+    "en": "Paduck"
+  },
+  {
+    "kr": "플레타",
+    "en": "Pleata"
+  },
+  {
+    "kr": "태윤",
+    "en": "Taeyoon"
+  },
+  {
+    "kr": "익수",
+    "en": "ikssu"
+  },
+  {
+    "kr": "리라",
+    "en": "LirA"
+  },
+  {
+    "kr": "눈꽃",
+    "en": "SnowFlower"
+  },
+  {
+    "kr": "크레이머",
+    "en": "Kramer"
+  },
+  {
+    "kr": "젤리",
+    "en": "Jelly"
+  },
+  {
+    "kr": "미스틱",
+    "en": "Mystic"
+  },
+  {
+    "kr": "벤",
+    "en": "Ben"
+  },
+  {
+    "kr": "드레드",
+    "en": "Dread"
+  },
+  {
+    "kr": "불독",
+    "en": "BuLLDoG"
+  },
+  {
+    "kr": "안딜",
+    "en": "Andil"
+  },
+  {
+    "kr": "불",
+    "en": "Bull"
+  },
+  {
+    "kr": "리퍼",
+    "en": "Reaper"
+  },
+  {
+    "kr": "풍연",
+    "en": "Pungyeon"
+  },
+  {
+    "kr": "준",
+    "en": "Jun"
+  },
+  {
+    "kr": "서밋",
+    "en": "Summit"
+  },
+  {
+    "kr": "도브",
+    "en": "Dove"
+  },
+  {
+    "kr": "조커",
+    "en": "Joker"
+  },
+  {
+    "kr": "루트",
+    "en": "Route"
+  },
+  {
+    "kr": "펀치",
+    "en": "Punch"
+  },
+  {
+    "kr": "프린스",
+    "en": "Prince"
+  },
+  {
+    "kr": "카엘",
+    "en": "Kael"
+  },
+  {
+    "kr": "엔비",
+    "en": "Envyy"
+  },
+  {
+    "kr": "클리어",
+    "en": "Clear"
+  },
+  {
+    "kr": "헤나",
+    "en": "Hena"
+  },
+  {
+    "kr": "엑스큐트",
+    "en": "Execute"
+  },
+  {
+    "kr": "디아블",
+    "en": "Diable"
+  },
+  {
+    "kr": "랩터",
+    "en": "Raptor"
+  },
+  {
+    "kr": "엄티",
+    "en": "UmTi"
+  },
+  {
+    "kr": "소드",
+    "en": "Sword"
+  },
+  {
+    "kr": "폴루",
+    "en": "Pollu"
+  },
+  {
+    "kr": "샘버",
+    "en": "Samver"
+  },
+  {
+    "kr": "하이프",
+    "en": "Hype"
+  },
+  {
+    "kr": "강인",
+    "en": "Kangin"
+  },
+  {
+    "kr": "고리",
+    "en": "Gori"
+  },
+  {
+    "kr": "웨인",
+    "en": "Wayne"
+  },
+  {
+    "kr": "든든",
+    "en": "DnDn"
+  },
+  {
+    "kr": "실비",
+    "en": "Sylvie"
+  },
+  {
+    "kr": "피에스타",
+    "en": "Fiesta"
+  },
+  {
+    "kr": "바이탈",
+    "en": "Vital"
+  },
+  {
+    "kr": "피터",
+    "en": "Peter"
+  },
+  {
+    "kr": "지우",
+    "en": "Jiwoo"
+  },
+  {
+    "kr": "콜미",
+    "en": "Callme"
+  },
+  {
+    "kr": "구거",
+    "en": "GuGer"
+  },
+  {
+    "kr": "미하일",
+    "en": "Mihile"
+  },
+  {
+    "kr": "애드",
+    "en": "ADD"
+  },
+  {
+    "kr": "비욘드",
+    "en": "Beyond"
+  },
+  {
+    "kr": "이안",
+    "en": "Ian"
+  },
+  {
+    "kr": "마하",
+    "en": "Maha"
+  },
+  {
+    "kr": "맥스",
+    "en": "Max"
+  },
+  {
+    "kr": "모티",
+    "en": "Moty"
+  },
+  {
+    "kr": "욘두",
+    "en": "Yondu"
+  },
+  {
+    "kr": "블레스",
+    "en": "Bless"
+  },
+  {
+    "kr": "아테나",
+    "en": "Athena"
+  },
+  {
+    "kr": "로큰",
+    "en": "LokeN"
+  },
+  {
+    "kr": "에지",
+    "en": "Edge"
+  },
+  {
+    "kr": "쏠",
+    "en": "SSol"
+  },
+  {
+    "kr": "트릭",
+    "en": "Trick"
+  },
+  {
+    "kr": "이그나",
+    "en": "IgNar"
+  },
+  {
+    "kr": "타나토스",
+    "en": "Thanatos"
+  },
+  {
+    "kr": "버블링",
+    "en": "Bubbling"
+  },
+  {
+    "kr": "블랑",
+    "en": "Blanc"
+  },
+  {
+    "kr": "스위트",
+    "en": "Sweet"
+  },
+  {
+    "kr": "저스티스",
+    "en": "Justice"
+  },
+  {
+    "kr": "그레이스",
+    "en": "Grace"
+  },
+  {
+    "kr": "천고",
+    "en": "CheonGo"
+  },
+  {
+    "kr": "타나",
+    "en": "TaNa"
+  },
+  {
+    "kr": "시즈",
+    "en": "Seize"
+  },
+  {
+    "kr": "유준",
+    "en": "U Jun"
+  },
+  {
+    "kr": "크러시",
+    "en": "Crush"
+  },
+  {
+    "kr": "토토로",
+    "en": "Totoro"
+  },
+  {
+    "kr": "아리스",
+    "en": "Ares"
+  },
+  {
+    "kr": "피카부",
+    "en": "Piccaboo"
+  },
+  {
+    "kr": "눈길",
+    "en": "Snow"
+  },
+  {
+    "kr": "우지",
+    "en": "Uzi"
+  },
+  {
+    "kr": "클리어러브",
+    "en": "Clearlove"
+  },
+  {
+    "kr": "웨이샤오",
+    "en": "Weixiao"
+  },
+  {
+    "kr": "고고잉",
+    "en": "Gogoing"
+  },
+  {
+    "kr": "쿨",
+    "en": "Cool"
+  },
+  {
+    "kr": "산",
+    "en": "San"
+  },
+  {
+    "kr": "러블링",
+    "en": "Loveling"
+  },
+  {
+    "kr": "폼폼",
+    "en": "Fzzf"
+  },
+  {
+    "kr": "네임",
+    "en": "NaMei"
+  },
+  {
+    "kr": "시예",
+    "en": "xiye"
+  },
+  {
+    "kr": "콘디",
+    "en": "Condi"
+  },
+  {
+    "kr": "제로",
+    "en": "Zero"
+  },
+  {
+    "kr": "렛미",
+    "en": "Letme"
+  },
+  {
+    "kr": "엠엘엑스지",
+    "en": "Mlxg"
+  },
+  {
+    "kr": "샤오후",
+    "en": "Xiaohu"
+  },
+  {
+    "kr": "에이블",
+    "en": "Able"
+  },
+  {
+    "kr": "밍",
+    "en": "Ming"
+  },
+  {
+    "kr": "카사",
+    "en": "Karsa"
+  },
+  {
+    "kr": "즈타이",
+    "en": "Zzitai"
+  },
+  {
+    "kr": "도인비",
+    "en": "Doinb"
+  },
+  {
+    "kr": "김군",
+    "en": "GimGoon"
+  },
+  {
+    "kr": "린웨이샹",
+    "en": "Lwx"
+  },
+  {
+    "kr": "크리스프",
+    "en": "Crisp"
+  },
+  {
+    "kr": "플랑드레",
+    "en": "Flandre"
+  },
+  {
+    "kr": "소프엠",
+    "en": "SofM"
+  },
+  {
+    "kr": "주오",
+    "en": "Zhuo"
+  },
+  {
+    "kr": "빈",
+    "en": "Bin"
+  },
+  {
+    "kr": "슌",
+    "en": "Xun"
+  },
+  {
+    "kr": "엘크",
+    "en": "Elk"
+  },
+  {
+    "kr": "온",
+    "en": "ON"
+  },
+  {
+    "kr": "나이트",
+    "en": "Knight"
+  },
+  {
+    "kr": "야가오",
+    "en": "Yagao"
+  },
+  {
+    "kr": "줌",
+    "en": "Zoom"
+  },
+  {
+    "kr": "카나비",
+    "en": "Kanavi"
+  },
+  {
+    "kr": "미씽",
+    "en": "Missing"
+  },
+  {
+    "kr": "갈라",
+    "en": "GALA"
+  },
+  {
+    "kr": "브리드",
+    "en": "Breathe"
+  },
+  {
+    "kr": "타잔",
+    "en": "Tarzan"
+  },
+  {
+    "kr": "항",
+    "en": "Hang"
+  },
+  {
+    "kr": "지에지에",
+    "en": "Jiejie"
+  },
+  {
+    "kr": "포포",
+    "en": "FoFo"
+  },
+  {
+    "kr": "알레",
+    "en": "Ale"
+  },
+  {
+    "kr": "샹크스",
+    "en": "Shanks"
+  },
+  {
+    "kr": "마크",
+    "en": "Mark"
+  },
+  {
+    "kr": "아이보이",
+    "en": "iBoy"
+  },
+  {
+    "kr": "류마오",
+    "en": "LvMao"
+  },
+  {
+    "kr": "샤오바이",
+    "en": "Xiaobai"
+  },
+  {
+    "kr": "탕쿠에스",
+    "en": "Tangyuan"
+  },
+  {
+    "kr": "밀키웨이",
+    "en": "Milkyway"
+  },
+  {
+    "kr": "케어",
+    "en": "Care"
+  },
+  {
+    "kr": "샤오하오",
+    "en": "Xiaohao"
+  },
+  {
+    "kr": "크렘",
+    "en": "Creme"
+  },
+  {
+    "kr": "재키러브",
+    "en": "JackeyLove"
+  },
+  {
+    "kr": "티안",
+    "en": "Tian"
+  },
+  {
+    "kr": "메이코",
+    "en": "Meiko"
+  },
+  {
+    "kr": "더샤이",
+    "en": "TheShy"
+  },
+  {
+    "kr": "닝",
+    "en": "Ning"
+  },
+  {
+    "kr": "바오란",
+    "en": "Baolan"
+  },
+  {
+    "kr": "칭티안",
+    "en": "Qingtian"
+  },
+  {
+    "kr": "크라잉",
+    "en": "Cryin"
+  },
+  {
+    "kr": "윙크",
+    "en": "Wink"
+  },
+  {
+    "kr": "진지아오",
+    "en": "Jinjiao"
+  },
+  {
+    "kr": "모간",
+    "en": "Morgan"
+  },
+  {
+    "kr": "몰",
+    "en": "Mole"
+  },
+  {
+    "kr": "샤오펑",
+    "en": "Xiaopeng"
+  },
+  {
+    "kr": "레얀",
+    "en": "Leyan"
+  },
+  {
+    "kr": "아키",
+    "en": "Aki"
+  },
+  {
+    "kr": "하오",
+    "en": "Hao"
+  },
+  {
+    "kr": "쉐어",
+    "en": "ShiauC"
+  },
+  {
+    "kr": "시우씨",
+    "en": "ShiauC"
+  },
+  {
+    "kr": "유안",
+    "en": "Yuan"
+  },
+  {
+    "kr": "아샨",
+    "en": "Asura"
+  },
+  {
+    "kr": "페더",
+    "en": "Feather"
+  },
+  {
+    "kr": "주웨이",
+    "en": "Jwei"
+  },
+  {
+    "kr": "피디디",
+    "en": "PDD"
+  },
+  {
+    "kr": "화이트",
+    "en": "Wh1t3zZ"
+  },
+  {
+    "kr": "타베",
+    "en": "Tabe"
+  },
+  {
+    "kr": "럭키",
+    "en": "Lucky"
+  },
+  {
+    "kr": "갓라이크",
+    "en": "Godlike"
+  },
+  {
+    "kr": "코로원",
+    "en": "Koro1"
+  },
+  {
+    "kr": "마우스",
+    "en": "Mouse"
+  },
+  {
+    "kr": "하로",
+    "en": "Haro"
+  },
+  {
+    "kr": "피피갓",
+    "en": "ppgod"
+  },
+  {
+    "kr": "샨지",
+    "en": "Shanji"
+  },
+  {
+    "kr": "환펑",
+    "en": "huanfeng"
+  },
+  {
+    "kr": "호프",
+    "en": "Hope"
+  },
+  {
+    "kr": "베이시스",
+    "en": "beishang"
+  },
+  {
+    "kr": "아이완디",
+    "en": "Iwandy"
+  },
+  {
+    "kr": "엔젤",
+    "en": "Angel"
+  },
+  {
+    "kr": "랑싱",
+    "en": "Langx"
+  },
+  {
+    "kr": "유안지아",
+    "en": "yuyanjia"
+  },
+  {
+    "kr": "웨이워드",
+    "en": "Wayward"
+  },
+  {
+    "kr": "안",
+    "en": "Ahn"
+  },
+  {
+    "kr": "메테오",
+    "en": "Meteor"
+  },
+  {
+    "kr": "도그고",
+    "en": "Doggo"
+  },
+  {
+    "kr": "큐브",
+    "en": "Cube"
+  },
+  {
+    "kr": "플로리스",
+    "en": "Flawless"
+  },
+  {
+    "kr": "어메이징제이",
+    "en": "AmazingJ"
+  },
+  {
+    "kr": "엑스페케",
+    "en": "xPeke"
+  },
+  {
+    "kr": "소아즈",
+    "en": "sOAZ"
+  },
+  {
+    "kr": "사이안라이드",
+    "en": "Cyanide"
+  },
+  {
+    "kr": "옐로우스타",
+    "en": "YellOwStaR"
+  },
+  {
+    "kr": "레클레스",
+    "en": "Rekkles"
+  },
+  {
+    "kr": "프로겐",
+    "en": "Froggen"
+  },
+  {
+    "kr": "위키드",
+    "en": "Wickd"
+  },
+  {
+    "kr": "스누피",
+    "en": "Snoopeh"
+  },
+  {
+    "kr": "크레포",
+    "en": "Krepo"
+  },
+  {
+    "kr": "옐로우핏",
+    "en": "Yellowpete"
+  },
+  {
+    "kr": "다이아몬드프록스",
+    "en": "Diamondprox"
+  },
+  {
+    "kr": "알렉스이치",
+    "en": "Alex Ich"
+  },
+  {
+    "kr": "다리엔",
+    "en": "Darien"
+  },
+  {
+    "kr": "겐자",
+    "en": "Genja"
+  },
+  {
+    "kr": "에드워드",
+    "en": "Edward"
+  },
+  {
+    "kr": "얀코스",
+    "en": "Jankos"
+  },
+  {
+    "kr": "반더",
+    "en": "Vander"
+  },
+  {
+    "kr": "오도암네",
+    "en": "Odoamne"
+  },
+  {
+    "kr": "포기븐",
+    "en": "FORG1VEN"
+  },
+  {
+    "kr": "캡스",
+    "en": "Caps"
+  },
+  {
+    "kr": "퍽즈",
+    "en": "Perkz"
+  },
+  {
+    "kr": "즈벤",
+    "en": "Zven"
+  },
+  {
+    "kr": "미시",
+    "en": "Mithy"
+  },
+  {
+    "kr": "익스펙트",
+    "en": "Expect"
+  },
+  {
+    "kr": "브위포",
+    "en": "Bwipo"
+  },
+  {
+    "kr": "힐리생",
+    "en": "Hylissang"
+  },
+  {
+    "kr": "네메시스",
+    "en": "Nemesis"
+  },
+  {
+    "kr": "휴머노이드",
+    "en": "Humanoid"
+  },
+  {
+    "kr": "카르지",
+    "en": "Carzzy"
+  },
+  {
+    "kr": "엘요야",
+    "en": "Elyoya"
+  },
+  {
+    "kr": "라슨",
+    "en": "Larssen"
+  },
+  {
+    "kr": "핀",
+    "en": "Finn"
+  },
+  {
+    "kr": "한스사마",
+    "en": "Hans Sama"
+  },
+  {
+    "kr": "미키엑스",
+    "en": "Mikyx"
+  },
+  {
+    "kr": "콤프",
+    "en": "Comp"
+  },
+  {
+    "kr": "트림비",
+    "en": "Trymbi"
+  },
+  {
+    "kr": "업셋",
+    "en": "Upset"
+  },
+  {
+    "kr": "라조크",
+    "en": "Razork"
+  },
+  {
+    "kr": "플래키드",
+    "en": "Flakked"
+  },
+  {
+    "kr": "타르가마스",
+    "en": "Targamas"
+  },
+  {
+    "kr": "보",
+    "en": "Bo"
+  },
+  {
+    "kr": "포톤",
+    "en": "Photon"
+  },
+  {
+    "kr": "처키",
+    "en": "Chasy"
+  },
+  {
+    "kr": "체이시",
+    "en": "Chasy"
+  },
+  {
+    "kr": "쉬겐다",
+    "en": "Szygenda"
+  },
+  {
+    "kr": "베테오",
+    "en": "Vetheo"
+  },
+  {
+    "kr": "셰오",
+    "en": "Sheo"
+  },
+  {
+    "kr": "엑사킥",
+    "en": "Exakick"
+  },
+  {
+    "kr": "도스",
+    "en": "Doss"
+  },
+  {
+    "kr": "잭키스",
+    "en": "Jackies"
+  },
+  {
+    "kr": "사켄",
+    "en": "Saken"
+  },
+  {
+    "kr": "칼리스테",
+    "en": "Caliste"
+  },
+  {
+    "kr": "체코라드",
+    "en": "Czekolad"
+  },
+  {
+    "kr": "넬슨",
+    "en": "Nelson"
+  },
+  {
+    "kr": "셀프메이드",
+    "en": "Selfmade"
+  },
+  {
+    "kr": "누크덕",
+    "en": "Nukeduck"
+  },
+  {
+    "kr": "자바스",
+    "en": "Jactroll"
+  },
+  {
+    "kr": "잭트롤",
+    "en": "Jactroll"
+  },
+  {
+    "kr": "아틸라",
+    "en": "Attila"
+  },
+  {
+    "kr": "지주케",
+    "en": "Jiizuke"
+  },
+  {
+    "kr": "길리어스",
+    "en": "Gilius"
+  },
+  {
+    "kr": "카싱",
+    "en": "KaSing"
+  },
+  {
+    "kr": "하즈",
+    "en": "Hjarnan"
+  },
+  {
+    "kr": "야난",
+    "en": "Hjarnan"
+  },
+  {
+    "kr": "와디드",
+    "en": "Wadid"
+  },
+  {
+    "kr": "뱃시",
+    "en": "Betsy"
+  },
+  {
+    "kr": "스틸백",
+    "en": "Steeelback"
+  },
+  {
+    "kr": "카베",
+    "en": "Kobbe"
+  },
+  {
+    "kr": "코베",
+    "en": "Kobbe"
+  },
+  {
+    "kr": "센컥스",
+    "en": "Sencux"
+  },
+  {
+    "kr": "원더",
+    "en": "Wunder"
+  },
+  {
+    "kr": "운더",
+    "en": "Wunder"
+  },
+  {
+    "kr": "스프랫틀",
+    "en": "Sprattel"
+  },
+  {
+    "kr": "프로미스큐",
+    "en": "promisq"
+  },
+  {
+    "kr": "알파리",
+    "en": "Alphari"
+  },
+  {
+    "kr": "제록세",
+    "en": "Xerxe"
+  },
+  {
+    "kr": "브로큰블레이드",
+    "en": "BrokenBlade"
+  },
+  {
+    "kr": "페비벤",
+    "en": "Febiven"
+  },
+  {
+    "kr": "레인오버",
+    "en": "Reignover"
+  },
+  {
+    "kr": "클라체",
+    "en": "Klaj"
+  },
+  {
+    "kr": "감수",
+    "en": "Gamsu"
+  },
+  {
+    "kr": "아담",
+    "en": "Adam"
+  },
+  {
+    "kr": "아르무트",
+    "en": "Armut"
+  },
+  {
+    "kr": "카이저",
+    "en": "Kaiser"
+  },
+  {
+    "kr": "패트릭",
+    "en": "Patrik"
+  },
+  {
+    "kr": "카보차드",
+    "en": "Cabochard"
+  },
+  {
+    "kr": "라브로브",
+    "en": "Labrov"
+  },
+  {
+    "kr": "크라운샷",
+    "en": "Crownie"
+  },
+  {
+    "kr": "누크",
+    "en": "Nuc"
+  },
+  {
+    "kr": "야코스",
+    "en": "Yike"
+  },
+  {
+    "kr": "이크",
+    "en": "Yike"
+  },
+  {
+    "kr": "더블리프트",
+    "en": "Doublelift"
+  },
+  {
+    "kr": "비역슨",
+    "en": "Bjergsen"
+  },
+  {
+    "kr": "다이러스",
+    "en": "Dyrus"
+  },
+  {
+    "kr": "더오드원",
+    "en": "TheOddOne"
+  },
+  {
+    "kr": "엑스페셜",
+    "en": "Xpecial"
+  },
+  {
+    "kr": "와일드터틀",
+    "en": "WildTurtle"
+  },
+  {
+    "kr": "산토린",
+    "en": "Santorin"
+  },
+  {
+    "kr": "스벤스케런",
+    "en": "Svenskeren"
+  },
+  {
+    "kr": "하운처",
+    "en": "Hauntzer"
+  },
+  {
+    "kr": "바이오프로스트",
+    "en": "Biofrost"
+  },
+  {
+    "kr": "블러버",
+    "en": "Blaber"
+  },
+  {
+    "kr": "옌센",
+    "en": "Jensen"
+  },
+  {
+    "kr": "젠슨",
+    "en": "Jensen"
+  },
+  {
+    "kr": "스니키",
+    "en": "Sneaky"
+  },
+  {
+    "kr": "미티어스",
+    "en": "Meteos"
+  },
+  {
+    "kr": "볼스",
+    "en": "Balls"
+  },
+  {
+    "kr": "하이",
+    "en": "Hai"
+  },
+  {
+    "kr": "레몬네이션",
+    "en": "LemonNation"
+  },
+  {
+    "kr": "리코리스",
+    "en": "Licorice"
+  },
+  {
+    "kr": "퍼지",
+    "en": "Fudge"
+  },
+  {
+    "kr": "페닉스",
+    "en": "Fenix"
+  },
+  {
+    "kr": "아프로무",
+    "en": "Aphromoo"
+  },
+  {
+    "kr": "자이온스파르탄",
+    "en": "ZionSpartan"
+  },
+  {
+    "kr": "다샨",
+    "en": "Darshan"
+  },
+  {
+    "kr": "포벨터",
+    "en": "Pobelter"
+  },
+  {
+    "kr": "엑스미디",
+    "en": "Xmithie"
+  },
+  {
+    "kr": "후히",
+    "en": "Huhi"
+  },
+  {
+    "kr": "스틱세이",
+    "en": "Stixxay"
+  },
+  {
+    "kr": "코디선",
+    "en": "Cody Sun"
+  },
+  {
+    "kr": "택티컬",
+    "en": "Tactical"
+  },
+  {
+    "kr": "조조퓬",
+    "en": "Jojopyun"
+  },
+  {
+    "kr": "인스파이어드",
+    "en": "Inspired"
+  },
+  {
+    "kr": "벌컨",
+    "en": "Vulcan"
+  },
+  {
+    "kr": "리버",
+    "en": "River"
+  },
+  {
+    "kr": "마산",
+    "en": "Massu"
+  },
+  {
+    "kr": "매수",
+    "en": "Massu"
+  },
+  {
+    "kr": "버서커",
+    "en": "Berserker"
+  },
+  {
+    "kr": "에일라",
+    "en": "Eyla"
+  },
+  {
+    "kr": "부시오",
+    "en": "BusiO"
+  },
+  {
+    "kr": "스나이퍼",
+    "en": "Sniper"
+  },
+  {
+    "kr": "도클라",
+    "en": "Dhokla"
+  },
+  {
+    "kr": "팔라폭스",
+    "en": "Palafox"
+  },
+  {
+    "kr": "콘트랙츠",
+    "en": "Contractz"
+  },
+  {
+    "kr": "루거",
+    "en": "Luger"
+  },
+  {
+    "kr": "스피카",
+    "en": "Spica"
+  },
+  {
+    "kr": "테네시티",
+    "en": "Tenacity"
+  },
+  {
+    "kr": "솔리고",
+    "en": "Soligo"
+  },
+  {
+    "kr": "올레",
+    "en": "Olleh"
+  },
+  {
+    "kr": "윈썸",
+    "en": "Winsome"
+  },
+  {
+    "kr": "스무디",
+    "en": "Smoothie"
+  },
+  {
+    "kr": "아카디안",
+    "en": "Akaadian"
+  },
+  {
+    "kr": "골든글루",
+    "en": "GoldenGlue"
+  },
+  {
+    "kr": "키위키드",
+    "en": "KiWiKiD"
+  },
+  {
+    "kr": "크럼스",
+    "en": "Crumbzz"
+  },
+  {
+    "kr": "스카라",
+    "en": "scarra"
+  },
+  {
+    "kr": "알텍",
+    "en": "Altec"
+  },
+  {
+    "kr": "아폴로",
+    "en": "Apollo"
+  },
+  {
+    "kr": "하쿠호",
+    "en": "Hakuho"
+  },
+  {
+    "kr": "로스트",
+    "en": "Lost"
+  },
+  {
+    "kr": "다르도치",
+    "en": "Dardoch"
+  },
+  {
+    "kr": "맷",
+    "en": "Matt"
+  },
+  {
+    "kr": "로울로",
+    "en": "Lourlo"
+  },
+  {
+    "kr": "브록사",
+    "en": "Broxah"
+  },
+  {
+    "kr": "연",
+    "en": "Yeon"
+  },
+  {
+    "kr": "에이파",
+    "en": "APA"
+  },
+  {
+    "kr": "핫샷지지",
+    "en": "HotshotGG"
+  },
+  {
+    "kr": "차우스터",
+    "en": "Chauster"
+  },
+  {
+    "kr": "빅팻",
+    "en": "bigfatlp"
+  },
+  {
+    "kr": "링크",
+    "en": "LiNk"
+  },
+  {
+    "kr": "덱스터",
+    "en": "dexter"
+  },
+  {
+    "kr": "세라프",
+    "en": "Seraph"
+  },
+  {
+    "kr": "앤디",
+    "en": "AnDa"
+  },
+  {
+    "kr": "리카라",
+    "en": "Rikara"
+  },
+  {
+    "kr": "페이크갓",
+    "en": "FakeGod"
+  },
+  {
+    "kr": "클로저스",
+    "en": "Closer"
+  },
+  {
+    "kr": "아베다게",
+    "en": "Abbedagge"
+  },
+  {
+    "kr": "파워오브이블",
+    "en": "PowerOfEvil"
+  },
+  {
+    "kr": "버기",
+    "en": "Bugi"
+  },
+  {
+    "kr": "루비",
+    "en": "Ruby"
+  },
+  {
+    "kr": "인섬니아",
+    "en": "Insanity"
+  },
+  {
+    "kr": "제이잘",
+    "en": "Zeyzal"
+  },
+  {
+    "kr": "토이즈",
+    "en": "Toyz"
+  },
+  {
+    "kr": "스탠리",
+    "en": "Stanley"
+  },
+  {
+    "kr": "릴볼즈",
+    "en": "Lilballz"
+  },
+  {
+    "kr": "베베",
+    "en": "bebe"
+  },
+  {
+    "kr": "미스테이크",
+    "en": "MiSTakE"
+  },
+  {
+    "kr": "메이플",
+    "en": "Maple"
+  },
+  {
+    "kr": "소드아트",
+    "en": "SwordArt"
+  },
+  {
+    "kr": "베티",
+    "en": "Betty"
+  },
+  {
+    "kr": "레비",
+    "en": "Levi"
+  },
+  {
+    "kr": "아르테미스",
+    "en": "Artemis"
+  },
+  {
+    "kr": "키아야",
+    "en": "Kiaya"
+  },
+  {
+    "kr": "세로스",
+    "en": "Ceros"
+  },
+  {
+    "kr": "유타폰",
+    "en": "Yutapon"
+  },
+  {
+    "kr": "스틸",
+    "en": "Steal"
+  },
+  {
+    "kr": "에비",
+    "en": "Evi"
+  },
+  {
+    "kr": "케이오엑스",
+    "en": "Chaox"
+  },
+  {
+    "kr": "차옥스",
+    "en": "Chaox"
+  }
+]

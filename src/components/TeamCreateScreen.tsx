@@ -630,7 +630,7 @@ export default function TeamCreateScreen() {
                     const isStarter =
                       player.contractAndRole.rosterStatus === "Starter";
                     const ovr = Math.round(
-                      (player.stats.physical +
+                      (player.stats.mechanics +
                         player.stats.decision +
                         player.stats.mental +
                         player.stats.execution +
@@ -714,7 +714,7 @@ export default function TeamCreateScreen() {
                             <span>
                               피지컬{" "}
                               <b className="text-slate-200">
-                                {player.stats.physical}
+                                {player.stats.mechanics}
                               </b>
                             </span>
                             <span className="text-slate-700">·</span>
