@@ -139,11 +139,11 @@ export default function MyTeamRosterView({
                 {/* 1열: 닉네임 및 포지션 */}
                 <div className="flex items-center justify-between gap-1">
                   <div className="flex items-center gap-1.5 min-w-0 truncate">
-                    <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate">
-                      {player.profile.nicknameKr}
+                    <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate font-mono">
+                      {player.profile.nicknameEn}
                     </span>
-                    <span className="text-[10px] text-slate-400 font-mono truncate">
-                      ({player.profile.nicknameEn})
+                    <span className="text-[10px] text-slate-400 truncate">
+                      ({player.profile.nicknameKr})
                     </span>
                   </div>
                   <span className="px-1.5 py-0.5 rounded bg-slate-800/90 text-slate-300 text-[9px] font-mono border border-slate-700/80 shrink-0">

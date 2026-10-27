@@ -225,7 +225,10 @@ export default function DashboardScreen() {
   const teamShortName = customTeamInfo.shortName || currentTeam?.shortName || "NEW";
   const teamLogoUrl =
     customTeamInfo.customLogoUrl || (currentTeam ? getTeamLogo(currentTeam.id) : null);
-  const managerName = managerProfile.nameKo || "감독";
+  const managerName =
+    managerProfile.nameEn && managerProfile.nameKo
+      ? `${managerProfile.nameEn} (${managerProfile.nameKo})`
+      : managerProfile.nameEn || managerProfile.nameKo || "감독";
 
   return (
     <div className="relative z-10 flex-1 flex flex-col justify-between h-full min-h-0 animate-in fade-in duration-200 select-none">

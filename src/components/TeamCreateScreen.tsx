@@ -12,7 +12,6 @@ import {
   Users,
   Coins,
   RotateCcw,
-  Sparkles,
   Shield,
   Edit3,
   Upload,
@@ -25,7 +24,7 @@ import { PREDEFINED_MANAGERS } from "@/data/managers";
 import { getPlayersByTeamId } from "@/data/players";
 import { getPlayerTraitById } from "@/data/playerTraits";
 import { getTeamLogo } from "@/data/teamLogos";
-import { getTeamColors } from "@/data/teamColors";
+import { getLeagueLogo } from "@/data/leagueLogos";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
 
 const AGING_TYPE_LABEL: Record<string, string> = {
@@ -573,11 +572,11 @@ export default function TeamCreateScreen() {
 
                     <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
                       <div className="flex items-center gap-1.5 flex-wrap">
-                        <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate">
-                          {inspectedManager.nicknameKo}
+                        <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate font-mono">
+                          {inspectedManager.nicknameEn}
                         </span>
-                        <span className="text-[10px] text-slate-400 font-mono truncate">
-                          ({inspectedManager.nicknameEn})
+                        <span className="text-[10px] text-slate-400 truncate">
+                          ({inspectedManager.nicknameKo})
                         </span>
                       </div>
 
@@ -679,11 +678,11 @@ export default function TeamCreateScreen() {
                         <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
                           <div className="flex items-center justify-between gap-1">
                             <div className="flex items-center gap-1.5 min-w-0 truncate">
-                              <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate">
-                                {player.profile.nicknameKr}
+                              <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate font-mono">
+                                {player.profile.nicknameEn}
                               </span>
-                              <span className="text-[10px] text-slate-400 font-mono truncate">
-                                ({player.profile.nicknameEn})
+                              <span className="text-[10px] text-slate-400 truncate">
+                                ({player.profile.nicknameKr})
                               </span>
                             </div>
                             <span className="px-1.5 py-0.5 rounded bg-slate-800/90 text-slate-300 text-[9px] font-mono border border-slate-700/80 shrink-0">
@@ -961,6 +960,7 @@ export default function TeamCreateScreen() {
               <div className="flex-1 flex flex-col gap-1.5 sm:gap-2.5 min-h-0 pb-1">
                 {LEAGUE_SELECT_TABS.map((league) => {
                   const isSelected = selectedLeague === league.code;
+                  const leagueLogoUrl = getLeagueLogo(league.code);
                   return (
                     <button
                       key={league.code}
@@ -973,15 +973,31 @@ export default function TeamCreateScreen() {
                       }`}
                     >
                       <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
-                        <div
-                          className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center font-mono font-black text-sm sm:text-base shrink-0 border ${
-                            isSelected
-                              ? "bg-cyan-500/25 border-cyan-400 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.5)]"
-                              : "bg-slate-950 border-slate-800 text-slate-400"
-                          }`}
-                        >
-                          {league.code}
-                        </div>
+                        {leagueLogoUrl ? (
+                          <div
+                            className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shrink-0 border overflow-hidden p-1 bg-white transition-all ${
+                              isSelected
+                                ? "border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.5)] ring-1 ring-cyan-400/60"
+                                : "border-slate-700/80 shadow-md"
+                            }`}
+                          >
+                            <img
+                              src={leagueLogoUrl}
+                              alt={league.fullName}
+                              className="w-full h-full object-contain"
+                            />
+                          </div>
+                        ) : (
+                          <div
+                            className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center font-mono font-black text-sm sm:text-base shrink-0 border ${
+                              isSelected
+                                ? "bg-cyan-500/25 border-cyan-400 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.5)]"
+                                : "bg-slate-950 border-slate-800 text-slate-400"
+                            }`}
+                          >
+                            {league.code}
+                          </div>
+                        )}
 
                         <div className="flex flex-col min-w-0 justify-center">
                           <span

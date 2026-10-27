@@ -8,13 +8,14 @@ export type FormLevel = "최상" | "상승" | "보통" | "하락" | "최악";
 export type LeagueLanguage = "KCL" | "CCL" | "ECL" | "ACL" | "PCL";
 
 export interface PlayerProfile {
-  playerId: string;          // 예: "P_0001" ~ "P_1250"
-  nicknameKr: string;        // 한글 닉네임 (예: "제니스")
-  nicknameEn: string;        // 영문 닉네임 (예: "Zenith", 3~6글자 제한)
-  avatarConfig: AvatarDna;   // 아바타 렌더러 파라미터 (주름 0, 유니폼 저지)
-  age: number;               // 만 나이 (17~29세)
-  careerYears: number;       // 프로 데뷔 N년차 (1년차 = 신인왕 후보 자격)
-  language: LeagueLanguage;  // 주 사용 언어
+  playerId: string;                      // 예: "P_0001" ~ "P_1250"
+  nicknameKr: string;                    // 한글 닉네임 (예: "제니스")
+  nicknameEn: string;                    // 영문 닉네임 (예: "Zenith", 3~6글자 제한)
+  avatarConfig: AvatarDna;               // 아바타 렌더러 파라미터 (주름 0, 유니폼 저지)
+  age: number;                           // 만 나이 (17~29세)
+  careerYears: number;                   // 프로 데뷔 N년차 (1년차 = 신인왕 후보 자격)
+  firstLanguage: LeagueLanguage;         // 모국어 (KCL, CCL, ECL, ACL, PCL 중 1개)
+  secondLanguage: LeagueLanguage | null; // 제2외국어 (KCL, CCL, ECL, ACL, PCL 중 1개 혹은 없음)
 }
 
 export interface PlayerContractAndRole {

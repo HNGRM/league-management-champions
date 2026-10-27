@@ -342,7 +342,8 @@ flowchart LR
 │   ├── Avatar_Config    : 아바타 렌더러 파라미터 (피부톤, 헤어스타일/컬러, 얼굴형, 눈/표정, 악세서리 등)
 │   ├── Age              : 만 나이 (17~29세)
 │   ├── Career_Years     : 프로 데뷔 N년차 (1년차 = 신인왕 후보 자격)
-│   └── Language         : 주 사용 언어 (KCL, CCL, ECL, ACL, PCL 중 1개)
+│   ├── First_Language   : 모국어 (KCL, CCL, ECL, ACL, PCL 중 1개)
+│   └── Second_Language  : 제2외국어 (KCL, CCL, ECL, ACL, PCL 중 1개 혹은 null)
 │
 ├── 2. 계약 및 포지션 (Contract & Role)
 │   ├── Team_ID          : 소속 구단 ID (무소속 FA는 null)

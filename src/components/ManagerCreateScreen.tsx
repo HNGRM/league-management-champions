@@ -961,7 +961,13 @@ export default function ManagerCreateScreen() {
                   {recommendedLanguages.includes(currentInspectedInfo.code) && selectedTeam && (
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[10px] font-bold shadow-[0_0_8px_rgba(245,158,11,0.25)]">
                       <ThumbsUp className="w-2.5 h-2.5 fill-amber-400 stroke-none" />
-                      <span>{customTeamInfo.nameKo || selectedTeam.nameKo} 전임 감독({selectedTeamManager?.nicknameKo}) 추천</span>
+                      <span>
+                        {customTeamInfo.nameKo || selectedTeam.nameKo} 전임 감독(
+                        {selectedTeamManager
+                          ? `${selectedTeamManager.nicknameEn} (${selectedTeamManager.nicknameKo})`
+                          : ""}
+                        ) 추천
+                      </span>
                     </span>
                   )}
                 </div>
