@@ -22,9 +22,31 @@ import { useGameStore } from "@/store/useGameStore";
 import { LeagueLanguage, PredefinedTeam } from "@/types/game";
 import { PREDEFINED_TEAMS } from "@/data/teams";
 import { PREDEFINED_MANAGERS } from "@/data/managers";
+import { getPlayersByTeamId } from "@/data/players";
+import { getPlayerTraitById } from "@/data/playerTraits";
 import { getTeamLogo } from "@/data/teamLogos";
 import { getTeamColors } from "@/data/teamColors";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
+
+const AGING_TYPE_LABEL: Record<string, string> = {
+  Early: "조기만개형",
+  Normal: "표준형",
+  Late: "대기만성형",
+};
+
+const formatKoreanCurrency = (amount: number): string => {
+  if (amount >= 100000000) {
+    const eok = amount / 100000000;
+    const formatted = Number.isInteger(eok)
+      ? eok.toString()
+      : eok.toFixed(1).replace(/\.0$/, "");
+    return `${formatted}억`;
+  }
+  if (amount >= 10000) {
+    return `${Math.round(amount / 10000).toLocaleString()}만`;
+  }
+  return `${amount.toLocaleString()}원`;
+};
 
 // 리그 선택 메타데이터
 interface LeagueSelectTabInfo {
@@ -105,10 +127,17 @@ export default function TeamCreateScreen() {
   const [showExitModal, setShowExitModal] = useState<boolean>(false);
   const [inspectingTeam, setInspectingTeam] = useState<PredefinedTeam | null>(null);
 
-  // 팀 상세 팝업에 표시할 해당 팀의 사전 정의 헤드코치
+  // 팀 상세 팝업에 표시할 해당 팀의 사전 정의 헤드코치 및 소속 선수단
   const inspectedManager = inspectingTeam
     ? PREDEFINED_MANAGERS.find((m) => m.teamName === inspectingTeam.nameKo) || null
     : null;
+  const inspectedTeamPlayers = inspectingTeam
+    ? getPlayersByTeamId(inspectingTeam.id)
+    : [];
+  const starterCount = inspectedTeamPlayers.filter(
+    (p) => p.contractAndRole.rosterStatus === "Starter"
+  ).length;
+  const subCount = inspectedTeamPlayers.length - starterCount;
 
   // 팀 로고 파일 업로드 참조
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -584,29 +613,184 @@ export default function TeamCreateScreen() {
                 ) : null}
               </div>
 
-              {/* 섹션 3: 선수단 로스터 (5인) */}
-              <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-3.5 flex flex-col gap-2">
+              {/* 섹션 2: 선수단 로스터 (전체 소속 선수 목록) */}
+              <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-3.5 flex flex-col gap-2.5">
                 <div className="flex items-center justify-between">
                   <span className="text-[11px] font-bold text-cyan-300 flex items-center gap-1.5">
                     <Users className="w-3.5 h-3.5 text-cyan-400" />
-                    선수단 로스터 (5인 포지션)
+                    선수단 로스터 ({inspectedTeamPlayers.length}인)
                   </span>
-                  <span className="text-[9px] font-mono text-slate-500">ROSTER PENDING</span>
+                  <span className="text-[9px] font-mono text-cyan-400/80 font-bold">
+                    STARTER {starterCount} · SUB {subCount}
+                  </span>
                 </div>
-                <div className="grid grid-cols-5 gap-1.5 pt-0.5">
-                  {["TOP", "JGL", "MID", "ADC", "SUP"].map((pos) => (
-                    <div
-                      key={pos}
-                      className="py-2.5 px-1 rounded-xl bg-slate-900 border border-dashed border-slate-800 flex flex-col items-center justify-center text-center gap-1"
-                    >
-                      <span className="text-[10px] font-mono font-bold text-cyan-400/80">{pos}</span>
-                      <span className="text-[9px] text-slate-500">배정 대기</span>
-                    </div>
-                  ))}
+
+                <div className="flex flex-col gap-2.5">
+                  {inspectedTeamPlayers.map((player) => {
+                    const isStarter =
+                      player.contractAndRole.rosterStatus === "Starter";
+                    const ovr = Math.round(
+                      (player.stats.physical +
+                        player.stats.decision +
+                        player.stats.mental +
+                        player.stats.execution +
+                        player.stats.teamwork) /
+                        5
+                    );
+                    const agingLabel =
+                      AGING_TYPE_LABEL[player.talentAndGrowth.agingType] ||
+                      "표준형";
+
+                    return (
+                      <div
+                        key={player.profile.playerId}
+                        className="p-3 rounded-2xl bg-slate-900/90 border border-slate-800/90 flex gap-3.5 items-center"
+                      >
+                        {/* 좌측 선수 2D 벡터 아바타 초상화 (감독 창과 동일한 크기) */}
+                        <div
+                          className={`w-24 h-24 sm:w-28 sm:h-28 aspect-square rounded-2xl overflow-hidden bg-slate-950 border-2 shrink-0 flex items-center justify-center relative ${
+                            isStarter
+                              ? "border-cyan-400/50 shadow-[0_0_20px_rgba(6,182,212,0.25)]"
+                              : "border-slate-700/80 shadow-md"
+                          }`}
+                        >
+                          <AvatarRenderer
+                            dna={player.profile.avatarConfig}
+                            teamId={inspectingTeam.id}
+                            league={inspectingTeam.league}
+                            size="100%"
+                            className="w-full h-full"
+                          />
+                          <div className="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded-md bg-slate-950/85 backdrop-blur-sm border border-cyan-400/60 text-[9px] font-mono font-bold text-cyan-300 shadow">
+                            {player.contractAndRole.mainPos}
+                          </div>
+                          <div
+                            className={`absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded-md backdrop-blur-sm border text-[9px] font-bold shadow ${
+                              isStarter
+                                ? "bg-cyan-950/90 border-cyan-400/60 text-cyan-200"
+                                : "bg-slate-900/90 border-slate-600/60 text-slate-400"
+                            }`}
+                          >
+                            {isStarter ? "주전" : "후보"}
+                          </div>
+                        </div>
+
+                        {/* 우측 선수 상세 정보 */}
+                        <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
+                          <div className="flex items-center justify-between gap-1">
+                            <div className="flex items-center gap-1.5 min-w-0 truncate">
+                              <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate">
+                                {player.profile.nicknameKr}
+                              </span>
+                              <span className="text-[10px] text-slate-400 font-mono truncate">
+                                ({player.profile.nicknameEn})
+                              </span>
+                            </div>
+                            <span className="px-1.5 py-0.5 rounded bg-slate-800/90 text-slate-300 text-[9px] font-mono border border-slate-700/80 shrink-0">
+                              주 {player.contractAndRole.mainPos} · 부{" "}
+                              {player.contractAndRole.subPos}
+                            </span>
+                          </div>
+
+                          <div className="flex items-center gap-1.5 text-[10px] text-slate-300 font-medium flex-wrap">
+                            <span>{player.profile.age}세</span>
+                            <span className="text-slate-600">·</span>
+                            <span>
+                              {player.profile.careerYears === 1
+                                ? "신인(1년차)"
+                                : `${player.profile.careerYears}년차`}
+                            </span>
+                            <span className="text-slate-600">·</span>
+                            <span className="text-amber-300 font-semibold">
+                              종합 {ovr}
+                            </span>
+                            <span className="text-slate-600">·</span>
+                            <span className="text-cyan-300 font-semibold">
+                              잠재 {player.talentAndGrowth.potential}
+                            </span>
+                          </div>
+
+                          <div className="text-[10px] text-slate-400 font-mono flex items-center gap-1 flex-wrap leading-tight">
+                            <span>
+                              피지컬{" "}
+                              <b className="text-slate-200">
+                                {player.stats.physical}
+                              </b>
+                            </span>
+                            <span className="text-slate-700">·</span>
+                            <span>
+                              판단{" "}
+                              <b className="text-slate-200">
+                                {player.stats.decision}
+                              </b>
+                            </span>
+                            <span className="text-slate-700">·</span>
+                            <span>
+                              정신{" "}
+                              <b className="text-slate-200">
+                                {player.stats.mental}
+                              </b>
+                            </span>
+                            <span className="text-slate-700">·</span>
+                            <span>
+                              결정{" "}
+                              <b className="text-slate-200">
+                                {player.stats.execution}
+                              </b>
+                            </span>
+                            <span className="text-slate-700">·</span>
+                            <span>
+                              팀워크{" "}
+                              <b className="text-slate-200">
+                                {player.stats.teamwork}
+                              </b>
+                            </span>
+                          </div>
+
+                          <div className="flex items-center gap-1 mt-0.5 flex-wrap">
+                            {Array.from(new Set(player.traitsAndMastery.traits)).map((traitId, idx) => {
+                              const trait = getPlayerTraitById(traitId);
+                              if (!trait) return null;
+                              const badgeColor =
+                                trait.type === "긍정형"
+                                  ? "bg-emerald-950/60 text-emerald-300 border-emerald-500/40"
+                                  : trait.type === "부정형"
+                                  ? "bg-rose-950/60 text-rose-300 border-rose-500/40"
+                                  : "bg-amber-950/60 text-amber-300 border-amber-500/40";
+                              return (
+                                <span
+                                  key={`${player.profile.playerId}-${traitId}-${idx}`}
+                                  title={`${trait.nameKo} (${trait.nameEn}): ${trait.effect}`}
+                                  className={`px-1.5 py-0.5 rounded text-[9px] border font-medium ${badgeColor}`}
+                                >
+                                  {trait.nameKo}
+                                </span>
+                              );
+                            })}
+                            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[9px] border border-slate-700 font-medium">
+                              {agingLabel}
+                            </span>
+                            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[9px] border border-slate-700 font-medium">
+                              스타성 {player.talentAndGrowth.starQuality}
+                            </span>
+                          </div>
+
+                          <span className="text-[9px] text-cyan-400 font-mono font-medium mt-0.5">
+                            연봉{" "}
+                            {formatKoreanCurrency(
+                              player.contractAndRole.salary
+                            )}{" "}
+                            · 계약 {player.contractAndRole.contractYears}년 ·
+                            가치{" "}
+                            {formatKoreanCurrency(
+                              player.contractAndRole.marketValue
+                            )}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-                <p className="text-[10px] text-slate-500 leading-normal mt-0.5">
-                  ※ 게임 시작 시 난수값에 의해 팀별 공식 로스터 및 유망주 풀이 자동 배정됩니다.
-                </p>
               </div>
 
               {/* 섹션 4: 팀 재정 및 운영 지표 */}

@@ -769,7 +769,6 @@
     "traitsAndMastery": {
       "traits": [
         "TRAIT_014",
-        "TRAIT_007",
         "TRAIT_007"
       ],
       "conditions": [],
@@ -12427,7 +12426,6 @@
     "traitsAndMastery": {
       "traits": [
         "TRAIT_001",
-        "TRAIT_010",
         "TRAIT_010"
       ],
       "conditions": [],
@@ -38656,7 +38654,6 @@
     },
     "traitsAndMastery": {
       "traits": [
-        "TRAIT_006",
         "TRAIT_006"
       ],
       "conditions": [],
@@ -40240,7 +40237,6 @@
     },
     "traitsAndMastery": {
       "traits": [
-        "TRAIT_010",
         "TRAIT_010"
       ],
       "conditions": [],
@@ -69897,7 +69893,6 @@
     "traitsAndMastery": {
       "traits": [
         "TRAIT_006",
-        "TRAIT_006",
         "TRAIT_003"
       ],
       "conditions": [],
@@ -71769,8 +71764,7 @@
     "traitsAndMastery": {
       "traits": [
         "TRAIT_007",
-        "TRAIT_036",
-        "TRAIT_007"
+        "TRAIT_036"
       ],
       "conditions": [],
       "championMastery": {
@@ -75507,8 +75501,7 @@
     "traitsAndMastery": {
       "traits": [
         "TRAIT_009",
-        "TRAIT_023",
-        "TRAIT_009"
+        "TRAIT_023"
       ],
       "conditions": [],
       "championMastery": {
@@ -122437,8 +122430,7 @@
     "traitsAndMastery": {
       "traits": [
         "TRAIT_010",
-        "TRAIT_028",
-        "TRAIT_010"
+        "TRAIT_028"
       ],
       "conditions": [],
       "championMastery": {
@@ -147344,8 +147336,7 @@
     "traitsAndMastery": {
       "traits": [
         "TRAIT_002",
-        "TRAIT_022",
-        "TRAIT_002"
+        "TRAIT_022"
       ],
       "conditions": [],
       "championMastery": {
@@ -155558,7 +155549,6 @@
     "traitsAndMastery": {
       "traits": [
         "TRAIT_010",
-        "TRAIT_010",
         "TRAIT_001"
       ],
       "conditions": [],
@@ -159299,7 +159289,6 @@
     },
     "traitsAndMastery": {
       "traits": [
-        "TRAIT_009",
         "TRAIT_009",
         "TRAIT_026"
       ],
@@ -169247,7 +169236,6 @@
     "traitsAndMastery": {
       "traits": [
         "TRAIT_031",
-        "TRAIT_007",
         "TRAIT_007"
       ],
       "conditions": [],
@@ -173132,7 +173120,6 @@
     "traitsAndMastery": {
       "traits": [
         "TRAIT_032",
-        "TRAIT_003",
         "TRAIT_003"
       ],
       "conditions": [],

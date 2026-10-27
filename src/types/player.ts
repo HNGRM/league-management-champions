@@ -18,7 +18,7 @@ export interface PlayerProfile {
 }
 
 export interface PlayerContractAndRole {
-  teamId: string | null;     // 소속 구단 ID (예: "KCL-001", 무소속 FA는 null)
+  teamId: string | null;     // 소속 팀 ID (예: "KCL-001", 무소속 FA는 null)
   rosterStatus: RosterStatus;// 주전(Starter) / 후보(Sub)
   mainPos: Position;         // 주 포지션 (전투 효율 100%)
   subPos: Position;          // 부 포지션 (기본 효율 80%)
