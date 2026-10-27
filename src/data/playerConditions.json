@@ -1,0 +1,112 @@
+[
+  {
+    "id": "COND_001",
+    "num": 1,
+    "nameKo": "부상",
+    "nameEn": "Injury",
+    "category": "악재 / 신체",
+    "maxSlots": 2,
+    "triggerCondition": "체력(`Stamina`)이 20% 이하인 상태에서, 훈련/경기 출전 등 체력을 소모시키는 행동 시 30% 확률로 발생.",
+    "duration": "1~2주간 지속 (휴식 시 완치, 출전 강행 시 악화).",
+    "effect": "`피지컬` 및 `결정력` -6%. (후보 선수 교체 출전 권장)"
+  },
+  {
+    "id": "COND_002",
+    "num": 2,
+    "nameKo": "번아웃",
+    "nameEn": "Burnout",
+    "category": "악재 / 심리",
+    "maxSlots": 2,
+    "triggerCondition": "의욕(`Morale`)이 20% 이하인 상태에서, 경기 패배나 미디어 비판 등 의욕을 떨어뜨리는 사건 발생 시 30% 확률로 발생.",
+    "duration": "코치의 '리더십' 면담 성공 또는 1주 휴식 시 소멸.",
+    "effect": "전 스탯 -4%, 경기 20분 이후 장기전 집중력 저하로 실책 확률 +4%."
+  },
+  {
+    "id": "COND_003",
+    "num": 3,
+    "nameKo": "슬럼프",
+    "nameEn": "Slump",
+    "category": "악재 / 폼",
+    "maxSlots": 2,
+    "triggerCondition": "공식전 5경기 연속 팀 내 최저 평점 기록 시 발동.",
+    "duration": "공식전에서 평점 보통 이상 달성 또는 코치 피드백 성공 시 즉시 소멸.",
+    "effect": "`정신력` 및 `판단력` -5%."
+  },
+  {
+    "id": "COND_004",
+    "num": 4,
+    "nameKo": "파죽지세",
+    "nameEn": "Hot Streak",
+    "category": "호재 / 폼",
+    "maxSlots": 2,
+    "triggerCondition": "공식전 5경기 연속 팀 내 최고 평점(MVP/POG) 기록 시 발동.",
+    "duration": "평점 최하위 기록 시 또는 3주 경과 시 소멸.",
+    "effect": "`피지컬` 및 `판단력` +5%, 초반 라인전 주도권 우위."
+  },
+  {
+    "id": "COND_005",
+    "num": 5,
+    "nameKo": "향수병",
+    "nameEn": "Homesick",
+    "category": "악재 / 환경",
+    "maxSlots": 2,
+    "triggerCondition": "타 리그(해외) 이적 선수가 공식전 개인 3연패를 겪었을 때 발동.",
+    "duration": "경기 1승을 거두거나 코치 케어로 극복 시 소멸.",
+    "effect": "`정신력` -5%, 위기 상황에서 멘탈 흔들림 발생."
+  },
+  {
+    "id": "COND_006",
+    "num": 6,
+    "nameKo": "언어 장벽",
+    "nameEn": "Language Barrier",
+    "category": "환경 / 소통",
+    "maxSlots": 2,
+    "triggerCondition": "구단 주 사용 언어와 선수 사용 언어가 불일치한 상태로 영입되었을 때 즉시 발동.",
+    "duration": "3개월(12주) 경과 시 자연 소멸 (해당 언어 습득). 팀 내 `분위기 메이커` 선수가 있으면 1.5개월(6주)로 단축.",
+    "effect": "`팀워크` -5%, 전술 카드 오더 시 호흡 미스 확률 +4%."
+  },
+  {
+    "id": "COND_007",
+    "num": 7,
+    "nameKo": "출전 기회 불만",
+    "nameEn": "Lack of Playtime",
+    "category": "악재 / 라커룸",
+    "maxSlots": 2,
+    "triggerCondition": "로스터 등록 선수가 공식전 5경기 연속 결장(벤치 방치) 시 30% 확률로 발생.",
+    "duration": "공식전 선발 출전(1세트 이상) 또는 코치 면담 시 즉시 소멸.",
+    "effect": "`Morale(의욕)` 지속 감소 및 훈련 성장 효율 -5%."
+  },
+  {
+    "id": "COND_008",
+    "num": 8,
+    "nameKo": "신인왕",
+    "nameEn": "Rookie of the Year",
+    "category": "명예 / 기간제",
+    "maxSlots": 2,
+    "triggerCondition": "연말 시상식에서 지난 시즌 '신인왕' 수상 시 부여.",
+    "duration": "수상 직후 3개월 동안만 적용.",
+    "effect": "훈련 성장 효율 +5%, 구단 팬덤 유입 속도 +5%."
+  },
+  {
+    "id": "COND_009",
+    "num": 9,
+    "nameKo": "시즌 MVP",
+    "nameEn": "Most Valuable Player",
+    "category": "명예 / 기간제",
+    "maxSlots": 2,
+    "triggerCondition": "정규 리그 또는 국제대회 'MVP' 수상 시 부여.",
+    "duration": "수상 직후 3개월 동안만 적용.",
+    "effect": "전 스탯 +4%, 유니폼 및 MD 굿즈 판매 수익 +6%."
+  },
+  {
+    "id": "COND_010",
+    "num": 10,
+    "nameKo": "FA로이드",
+    "nameEn": "Contract Year Boost",
+    "category": "동기부여 / 기간제",
+    "maxSlots": 2,
+    "triggerCondition": "계약 잔여 기간이 마지막 3개월 남았을 때 발동.",
+    "duration": "재계약 체결 또는 타 팀 이적 시 즉시 소멸 (최대 3개월).",
+    "effect": "개인 `피지컬`과 `결정력` +5% 각성 (단, 개인 지표를 챙기려 해 `팀워크` -3%)."
+  }
+]

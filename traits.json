@@ -1,0 +1,1017 @@
+[
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "mgmt": "엄격함",
+    "style": "유동적",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "mgmt": "유연함",
+    "style": "돌진방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "mgmt": "매우 엄격함",
+    "style": "정석방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "과감함",
+    "mgmt": "매우 유연함",
+    "style": "견제방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "mgmt": "엄격함",
+    "style": "정석방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 유연함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "mgmt": "유연함",
+    "style": "유동적",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "mgmt": "매우 엄격함",
+    "style": "견제방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 유연함",
+    "style": "유동적",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "mgmt": "엄격함",
+    "style": "돌진방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 유연함",
+    "style": "정석방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "mgmt": "엄격함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "과감함",
+    "mgmt": "유연함",
+    "style": "유동적",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "mgmt": "매우 엄격함",
+    "style": "견제방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "mgmt": "유연함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "mgmt": "엄격함",
+    "style": "유동적",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "mgmt": "매우 유연함",
+    "style": "견제방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 엄격함",
+    "style": "정석방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "mgmt": "매우 엄격함",
+    "style": "유동적",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "mgmt": "유연함",
+    "style": "견제방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "엄격함",
+    "style": "정석방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 유연함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 엄격함",
+    "style": "유동적",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "mgmt": "유연함",
+    "style": "돌진방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 엄격함",
+    "style": "유동적",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 유연함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "mgmt": "엄격함",
+    "style": "견제방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "유연함",
+    "style": "정석방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "과감함",
+    "mgmt": "매우 유연함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "mgmt": "유연함",
+    "style": "견제방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 엄격함",
+    "style": "유동적",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "과감함",
+    "mgmt": "매우 유연함",
+    "style": "정석방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "엄격함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "엄격함",
+    "style": "돌진방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "mgmt": "매우 엄격함",
+    "style": "정석방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "mgmt": "유연함",
+    "style": "견제방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 유연함",
+    "style": "유동적",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 엄격함",
+    "style": "견제방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "mgmt": "유연함",
+    "style": "돌진방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "mgmt": "매우 유연함",
+    "style": "견제방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "mgmt": "엄격함",
+    "style": "정석방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 엄격함",
+    "style": "유동적",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "mgmt": "유연함",
+    "style": "돌진방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "mgmt": "유연함",
+    "style": "유동적",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 유연함",
+    "style": "정석방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "mgmt": "매우 엄격함",
+    "style": "돌진방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "mgmt": "엄격함",
+    "style": "견제방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 유연함",
+    "style": "돌진방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "mgmt": "엄격함",
+    "style": "정석방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "매우 엄격함",
+    "style": "유동적",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "mgmt": "유연함",
+    "style": "견제방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "매우 유연함",
+    "style": "견제방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "mgmt": "유연함",
+    "style": "유동적",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "엄격함",
+    "style": "유동적",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 엄격함",
+    "style": "견제방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "mgmt": "유연함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 유연함",
+    "style": "정석방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "mgmt": "유연함",
+    "style": "돌진방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 엄격함",
+    "style": "정석방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "mgmt": "유연함",
+    "style": "견제방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "mgmt": "엄격함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "매우 유연함",
+    "style": "유동적",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "mgmt": "유연함",
+    "style": "정석방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "과감함",
+    "mgmt": "엄격함",
+    "style": "견제방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 유연함",
+    "style": "유동적",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "신중함",
+    "mgmt": "매우 엄격함",
+    "style": "돌진방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 엄격함",
+    "style": "견제방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 유연함",
+    "style": "정석방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "mgmt": "엄격함",
+    "style": "정석방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 유연함",
+    "style": "유동적",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "신중함",
+    "mgmt": "유연함",
+    "style": "견제방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 엄격함",
+    "style": "돌진방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 엄격함",
+    "style": "정석방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "mgmt": "매우 유연함",
+    "style": "견제방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "mgmt": "엄격함",
+    "style": "돌진방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "mgmt": "유연함",
+    "style": "유동적",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "mgmt": "유연함",
+    "style": "견제방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 유연함",
+    "style": "유동적",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "mgmt": "매우 엄격함",
+    "style": "돌진방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "mgmt": "엄격함",
+    "style": "정석방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "과감함",
+    "mgmt": "엄격함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 유연함",
+    "style": "견제방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "과감함",
+    "mgmt": "엄격함",
+    "style": "돌진방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "mgmt": "유연함",
+    "style": "정석방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "mgmt": "매우 엄격함",
+    "style": "견제방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 유연함",
+    "style": "유동적",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "mgmt": "매우 엄격함",
+    "style": "견제방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "mgmt": "엄격함",
+    "style": "정석방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 엄격함",
+    "style": "견제방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "유연함",
+    "style": "유동적",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 유연함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 엄격함",
+    "style": "유동적",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "과감함",
+    "mgmt": "엄격함",
+    "style": "돌진방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "mgmt": "유연함",
+    "style": "정석방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "mgmt": "매우 유연함",
+    "style": "견제방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "과감함",
+    "mgmt": "엄격함",
+    "style": "견제방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 유연함",
+    "style": "정석방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "mgmt": "엄격함",
+    "style": "견제방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "mgmt": "유연함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "mgmt": "매우 엄격함",
+    "style": "유동적",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "과감함",
+    "mgmt": "매우 유연함",
+    "style": "정석방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 엄격함",
+    "style": "정석방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "신중함",
+    "mgmt": "매우 유연함",
+    "style": "견제방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "과감함",
+    "mgmt": "엄격함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "mgmt": "유연함",
+    "style": "유동적",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "mgmt": "유연함",
+    "style": "정석방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "매우 유연함",
+    "style": "견제방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 엄격함",
+    "style": "유동적",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "mgmt": "엄격함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "mgmt": "매우 유연함",
+    "style": "유동적",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "매우 엄격함",
+    "style": "견제방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "과감함",
+    "mgmt": "매우 유연함",
+    "style": "유동적",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "엄격함",
+    "style": "견제방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 엄격함",
+    "style": "정석방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "mgmt": "유연함",
+    "style": "돌진방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "과감함",
+    "mgmt": "매우 엄격함",
+    "style": "견제방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "mgmt": "매우 엄격함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 유연함",
+    "style": "유동적",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "mgmt": "엄격함",
+    "style": "견제방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "과감함",
+    "mgmt": "유연함",
+    "style": "정석방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 엄격함",
+    "style": "돌진방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "mgmt": "엄격함",
+    "style": "견제방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "유연함",
+    "style": "정석방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 유연함",
+    "style": "유동적",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "매우 유연함",
+    "style": "견제방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 엄격함",
+    "style": "돌진방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 유연함",
+    "style": "견제방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "과감함",
+    "mgmt": "유연함",
+    "style": "유동적",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "신중함",
+    "mgmt": "엄격함",
+    "style": "돌진방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "mgmt": "매우 엄격함",
+    "style": "정석방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "과감함",
+    "mgmt": "매우 유연함",
+    "style": "돌진방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "mgmt": "엄격함",
+    "style": "정석방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 엄격함",
+    "style": "유동적",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "mgmt": "유연함",
+    "style": "견제방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "엄격함",
+    "style": "돌진방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 유연함",
+    "style": "정석방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "mgmt": "유연함",
+    "style": "유동적",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "mgmt": "매우 엄격함",
+    "style": "견제방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "신중함",
+    "mgmt": "매우 엄격함",
+    "style": "유동적",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 유연함",
+    "style": "돌진방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "mgmt": "엄격함",
+    "style": "견제방식",
+    "interview": "도발형"
+  },
+  {
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "mgmt": "매우 엄격함",
+    "style": "돌진방식",
+    "interview": "원칙주의형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "mgmt": "매우 유연함",
+    "style": "유동적",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "mgmt": "유연함",
+    "style": "정석방식",
+    "interview": "겸손형"
+  },
+  {
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "mgmt": "유연함",
+    "style": "돌진방식",
+    "interview": "원칙주의형"
+  }
+]

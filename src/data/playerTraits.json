@@ -1,0 +1,452 @@
+[
+  {
+    "id": "TRAIT_001",
+    "num": 1,
+    "nameKo": "장인",
+    "nameEn": "One-Trick",
+    "category": "[카테고리 1] 밴픽 & 챔피언 폭 (8종)",
+    "type": "하이브리드형",
+    "effect": "본인의 1순위 모스트픽 기용 시 `피지컬`과 `결정력` +5%. (해당 챔피언이 밴/피어리스로 금지되면 `정신력` -4%)"
+  },
+  {
+    "id": "TRAIT_002",
+    "num": 2,
+    "nameKo": "카멜레온",
+    "nameEn": "Chameleon",
+    "category": "[카테고리 1] 밴픽 & 챔피언 폭 (8종)",
+    "type": "긍정형",
+    "effect": "숙련도가 낮은 챔피언 기용 시 발생하는 기본 숙련도 페널티를 50% 감면."
+  },
+  {
+    "id": "TRAIT_003",
+    "num": 3,
+    "nameKo": "메타 슬레이브",
+    "nameEn": "Meta Slave",
+    "category": "[카테고리 1] 밴픽 & 챔피언 폭 (8종)",
+    "type": "하이브리드형",
+    "effect": "해당 시즌 리그 전체 밴픽률 상위 20% 이내 인기 챔피언 픽 시 `판단력`과 `팀워크` +4%. (하위 20% 픽 시 전 스탯 -3%)"
+  },
+  {
+    "id": "TRAIT_004",
+    "num": 4,
+    "nameKo": "조커 장인",
+    "nameEn": "Joker Specialist",
+    "category": "[카테고리 1] 밴픽 & 챔피언 폭 (8종)",
+    "type": "긍정형",
+    "effect": "해당 시즌 리그 전체 밴픽률 10% 이하 비선호 챔피언 픽 시, 맞상대의 `판단력` -3% 및 초반 라인전/교전 승률 +5%."
+  },
+  {
+    "id": "TRAIT_005",
+    "num": 5,
+    "nameKo": "카운터 킬러",
+    "nameEn": "Counter Hunter",
+    "category": "[카테고리 1] 밴픽 & 챔피언 폭 (8종)",
+    "type": "긍정형",
+    "effect": "80×80 상성 매트릭스에서 상성 우위(카운터)를 점했을 때 입히는 피해량 +5%."
+  },
+  {
+    "id": "TRAIT_006",
+    "num": 6,
+    "nameKo": "돌진 신봉자",
+    "nameEn": "Dive Enthusiast",
+    "category": "[카테고리 1] 밴픽 & 챔피언 폭 (8종)",
+    "type": "하이브리드형",
+    "effect": "`돌진방식` 챔피언 픽 시 적 진형 붕괴 확률 +5%. (`견제방식` 기용 시 `피지컬` -4%)"
+  },
+  {
+    "id": "TRAIT_007",
+    "num": 7,
+    "nameKo": "포격수",
+    "nameEn": "Artillery Master",
+    "category": "[카테고리 1] 밴픽 & 챔피언 폭 (8종)",
+    "type": "하이브리드형",
+    "effect": "`견제방식` 챔피언 픽 시 원거리 교전 피해량 +5%. (근접전 발생 시 스킬 회피율 -4%)"
+  },
+  {
+    "id": "TRAIT_008",
+    "num": 8,
+    "nameKo": "스왑 마스터",
+    "nameEn": "Flex Player",
+    "category": "[카테고리 1] 밴픽 & 챔피언 폭 (8종)",
+    "type": "긍정형",
+    "effect": "밴픽 스왑 페이즈에서 라인을 스왑했을 때, 상대 맞라인 선수에게 5분간 `판단력` -3% 디버프."
+  },
+  {
+    "id": "TRAIT_009",
+    "num": 9,
+    "nameKo": "초반 기선제압",
+    "nameEn": "Early Dominator",
+    "category": "[카테고리 2] 라인전 & 자원 수급 (8종)",
+    "type": "긍정형",
+    "effect": "0~10분 초반 라인전 및 정글 1:1 조우 시 딜교/교전 승률 +5%."
+  },
+  {
+    "id": "TRAIT_010",
+    "num": 10,
+    "nameKo": "철벽의 방패",
+    "nameEn": "Turtle Defender",
+    "category": "[카테고리 2] 라인전 & 자원 수급 (8종)",
+    "type": "긍정형",
+    "effect": "타워 수성 및 방어적 교전 시 받는 피해량 5% 감소."
+  },
+  {
+    "id": "TRAIT_011",
+    "num": 11,
+    "nameKo": "골드 수급 달인",
+    "nameEn": "Gold Collector",
+    "category": "[카테고리 2] 라인전 & 자원 수급 (8종)",
+    "type": "긍정형",
+    "effect": "미니언 및 정글 몬스터 CS 골드 +5% (서포터는 어시스트 및 고유 골드 수급량 +5%)."
+  },
+  {
+    "id": "TRAIT_012",
+    "num": 12,
+    "nameKo": "포탑 채굴꾼",
+    "nameEn": "Demolitionist",
+    "category": "[카테고리 2] 라인전 & 자원 수급 (8종)",
+    "type": "긍정형",
+    "effect": "포탑 공성 시 타워에 입히는 데미지 및 골드 채굴 속도 +6%."
+  },
+  {
+    "id": "TRAIT_013",
+    "num": 13,
+    "nameKo": "위기 감지",
+    "nameEn": "Sixth Sense",
+    "category": "[카테고리 2] 라인전 & 자원 수급 (8종)",
+    "type": "긍정형",
+    "effect": "적의 기습, 갱킹, 매복 공격을 당했을 때 회피율 +6%."
+  },
+  {
+    "id": "TRAIT_014",
+    "num": 14,
+    "nameKo": "합류 연계",
+    "nameEn": "Teamplay Enabler",
+    "category": "[카테고리 2] 라인전 & 자원 수급 (8종)",
+    "type": "긍정형",
+    "effect": "2인 이상 다인 교전(갱킹, 로밍, 합류전) 시 스킬 연계 및 킬 결정력 +5%."
+  },
+  {
+    "id": "TRAIT_015",
+    "num": 15,
+    "nameKo": "신속한 합류",
+    "nameEn": "Rapid Response",
+    "category": "[카테고리 2] 라인전 & 자원 수급 (8종)",
+    "type": "하이브리드형",
+    "effect": "타 구역(타 라인, 강가 오브젝트) 지원 합류 시 이동속도 +5% 및 첫 공격 데미지 +4%. (본인 구역 미니언/정글 손실 확률 +4%)"
+  },
+  {
+    "id": "TRAIT_016",
+    "num": 16,
+    "nameKo": "전장 침투",
+    "nameEn": "Infiltrator",
+    "category": "[카테고리 2] 라인전 & 자원 수급 (8종)",
+    "type": "하이브리드형",
+    "effect": "적 진영(적 정글, 적 타워 안쪽)에서 교전 시 공격력 +5%. (적 진영 사망 시 리스폰 대기시간 소폭 증가)"
+  },
+  {
+    "id": "TRAIT_017",
+    "num": 17,
+    "nameKo": "결정타의 달인",
+    "nameEn": "Clutch Finisher",
+    "category": "[카테고리 3] 오브젝트 & 몬스터 & 시야 (7종)",
+    "type": "긍정형",
+    "effect": "대형 오브젝트(피닉스/크라켄) 마지막 체력 10% 구간에서 처형/스틸 성공률 +7% (정글러는 강타, 라이너는 누킹 스킬에 적용)."
+  },
+  {
+    "id": "TRAIT_018",
+    "num": 18,
+    "nameKo": "피닉스 헌터",
+    "nameEn": "Phoenix Hunter",
+    "category": "[카테고리 3] 오브젝트 & 몬스터 & 시야 (7종)",
+    "type": "긍정형",
+    "effect": "피닉스 둥지(리버 바텀) 부근 교전 시 아군 전체 공격력/이속 +3%."
+  },
+  {
+    "id": "TRAIT_019",
+    "num": 19,
+    "nameKo": "크라켄 지휘관",
+    "nameEn": "Kraken Master",
+    "category": "[카테고리 3] 오브젝트 & 몬스터 & 시야 (7종)",
+    "type": "긍정형",
+    "effect": "크라켄 둥지(리버 탑) 부근 교전 및 크라켄 미니언 공성 시 버프 +5%."
+  },
+  {
+    "id": "TRAIT_020",
+    "num": 20,
+    "nameKo": "전장 통찰",
+    "nameEn": "Battle Awareness",
+    "category": "[카테고리 3] 오브젝트 & 몬스터 & 시야 (7종)",
+    "type": "긍정형",
+    "effect": "아군 시야가 확보된 밝은 지역에서 교전 시 모든 스탯 +4%."
+  },
+  {
+    "id": "TRAIT_021",
+    "num": 21,
+    "nameKo": "암흑 매복꾼",
+    "nameEn": "Bush Assassin",
+    "category": "[카테고리 3] 오브젝트 & 몬스터 & 시야 (7종)",
+    "type": "긍정형",
+    "effect": "수풀(부쉬)에서 기습 교전(낚시 전술) 시 첫 타격 데미지 +6%."
+  },
+  {
+    "id": "TRAIT_022",
+    "num": 22,
+    "nameKo": "몬스터 사냥꾼",
+    "nameEn": "Monster Slayer",
+    "category": "[카테고리 3] 오브젝트 & 몬스터 & 시야 (7종)",
+    "type": "긍정형",
+    "effect": "모든 중립 몬스터(정글 몹 4종, 피닉스, 크라켄) 사냥 시 주는 피해량 +5%. (정글러 정글링 및 라이너 더티파밍/오브젝트 버스트 공용)"
+  },
+  {
+    "id": "TRAIT_023",
+    "num": 23,
+    "nameKo": "조급한 손끝",
+    "nameEn": "Rushed Execution",
+    "category": "[카테고리 3] 오브젝트 & 몬스터 & 시야 (7종)",
+    "type": "부정형",
+    "effect": "오브젝트나 딸피 적 마무리 타이밍에 조급해져 막타 실책 확률 +5%."
+  },
+  {
+    "id": "TRAIT_024",
+    "num": 24,
+    "nameKo": "한타의 지배자",
+    "nameEn": "Teamfight Maestro",
+    "category": "[카테고리 4] 한타 & 피지컬 (9종)",
+    "type": "긍정형",
+    "effect": "5:5 대규모 교전 시 `팀워크` 스탯 +5%, 진형 유지력 상승."
+  },
+  {
+    "id": "TRAIT_025",
+    "num": 25,
+    "nameKo": "클러치 플레이어",
+    "nameEn": "Clutch King",
+    "category": "[카테고리 4] 한타 & 피지컬 (9종)",
+    "type": "긍정형",
+    "effect": "아군 골드가 밀리거나 수적 열세 교전 시 `피지컬`과 `결정력` +5%."
+  },
+  {
+    "id": "TRAIT_026",
+    "num": 26,
+    "nameKo": "킬 캐처",
+    "nameEn": "Cold-Blooded Finisher",
+    "category": "[카테고리 4] 한타 & 피지컬 (9종)",
+    "type": "긍정형",
+    "effect": "체력이 30% 이하인 적 타격 시 킬 결정력 +6%."
+  },
+  {
+    "id": "TRAIT_027",
+    "num": 27,
+    "nameKo": "진형 파괴자",
+    "nameEn": "Linebreaker",
+    "category": "[카테고리 4] 한타 & 피지컬 (9종)",
+    "type": "긍정형",
+    "effect": "한타 시 적 후열 딜러의 딜각 차단 및 진형 붕괴 보정 +5%."
+  },
+  {
+    "id": "TRAIT_028",
+    "num": 28,
+    "nameKo": "딜러 보디가드",
+    "nameEn": "Backline Shield",
+    "category": "[카테고리 4] 한타 & 피지컬 (9종)",
+    "type": "긍정형",
+    "effect": "아군 주요 딜러 보호 및 세이브 성공률 +6%."
+  },
+  {
+    "id": "TRAIT_029",
+    "num": 29,
+    "nameKo": "어그로 핑퐁",
+    "nameEn": "Bait Specialist",
+    "category": "[카테고리 4] 한타 & 피지컬 (9종)",
+    "type": "긍정형",
+    "effect": "본인 체력이 25% 이하로 떨어졌을 때 스킬 회피율 +7%."
+  },
+  {
+    "id": "TRAIT_030",
+    "num": 30,
+    "nameKo": "논타겟 저격수",
+    "nameEn": "Skillshot Sniper",
+    "category": "[카테고리 4] 한타 & 피지컬 (9종)",
+    "type": "긍정형",
+    "effect": "주요 논타겟 스킬 적중률 +5%."
+  },
+  {
+    "id": "TRAIT_031",
+    "num": 31,
+    "nameKo": "유리대포",
+    "nameEn": "Glass Cannon",
+    "category": "[카테고리 4] 한타 & 피지컬 (9종)",
+    "type": "하이브리드형",
+    "effect": "입히는 데미지 +5%. (방어막/체력 수치 -4%)"
+  },
+  {
+    "id": "TRAIT_032",
+    "num": 32,
+    "nameKo": "스킬 낭비벽",
+    "nameEn": "Skill Spammer",
+    "category": "[카테고리 4] 한타 & 피지컬 (9종)",
+    "type": "부정형",
+    "effect": "중요 한타 시 스킬 쿨타임 미스 발생 확률 4%."
+  },
+  {
+    "id": "TRAIT_033",
+    "num": 33,
+    "nameKo": "스노우볼러",
+    "nameEn": "Snowballer",
+    "category": "[카테고리 5] 파워커브 & 게임 템포 (6종)",
+    "type": "긍정형",
+    "effect": "첫 킬 또는 첫 타워 획득 시 팀 전체 골드 수급 템포 +4%."
+  },
+  {
+    "id": "TRAIT_034",
+    "num": 34,
+    "nameKo": "중반의 지배자",
+    "nameEn": "Mid-Game Juggernaut",
+    "category": "[카테고리 5] 파워커브 & 게임 템포 (6종)",
+    "type": "긍정형",
+    "effect": "인게임 10~20분(레벨 4~7 구간) 모든 스탯 +4%."
+  },
+  {
+    "id": "TRAIT_035",
+    "num": 35,
+    "nameKo": "대기만성",
+    "nameEn": "Late-Game Monster",
+    "category": "[카테고리 5] 파워커브 & 게임 템포 (6종)",
+    "type": "하이브리드형",
+    "effect": "20분 이후 모든 스탯 +5%. (10분 이전 초반 라인전 `피지컬` -3%)"
+  },
+  {
+    "id": "TRAIT_036",
+    "num": 36,
+    "nameKo": "슬로우 스타터",
+    "nameEn": "Slow Starter",
+    "category": "[카테고리 5] 파워커브 & 게임 템포 (6종)",
+    "type": "하이브리드형",
+    "effect": "다전제 3세트 이후 `정신력` +5%. (1세트 초반 잔실수 확률 +3%)"
+  },
+  {
+    "id": "TRAIT_037",
+    "num": 37,
+    "nameKo": "유통기한",
+    "nameEn": "Early Sprinter",
+    "category": "[카테고리 5] 파워커브 & 게임 템포 (6종)",
+    "type": "하이브리드형",
+    "effect": "15분 이전 초반 교전 결정력 +5%. (25분 이후 장기전 결정력 -5%)"
+  },
+  {
+    "id": "TRAIT_038",
+    "num": 38,
+    "nameKo": "시몬스",
+    "nameEn": "Rock Solid",
+    "category": "[카테고리 5] 파워커브 & 게임 템포 (6종)",
+    "type": "긍정형",
+    "effect": "경기 시간과 무관하게 스탯 기복 주사위 편차 0 유지 (안정적인 저점 보장)."
+  },
+  {
+    "id": "TRAIT_039",
+    "num": 39,
+    "nameKo": "빅게임 헌터",
+    "nameEn": "Big-Game Hunter",
+    "category": "[카테고리 6] 심리, 멘탈 & 빅매치 (7종)",
+    "type": "긍정형",
+    "effect": "플레이오프, 결승전, 다전제 5세트에서 `정신력`과 `결정력` +5%."
+  },
+  {
+    "id": "TRAIT_040",
+    "num": 40,
+    "nameKo": "새가슴",
+    "nameEn": "Paper Tiger",
+    "category": "[카테고리 6] 심리, 멘탈 & 빅매치 (7종)",
+    "type": "부정형",
+    "effect": "결승전 및 탈락 위기 경기에서 `정신력` -5%."
+  },
+  {
+    "id": "TRAIT_041",
+    "num": 41,
+    "nameKo": "강철 멘탈",
+    "nameEn": "Iron Will",
+    "category": "[카테고리 6] 심리, 멘탈 & 빅매치 (7종)",
+    "type": "긍정형",
+    "effect": "연속 데스나 팀 연패 시 발생하는 인게임 스탯 디버프 완전 방어."
+  },
+  {
+    "id": "TRAIT_042",
+    "num": 42,
+    "nameKo": "유리 멘탈",
+    "nameEn": "Glass Mental",
+    "category": "[카테고리 6] 심리, 멘탈 & 빅매치 (7종)",
+    "type": "부정형",
+    "effect": "본인 데스 기록 시 해당 세트 동안 `정신력` -4%."
+  },
+  {
+    "id": "TRAIT_043",
+    "num": 43,
+    "nameKo": "트래시토커",
+    "nameEn": "Trash Talker",
+    "category": "[카테고리 6] 심리, 멘탈 & 빅매치 (7종)",
+    "type": "하이브리드형",
+    "effect": "맞라인 솔로킬 시 상대 선수 `정신력` -4%. (본인이 솔로킬 당할 시 본인 `정신력` -5%)"
+  },
+  {
+    "id": "TRAIT_044",
+    "num": 44,
+    "nameKo": "역전의 명수",
+    "nameEn": "Comeback Specialist",
+    "category": "[카테고리 6] 심리, 멘탈 & 빅매치 (7종)",
+    "type": "긍정형",
+    "effect": "넥서스 단독 방어 상황(패배 직전)에서 아군 전투력 +5%."
+  },
+  {
+    "id": "TRAIT_045",
+    "num": 45,
+    "nameKo": "다혈질",
+    "nameEn": "Hothead",
+    "category": "[카테고리 6] 심리, 멘탈 & 빅매치 (7종)",
+    "type": "하이브리드형",
+    "effect": "데스 기록 직후 다음 교전 공격력 +4%. (무리한 진입 시도 확률 +4%)"
+  },
+  {
+    "id": "TRAIT_046",
+    "num": 46,
+    "nameKo": "야전사령관",
+    "nameEn": "Shotcaller",
+    "category": "[카테고리 7] 팀워크, 전술 & 구단 운영 (5종)",
+    "type": "긍정형",
+    "effect": "본인 출전 시 30초 전술 카드 성공 확률 +5%."
+  },
+  {
+    "id": "TRAIT_047",
+    "num": 47,
+    "nameKo": "독불장군",
+    "nameEn": "Lone Wolf",
+    "category": "[카테고리 7] 팀워크, 전술 & 구단 운영 (5종)",
+    "type": "하이브리드형",
+    "effect": "1:1 사이드 스플릿 푸쉬 성공률 +6%. (5:5 한타 합류 시 `팀워크` 기여도 -4%)"
+  },
+  {
+    "id": "TRAIT_048",
+    "num": 48,
+    "nameKo": "분위기 메이커",
+    "nameEn": "Mood Maker",
+    "category": "[카테고리 7] 팀워크, 전술 & 구단 운영 (5종)",
+    "type": "긍정형",
+    "effect": "경기 패배 후 라커룸 선수단 전체의 `Morale(의욕)` 하락 폭 25% 방어."
+  },
+  {
+    "id": "TRAIT_049",
+    "num": 49,
+    "nameKo": "고집쟁이",
+    "nameEn": "Stubborn Ego",
+    "category": "[카테고리 7] 팀워크, 전술 & 구단 운영 (5종)",
+    "type": "하이브리드형",
+    "effect": "본인 1:1 교전 승률 +3%. (코치의 밴픽 추천이나 전술 카드를 거부할 확률 4% 존재)"
+  },
+  {
+    "id": "TRAIT_050",
+    "num": 50,
+    "nameKo": "슈퍼스타",
+    "nameEn": "Born to be Star",
+    "category": "[카테고리 7] 팀워크, 전술 & 구단 운영 (5종)",
+    "type": "긍정형",
+    "effect": "팀 성적과 별개로 유니폼/MD 굿즈 판매 수익 및 구단 팬덤 증가 속도 +7%."
+  }
+]

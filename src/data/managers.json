@@ -1,0 +1,6982 @@
+[
+  {
+    "id": "mgr_kcl_01",
+    "teamName": "서울 엠페러스",
+    "nationality": "KOR",
+    "nicknameEn": "Kaeln",
+    "nicknameKo": "카엘렌",
+    "age": 36,
+    "reputation": 92,
+    "careerStats": {
+      "matches": 659,
+      "wins": 438,
+      "losses": 221,
+      "winRate": 66.5
+    },
+    "trophies": {
+      "leagueTitles": 3,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "KCL",
+      "CCL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 18,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 3,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_02",
+    "teamName": "인천 그리핀즈",
+    "nationality": "KOR",
+    "nicknameEn": "Kreto",
+    "nicknameKo": "크레토",
+    "age": 31,
+    "reputation": 90,
+    "careerStats": {
+      "matches": 608,
+      "wins": 415,
+      "losses": 193,
+      "winRate": 68.3
+    },
+    "trophies": {
+      "leagueTitles": 2,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "KCL",
+      "ACL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 4,
+      "hairColorIndex": 3,
+      "eyeStyleIndex": 6,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_03",
+    "teamName": "대전 노바",
+    "nationality": "KOR",
+    "nicknameEn": "Paradx",
+    "nicknameKo": "패러독스",
+    "age": 38,
+    "reputation": 94,
+    "careerStats": {
+      "matches": 720,
+      "wins": 453,
+      "losses": 267,
+      "winRate": 62.9
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "KCL",
+      "ECL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 0,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 3,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 3,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_04",
+    "teamName": "광주 라이트닝",
+    "nationality": "KOR",
+    "nicknameEn": "Sevrus",
+    "nicknameKo": "세베루스",
+    "age": 33,
+    "reputation": 81,
+    "careerStats": {
+      "matches": 549,
+      "wins": 319,
+      "losses": 230,
+      "winRate": 58.1
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL",
+      "PCL"
+    ],
+    "tactics": "수비적",
+    "finance": "과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 17,
+      "hairColorIndex": 3,
+      "eyeStyleIndex": 11,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_05",
+    "teamName": "대구 블레이즈",
+    "nationality": "KOR",
+    "nicknameEn": "Sylok",
+    "nicknameKo": "실록",
+    "age": 36,
+    "reputation": 86,
+    "careerStats": {
+      "matches": 564,
+      "wins": 355,
+      "losses": 209,
+      "winRate": 62.9
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL",
+      "CCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 10,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 8,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_06",
+    "teamName": "울산 레비아탄",
+    "nationality": "KOR",
+    "nicknameEn": "Spektr",
+    "nicknameKo": "스펙터",
+    "age": 36,
+    "reputation": 85,
+    "careerStats": {
+      "matches": 519,
+      "wins": 325,
+      "losses": 194,
+      "winRate": 62.6
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL",
+      "ECL"
+    ],
+    "tactics": "공격적",
+    "finance": "신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 1,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_07",
+    "teamName": "부산 트라이던트",
+    "nationality": "KOR",
+    "nicknameEn": "Balthazr",
+    "nicknameKo": "발타자르",
+    "age": 28,
+    "reputation": 75,
+    "careerStats": {
+      "matches": 337,
+      "wins": 180,
+      "losses": 157,
+      "winRate": 53.4
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL",
+      "ACL"
+    ],
+    "tactics": "공격적",
+    "finance": "과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 2,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 6,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_08",
+    "teamName": "제주 페가수스",
+    "nationality": "KOR",
+    "nicknameEn": "Hayul",
+    "nicknameKo": "하율",
+    "age": 35,
+    "reputation": 78,
+    "careerStats": {
+      "matches": 421,
+      "wins": 222,
+      "losses": 199,
+      "winRate": 52.7
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL",
+      "PCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 6,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 4,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 4,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_09",
+    "teamName": "세종 크라운",
+    "nationality": "KOR",
+    "nicknameEn": "Soran",
+    "nicknameKo": "소란",
+    "age": 28,
+    "reputation": 72,
+    "careerStats": {
+      "matches": 349,
+      "wins": 182,
+      "losses": 167,
+      "winRate": 52.1
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL",
+      "CCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 7,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 5,
+      "lipColorIndex": 5,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 3,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_10",
+    "teamName": "원주 호크스",
+    "nationality": "KOR",
+    "nicknameEn": "Phantm",
+    "nicknameKo": "팬텀",
+    "age": 34,
+    "reputation": 81,
+    "careerStats": {
+      "matches": 430,
+      "wins": 225,
+      "losses": 205,
+      "winRate": 52.3
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL",
+      "ACL"
+    ],
+    "tactics": "수비적",
+    "finance": "신중함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 14,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 1,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 3,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 2,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_11",
+    "teamName": "수원 포르테",
+    "nationality": "KOR",
+    "nicknameEn": "Bustr",
+    "nicknameKo": "버스터",
+    "age": 39,
+    "reputation": 72,
+    "careerStats": {
+      "matches": 408,
+      "wins": 209,
+      "losses": 199,
+      "winRate": 51.2
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL",
+      "ECL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 14,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 2,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_12",
+    "teamName": "성남 코어",
+    "nationality": "KOR",
+    "nicknameEn": "Mastn",
+    "nicknameKo": "마스턴",
+    "age": 33,
+    "reputation": 62,
+    "careerStats": {
+      "matches": 312,
+      "wins": 165,
+      "losses": 147,
+      "winRate": 52.9
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "KCL",
+      "PCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 3,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_13",
+    "teamName": "청주 가디언즈",
+    "nationality": "KOR",
+    "nicknameEn": "Myr",
+    "nicknameKo": "미르",
+    "age": 40,
+    "reputation": 62,
+    "careerStats": {
+      "matches": 377,
+      "wins": 189,
+      "losses": 188,
+      "winRate": 50.1
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL",
+      "CCL"
+    ],
+    "tactics": "공격적",
+    "finance": "과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 0,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 6,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_14",
+    "teamName": "천안 이클립스",
+    "nationality": "KOR",
+    "nicknameEn": "Zarex",
+    "nicknameKo": "자렉",
+    "age": 42,
+    "reputation": 71,
+    "careerStats": {
+      "matches": 420,
+      "wins": 212,
+      "losses": 208,
+      "winRate": 50.5
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL",
+      "ACL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 18,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 11,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 3,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_15",
+    "teamName": "전주 피닉스",
+    "nationality": "KOR",
+    "nicknameEn": "Naru",
+    "nicknameKo": "나루",
+    "age": 44,
+    "reputation": 61,
+    "careerStats": {
+      "matches": 320,
+      "wins": 149,
+      "losses": 171,
+      "winRate": 46.6
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL",
+      "ECL"
+    ],
+    "tactics": "수비적",
+    "finance": "신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 5,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 2,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 1,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 1,
+      "wrinkleIndex": 3,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_16",
+    "teamName": "포항 타이탄즈",
+    "nationality": "KOR",
+    "nicknameEn": "Korvus",
+    "nicknameKo": "코르부스",
+    "age": 30,
+    "reputation": 57,
+    "careerStats": {
+      "matches": 225,
+      "wins": 107,
+      "losses": 118,
+      "winRate": 47.6
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL",
+      "PCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 18,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 0,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 5,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 3,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_17",
+    "teamName": "창원 기어스",
+    "nationality": "KOR",
+    "nicknameEn": "Vextn",
+    "nicknameKo": "벡스톤",
+    "age": 43,
+    "reputation": 57,
+    "careerStats": {
+      "matches": 297,
+      "wins": 148,
+      "losses": 149,
+      "winRate": 49.8
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 1,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 2,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_18",
+    "teamName": "춘천 제이드",
+    "nationality": "KOR",
+    "nicknameEn": "Syren",
+    "nicknameKo": "사이렌",
+    "age": 39,
+    "reputation": 55,
+    "careerStats": {
+      "matches": 297,
+      "wins": 150,
+      "losses": 147,
+      "winRate": 50.5
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL"
+    ],
+    "tactics": "수비적",
+    "finance": "신중함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 7,
+      "hairColorIndex": 10,
+      "eyeStyleIndex": 1,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 3,
+      "lipColorIndex": 1,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 3,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_19",
+    "teamName": "용인 드래곤즈",
+    "nationality": "KOR",
+    "nicknameEn": "Valkn",
+    "nicknameKo": "발켄",
+    "age": 34,
+    "reputation": 49,
+    "careerStats": {
+      "matches": 180,
+      "wins": 83,
+      "losses": 97,
+      "winRate": 46.1
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 1,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 8,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_20",
+    "teamName": "아산 아머러스",
+    "nationality": "KOR",
+    "nicknameEn": "Bazten",
+    "nicknameKo": "바스텐",
+    "age": 38,
+    "reputation": 52,
+    "careerStats": {
+      "matches": 203,
+      "wins": 84,
+      "losses": 119,
+      "winRate": 41.4
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL"
+    ],
+    "tactics": "수비적",
+    "finance": "신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 10,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_21",
+    "teamName": "여수 오로라",
+    "nationality": "KOR",
+    "nicknameEn": "Valn",
+    "nicknameKo": "발렌",
+    "age": 33,
+    "reputation": 43,
+    "careerStats": {
+      "matches": 160,
+      "wins": 74,
+      "losses": 86,
+      "winRate": 46.3
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 3,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 8,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 3,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_22",
+    "teamName": "구미 펄스",
+    "nationality": "KOR",
+    "nicknameEn": "ApeX",
+    "nicknameKo": "에이펙스",
+    "age": 29,
+    "reputation": 52,
+    "careerStats": {
+      "matches": 163,
+      "wins": 75,
+      "losses": 88,
+      "winRate": 46
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL"
+    ],
+    "tactics": "공격적",
+    "finance": "과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 3,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 3,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 2,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_23",
+    "teamName": "김해 팔콘즈",
+    "nationality": "KOR",
+    "nicknameEn": "Rangr",
+    "nicknameKo": "레인저",
+    "age": 36,
+    "reputation": 51,
+    "careerStats": {
+      "matches": 191,
+      "wins": 84,
+      "losses": 107,
+      "winRate": 44
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 2,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 1,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_24",
+    "teamName": "강릉 웨이브즈",
+    "nationality": "KOR",
+    "nicknameEn": "Thera",
+    "nicknameKo": "테라",
+    "age": 43,
+    "reputation": 42,
+    "careerStats": {
+      "matches": 230,
+      "wins": 107,
+      "losses": 123,
+      "winRate": 46.5
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 6,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 3,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_25",
+    "teamName": "화성 랩터스",
+    "nationality": "KOR",
+    "nicknameEn": "Rebl",
+    "nicknameKo": "레벨",
+    "age": 42,
+    "reputation": 29,
+    "careerStats": {
+      "matches": 137,
+      "wins": 52,
+      "losses": 85,
+      "winRate": 38
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 3,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 5,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_26",
+    "teamName": "충주 아처스",
+    "nationality": "KOR",
+    "nicknameEn": "Harkn",
+    "nicknameKo": "하켄",
+    "age": 30,
+    "reputation": 26,
+    "careerStats": {
+      "matches": 69,
+      "wins": 28,
+      "losses": 41,
+      "winRate": 40.6
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 18,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 1,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 3,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_27",
+    "teamName": "군산 보야저스",
+    "nationality": "KOR",
+    "nicknameEn": "Draftr",
+    "nicknameKo": "드래프터",
+    "age": 28,
+    "reputation": 33,
+    "careerStats": {
+      "matches": 64,
+      "wins": 28,
+      "losses": 36,
+      "winRate": 43.8
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 1,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 3,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 5,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_28",
+    "teamName": "경주 나이츠",
+    "nationality": "KOR",
+    "nicknameEn": "Evn",
+    "nicknameKo": "에반",
+    "age": 33,
+    "reputation": 35,
+    "careerStats": {
+      "matches": 92,
+      "wins": 36,
+      "losses": 56,
+      "winRate": 39.1
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL"
+    ],
+    "tactics": "공격적",
+    "finance": "신중함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 9,
+      "hairColorIndex": 3,
+      "eyeStyleIndex": 2,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_29",
+    "teamName": "진주 코멧츠",
+    "nationality": "KOR",
+    "nicknameEn": "Zenyth",
+    "nicknameKo": "제니스",
+    "age": 40,
+    "reputation": 31,
+    "careerStats": {
+      "matches": 123,
+      "wins": 46,
+      "losses": 77,
+      "winRate": 37.4
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 6,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_kcl_30",
+    "teamName": "목포 노틸러스",
+    "nationality": "KOR",
+    "nicknameEn": "Nathn",
+    "nicknameKo": "네이선",
+    "age": 36,
+    "reputation": 33,
+    "careerStats": {
+      "matches": 114,
+      "wins": 46,
+      "losses": 68,
+      "winRate": 40.4
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "KCL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 2,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 4,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 2,
+      "eyeAccessoryIndex": 2,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_01",
+    "teamName": "베이징 다이너스티",
+    "nationality": "CHN",
+    "nicknameEn": "Zhen",
+    "nicknameKo": "젠",
+    "age": 33,
+    "reputation": 91,
+    "careerStats": {
+      "matches": 601,
+      "wins": 393,
+      "losses": 208,
+      "winRate": 65.4
+    },
+    "trophies": {
+      "leagueTitles": 3,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "CCL",
+      "KCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 10,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 5,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 2,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_02",
+    "teamName": "톈진 마리너스",
+    "nationality": "CHN",
+    "nicknameEn": "Alvyz",
+    "nicknameKo": "알비스",
+    "age": 29,
+    "reputation": 95,
+    "careerStats": {
+      "matches": 581,
+      "wins": 376,
+      "losses": 205,
+      "winRate": 64.7
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL",
+      "ECL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 13,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 2,
+      "eyeColorIndex": 3,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_03",
+    "teamName": "상하이 이터널",
+    "nationality": "CHN",
+    "nicknameEn": "Ignyte",
+    "nicknameKo": "이그나이트",
+    "age": 36,
+    "reputation": 95,
+    "careerStats": {
+      "matches": 636,
+      "wins": 439,
+      "losses": 197,
+      "winRate": 69
+    },
+    "trophies": {
+      "leagueTitles": 2,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "CCL",
+      "ACL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 9,
+      "hairColorIndex": 11,
+      "eyeStyleIndex": 4,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 3,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 4,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_04",
+    "teamName": "항저우 스파크",
+    "nationality": "CHN",
+    "nicknameEn": "Qing",
+    "nicknameKo": "칭",
+    "age": 40,
+    "reputation": 82,
+    "careerStats": {
+      "matches": 550,
+      "wins": 335,
+      "losses": 215,
+      "winRate": 60.9
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL",
+      "PCL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 3,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 10,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 3,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_05",
+    "teamName": "선전 사이버",
+    "nationality": "CHN",
+    "nicknameEn": "Vrtx",
+    "nicknameKo": "볼텍스",
+    "age": 36,
+    "reputation": 80,
+    "careerStats": {
+      "matches": 570,
+      "wins": 325,
+      "losses": 245,
+      "winRate": 57
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL",
+      "KCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 2,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 6,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_06",
+    "teamName": "광저우 램스",
+    "nationality": "CHN",
+    "nicknameEn": "Hao",
+    "nicknameKo": "하오",
+    "age": 44,
+    "reputation": 86,
+    "careerStats": {
+      "matches": 605,
+      "wins": 347,
+      "losses": 258,
+      "winRate": 57.4
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL",
+      "ACL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 17,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 6,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 3,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_07",
+    "teamName": "우한 크레인즈",
+    "nationality": "CHN",
+    "nicknameEn": "Myrage",
+    "nicknameKo": "미라지",
+    "age": 31,
+    "reputation": 73,
+    "careerStats": {
+      "matches": 413,
+      "wins": 231,
+      "losses": 182,
+      "winRate": 55.9
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL",
+      "ECL"
+    ],
+    "tactics": "수비적",
+    "finance": "과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 16,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 3,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 3,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_08",
+    "teamName": "충칭 파이로",
+    "nationality": "CHN",
+    "nicknameEn": "Mavrx",
+    "nicknameKo": "매브릭스",
+    "age": 40,
+    "reputation": 80,
+    "careerStats": {
+      "matches": 457,
+      "wins": 242,
+      "losses": 215,
+      "winRate": 53
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL",
+      "PCL"
+    ],
+    "tactics": "공격적",
+    "finance": "신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 18,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_09",
+    "teamName": "청두 판다스",
+    "nationality": "CHN",
+    "nicknameEn": "Pavcl",
+    "nicknameKo": "파벨",
+    "age": 43,
+    "reputation": 77,
+    "careerStats": {
+      "matches": 498,
+      "wins": 268,
+      "losses": 230,
+      "winRate": 53.8
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL",
+      "KCL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 4,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_10",
+    "teamName": "선양 팔라딘즈",
+    "nationality": "CHN",
+    "nicknameEn": "Valdr",
+    "nicknameKo": "발도르",
+    "age": 28,
+    "reputation": 73,
+    "careerStats": {
+      "matches": 338,
+      "wins": 176,
+      "losses": 162,
+      "winRate": 52.1
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL",
+      "ECL"
+    ],
+    "tactics": "수비적",
+    "finance": "신중함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 2,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_11",
+    "teamName": "칭다오 세일즈",
+    "nationality": "CHN",
+    "nicknameEn": "Ehco",
+    "nicknameKo": "에코",
+    "age": 40,
+    "reputation": 64,
+    "careerStats": {
+      "matches": 407,
+      "wins": 210,
+      "losses": 197,
+      "winRate": 51.6
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "CCL",
+      "ACL"
+    ],
+    "tactics": "공격적",
+    "finance": "과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 17,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 8,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 2,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_12",
+    "teamName": "쑤저우 위버스",
+    "nationality": "CHN",
+    "nicknameEn": "Starx",
+    "nicknameKo": "스타크",
+    "age": 39,
+    "reputation": 71,
+    "careerStats": {
+      "matches": 395,
+      "wins": 202,
+      "losses": 193,
+      "winRate": 51.1
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL",
+      "PCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 13,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 8,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_13",
+    "teamName": "난징 기린즈",
+    "nationality": "CHN",
+    "nicknameEn": "Chen",
+    "nicknameKo": "첸",
+    "age": 37,
+    "reputation": 67,
+    "careerStats": {
+      "matches": 341,
+      "wins": 178,
+      "losses": 163,
+      "winRate": 52.2
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "CCL",
+      "KCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 1,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 1,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 3,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_14",
+    "teamName": "푸저우 반얀즈",
+    "nationality": "CHN",
+    "nicknameEn": "Caelm",
+    "nicknameKo": "카엘룸",
+    "age": 37,
+    "reputation": 68,
+    "careerStats": {
+      "matches": 349,
+      "wins": 191,
+      "losses": 158,
+      "winRate": 54.7
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL",
+      "ECL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 4,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 0,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_15",
+    "teamName": "창사 스타즈",
+    "nationality": "CHN",
+    "nicknameEn": "Costlo",
+    "nicknameKo": "코스텔로",
+    "age": 38,
+    "reputation": 63,
+    "careerStats": {
+      "matches": 278,
+      "wins": 141,
+      "losses": 137,
+      "winRate": 50.7
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL",
+      "ACL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 13,
+      "hairColorIndex": 3,
+      "eyeStyleIndex": 2,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_16",
+    "teamName": "정저우 센터스",
+    "nationality": "CHN",
+    "nicknameEn": "Nexr",
+    "nicknameKo": "넥서",
+    "age": 35,
+    "reputation": 54,
+    "careerStats": {
+      "matches": 272,
+      "wins": 126,
+      "losses": 146,
+      "winRate": 46.3
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL",
+      "PCL"
+    ],
+    "tactics": "공격적",
+    "finance": "신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 17,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 10,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 2,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_17",
+    "teamName": "시안 레기온",
+    "nationality": "CHN",
+    "nicknameEn": "Vexr",
+    "nicknameKo": "벡서",
+    "age": 31,
+    "reputation": 58,
+    "careerStats": {
+      "matches": 244,
+      "wins": 115,
+      "losses": 129,
+      "winRate": 47.1
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 14,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 1,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_18",
+    "teamName": "다롄 돌핀즈",
+    "nationality": "CHN",
+    "nicknameEn": "Rya",
+    "nicknameKo": "리아",
+    "age": 37,
+    "reputation": 59,
+    "careerStats": {
+      "matches": 269,
+      "wins": 130,
+      "losses": 139,
+      "winRate": 48.3
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 8,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 7,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_19",
+    "teamName": "지난 스프링스",
+    "nationality": "CHN",
+    "nicknameEn": "Phelix",
+    "nicknameKo": "펠릭스",
+    "age": 28,
+    "reputation": 42,
+    "careerStats": {
+      "matches": 135,
+      "wins": 62,
+      "losses": 73,
+      "winRate": 45.9
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 17,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 11,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_20",
+    "teamName": "닝보 앵커스",
+    "nationality": "CHN",
+    "nicknameEn": "Ivvn",
+    "nicknameKo": "아이반",
+    "age": 27,
+    "reputation": 47,
+    "careerStats": {
+      "matches": 149,
+      "wins": 64,
+      "losses": 85,
+      "winRate": 43
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 2,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 6,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 5,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 1,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_21",
+    "teamName": "샤먼 에그렛츠",
+    "nationality": "CHN",
+    "nicknameEn": "Zcal",
+    "nicknameKo": "질",
+    "age": 31,
+    "reputation": 42,
+    "careerStats": {
+      "matches": 142,
+      "wins": 65,
+      "losses": 77,
+      "winRate": 45.8
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 19,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 8,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 2,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_22",
+    "teamName": "허페이 퀀텀",
+    "nationality": "CHN",
+    "nicknameEn": "Cyrx",
+    "nicknameKo": "사이러스",
+    "age": 43,
+    "reputation": 44,
+    "careerStats": {
+      "matches": 225,
+      "wins": 101,
+      "losses": 124,
+      "winRate": 44.9
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 3,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 11,
+      "eyeColorIndex": 5,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 3,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 2,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_23",
+    "teamName": "쿤밍 피콕스",
+    "nationality": "CHN",
+    "nicknameEn": "Xia",
+    "nicknameKo": "샤",
+    "age": 42,
+    "reputation": 48,
+    "careerStats": {
+      "matches": 230,
+      "wins": 109,
+      "losses": 121,
+      "winRate": 47.4
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 19,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 10,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 2,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_24",
+    "teamName": "하얼빈 프로스트",
+    "nationality": "CHN",
+    "nicknameEn": "Glovr",
+    "nicknameKo": "글로버",
+    "age": 38,
+    "reputation": 49,
+    "careerStats": {
+      "matches": 177,
+      "wins": 83,
+      "losses": 94,
+      "winRate": 46.9
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 18,
+      "hairColorIndex": 5,
+      "eyeStyleIndex": 1,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 2,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_25",
+    "teamName": "스좌장 록스",
+    "nationality": "CHN",
+    "nicknameEn": "Lambrt",
+    "nicknameKo": "람베르",
+    "age": 31,
+    "reputation": 32,
+    "careerStats": {
+      "matches": 77,
+      "wins": 31,
+      "losses": 46,
+      "winRate": 40.3
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 12,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 6,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 5,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_26",
+    "teamName": "우시 젬스",
+    "nationality": "CHN",
+    "nicknameEn": "Rustn",
+    "nicknameKo": "라스턴",
+    "age": 28,
+    "reputation": 37,
+    "careerStats": {
+      "matches": 82,
+      "wins": 31,
+      "losses": 51,
+      "winRate": 37.8
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL"
+    ],
+    "tactics": "수비적",
+    "finance": "신중함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 18,
+      "hairColorIndex": 3,
+      "eyeStyleIndex": 11,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_27",
+    "teamName": "포산 몽크스",
+    "nationality": "CHN",
+    "nicknameEn": "Kent",
+    "nicknameKo": "켄트",
+    "age": 29,
+    "reputation": 40,
+    "careerStats": {
+      "matches": 92,
+      "wins": 36,
+      "losses": 56,
+      "winRate": 39.1
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 4,
+      "hairColorIndex": 3,
+      "eyeStyleIndex": 4,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 3,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_28",
+    "teamName": "난창 호라이즌",
+    "nationality": "CHN",
+    "nicknameEn": "Vestx",
+    "nicknameKo": "베스타",
+    "age": 44,
+    "reputation": 34,
+    "careerStats": {
+      "matches": 150,
+      "wins": 61,
+      "losses": 89,
+      "winRate": 40.7
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 17,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 2,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 3,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 3,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_29",
+    "teamName": "구이양 클라우드",
+    "nationality": "CHN",
+    "nicknameEn": "Sylvn",
+    "nicknameKo": "실반",
+    "age": 38,
+    "reputation": 32,
+    "careerStats": {
+      "matches": 120,
+      "wins": 46,
+      "losses": 74,
+      "winRate": 38.3
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 12,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 2,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ccl_30",
+    "teamName": "창춘 타이거스",
+    "nationality": "CHN",
+    "nicknameEn": "Jian",
+    "nicknameKo": "지엔",
+    "age": 38,
+    "reputation": 35,
+    "careerStats": {
+      "matches": 126,
+      "wins": 51,
+      "losses": 75,
+      "winRate": 40.5
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "CCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 3,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 2,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 1,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_01",
+    "teamName": "런던 로열스",
+    "nationality": "GBR",
+    "nicknameEn": "Stelln",
+    "nicknameKo": "스텔란",
+    "age": 32,
+    "reputation": 90,
+    "careerStats": {
+      "matches": 606,
+      "wins": 398,
+      "losses": 208,
+      "winRate": 65.7
+    },
+    "trophies": {
+      "leagueTitles": 3,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "ECL",
+      "ACL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 3,
+      "hairColorIndex": 5,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 3,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_02",
+    "teamName": "파리 루미에르",
+    "nationality": "FRA",
+    "nicknameEn": "Renrd",
+    "nicknameKo": "르나르",
+    "age": 31,
+    "reputation": 88,
+    "careerStats": {
+      "matches": 636,
+      "wins": 421,
+      "losses": 215,
+      "winRate": 66.2
+    },
+    "trophies": {
+      "leagueTitles": 2,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "ECL",
+      "KCL"
+    ],
+    "tactics": "수비적",
+    "finance": "신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 14,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 3,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 1,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_03",
+    "teamName": "베를린 베어스",
+    "nationality": "DEU",
+    "nicknameEn": "Falx",
+    "nicknameKo": "팔크",
+    "age": 33,
+    "reputation": 91,
+    "careerStats": {
+      "matches": 654,
+      "wins": 443,
+      "losses": 211,
+      "winRate": 67.7
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL",
+      "CCL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 14,
+      "hairColorIndex": 6,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 4,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_04",
+    "teamName": "마드리드 마타도르스",
+    "nationality": "ESP",
+    "nicknameEn": "Brandx",
+    "nicknameKo": "브란도",
+    "age": 36,
+    "reputation": 83,
+    "careerStats": {
+      "matches": 565,
+      "wins": 328,
+      "losses": 237,
+      "winRate": 58.1
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "ECL",
+      "PCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 1,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 1,
+      "earAccessoryIndex": 1,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_05",
+    "teamName": "밀라노 바이퍼스",
+    "nationality": "ITA",
+    "nicknameEn": "Katenac",
+    "nicknameKo": "카테낙",
+    "age": 31,
+    "reputation": 83,
+    "careerStats": {
+      "matches": 496,
+      "wins": 296,
+      "losses": 200,
+      "winRate": 59.7
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL",
+      "ACL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 4,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 6,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 3,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_06",
+    "teamName": "스톡홀름 바이킹스",
+    "nationality": "SWE",
+    "nicknameEn": "Eynar",
+    "nicknameKo": "에이나르",
+    "age": 31,
+    "reputation": 86,
+    "careerStats": {
+      "matches": 524,
+      "wins": 329,
+      "losses": 195,
+      "winRate": 62.8
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL",
+      "KCL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 10,
+      "hairColorIndex": 5,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 3,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_07",
+    "teamName": "모스크바 매머드",
+    "nationality": "RUS",
+    "nicknameEn": "Varg",
+    "nicknameKo": "바르그",
+    "age": 29,
+    "reputation": 80,
+    "careerStats": {
+      "matches": 388,
+      "wins": 215,
+      "losses": 173,
+      "winRate": 55.4
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL",
+      "CCL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 1,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 4,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 2,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_08",
+    "teamName": "이스탄불 술탄즈",
+    "nationality": "TUR",
+    "nicknameEn": "Kadyr",
+    "nicknameKo": "카디르",
+    "age": 31,
+    "reputation": 79,
+    "careerStats": {
+      "matches": 394,
+      "wins": 205,
+      "losses": 189,
+      "winRate": 52
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL",
+      "PCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 0,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 4,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_09",
+    "teamName": "리야드 미라지",
+    "nationality": "SAU",
+    "nicknameEn": "Taryq",
+    "nicknameKo": "타리크",
+    "age": 36,
+    "reputation": 79,
+    "careerStats": {
+      "matches": 419,
+      "wins": 229,
+      "losses": 190,
+      "winRate": 54.7
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL",
+      "KCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 5,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 17,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 3,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 5,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_10",
+    "teamName": "카이로 파라오스",
+    "nationality": "EGY",
+    "nicknameEn": "Akrm",
+    "nicknameKo": "아크람",
+    "age": 39,
+    "reputation": 72,
+    "careerStats": {
+      "matches": 459,
+      "wins": 254,
+      "losses": 205,
+      "winRate": 55.3
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL",
+      "ACL"
+    ],
+    "tactics": "수비적",
+    "finance": "과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 17,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 10,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 1,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_11",
+    "teamName": "암스테르담 어드미럴스",
+    "nationality": "NLD",
+    "nicknameEn": "Vandr",
+    "nicknameKo": "반더",
+    "age": 27,
+    "reputation": 62,
+    "careerStats": {
+      "matches": 301,
+      "wins": 153,
+      "losses": 148,
+      "winRate": 50.8
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL",
+      "CCL"
+    ],
+    "tactics": "공격적",
+    "finance": "과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 9,
+      "hairColorIndex": 5,
+      "eyeStyleIndex": 6,
+      "eyeColorIndex": 4,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_12",
+    "teamName": "뮌헨 바바리안즈",
+    "nationality": "DEU",
+    "nicknameEn": "Jorgn",
+    "nicknameKo": "요르겐",
+    "age": 34,
+    "reputation": 66,
+    "careerStats": {
+      "matches": 348,
+      "wins": 181,
+      "losses": 167,
+      "winRate": 52
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL",
+      "PCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 13,
+      "hairColorIndex": 3,
+      "eyeStyleIndex": 0,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 2,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_13",
+    "teamName": "빈 마에스트로스",
+    "nationality": "AUT",
+    "nicknameEn": "Orphx",
+    "nicknameKo": "오르페",
+    "age": 28,
+    "reputation": 68,
+    "careerStats": {
+      "matches": 310,
+      "wins": 160,
+      "losses": 150,
+      "winRate": 51.6
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL",
+      "KCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 18,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 2,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_14",
+    "teamName": "바르셀로나 아마다",
+    "nationality": "ESP",
+    "nicknameEn": "Torrez",
+    "nicknameKo": "토레스",
+    "age": 41,
+    "reputation": 62,
+    "careerStats": {
+      "matches": 385,
+      "wins": 213,
+      "losses": 172,
+      "winRate": 55.3
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "ECL",
+      "ACL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 3,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 3,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 5,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 3,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_15",
+    "teamName": "바르샤바 후사르스",
+    "nationality": "POL",
+    "nicknameEn": "Strykr",
+    "nicknameKo": "스트라이커",
+    "age": 30,
+    "reputation": 53,
+    "careerStats": {
+      "matches": 226,
+      "wins": 105,
+      "losses": 121,
+      "winRate": 46.5
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL",
+      "CCL"
+    ],
+    "tactics": "수비적",
+    "finance": "과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 11,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 1,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_16",
+    "teamName": "키이우 발러",
+    "nationality": "UKR",
+    "nicknameEn": "Kestrl",
+    "nicknameKo": "케스트렐",
+    "age": 28,
+    "reputation": 62,
+    "careerStats": {
+      "matches": 210,
+      "wins": 103,
+      "losses": 107,
+      "winRate": 49
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL",
+      "PCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 13,
+      "hairColorIndex": 6,
+      "eyeStyleIndex": 6,
+      "eyeColorIndex": 3,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 2,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_17",
+    "teamName": "두바이 오아시스",
+    "nationality": "ARE",
+    "nicknameEn": "Vangurd",
+    "nicknameKo": "뱅가드",
+    "age": 44,
+    "reputation": 61,
+    "careerStats": {
+      "matches": 320,
+      "wins": 153,
+      "losses": 167,
+      "winRate": 47.8
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 5,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 13,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 3,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 5,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 3,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_18",
+    "teamName": "요하네스버그 골드",
+    "nationality": "ZAF",
+    "nicknameEn": "Sybuso",
+    "nicknameKo": "시부소",
+    "age": 42,
+    "reputation": 59,
+    "careerStats": {
+      "matches": 287,
+      "wins": 138,
+      "losses": 149,
+      "winRate": 48.1
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL"
+    ],
+    "tactics": "공격적",
+    "finance": "신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 6,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 11,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 5,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_19",
+    "teamName": "맨체스터 비즈",
+    "nationality": "GBR",
+    "nicknameEn": "Ironhyd",
+    "nicknameKo": "아이언하이드",
+    "age": 29,
+    "reputation": 49,
+    "careerStats": {
+      "matches": 157,
+      "wins": 68,
+      "losses": 89,
+      "winRate": 43.3
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 6,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 17,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_20",
+    "teamName": "취리히 볼트",
+    "nationality": "CHE",
+    "nicknameEn": "Kordo",
+    "nicknameKo": "코르도",
+    "age": 32,
+    "reputation": 44,
+    "careerStats": {
+      "matches": 167,
+      "wins": 72,
+      "losses": 95,
+      "winRate": 43.1
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 2,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 2,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 2,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_21",
+    "teamName": "로마 글래디에이터즈",
+    "nationality": "ITA",
+    "nicknameEn": "Nestvr",
+    "nicknameKo": "네스토르",
+    "age": 33,
+    "reputation": 47,
+    "careerStats": {
+      "matches": 167,
+      "wins": 76,
+      "losses": 91,
+      "winRate": 45.5
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 18,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 4,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_22",
+    "teamName": "코펜하겐 세이렌즈",
+    "nationality": "DNK",
+    "nicknameEn": "Fryda",
+    "nicknameKo": "프리다",
+    "age": 37,
+    "reputation": 53,
+    "careerStats": {
+      "matches": 170,
+      "wins": 75,
+      "losses": 95,
+      "winRate": 44.1
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL"
+    ],
+    "tactics": "수비적",
+    "finance": "과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 8,
+      "hairColorIndex": 6,
+      "eyeStyleIndex": 6,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 7,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_23",
+    "teamName": "텔아비브 비콘즈",
+    "nationality": "ISR",
+    "nicknameEn": "Cybrn",
+    "nicknameKo": "사이베론",
+    "age": 34,
+    "reputation": 53,
+    "careerStats": {
+      "matches": 161,
+      "wins": 69,
+      "losses": 92,
+      "winRate": 42.9
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL"
+    ],
+    "tactics": "공격적",
+    "finance": "신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 10,
+      "hairColorIndex": 8,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_24",
+    "teamName": "카사블랑카 아틀라스",
+    "nationality": "MAR",
+    "nicknameEn": "Samyr",
+    "nicknameKo": "사미르",
+    "age": 28,
+    "reputation": 43,
+    "careerStats": {
+      "matches": 143,
+      "wins": 60,
+      "losses": 83,
+      "winRate": 42
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 12,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 1,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 3,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_25",
+    "teamName": "더블린 클로버스",
+    "nationality": "IRL",
+    "nicknameEn": "Logn",
+    "nicknameKo": "로건",
+    "age": 36,
+    "reputation": 33,
+    "careerStats": {
+      "matches": 126,
+      "wins": 53,
+      "losses": 73,
+      "winRate": 42.1
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 1,
+      "hairColorIndex": 10,
+      "eyeStyleIndex": 11,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_26",
+    "teamName": "프랑크푸르트 넥서스",
+    "nationality": "DEU",
+    "nicknameEn": "Hubrt",
+    "nicknameKo": "후베르트",
+    "age": 36,
+    "reputation": 27,
+    "careerStats": {
+      "matches": 122,
+      "wins": 49,
+      "losses": 73,
+      "winRate": 40.2
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL"
+    ],
+    "tactics": "공격적",
+    "finance": "과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 14,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 3,
+      "mouthAccessoryIndex": 3,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_27",
+    "teamName": "아테네 아울즈",
+    "nationality": "GRC",
+    "nicknameEn": "Stephn",
+    "nicknameKo": "스테판",
+    "age": 40,
+    "reputation": 32,
+    "careerStats": {
+      "matches": 118,
+      "wins": 48,
+      "losses": 70,
+      "winRate": 40.7
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 11,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 1,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 3,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 4,
+      "earAccessoryIndex": 1,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_28",
+    "teamName": "헬싱키 노르드",
+    "nationality": "FIN",
+    "nicknameEn": "Tobz",
+    "nicknameKo": "토비",
+    "age": 38,
+    "reputation": 26,
+    "careerStats": {
+      "matches": 110,
+      "wins": 41,
+      "losses": 69,
+      "winRate": 37.3
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL"
+    ],
+    "tactics": "수비적",
+    "finance": "신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 12,
+      "hairColorIndex": 5,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 4,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 5,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 5,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_29",
+    "teamName": "라고스 치타스",
+    "nationality": "NGA",
+    "nicknameEn": "Dantx",
+    "nicknameKo": "단테",
+    "age": 30,
+    "reputation": 37,
+    "careerStats": {
+      "matches": 96,
+      "wins": 39,
+      "losses": 57,
+      "winRate": 40.6
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 7,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 12,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 2,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_ecl_30",
+    "teamName": "리스본 네비게이터스",
+    "nationality": "PRT",
+    "nicknameEn": "Oryon",
+    "nicknameKo": "오리온",
+    "age": 41,
+    "reputation": 36,
+    "careerStats": {
+      "matches": 135,
+      "wins": 55,
+      "losses": 80,
+      "winRate": 40.7
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ECL"
+    ],
+    "tactics": "공격적",
+    "finance": "과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 4,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 3,
+      "eyeColorIndex": 3,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 4,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_01",
+    "teamName": "뉴욕 엠파이어",
+    "nationality": "USA",
+    "nicknameEn": "Blayz",
+    "nicknameKo": "블레이즈",
+    "age": 31,
+    "reputation": 97,
+    "careerStats": {
+      "matches": 611,
+      "wins": 408,
+      "losses": 203,
+      "winRate": 66.8
+    },
+    "trophies": {
+      "leagueTitles": 3,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "ACL",
+      "ECL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 6,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 0,
+      "hairColorIndex": 11,
+      "eyeStyleIndex": 4,
+      "eyeColorIndex": 3,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 3,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 4,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_02",
+    "teamName": "시카고 게일즈",
+    "nationality": "USA",
+    "nicknameEn": "Gryzz",
+    "nicknameKo": "그리즈",
+    "age": 28,
+    "reputation": 92,
+    "careerStats": {
+      "matches": 534,
+      "wins": 364,
+      "losses": 170,
+      "winRate": 68.2
+    },
+    "trophies": {
+      "leagueTitles": 2,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL",
+      "KCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 9,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 0,
+      "eyeColorIndex": 4,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 5,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 3,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_03",
+    "teamName": "로스앤젤레스 스타라이트",
+    "nationality": "USA",
+    "nicknameEn": "Mavrk",
+    "nicknameKo": "매버릭",
+    "age": 33,
+    "reputation": 91,
+    "careerStats": {
+      "matches": 632,
+      "wins": 419,
+      "losses": 213,
+      "winRate": 66.3
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "ACL",
+      "CCL"
+    ],
+    "tactics": "수비적",
+    "finance": "신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 11,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 6,
+      "eyeColorIndex": 4,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 4,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_04",
+    "teamName": "샌프란시스코 코드",
+    "nationality": "USA",
+    "nicknameEn": "Gylroy",
+    "nicknameKo": "길로이",
+    "age": 38,
+    "reputation": 81,
+    "careerStats": {
+      "matches": 589,
+      "wins": 370,
+      "losses": 219,
+      "winRate": 62.8
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL",
+      "PCL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 1,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 4,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_05",
+    "teamName": "달라스 스탤리온즈",
+    "nationality": "USA",
+    "nicknameEn": "Kolton",
+    "nicknameKo": "콜튼",
+    "age": 31,
+    "reputation": 84,
+    "careerStats": {
+      "matches": 494,
+      "wins": 289,
+      "losses": 205,
+      "winRate": 58.5
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL",
+      "ECL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 13,
+      "hairColorIndex": 3,
+      "eyeStyleIndex": 10,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 2,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_06",
+    "teamName": "마이애미 샤크스",
+    "nationality": "USA",
+    "nicknameEn": "Trystan",
+    "nicknameKo": "트리스탄",
+    "age": 39,
+    "reputation": 85,
+    "careerStats": {
+      "matches": 565,
+      "wins": 341,
+      "losses": 224,
+      "winRate": 60.4
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL",
+      "KCL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 11,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 8,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 1,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_07",
+    "teamName": "토론토 메이플스",
+    "nationality": "CAN",
+    "nicknameEn": "Bryggs",
+    "nicknameKo": "브릭스",
+    "age": 35,
+    "reputation": 73,
+    "careerStats": {
+      "matches": 396,
+      "wins": 225,
+      "losses": 171,
+      "winRate": 56.8
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL",
+      "PCL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 2,
+      "hairColorIndex": 5,
+      "eyeStyleIndex": 10,
+      "eyeColorIndex": 3,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 4,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_08",
+    "teamName": "멕시코시티 이글스",
+    "nationality": "MEX",
+    "nicknameEn": "Xavier",
+    "nicknameKo": "하비에르",
+    "age": 44,
+    "reputation": 72,
+    "careerStats": {
+      "matches": 500,
+      "wins": 270,
+      "losses": 230,
+      "winRate": 54
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL",
+      "CCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 17,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 8,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 5,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 3,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_09",
+    "teamName": "상파울루 재규어스",
+    "nationality": "BRA",
+    "nicknameEn": "Santoz",
+    "nicknameKo": "산토스",
+    "age": 33,
+    "reputation": 78,
+    "careerStats": {
+      "matches": 389,
+      "wins": 207,
+      "losses": 182,
+      "winRate": 53.2
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL",
+      "ECL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 17,
+      "hairColorIndex": 3,
+      "eyeStyleIndex": 0,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 4,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_10",
+    "teamName": "부에노스아이레스 솔",
+    "nationality": "ARG",
+    "nicknameEn": "Pablx",
+    "nicknameKo": "파블로",
+    "age": 31,
+    "reputation": 73,
+    "careerStats": {
+      "matches": 391,
+      "wins": 217,
+      "losses": 174,
+      "winRate": 55.5
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL",
+      "KCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 0,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_11",
+    "teamName": "보스턴 미닛멘",
+    "nationality": "USA",
+    "nicknameEn": "Mylez",
+    "nicknameKo": "마일즈",
+    "age": 43,
+    "reputation": 67,
+    "careerStats": {
+      "matches": 414,
+      "wins": 224,
+      "losses": 190,
+      "winRate": 54.1
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL",
+      "CCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 10,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 3,
+      "mouthAccessoryIndex": 5,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 3,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_12",
+    "teamName": "워싱턴 센티넬스",
+    "nationality": "USA",
+    "nicknameEn": "Warrn",
+    "nicknameKo": "워렌",
+    "age": 33,
+    "reputation": 62,
+    "careerStats": {
+      "matches": 340,
+      "wins": 174,
+      "losses": 166,
+      "winRate": 51.2
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "ACL",
+      "PCL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 5,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 0,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 6,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 5,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 1,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_13",
+    "teamName": "시애틀 스톰",
+    "nationality": "USA",
+    "nicknameEn": "Zayn",
+    "nicknameKo": "제인",
+    "age": 34,
+    "reputation": 66,
+    "careerStats": {
+      "matches": 350,
+      "wins": 186,
+      "losses": 164,
+      "winRate": 53.1
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL",
+      "ECL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 13,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_14",
+    "teamName": "애틀랜타 포레스트",
+    "nationality": "USA",
+    "nicknameEn": "Turnr",
+    "nicknameKo": "터너",
+    "age": 36,
+    "reputation": 69,
+    "careerStats": {
+      "matches": 322,
+      "wins": 161,
+      "losses": 161,
+      "winRate": 50
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL",
+      "KCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 4,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 8,
+      "eyeColorIndex": 4,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 3,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_15",
+    "teamName": "휴스턴 아폴로",
+    "nationality": "USA",
+    "nicknameEn": "Axtn",
+    "nicknameKo": "액스턴",
+    "age": 39,
+    "reputation": 55,
+    "careerStats": {
+      "matches": 285,
+      "wins": 143,
+      "losses": 142,
+      "winRate": 50.2
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "ACL",
+      "CCL"
+    ],
+    "tactics": "공격적",
+    "finance": "신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 4,
+      "hairColorIndex": 6,
+      "eyeStyleIndex": 10,
+      "eyeColorIndex": 4,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 2,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_16",
+    "teamName": "밴쿠버 오르카스",
+    "nationality": "CAN",
+    "nicknameEn": "Boryal",
+    "nicknameKo": "보레알",
+    "age": 43,
+    "reputation": 55,
+    "careerStats": {
+      "matches": 320,
+      "wins": 155,
+      "losses": 165,
+      "winRate": 48.4
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL",
+      "PCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 2,
+      "hairColorIndex": 5,
+      "eyeStyleIndex": 3,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 3,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 3,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_17",
+    "teamName": "보고타 콘도르스",
+    "nationality": "COL",
+    "nicknameEn": "Sebaz",
+    "nicknameKo": "세바스",
+    "age": 40,
+    "reputation": 62,
+    "careerStats": {
+      "matches": 300,
+      "wins": 143,
+      "losses": 157,
+      "winRate": 47.7
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 5,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 18,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 3,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 3,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_18",
+    "teamName": "리우데자네이루 삼바",
+    "nationality": "BRA",
+    "nicknameEn": "Fabyan",
+    "nicknameKo": "파비앙",
+    "age": 31,
+    "reputation": 60,
+    "careerStats": {
+      "matches": 208,
+      "wins": 104,
+      "losses": 104,
+      "winRate": 50
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL"
+    ],
+    "tactics": "수비적",
+    "finance": "과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 13,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 8,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 5,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 2,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_19",
+    "teamName": "필라델피아 리버티",
+    "nationality": "USA",
+    "nicknameEn": "Grayd",
+    "nicknameKo": "그레이디",
+    "age": 38,
+    "reputation": 43,
+    "careerStats": {
+      "matches": 193,
+      "wins": 82,
+      "losses": 111,
+      "winRate": 42.5
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 7,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 13,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 5,
+      "mouthAccessoryIndex": 1,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_20",
+    "teamName": "라스베이거스 에이시스",
+    "nationality": "USA",
+    "nicknameEn": "Holdn",
+    "nicknameKo": "홀든",
+    "age": 37,
+    "reputation": 48,
+    "careerStats": {
+      "matches": 172,
+      "wins": 79,
+      "losses": 93,
+      "winRate": 45.9
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 4,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 5,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 4,
+      "mouthAccessoryIndex": 3,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_21",
+    "teamName": "오스틴 아웃로스",
+    "nationality": "USA",
+    "nicknameEn": "Vaughn",
+    "nicknameKo": "보건",
+    "age": 33,
+    "reputation": 48,
+    "careerStats": {
+      "matches": 178,
+      "wins": 82,
+      "losses": 96,
+      "winRate": 46.1
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 10,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 1,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 3,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_22",
+    "teamName": "몬트리올 보레알리스",
+    "nationality": "CAN",
+    "nicknameEn": "Lucya",
+    "nicknameKo": "루시아",
+    "age": 31,
+    "reputation": 47,
+    "careerStats": {
+      "matches": 166,
+      "wins": 78,
+      "losses": 88,
+      "winRate": 47
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 6,
+      "hairColorIndex": 6,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 7,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_23",
+    "teamName": "몬테레이 피크스",
+    "nationality": "MEX",
+    "nicknameEn": "Torx",
+    "nicknameKo": "토로",
+    "age": 38,
+    "reputation": 41,
+    "careerStats": {
+      "matches": 195,
+      "wins": 89,
+      "losses": 106,
+      "winRate": 45.6
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 5,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 17,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 0,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_24",
+    "teamName": "산티아고 푸마스",
+    "nationality": "CHL",
+    "nicknameEn": "Kordoba",
+    "nicknameKo": "코르도바",
+    "age": 27,
+    "reputation": 41,
+    "careerStats": {
+      "matches": 143,
+      "wins": 65,
+      "losses": 78,
+      "winRate": 45.5
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL"
+    ],
+    "tactics": "수비적",
+    "finance": "과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 5,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 12,
+      "hairColorIndex": 3,
+      "eyeStyleIndex": 11,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_25",
+    "teamName": "디트로이트 엔진즈",
+    "nationality": "USA",
+    "nicknameEn": "Denzl",
+    "nicknameKo": "덴젤",
+    "age": 37,
+    "reputation": 26,
+    "careerStats": {
+      "matches": 102,
+      "wins": 41,
+      "losses": 61,
+      "winRate": 40.2
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 17,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 4,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 5,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_26",
+    "teamName": "피닉스 스코피언즈",
+    "nationality": "USA",
+    "nicknameEn": "Kallan",
+    "nicknameKo": "칼런",
+    "age": 38,
+    "reputation": 31,
+    "careerStats": {
+      "matches": 107,
+      "wins": 46,
+      "losses": 61,
+      "winRate": 43
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 1,
+      "hairColorIndex": 11,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 1,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_27",
+    "teamName": "캘거리 울브즈",
+    "nationality": "CAN",
+    "nicknameEn": "Parkr",
+    "nicknameKo": "파커",
+    "age": 36,
+    "reputation": 34,
+    "careerStats": {
+      "matches": 105,
+      "wins": 41,
+      "losses": 64,
+      "winRate": 39
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 14,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 5,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 3,
+      "earAccessoryIndex": 1,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_28",
+    "teamName": "과달라하라 아가베스",
+    "nationality": "MEX",
+    "nicknameEn": "Daryo",
+    "nicknameKo": "다리오",
+    "age": 40,
+    "reputation": 38,
+    "careerStats": {
+      "matches": 133,
+      "wins": 55,
+      "losses": 78,
+      "winRate": 41.4
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 10,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 8,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 4,
+      "mouthAccessoryIndex": 4,
+      "earAccessoryIndex": 2,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_29",
+    "teamName": "리마 인카스",
+    "nationality": "PER",
+    "nicknameEn": "Sandrx",
+    "nicknameKo": "산드로",
+    "age": 44,
+    "reputation": 25,
+    "careerStats": {
+      "matches": 150,
+      "wins": 54,
+      "losses": 96,
+      "winRate": 36
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 6,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 1,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 3,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_acl_30",
+    "teamName": "몬테비데오 차루아스",
+    "nationality": "URY",
+    "nicknameEn": "Gabryl",
+    "nicknameKo": "가브리엘",
+    "age": 39,
+    "reputation": 34,
+    "careerStats": {
+      "matches": 122,
+      "wins": 49,
+      "losses": 73,
+      "winRate": 40.2
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "ACL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 0,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 3,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_01",
+    "teamName": "도쿄 사무라이즈",
+    "nationality": "JPN",
+    "nicknameEn": "Kenzo",
+    "nicknameKo": "켄조",
+    "age": 40,
+    "reputation": 89,
+    "careerStats": {
+      "matches": 734,
+      "wins": 505,
+      "losses": 229,
+      "winRate": 68.8
+    },
+    "trophies": {
+      "leagueTitles": 3,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "PCL",
+      "KCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 1,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_02",
+    "teamName": "오사카 워리어스",
+    "nationality": "JPN",
+    "nicknameEn": "Goda",
+    "nicknameKo": "고다",
+    "age": 30,
+    "reputation": 93,
+    "careerStats": {
+      "matches": 614,
+      "wins": 416,
+      "losses": 198,
+      "winRate": 67.8
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL",
+      "ACL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 6,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_03",
+    "teamName": "타이베이 파일럿츠",
+    "nationality": "TWN",
+    "nicknameEn": "Skylr",
+    "nicknameKo": "스카일러",
+    "age": 44,
+    "reputation": 92,
+    "careerStats": {
+      "matches": 776,
+      "wins": 530,
+      "losses": 246,
+      "winRate": 68.3
+    },
+    "trophies": {
+      "leagueTitles": 2,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "PCL",
+      "CCL"
+    ],
+    "tactics": "수비적",
+    "finance": "신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 18,
+      "hairColorIndex": 5,
+      "eyeStyleIndex": 1,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 3,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 3,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 2,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_04",
+    "teamName": "홍콩 네온즈",
+    "nationality": "HKG",
+    "nicknameEn": "Symon",
+    "nicknameKo": "사이먼",
+    "age": 39,
+    "reputation": 85,
+    "careerStats": {
+      "matches": 568,
+      "wins": 339,
+      "losses": 229,
+      "winRate": 59.7
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL",
+      "ECL"
+    ],
+    "tactics": "수비적",
+    "finance": "신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 3,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 11,
+      "eyeColorIndex": 3,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_05",
+    "teamName": "호찌민 로터스",
+    "nationality": "VNM",
+    "nicknameEn": "Loc",
+    "nicknameKo": "록",
+    "age": 33,
+    "reputation": 86,
+    "careerStats": {
+      "matches": 524,
+      "wins": 315,
+      "losses": 209,
+      "winRate": 60.1
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "PCL",
+      "KCL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 11,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 5,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_06",
+    "teamName": "방콕 엘리펀츠",
+    "nationality": "THA",
+    "nicknameEn": "Khaox",
+    "nicknameKo": "카오스",
+    "age": 37,
+    "reputation": 86,
+    "careerStats": {
+      "matches": 546,
+      "wins": 337,
+      "losses": 209,
+      "winRate": 61.7
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL",
+      "ACL"
+    ],
+    "tactics": "공격적",
+    "finance": "과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 5,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 11,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 11,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_07",
+    "teamName": "싱가포르 라이온즈",
+    "nationality": "SGP",
+    "nicknameEn": "VrtxX",
+    "nicknameKo": "볼텍스엑스",
+    "age": 34,
+    "reputation": 79,
+    "careerStats": {
+      "matches": 438,
+      "wins": 236,
+      "losses": 202,
+      "winRate": 53.9
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL",
+      "ECL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 9,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 2,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 4,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 2,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_08",
+    "teamName": "자카르타 가루다스",
+    "nationality": "IDN",
+    "nicknameEn": "Budi",
+    "nicknameKo": "부디",
+    "age": 40,
+    "reputation": 73,
+    "careerStats": {
+      "matches": 479,
+      "wins": 256,
+      "losses": 223,
+      "winRate": 53.4
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL",
+      "CCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 5,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 11,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 2,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_09",
+    "teamName": "시드니 서퍼스",
+    "nationality": "AUS",
+    "nicknameEn": "Wayn",
+    "nicknameKo": "웨인",
+    "age": 40,
+    "reputation": 77,
+    "careerStats": {
+      "matches": 452,
+      "wins": 244,
+      "losses": 208,
+      "winRate": 54
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL",
+      "ACL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 1,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 4,
+      "mouthAccessoryIndex": 1,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_10",
+    "teamName": "뭄바이 메가스타즈",
+    "nationality": "IND",
+    "nicknameEn": "Kingmkr",
+    "nicknameKo": "킹메이커",
+    "age": 39,
+    "reputation": 76,
+    "careerStats": {
+      "matches": 442,
+      "wins": 250,
+      "losses": 192,
+      "winRate": 56.6
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL",
+      "ECL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 6,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 9,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 10,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 3,
+      "mouthAccessoryIndex": 4,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_11",
+    "teamName": "나고야 엑셀러레이터즈",
+    "nationality": "JPN",
+    "nicknameEn": "Genki",
+    "nicknameKo": "겐키",
+    "age": 33,
+    "reputation": 68,
+    "careerStats": {
+      "matches": 321,
+      "wins": 170,
+      "losses": 151,
+      "winRate": 53
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 1
+    },
+    "languages": [
+      "PCL",
+      "KCL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 17,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 5,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_12",
+    "teamName": "후쿠오카 제트",
+    "nationality": "JPN",
+    "nicknameEn": "Hayato",
+    "nicknameKo": "하야토",
+    "age": 33,
+    "reputation": 65,
+    "careerStats": {
+      "matches": 324,
+      "wins": 178,
+      "losses": 146,
+      "winRate": 54.9
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL",
+      "CCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 1,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 1,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_13",
+    "teamName": "가오슝 하버",
+    "nationality": "TWN",
+    "nicknameEn": "Tylr",
+    "nicknameKo": "타일러",
+    "age": 28,
+    "reputation": 65,
+    "careerStats": {
+      "matches": 311,
+      "wins": 167,
+      "losses": 144,
+      "winRate": 53.7
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL",
+      "KCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 1,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 6,
+      "hairColorIndex": 3,
+      "eyeStyleIndex": 5,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_14",
+    "teamName": "하노이 터틀스",
+    "nationality": "VNM",
+    "nicknameEn": "Bao",
+    "nicknameKo": "바오",
+    "age": 36,
+    "reputation": 70,
+    "careerStats": {
+      "matches": 364,
+      "wins": 191,
+      "losses": 173,
+      "winRate": 52.5
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL",
+      "CCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 12,
+      "hairColorIndex": 4,
+      "eyeStyleIndex": 11,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_15",
+    "teamName": "마닐라 코랄스",
+    "nationality": "PHL",
+    "nicknameEn": "Klutch",
+    "nicknameKo": "클러치",
+    "age": 33,
+    "reputation": 61,
+    "careerStats": {
+      "matches": 273,
+      "wins": 134,
+      "losses": 139,
+      "winRate": 49.1
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL",
+      "ACL"
+    ],
+    "tactics": "수비적",
+    "finance": "신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 13,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 10,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 3,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_16",
+    "teamName": "쿠알라룸푸르 타워스",
+    "nationality": "MYS",
+    "nicknameEn": "Philp",
+    "nicknameKo": "필립",
+    "age": 38,
+    "reputation": 63,
+    "careerStats": {
+      "matches": 274,
+      "wins": 140,
+      "losses": 134,
+      "winRate": 51.1
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL",
+      "ECL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 3,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 4,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 2,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_17",
+    "teamName": "멜버른 에이펙스",
+    "nationality": "AUS",
+    "nicknameEn": "Dextr",
+    "nicknameKo": "덱스터",
+    "age": 41,
+    "reputation": 59,
+    "careerStats": {
+      "matches": 307,
+      "wins": 151,
+      "losses": 156,
+      "winRate": 49.2
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL"
+    ],
+    "tactics": "공격적",
+    "finance": "신중함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 9,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 1,
+      "eyeColorIndex": 4,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 3,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_18",
+    "teamName": "벵갈루루 벡터",
+    "nationality": "IND",
+    "nicknameEn": "Maxwl",
+    "nicknameKo": "맥스웰",
+    "age": 32,
+    "reputation": 57,
+    "careerStats": {
+      "matches": 246,
+      "wins": 123,
+      "losses": 123,
+      "winRate": 50
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL"
+    ],
+    "tactics": "수비적",
+    "finance": "과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 6,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 0,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 0,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 2,
+      "mouthAccessoryIndex": 4,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_19",
+    "teamName": "삿포로 폭시스",
+    "nationality": "JPN",
+    "nicknameEn": "Yuna",
+    "nicknameKo": "유나",
+    "age": 42,
+    "reputation": 50,
+    "careerStats": {
+      "matches": 214,
+      "wins": 95,
+      "losses": 119,
+      "winRate": 44.4
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 19,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 1,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 7,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_20",
+    "teamName": "마카오 잭팟",
+    "nationality": "HKG",
+    "nicknameEn": "Delyo",
+    "nicknameKo": "델리오",
+    "age": 37,
+    "reputation": 44,
+    "careerStats": {
+      "matches": 181,
+      "wins": 85,
+      "losses": 96,
+      "winRate": 47
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 2,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 2,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 4,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_21",
+    "teamName": "다낭 마블스",
+    "nationality": "VNM",
+    "nicknameEn": "Strm",
+    "nicknameKo": "스톰",
+    "age": 38,
+    "reputation": 52,
+    "careerStats": {
+      "matches": 180,
+      "wins": 77,
+      "losses": 103,
+      "winRate": 42.8
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL"
+    ],
+    "tactics": "수비적",
+    "finance": "신중함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 5,
+      "faceShapeIndex": 3,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 12,
+      "hairColorIndex": 7,
+      "eyeStyleIndex": 10,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_22",
+    "teamName": "수라바야 크록스",
+    "nationality": "IDN",
+    "nicknameEn": "Balyan",
+    "nicknameKo": "발리안",
+    "age": 27,
+    "reputation": 44,
+    "careerStats": {
+      "matches": 123,
+      "wins": 56,
+      "losses": 67,
+      "winRate": 45.5
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 1,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 2,
+      "hairColorIndex": 0,
+      "eyeStyleIndex": 8,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 3,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 5,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_23",
+    "teamName": "오클랜드 키위스",
+    "nationality": "NZL",
+    "nicknameEn": "Tavys",
+    "nicknameKo": "타비스",
+    "age": 28,
+    "reputation": 53,
+    "careerStats": {
+      "matches": 152,
+      "wins": 66,
+      "losses": 86,
+      "winRate": 43.4
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 4,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 3,
+      "hairStyleIndex": 0,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 0,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 4,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 5,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_24",
+    "teamName": "뉴델리 코브라스",
+    "nationality": "IND",
+    "nicknameEn": "Navyn",
+    "nicknameKo": "나빈",
+    "age": 38,
+    "reputation": 43,
+    "careerStats": {
+      "matches": 205,
+      "wins": 89,
+      "losses": 116,
+      "winRate": 43.4
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 6,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 10,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 3,
+      "eyeColorIndex": 6,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 0,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 4,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_25",
+    "teamName": "교토 쇼군즈",
+    "nationality": "JPN",
+    "nicknameEn": "Sayto",
+    "nicknameKo": "사이토",
+    "age": 34,
+    "reputation": 31,
+    "careerStats": {
+      "matches": 100,
+      "wins": 36,
+      "losses": 64,
+      "winRate": 36
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "과감함",
+    "playerManagement": "매우 유연함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 11,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 3,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 0,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 3,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_26",
+    "teamName": "타이중 레오파드",
+    "nationality": "TWN",
+    "nicknameEn": "Soln",
+    "nicknameKo": "솔론",
+    "age": 37,
+    "reputation": 28,
+    "careerStats": {
+      "matches": 128,
+      "wins": 47,
+      "losses": 81,
+      "winRate": 36.7
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL"
+    ],
+    "tactics": "매우 수비적",
+    "finance": "매우 신중함",
+    "playerManagement": "유연함",
+    "preferredStyle": "정석방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 0,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 10,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 9,
+      "eyeColorIndex": 2,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 3,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 5,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 1,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_27",
+    "teamName": "치앙마이 로즈",
+    "nationality": "THA",
+    "nicknameEn": "Tya",
+    "nicknameKo": "티아",
+    "age": 31,
+    "reputation": 37,
+    "careerStats": {
+      "matches": 101,
+      "wins": 40,
+      "losses": 61,
+      "winRate": 39.6
+    },
+    "trophies": {
+      "leagueTitles": 1,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL"
+    ],
+    "tactics": "수비적",
+    "finance": "매우 과감함",
+    "playerManagement": "매우 엄격함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 5,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 6,
+      "hairColorIndex": 11,
+      "eyeStyleIndex": 8,
+      "eyeColorIndex": 1,
+      "eyebrowIndex": 5,
+      "noseStyleIndex": 1,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_28",
+    "teamName": "페낭 실리콘",
+    "nationality": "MYS",
+    "nicknameEn": "Brytt",
+    "nicknameKo": "브렛",
+    "age": 28,
+    "reputation": 33,
+    "careerStats": {
+      "matches": 80,
+      "wins": 32,
+      "losses": 48,
+      "winRate": 40
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL"
+    ],
+    "tactics": "매우 공격적",
+    "finance": "신중함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "견제방식",
+    "interviewStyle": "겸손형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 3,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 1,
+      "hairStyleIndex": 4,
+      "hairColorIndex": 3,
+      "eyeStyleIndex": 4,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 2,
+      "noseStyleIndex": 3,
+      "mouthStyleIndex": 4,
+      "lipColorIndex": 0,
+      "eyeAccessoryIndex": 1,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_29",
+    "teamName": "브리즈번 캥거루스",
+    "nationality": "AUS",
+    "nicknameEn": "Jaspr",
+    "nicknameKo": "재스퍼",
+    "age": 40,
+    "reputation": 39,
+    "careerStats": {
+      "matches": 125,
+      "wins": 54,
+      "losses": 71,
+      "winRate": 43.2
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "엄격함",
+    "preferredStyle": "유동적",
+    "interviewStyle": "원칙주의형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 2,
+      "faceShapeIndex": 2,
+      "bodyTypeIndex": 2,
+      "hairStyleIndex": 14,
+      "hairColorIndex": 1,
+      "eyeStyleIndex": 7,
+      "eyeColorIndex": 3,
+      "eyebrowIndex": 1,
+      "noseStyleIndex": 5,
+      "mouthStyleIndex": 2,
+      "lipColorIndex": 6,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 1,
+      "earAccessoryIndex": 0,
+      "wrinkleIndex": 2,
+      "outfitIndex": 0
+    }
+  },
+  {
+    "id": "mgr_pcl_30",
+    "teamName": "세부 템페스트",
+    "nationality": "PHL",
+    "nicknameEn": "Flayr",
+    "nicknameKo": "플레어",
+    "age": 34,
+    "reputation": 38,
+    "careerStats": {
+      "matches": 106,
+      "wins": 44,
+      "losses": 62,
+      "winRate": 41.5
+    },
+    "trophies": {
+      "leagueTitles": 0,
+      "internationalTitles": 0
+    },
+    "languages": [
+      "PCL"
+    ],
+    "tactics": "공격적",
+    "finance": "매우 과감함",
+    "playerManagement": "유연함",
+    "preferredStyle": "돌진방식",
+    "interviewStyle": "도발형",
+    "isPlayer": false,
+    "avatarDna": {
+      "skinToneIndex": 5,
+      "faceShapeIndex": 0,
+      "bodyTypeIndex": 0,
+      "hairStyleIndex": 7,
+      "hairColorIndex": 2,
+      "eyeStyleIndex": 0,
+      "eyeColorIndex": 0,
+      "eyebrowIndex": 0,
+      "noseStyleIndex": 2,
+      "mouthStyleIndex": 1,
+      "lipColorIndex": 4,
+      "eyeAccessoryIndex": 0,
+      "mouthAccessoryIndex": 0,
+      "earAccessoryIndex": 3,
+      "wrinkleIndex": 0,
+      "outfitIndex": 0
+    }
+  }
+]
