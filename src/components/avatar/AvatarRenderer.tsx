@@ -622,8 +622,8 @@ export default function AvatarRenderer({
       case 5:
         return (
           <g stroke={hairColor.hex} strokeWidth="3" strokeLinecap="round" fill="none">
-            <path d="M 72 76 Q 82 72 91 69" />
-            <path d="M 128 76 Q 118 72 109 69" />
+            <path d="M 72 73.5 Q 82 71.5 91 70" />
+            <path d="M 128 73.5 Q 118 71.5 109 70" />
           </g>
         );
       default:
