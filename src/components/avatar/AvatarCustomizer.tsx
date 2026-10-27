@@ -87,56 +87,58 @@ export default function AvatarCustomizer({
 
   return (
     <div className="flex flex-col h-full w-full max-w-md mx-auto select-none">
-      {/* 1. 상단: 좌측 대형 초상화 프리뷰 & 우측 랜덤/다시하기 버튼 */}
-      <div className="flex items-center justify-between gap-3.5 shrink-0 px-1 pt-1 pb-3">
-        {/* 좌측: 더 키운 아바타 렌더러 (w-44 h-44 ~ sm:w-48 sm:h-48) */}
-        <div className="w-44 h-44 sm:w-48 sm:h-48 shrink-0 rounded-3xl p-1.5 bg-gradient-to-b from-cyan-500/30 via-slate-800/60 to-slate-950 border border-cyan-400/40 shadow-[0_0_30px_rgba(6,182,212,0.25)] flex items-center justify-center relative overflow-hidden">
+      {/* 1. 상단: 좌측 아바타 프리뷰 & 우측 컴팩트 액션 영역 (황금비 배분) */}
+      <div className="flex items-center justify-between gap-3 shrink-0 px-1 pt-0.5 pb-2">
+        {/* 좌측: 반응형 아바타 렌더러 (w-28 h-28 sm:w-36 sm:h-36) */}
+        <div className="w-28 h-28 sm:w-36 sm:h-36 shrink-0 rounded-2xl p-1 bg-gradient-to-b from-cyan-500/30 via-slate-800/60 to-slate-950 border border-cyan-400/40 shadow-[0_0_20px_rgba(6,182,212,0.25)] flex items-center justify-center relative overflow-hidden">
           <AvatarRenderer
             dna={value}
             teamId={teamId}
             league={league}
-            className="w-full h-full rounded-2xl"
+            className="w-full h-full rounded-xl"
           />
           {/* 하단 유니폼 팀명 태그 */}
           {teamName && (
-            <div className="absolute bottom-1.5 inset-x-2 bg-slate-950/85 backdrop-blur-md rounded-lg py-0.5 text-center border border-cyan-500/30">
-              <span className="text-[10px] font-bold text-cyan-300 truncate px-1 block">
+            <div className="absolute bottom-1 inset-x-1.5 bg-slate-950/85 backdrop-blur-md rounded-md py-0.5 text-center border border-cyan-500/30">
+              <span className="text-[9px] font-bold text-cyan-300 truncate px-1 block">
                 {teamName} 유니폼
               </span>
             </div>
           )}
         </div>
 
-        {/* 우측: 랜덤 & 다시하기 버튼 영역 */}
-        <div className="flex-1 flex flex-col justify-center gap-2.5">
-          <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-2.5 text-left">
+        {/* 우측: 설명 박스 & 가로 2열 버튼 */}
+        <div className="flex-1 min-w-0 flex flex-col justify-between h-28 sm:h-36 py-0.5">
+          <div className="bg-slate-900/70 border border-slate-800/80 rounded-xl p-2 text-left">
             <span className="text-[10px] font-bold text-cyan-400 block mb-0.5">
               감독 외형 커스터마이징
             </span>
-            <p className="text-[11px] text-slate-400 leading-snug">
-              부위별 스타일을 좌우 화살표로 조절하거나 랜덤 생성을 눌러보세요.
+            <p className="text-[10px] sm:text-[11px] text-slate-400 leading-tight">
+              부위별 스타일을 좌우 화살표로 조절하거나 무작위로 생성해 보세요.
             </p>
           </div>
 
-          <button
-            type="button"
-            onClick={handleRandomize}
-            className="w-full py-3 px-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg shadow-cyan-500/25 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2 text-xs font-bold"
-            title="랜덤 생성"
-          >
-            <Dices className="w-4 h-4" />
-            <span>랜덤</span>
-          </button>
+          <div className="grid grid-cols-2 gap-1.5 mt-1.5">
+            <button
+              type="button"
+              onClick={handleRandomize}
+              className="py-2.5 sm:py-3 px-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-md shadow-cyan-500/25 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 text-xs font-bold"
+              title="랜덤 생성"
+            >
+              <Dices className="w-3.5 h-3.5" />
+              <span>랜덤</span>
+            </button>
 
-          <button
-            type="button"
-            onClick={handleReset}
-            className="w-full py-2.5 px-3 rounded-2xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white shadow transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2 text-xs font-semibold"
-            title="다시하기"
-          >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>다시하기</span>
-          </button>
+            <button
+              type="button"
+              onClick={handleReset}
+              className="py-2.5 sm:py-3 px-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white shadow transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 text-xs font-semibold"
+              title="다시하기"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>다시하기</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -157,7 +159,7 @@ export default function AvatarCustomizer({
               key={item.tab}
               type="button"
               onClick={() => setActiveTab(item.tab)}
-              className={`py-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-[10px] font-semibold transition-all duration-150 cursor-pointer ${
+              className={`py-1.5 sm:py-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-[9px] sm:text-[10px] font-semibold transition-all duration-150 cursor-pointer ${
                 isActive
                   ? "bg-cyan-500/20 text-cyan-200 border border-cyan-400/60 shadow-[0_0_10px_rgba(6,182,212,0.25)]"
                   : "text-slate-400 hover:text-slate-200 hover:bg-slate-900"

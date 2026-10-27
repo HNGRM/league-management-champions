@@ -950,15 +950,15 @@ export default function TeamCreateScreen() {
           }}
         >
           {/* ================= STEP 0: 리그 선택 (빈 공간 없이 5개 버튼으로 세로 꽉 채움) ================= */}
-          <div className="w-1/3 h-full px-5 py-2.5 flex flex-col justify-between overflow-hidden">
+          <div className="w-1/3 h-full px-4 sm:px-5 py-2 sm:py-2.5 flex flex-col justify-between overflow-y-auto custom-scrollbar">
             <div className="flex-1 flex flex-col min-h-0">
-              <span className="text-xs font-semibold text-cyan-300 flex items-center gap-1.5 px-1 pb-2 shrink-0">
+              <span className="text-xs font-semibold text-cyan-300 flex items-center gap-1.5 px-1 pb-1.5 sm:pb-2 shrink-0">
                 <Shield className="w-3.5 h-3.5 text-cyan-400" />
                 플레이할 리그를 선택하세요
               </span>
 
-              {/* 5개 리그 선택 탭 (설명창 제거 및 flex-1로 세로 꽉 채움) */}
-              <div className="flex-1 flex flex-col gap-2.5 min-h-0 pb-1">
+              {/* 5개 리그 선택 탭 (반응형 앵커 & 레이아웃 그룹 스타일) */}
+              <div className="flex-1 flex flex-col gap-1.5 sm:gap-2.5 min-h-0 pb-1">
                 {LEAGUE_SELECT_TABS.map((league) => {
                   const isSelected = selectedLeague === league.code;
                   return (
@@ -966,15 +966,15 @@ export default function TeamCreateScreen() {
                       key={league.code}
                       type="button"
                       onClick={() => handleSelectLeague(league.code)}
-                      className={`flex-1 relative px-4 py-3 rounded-2xl border text-left transition-all duration-150 cursor-pointer touch-manipulation flex items-center justify-between min-h-[64px] ${
+                      className={`flex-1 relative px-3 sm:px-4 py-2 sm:py-3 rounded-xl sm:rounded-2xl border text-left transition-all duration-150 cursor-pointer touch-manipulation flex items-center justify-between min-h-[50px] sm:min-h-[64px] ${
                         isSelected
                           ? "bg-gradient-to-r from-cyan-950/90 via-blue-950/70 to-slate-900/90 border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.35)] ring-1 ring-cyan-400/50"
                           : "bg-slate-900/75 border-slate-800/90 hover:border-slate-700 hover:bg-slate-850 active:scale-[0.99]"
                       }`}
                     >
-                      <div className="flex items-center gap-3.5 min-w-0">
+                      <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
                         <div
-                          className={`w-12 h-12 rounded-xl flex items-center justify-center font-mono font-black text-base shrink-0 border ${
+                          className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center font-mono font-black text-sm sm:text-base shrink-0 border ${
                             isSelected
                               ? "bg-cyan-500/25 border-cyan-400 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.5)]"
                               : "bg-slate-950 border-slate-800 text-slate-400"
@@ -985,28 +985,28 @@ export default function TeamCreateScreen() {
 
                         <div className="flex flex-col min-w-0 justify-center">
                           <span
-                            className={`text-sm font-bold tracking-tight truncate ${
+                            className={`text-xs sm:text-sm font-bold tracking-tight truncate ${
                               isSelected ? "text-cyan-200" : "text-white"
                             }`}
                           >
                             {league.fullName}
                           </span>
-                          <span className="text-xs text-slate-400 mt-0.5 truncate font-medium">
+                          <span className="text-[11px] sm:text-xs text-slate-400 mt-0.5 truncate font-medium">
                             {league.koreanName}
                           </span>
-                          <span className="text-[10px] text-slate-500 font-mono truncate mt-0.5">
+                          <span className="text-[9px] sm:text-[10px] text-slate-500 font-mono truncate mt-0.5">
                             {league.region}
                           </span>
                         </div>
                       </div>
 
                       {isSelected ? (
-                        <div className="w-7 h-7 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow shrink-0">
-                          <Check className="w-4 h-4 stroke-[3]" />
+                        <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow shrink-0">
+                          <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3]" />
                         </div>
                       ) : (
-                        <div className="w-7 h-7 rounded-full border border-slate-700/60 flex items-center justify-center text-slate-600 shrink-0">
-                          <ChevronRight className="w-4 h-4" />
+                        <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border border-slate-700/60 flex items-center justify-center text-slate-600 shrink-0">
+                          <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         </div>
                       )}
                     </button>

@@ -450,7 +450,7 @@ export default function ManagerCreateScreen() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-[390px] h-[92%] bg-slate-900/95 border border-cyan-500/40 rounded-3xl p-4 shadow-[0_0_35px_rgba(6,182,212,0.25)] flex flex-col justify-between overflow-hidden animate-in zoom-in-95 duration-150 cursor-default"
+            className="w-full max-w-[390px] h-[95%] sm:h-[92%] bg-slate-900/95 border border-cyan-500/40 rounded-3xl p-3 sm:p-4 shadow-[0_0_35px_rgba(6,182,212,0.25)] flex flex-col justify-between overflow-hidden animate-in zoom-in-95 duration-150 cursor-default"
           >
             <div className="flex items-center justify-between pb-2 border-b border-cyan-900/40 shrink-0">
               <span className="text-xs font-bold text-cyan-300 flex items-center gap-1.5">
@@ -756,12 +756,12 @@ export default function ManagerCreateScreen() {
             </div>
           </div>
 
-          {/* ================= STEP 1: 운영 성향 (전체 세로 화면을 꽉 채우는 레이아웃) ================= */}
-          <div className="w-1/3 h-full px-5 py-2.5 flex flex-col justify-between overflow-hidden">
-            <div className="flex-1 flex flex-col gap-2.5 min-h-0">
+          {/* ================= STEP 1: 운영 성향 (유니티 앵커 & 레이아웃 그룹 스타일) ================= */}
+          <div className="w-1/3 h-full px-4 sm:px-5 py-2 sm:py-2.5 flex flex-col justify-between overflow-y-auto custom-scrollbar">
+            <div className="flex-1 flex flex-col gap-1.5 sm:gap-2.5 min-h-0">
               {/* 1. 전술관 세그먼트 컨트롤 */}
-              <div className="flex-1 flex flex-col justify-between min-h-0 bg-slate-900/80 border border-cyan-500/30 rounded-2xl p-3 sm:p-3.5 shadow-lg backdrop-blur-sm">
-                <div className="flex items-center justify-between mb-1.5 shrink-0">
+              <div className="flex-1 flex flex-col justify-between min-h-0 bg-slate-900/80 border border-cyan-500/30 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 shadow-lg backdrop-blur-sm">
+                <div className="flex items-center justify-between mb-1 sm:mb-1.5 shrink-0">
                   <span className="text-xs font-semibold text-cyan-300 flex items-center gap-1.5">
                     <Shield className="w-3.5 h-3.5 text-cyan-400" />
                     전술관
@@ -778,7 +778,7 @@ export default function ManagerCreateScreen() {
                         key={opt}
                         type="button"
                         onClick={() => setManagerProfile({ tactics: opt })}
-                        className={`py-2 px-1 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer touch-manipulation text-center ${
+                        className={`py-1.5 sm:py-2 px-1 rounded-lg text-[11px] sm:text-xs font-bold transition-all duration-150 cursor-pointer touch-manipulation text-center ${
                           isSelected
                             ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_10px_rgba(6,182,212,0.4)]"
                             : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
@@ -789,8 +789,8 @@ export default function ManagerCreateScreen() {
                     );
                   })}
                 </div>
-                <div className="flex-1 min-h-[44px] mt-2 px-3 py-2 rounded-xl bg-slate-950/60 border border-slate-800/80 flex items-center">
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                <div className="flex-1 min-h-[36px] sm:min-h-[44px] mt-1 sm:mt-2 px-2.5 sm:px-3 py-1 sm:py-2 rounded-xl bg-slate-950/60 border border-slate-800/80 flex items-center">
+                  <p className="text-[11px] sm:text-xs text-slate-300 leading-snug sm:leading-relaxed">
                     {managerProfile.tactics === "매우 공격적" &&
                       "라인전 주도권과 초반 킬 중심의 난타전 전략을 최우선합니다."}
                     {managerProfile.tactics === "공격적" &&
@@ -805,8 +805,8 @@ export default function ManagerCreateScreen() {
               </div>
 
               {/* 2. 지출관 세그먼트 컨트롤 */}
-              <div className="flex-1 flex flex-col justify-between min-h-0 bg-slate-900/80 border border-cyan-500/30 rounded-2xl p-3 sm:p-3.5 shadow-lg backdrop-blur-sm">
-                <div className="flex items-center justify-between mb-1.5 shrink-0">
+              <div className="flex-1 flex flex-col justify-between min-h-0 bg-slate-900/80 border border-cyan-500/30 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 shadow-lg backdrop-blur-sm">
+                <div className="flex items-center justify-between mb-1 sm:mb-1.5 shrink-0">
                   <span className="text-xs font-semibold text-cyan-300 flex items-center gap-1.5">
                     <Coins className="w-3.5 h-3.5 text-amber-400" />
                     지출관
@@ -823,7 +823,7 @@ export default function ManagerCreateScreen() {
                         key={opt}
                         type="button"
                         onClick={() => setManagerProfile({ finance: opt })}
-                        className={`py-2 px-1 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer touch-manipulation text-center ${
+                        className={`py-1.5 sm:py-2 px-1 rounded-lg text-[11px] sm:text-xs font-bold transition-all duration-150 cursor-pointer touch-manipulation text-center ${
                           isSelected
                             ? "bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-[0_0_10px_rgba(245,158,11,0.4)]"
                             : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
@@ -834,8 +834,8 @@ export default function ManagerCreateScreen() {
                     );
                   })}
                 </div>
-                <div className="flex-1 min-h-[44px] mt-2 px-3 py-2 rounded-xl bg-slate-950/60 border border-slate-800/80 flex items-center">
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                <div className="flex-1 min-h-[36px] sm:min-h-[44px] mt-1 sm:mt-2 px-2.5 sm:px-3 py-1 sm:py-2 rounded-xl bg-slate-950/60 border border-slate-800/80 flex items-center">
+                  <p className="text-[11px] sm:text-xs text-slate-300 leading-snug sm:leading-relaxed">
                     {managerProfile.finance === "매우 과감함" &&
                       "초특급 S급 스타 영입을 위해 막대한 예산도 아낌없이 베팅합니다."}
                     {managerProfile.finance === "과감함" &&
@@ -850,8 +850,8 @@ export default function ManagerCreateScreen() {
               </div>
 
               {/* 3. 선수관리 세그먼트 컨트롤 */}
-              <div className="flex-1 flex flex-col justify-between min-h-0 bg-slate-900/80 border border-cyan-500/30 rounded-2xl p-3 sm:p-3.5 shadow-lg backdrop-blur-sm">
-                <div className="flex items-center justify-between mb-1.5 shrink-0">
+              <div className="flex-1 flex flex-col justify-between min-h-0 bg-slate-900/80 border border-cyan-500/30 rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 shadow-lg backdrop-blur-sm">
+                <div className="flex items-center justify-between mb-1 sm:mb-1.5 shrink-0">
                   <span className="text-xs font-semibold text-cyan-300 flex items-center gap-1.5">
                     <Users className="w-3.5 h-3.5 text-emerald-400" />
                     선수관리
@@ -868,7 +868,7 @@ export default function ManagerCreateScreen() {
                         key={opt}
                         type="button"
                         onClick={() => setManagerProfile({ playerManagement: opt })}
-                        className={`py-2 px-1 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer touch-manipulation text-center ${
+                        className={`py-1.5 sm:py-2 px-1 rounded-lg text-[11px] sm:text-xs font-bold transition-all duration-150 cursor-pointer touch-manipulation text-center ${
                           isSelected
                             ? "bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-[0_0_10px_rgba(16,185,129,0.4)]"
                             : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
@@ -879,8 +879,8 @@ export default function ManagerCreateScreen() {
                     );
                   })}
                 </div>
-                <div className="flex-1 min-h-[44px] mt-2 px-3 py-2 rounded-xl bg-slate-950/60 border border-slate-800/80 flex items-center">
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                <div className="flex-1 min-h-[36px] sm:min-h-[44px] mt-1 sm:mt-2 px-2.5 sm:px-3 py-1 sm:py-2 rounded-xl bg-slate-950/60 border border-slate-800/80 flex items-center">
+                  <p className="text-[11px] sm:text-xs text-slate-300 leading-snug sm:leading-relaxed">
                     {managerProfile.playerManagement === "매우 엄격함" &&
                       "철저한 규율과 스케줄 준수, 강력한 통제를 강조합니다."}
                     {managerProfile.playerManagement === "엄격함" &&
@@ -896,13 +896,13 @@ export default function ManagerCreateScreen() {
             </div>
 
             {/* 랜덤 주사위 버튼 */}
-            <div className="shrink-0 pt-2">
+            <div className="shrink-0 pt-1.5 sm:pt-2">
               <button
                 type="button"
                 onClick={handleRandomizePhilosophies}
-                className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-950/90 via-slate-900/90 to-blue-950/90 border border-indigo-500/40 text-indigo-200 font-bold text-xs hover:border-indigo-400 hover:text-white shadow-[0_0_15px_rgba(99,102,241,0.25)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer touch-manipulation"
+                className="w-full py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl bg-gradient-to-r from-indigo-950/90 via-slate-900/90 to-blue-950/90 border border-indigo-500/40 text-indigo-200 font-bold text-[11px] sm:text-xs hover:border-indigo-400 hover:text-white shadow-[0_0_15px_rgba(99,102,241,0.25)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer touch-manipulation"
               >
-                <Dices className="w-4 h-4 text-indigo-400" />
+                <Dices className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-400" />
                 <span>운영 성향 3가지 무작위 랜덤 설정</span>
               </button>
             </div>
