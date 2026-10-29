@@ -20,6 +20,7 @@ import {
   X,
 } from "lucide-react";
 import { useGameStore } from "@/store/useGameStore";
+import { saveGameToCloud } from "@/lib/saveManager";
 import {
   TacticalPhilosophy,
   FinancialPhilosophy,
@@ -370,6 +371,29 @@ export default function ManagerCreateScreen() {
           currentTeam: newTeamData,
           myPlayers: initialMyPlayers,
         });
+      }
+
+      // 클라우드 세이브 저장
+      const currentUser = useGameStore.getState().currentUser;
+      if (currentUser?.id && selectedSlotId) {
+        saveGameToCloud(
+          currentUser.id,
+          selectedSlotId,
+          `${newTeamData.name} (1년차)`,
+          1,
+          1,
+          newTeamData.name,
+          {
+            currentTeam: newTeamData,
+            myPlayers: initialMyPlayers,
+            managerProfile: useGameStore.getState().managerProfile,
+            customTeamInfo: useGameStore.getState().customTeamInfo,
+            selectedLeague: useGameStore.getState().selectedLeague,
+            selectedTeam: useGameStore.getState().selectedTeam,
+            currentYear: 1,
+            currentWeek: 1,
+          }
+        );
       }
 
       // 팀 생성 완료 -> 메인 게임 화면(대시보드)으로 진입

@@ -341,18 +341,20 @@ flowchart LR
 │   ├── Nickname_EN      : 영문 닉네임 (예: "Faker")
 │   ├── Avatar_Config    : 아바타 렌더러 파라미터 (피부톤, 헤어스타일/컬러, 얼굴형, 눈/표정, 악세서리 등)
 │   ├── Age              : 만 나이 (17~29세)
-│   ├── Career_Years     : 프로 데뷔 N년차 (1년차 = 신인왕 후보 자격)
-│   ├── First_Language   : 모국어 (KCL, CCL, ECL, ACL, PCL 중 1개)
-│   └── Second_Language  : 제2외국어 (KCL, CCL, ECL, ACL, PCL 중 1개 혹은 null)
+│   ├── Career_Years     : 프로 데뷔 N년차 (해당 선수의 누적 프로 경력 연차, 1년차 = 신인왕 후보 자격)
+│   ├── First_Language   : 모국어 (소속 구단 리그 언어 KCL, CCL, ECL, ACL, PCL 중 1개)
+│   ├── Second_Language  : 제2외국어 (전체 인원의 50%가 보유, 모국어 제외 4개 언어 25%씩 균등 배분, 미보유 시 null / 팀별 약 절반 구사)
+│   ├── Available_Year   : 게임 등장 연차 (1~10년차: 게임 시작 기준 몇 년차 12월 스토브리그에 등장하는지 정의)
+│   └── Status           : 활동 상태 ("Active": 구단 소속 현역, "FA": 무소속 자유계약, "Upcoming": 미래 시즌 등장 대기)
 │
 ├── 2. 계약 및 포지션 (Contract & Role)
 │   ├── Team_ID          : 소속 구단 ID (무소속 FA는 null)
-│   ├── Roster_Status    : 로스터 상태 (Starter: 주전 / Sub: 벤치 후보)
+│   ├── Roster_Status    : 로스터 상태 (Starter: 주전 / Sub: 벤치 후보 / null: FA 무소속)
 │   ├── Main_Pos         : 주 포지션 (TOP, JGL, MID, BOT, SUP) - 전투 효율 100%
 │   ├── Sub_Pos          : 부 포지션 (선택 포지션) - 기본 효율 80% (Off_Pos는 50%)
-│   ├── Salary           : 연봉 (연간 구단 지출액)
-│   ├── Contract_Years   : 잔여 계약 연수 (마지막 3개월 잔여 시 'FA로이드' 발동)
-│   └── Market_Value     : 시장 추정 가치 (이적 시장 바이아웃 기준액)
+│   ├── Salary           : 연봉 (연간 구단 지출액, FA는 0)
+│   ├── Contract_Years   : 잔여 계약 연수 (마지막 3개월 잔여 시 'FA로이드' 발동, FA는 0)
+│   └── Market_Value     : 시장 추정 가치 (이적 시장 바이아웃 기준액, FA는 0)
 │
 ├── 3. 경기력 5대 스탯 (Stats : 1 ~ 100)
 │   ├── Mechanics        : 피지컬 (스킬 적중, 스킬 회피)
@@ -456,10 +458,18 @@ export interface Player {
 * **훈련·출전 및 상태 변화 규칙:**
   * **주간 훈련:** 주전과 후보를 포함한 **팀 전원**이 참여하며 스탯/챔피언 숙련도가 오르고 `Stamina(체력)`가 소모된다. (수동 지정 또는 코치 자동 위임 가능)
   * **스크림 및 공식 경기:** **출전한 5명만** 실전 성장을 얻고 `Stamina`를 소모한다. 벤치(미출전) 선수는 경기 중 체력이 회복되므로 주전의 부상/번아웃 방지 및 다전제 전략 교체를 위해 **팀당 최소 7명(리그 D 평균 7명, C 7~8명, B 8~9명, A 9~10명)**의 로스터를 운영한다.
-* **선수 인력 풀 및 연간 은퇴·신입 규모:**
-  * **전 세계 활동 선수 총원:** 약 **1,250명**
-  * **신규 선수 공급 풀:** 약 **2,500명**
-  * **연간 은퇴 및 신규 유입:** 매년 활동 선수의 **10%인 약 125명 은퇴** 및 **신규 선수 125명(10%)이 무소속 FA 풀로 신규 진입**.
+* **선수 인력 풀 및 연간 은퇴·신입 규모 (10년 플레이타임 기준 확정):**
+  * **1년차 구단 소속 현역 선수:** **1,250명** (5대 리그 150팀 × 평균 8.33명)
+  * **1년차 무소속 FA 선수:** **500명** (5대 리그당 100명 = **포지션별 20명**씩 풍부하게 배치하여 A~D 디비전 구단에 충분한 선택지 제공)
+  * **1년차 총 가용 선수:** **1,750명**
+  * **연간 신규 유망주 유입 및 은퇴 (2~10년차, 총 9시즌):**
+    * 매년 **12월 스토브리그에만 신입 유입 및 은퇴 발생** (시즌 진행 중 돌발 발생 없음).
+    * 매년 **150명 은퇴** 및 **신입 루키 150명 유입** (5대 리그당 30명 = 팀당 1명, 포지션당 6명 배정).
+    * 9시즌 누적 신입 선수: $150 \times 9 = 1,350$명
+  * **10년 누적 전체 선수 총원:** **3,100명** ($1,750 + 1,350$)
+  * **핵심 필드 구분 원칙:**
+    * `Career_Years`: 선수의 실제 누적 프로 활동 연차 (게임 시작 시점에도 5~8년차 베테랑 존재 가능).
+    * `Available_Year`: 게임 플레이 시작 기준 해당 선수가 등장하는 시즌 연차 (1~10년차, 1년차 현역/FA는 1, 2년차 신입은 2).
 
 
 
@@ -694,11 +704,89 @@ export interface Player {
 <details>
 <summary><b style="font-size: 1.1em; cursor: pointer;">📂 5.3 코치 (`Coach_DB`) 5대 스탯 및 5대 전담 보직 시스템 (클릭하여 내용 펼치기)</b></summary>
 
+```text
+[ Coach_DB ]
+├── 1. 기본 정보 (Profile)
+│   ├── Coach_ID         : 코치 고유 식별자 (예: "C_0001")
+│   ├── Nickname_KR      : 한글 닉네임 (예: "블레소")
+│   ├── Nickname_EN      : 영문 닉네임 (예: "Bleso")
+│   ├── Avatar_Config    : 아바타 렌더러 파라미터 (주름 0, 유니폼 자켓)
+│   ├── Age              : 만 나이 (25~39세)
+│   ├── Career_Years     : 코치 데뷔 N년차 (1~9년차)
+│   ├── First_Language   : 주 사용 언어 (모국어: 소속 구단 리그 언어 KCL, CCL, ECL, ACL, PCL)
+│   ├── Second_Language  : 부 사용 언어 (전체 인원의 50%가 보유, 모국어 제외 4개 언어 25%씩 균등 배분, 미보유 시 null / 팀별 약 절반 구사)
+│   ├── Available_Year   : 게임 등장 연차 (1: 1년차 현역/FA, 2~10: N년차 신규 코치)
+│   └── Status           : 활동 상태 ("Active": 구단 소속 현역, "FA": 무소속 자유계약, "Upcoming": 미래 시즌 등장 대기)
+│
+├── 2. 계약 및 보직 (Contract & Role)
+│   ├── Team_ID          : 소속 구단 ID (무소속 FA는 null)
+│   ├── Role             : 전담 보직 ("인게임 코치", "전력분석 코치", "훈련 코치", "팀 관리 코치", "스카우터", 미배정 시 null)
+│   ├── Salary           : 연봉 (연간 구단 지출액, 초기 0)
+│   ├── Contract_Years   : 잔여 계약 연수 (초기 0)
+│   └── Market_Value     : 시장 추정 가치 (초기 0)
+│
+└── 3. 코칭 5대 스탯 (Stats : 1 ~ 100)
+    ├── Ingame           : 인게임 (밴픽 가이드, 전술 카드 제안)
+    ├── Analysis         : 전력분석 (챔피언 티어 정리, 전력 분석 리포트)
+    ├── Training         : 훈련 (스탯 증가, 챔피언 숙련도 증가)
+    ├── Managing         : 팀 관리 (체력 조절, 의욕 조절)
+    └── Scouting         : 스카우트 (선수 발견, 계약 성사)
+```
+
+<details>
+<summary><b style="font-size: 1.05em; cursor: pointer;">💻 Coach_DB TypeScript 인터페이스 정의 (클릭하여 코드 펼치기)</b></summary>
+
+```typescript
+export interface CoachProfile {
+  coachId: string;                       // 코치 고유 식별자 (예: "C_0001" ~)
+  nicknameKr: string;                    // 한글 닉네임
+  nicknameEn: string;                    // 영문 닉네임
+  avatarConfig: AvatarDna;               // 아바타 렌더러 파라미터 (주름 0, 유니폼 자켓)
+  age: number;                           // 만 나이 (25~39세)
+  careerYears: number;                   // 코치 데뷔 N년차 (1~9년차)
+  firstLanguage: LeagueLanguage;         // 모국어 (KCL, CCL, ECL, ACL, PCL)
+  secondLanguage: LeagueLanguage | null; // 제2외국어 혹은 null
+  availableYear: number;                 // 게임 등장 연차 (1~10년차)
+  status: EntityStatus;                  // "Active" | "FA" | "Upcoming"
+}
+
+export interface CoachContractAndRole {
+  teamId: string | null;                 // 소속 구단 ID (무소속 FA는 null)
+  role: CoachRole | null;                // 5대 보직 (미배정 시 null)
+  salary: number;                        // 연봉 (초기 0)
+  contractYears: number;                 // 잔여 계약 연수 (초기 0)
+  marketValue: number;                   // 시장 추정 가치 (초기 0)
+}
+
+export interface CoachStats {
+  ingame: number;                        // 인게임 (1~100)
+  analysis: number;                      // 전력분석 (1~100)
+  training: number;                      // 훈련 (1~100)
+  managing: number;                      // 팀 관리 (1~100)
+  scouting: number;                      // 스카우트 (1~100)
+}
+
+export interface Coach {
+  profile: CoachProfile;
+  contractAndRole: CoachContractAndRole;
+  stats: CoachStats;
+  traits?: string[];
+}
+```
+
+</details>
+
 * **로스터 인원:** 팀당 **최소 3명 ~ 최대 6명** 보유 (리그 D 평균 3~4명, 리그 C 평균 4~5명, 리그 B 평균 5~6명, 리그 A 평균 6명).
-* **코치 인력 풀 및 연간 은퇴·신입 규모:**
-  * **전 세계 활동 코치 총원:** 약 **760명**
-  * **신규 코치 공급 풀:** 약 **760명**
-  * **연간 은퇴 및 신규 유입:** 매년 활동 코치의 **5%인 약 38명 은퇴** 및 **신규 코치 38명(5%)이 코치 영입 풀로 신규 진입**.
+* **코치 인력 풀 및 연간 은퇴·신입 규모 (10년 플레이타임 기준 확정):**
+  * **1년차 구단 소속 현역 코치:** **760명** (5대 리그 150팀 × 평균 5.07명)
+  * **1년차 무소속 FA 코치:** **150명** (5대 리그당 30명 = 팀당 1명꼴 대기)
+  * **1년차 총 가용 코치:** **910명**
+  * **연간 신규 코치 유입 및 은퇴 (2~10년차, 총 9시즌):**
+    * 매년 **12월 스토브리그에만 신규 유입 및 은퇴 발생**.
+    * 매년 **40명 은퇴** 및 **신규 코치 40명 유입** (5대 리그당 깔끔하게 **8명**씩 균등 배분).
+    * 9시즌 누적 신입 코치: $40 \times 9 = 360$명
+  * **10년 누적 전체 코치 총원:** **1,270명** ($910 + 360$)
+  * **등장 연차 및 상태 관리:** `availableYear`(1~10), `status`("Active" | "FA" | "Upcoming") 필드 보유. (※ '선수 은퇴 후 코치 전향' 시스템은 향후 업데이트로 잠정 보류)
 * **전담 보직 배정:** 코치의 5대 스탯에 대응하는 **5개의 보직 슬롯**이 존재한다. 코치가 3~4명인 팀은 한 코치가 여러 보직을 **겸임 페널티 없이** 동시에 맡을 수 있다.
 * **은퇴 선수의 코치 전향:** 은퇴하는 유명 선수와 동일한 이름·초상화·성향을 가진 코치 데이터를 코치 DB에서 타이밍 맞춰 등장시켜 자연스러운 코치 전향 서사를 연출한다.
 

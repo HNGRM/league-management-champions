@@ -1,23 +1,41 @@
 "use client";
 
-import React, { useState, useRef } from "react";
-import { ArrowLeft, PlusCircle, Lock, AlertCircle, Sparkles, ChevronRight, ChevronsDown } from "lucide-react";
+import React, { useState, useRef, useEffect } from "react";
+import { ArrowLeft, PlusCircle, Lock, AlertCircle, Sparkles, ChevronRight, ChevronsDown, Loader2, Cloud } from "lucide-react";
 import { useGameStore } from "@/store/useGameStore";
+import { fetchUserSlots } from "@/lib/saveManager";
 
 export default function SlotSelectScreen() {
   const setScreen = useGameStore((state) => state.setScreen);
   const slots = useGameStore((state) => state.slots);
+  const setSlots = useGameStore((state) => state.setSlots);
+  const currentUser = useGameStore((state) => state.currentUser);
   const setSelectedSlotId = useGameStore((state) => state.setSelectedSlotId);
   const resetCreationState = useGameStore((state) => state.resetCreationState);
 
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [loadingCloud, setLoadingCloud] = useState(false);
 
-  // 마우스 드래그 스크롤 지원
+  // 마우스 드래그 스크롤 참조
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef(false);
   const startYRef = useRef(0);
   const scrollTopRef = useRef(0);
   const hasMovedRef = useRef(false);
+
+  // 클라우드 세이브 슬롯 로딩
+  useEffect(() => {
+    if (currentUser?.id) {
+      setLoadingCloud(true);
+      fetchUserSlots(currentUser.id)
+        .then((cloudSlots) => {
+          setSlots(cloudSlots);
+        })
+        .finally(() => {
+          setLoadingCloud(false);
+        });
+    }
+  }, [currentUser?.id, setSlots]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -27,15 +45,13 @@ export default function SlotSelectScreen() {
   };
 
   const handleSlotClick = (slotId: number, isLocked: boolean) => {
-    // 드래그 중 실수로 클릭되는 현상 방지
     if (hasMovedRef.current) return;
 
     if (isLocked) {
-      showToast("팀 생성은 하나만 만들 수 있습니다.");
+      showToast("이전 슬롯을 먼저 생성해야 잠금 해제됩니다.");
       return;
     }
 
-    // 이미 생성된 팀 슬롯이면 바로 메인 게임 화면으로 진입
     const targetSlot = slots.find((s) => s.id === slotId);
     if (targetSlot?.isCreated && targetSlot.team) {
       setSelectedSlotId(slotId);
@@ -51,7 +67,7 @@ export default function SlotSelectScreen() {
       return;
     }
 
-    // 신규 생성 시 이전 생성 데이터 완전 초기화
+    // 신규 슬롯 생성 시 기존 생성 상태 초기화
     resetCreationState();
     setSelectedSlotId(slotId);
     setScreen("TEAM_CREATE");
@@ -76,8 +92,9 @@ export default function SlotSelectScreen() {
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDraggingRef.current || !scrollContainerRef.current) return;
+    e.preventDefault();
     const y = e.pageY - scrollContainerRef.current.offsetTop;
-    const walk = (y - startYRef.current) * 1.5;
+    const walk = (y - startYRef.current) * 1.3;
     if (Math.abs(walk) > 5) {
       hasMovedRef.current = true;
     }
@@ -94,7 +111,7 @@ export default function SlotSelectScreen() {
         </div>
       )}
 
-      {/* 상단 네비게이션 헤더 */}
+      {/* 상단 네비게이션 바 */}
       <div className="pt-4 px-5 shrink-0 relative z-30">
         <div className="flex items-center justify-between pb-3 border-b border-cyan-900/40">
           <button
@@ -107,19 +124,22 @@ export default function SlotSelectScreen() {
           </button>
 
           <div className="text-center">
-            <h2 className="text-base font-bold text-white tracking-wide">
-              팀 슬롯 선택
+            <h2 className="text-base font-bold text-white tracking-wide flex items-center justify-center gap-1.5">
+              <span>슬롯 선택</span>
+              <Cloud className="w-3.5 h-3.5 text-cyan-400" />
             </h2>
             <p className="text-[10px] text-cyan-400/70 font-mono">
-              SAVE & LOAD SLOTS (1 / {slots.length})
+              CLOUD SAVE SLOTS (1 / {slots.length})
             </p>
           </div>
 
-          <div className="w-9 h-9" />
+          <div className="w-9 h-9 flex items-center justify-center">
+            {loadingCloud && <Loader2 className="w-4 h-4 text-cyan-400 animate-spin" />}
+          </div>
         </div>
       </div>
 
-      {/* 슬롯 상단 상태 요약 바 */}
+      {/* 서브 가이드 정보 */}
       <div className="px-5 pt-3 pb-1 shrink-0 flex items-center justify-between text-xs text-slate-400">
         <span className="flex items-center gap-1.5 font-medium">
           <span className="w-2 h-2 rounded-full bg-cyan-400" />
@@ -131,120 +151,126 @@ export default function SlotSelectScreen() {
         </span>
       </div>
 
-      {/* 본문: 8개 직사각형 슬롯 리스트 */}
+      {/* 메인: 8개 직사각형 슬롯 리스트 */}
       <div
         ref={scrollContainerRef}
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
-        className="flex-1 overflow-y-auto px-5 py-2 flex flex-col gap-3 custom-scrollbar cursor-grab active:cursor-grabbing touch-pan-y"
+        className="flex-1 overflow-y-auto px-5 py-3 space-y-3 cursor-grab active:cursor-grabbing scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none]"
       >
         {slots.map((slot) => {
-          if (!slot.isLocked) {
-            // 1번 칸: 활성화된 "팀 생성하기" 직사각형 칸
-            return (
-              <button
-                key={slot.id}
-                type="button"
-                onClick={() => handleSlotClick(slot.id, false)}
-                className="group relative w-full text-left p-4 rounded-2xl bg-gradient-to-r from-slate-900/90 via-[#0a1a38]/90 to-slate-900/90 border border-cyan-400/50 hover:border-cyan-300 shadow-[0_4px_20px_rgba(6,182,212,0.18)] hover:shadow-[0_4px_25px_rgba(6,182,212,0.3)] transition-all duration-150 active:scale-[0.98] cursor-pointer overflow-hidden shrink-0 touch-manipulation"
-              >
-                {/* 상단 하이라이트 라인 */}
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-400 via-sky-300 to-transparent pointer-events-none" />
+          const isSlotActive = slot.isCreated;
+          const isSlotLocked = slot.isLocked;
 
-                <div className="flex items-center justify-between pointer-events-none">
-                  <div className="flex items-center gap-3.5">
-                    {/* 플러스 아이콘 배지 */}
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-cyan-500/20 to-blue-500/30 border border-cyan-400/60 flex items-center justify-center text-cyan-300 shadow-inner group-hover:scale-105 transition-transform shrink-0">
-                      <PlusCircle className="w-6 h-6 text-cyan-300" strokeWidth={2.2} />
-                    </div>
-
-                    {/* 슬롯 텍스트 정보 */}
-                    <div className="flex flex-col">
-                      <div className="flex items-center gap-2">
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-                          SLOT 0{slot.id}
-                        </span>
-                        <span className="flex items-center gap-1 text-[10px] text-amber-300/90 font-medium">
-                          <Sparkles className="w-2.5 h-2.5" />
-                          생성 가능
-                        </span>
-                      </div>
-                      <h3 className="text-base font-bold text-white group-hover:text-cyan-200 transition-colors mt-0.5">
-                        팀 생성하기
-                      </h3>
-                      <p className="text-[11px] text-slate-300/70 mt-0.5">
-                        새로운 e스포츠 팀을 창단하고 리그에 참가합니다.
-                      </p>
-                    </div>
-                  </div>
-
-                  <ChevronRight className="w-5 h-5 text-cyan-400/70 group-hover:text-cyan-300 group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
-                </div>
-              </button>
-            );
-          }
-
-          // 2 ~ 8번 칸: 회색빛 + 사선 빗금 패턴의 잠긴 칸
           return (
-            <button
+            <div
               key={slot.id}
-              type="button"
-              onClick={() => handleSlotClick(slot.id, true)}
-              className="relative w-full text-left p-4 rounded-2xl bg-slate-900/50 border border-slate-700/40 text-slate-400 overflow-hidden cursor-not-allowed transition-colors hover:border-slate-600/50 shrink-0 touch-manipulation active:scale-[0.99]"
+              onClick={() => handleSlotClick(slot.id, isSlotLocked)}
+              className={`relative w-full rounded-2xl p-4 transition-all duration-200 border text-left overflow-hidden select-none touch-manipulation ${
+                isSlotLocked
+                  ? "bg-slate-950/40 border-slate-800/40 opacity-45 cursor-not-allowed"
+                  : isSlotActive
+                  ? "bg-gradient-to-r from-slate-900/90 via-cyan-950/30 to-blue-950/40 border-cyan-500/40 hover:border-cyan-400/70 cursor-pointer shadow-[0_4px_20px_rgba(6,182,212,0.15)] hover:shadow-[0_4px_25px_rgba(6,182,212,0.3)] active:scale-[0.98]"
+                  : "bg-slate-900/60 border-cyan-500/30 hover:border-cyan-400/60 cursor-pointer hover:bg-slate-800/60 active:scale-[0.98]"
+              }`}
             >
-              {/* 사선 빗금 오버레이 */}
-              <div className="absolute inset-0 stripe-pattern opacity-60 pointer-events-none" />
+              {/* 슬롯 상단: 번호 및 상태 뱃지 */}
+              <div className="flex items-center justify-between mb-2 pointer-events-none">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-mono font-bold text-cyan-400/90 tracking-wider">
+                    SLOT {String(slot.id).padStart(2, "0")}
+                  </span>
+                  {isSlotActive && (
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                      진행 중
+                    </span>
+                  )}
+                </div>
 
-              <div className="relative z-10 flex items-center justify-between pointer-events-none">
-                <div className="flex items-center gap-3.5">
-                  {/* 잠금 아이콘 배지 (회색빛 톤) */}
-                  <div className="w-12 h-12 rounded-xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-slate-500 shrink-0">
-                    <Lock className="w-5 h-5" />
+                {/* 잠금 여부 표시 */}
+                {isSlotLocked && (
+                  <div className="flex items-center gap-1 text-[11px] text-slate-500 font-mono">
+                    <Lock className="w-3.5 h-3.5" />
+                    <span>LOCKED</span>
                   </div>
+                )}
+              </div>
 
-                  {/* 슬롯 텍스트 정보 */}
-                  <div className="flex flex-col">
-                    <div className="flex items-center gap-2">
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-slate-800 text-slate-400 border border-slate-700">
-                        SLOT 0{slot.id}
-                      </span>
-                      <span className="text-[10px] text-slate-400 font-medium">
-                        비활성화됨
+              {/* 슬롯 본문 내용 */}
+              <div className="pointer-events-none">
+                {isSlotActive && slot.team ? (
+                  <div className="space-y-1.5">
+                    <div className="flex items-baseline justify-between">
+                      <h3 className="text-base font-extrabold text-white tracking-wide truncate">
+                        {slot.team.name}
+                      </h3>
+                      <span className="text-xs font-mono text-cyan-300">
+                        {slot.selectedLeague || "KCL"} 디비전 D
                       </span>
                     </div>
-                    <h3 className="text-base font-bold text-slate-400 line-through decoration-slate-600 decoration-1 mt-0.5">
-                      팀 생성하기
-                    </h3>
-                    <p className="text-[11px] text-slate-400/80 mt-0.5">
-                      팀 생성은 하나만 만들 수 있습니다.
-                    </p>
-                  </div>
-                </div>
 
-                <div className="relative z-10 shrink-0 ml-2">
-                  <span className="text-[10px] px-2 py-1 rounded bg-slate-800/90 text-slate-400 border border-slate-700/50 font-mono">
-                    LOCKED
-                  </span>
-                </div>
+                    <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                      <span>감독: {slot.managerProfile?.name || "지휘관"}</span>
+                      <span>로스터: {slot.myPlayers?.length || 5}명</span>
+                    </div>
+
+                    <div className="pt-2 flex items-center justify-between text-[10px] text-cyan-400/80 font-mono border-t border-cyan-900/30">
+                      <span>최근 저장: {slot.lastPlayedAt || "클라우드 동기화"}</span>
+                      <span className="flex items-center gap-0.5 text-cyan-300 font-bold">
+                        이어하기 <ChevronRight className="w-3.5 h-3.5" />
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="py-2.5 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`w-9 h-9 rounded-xl flex items-center justify-center ${
+                          isSlotLocked
+                            ? "bg-slate-900 text-slate-600"
+                            : "bg-cyan-500/15 border border-cyan-500/30 text-cyan-300"
+                        }`}
+                      >
+                        {isSlotLocked ? (
+                          <Lock className="w-4 h-4" />
+                        ) : (
+                          <PlusCircle className="w-5 h-5 text-cyan-400 animate-pulse" />
+                        )}
+                      </div>
+                      <div>
+                        <p
+                          className={`text-sm font-bold ${
+                            isSlotLocked ? "text-slate-500" : "text-slate-200"
+                          }`}
+                        >
+                          {isSlotLocked ? "잠긴 슬롯" : "새 게임 생성"}
+                        </p>
+                        <p className="text-[10px] text-slate-500 font-mono">
+                          {isSlotLocked
+                            ? "이전 슬롯을 먼저 클리어하세요"
+                            : "새로운 구단 창단 및 리그 참가"}
+                        </p>
+                      </div>
+                    </div>
+
+                    {!isSlotLocked && (
+                      <span className="text-xs text-cyan-400/80 font-mono flex items-center gap-1 font-bold">
+                        시작 <ChevronRight className="w-3.5 h-3.5" />
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
-            </button>
+            </div>
           );
         })}
-
-        {/* 하단 스크롤 끝 여백 */}
-        <div className="h-4 shrink-0" />
       </div>
 
-      {/* 하단 고정 가이드 바 */}
-      <div className="px-5 pb-5 pt-2 shrink-0">
-        <div className="rounded-xl bg-slate-900/70 border border-cyan-900/40 p-3 text-[11px] text-slate-400 flex items-start gap-2.5 backdrop-blur-sm">
-          <AlertCircle className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-          <p className="leading-relaxed">
-            현재 단일 팀 운영 시스템으로 제한되어 있어 1번 슬롯만 생성할 수 있습니다. 슬롯을 상하로 드래그하여 전체 8개 슬롯을 확인해 보세요.
-          </p>
-        </div>
+      {/* 하단 여백 및 가이드 문구 */}
+      <div className="py-3 px-6 text-center text-[11px] text-cyan-500/40 font-mono shrink-0">
+        슬롯을 클릭하여 이전 게임을 이어하거나 새로운 구단을 창단하세요.
       </div>
     </div>
   );

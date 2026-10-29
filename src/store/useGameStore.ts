@@ -9,6 +9,10 @@ interface GameState {
   currentScreen: GameScreen;
   setScreen: (screen: GameScreen) => void;
 
+  currentUser: any | null;
+  setCurrentUser: (user: any | null) => void;
+  setSlots: (slots: SaveSlot[]) => void;
+
   // 팀 슬롯 관리 (총 8개 슬롯)
   slots: SaveSlot[];
   selectedSlotId: number | null;
@@ -49,6 +53,10 @@ interface GameState {
 export const useGameStore = create<GameState>((set) => ({
   currentScreen: "TITLE",
   setScreen: (screen) => set({ currentScreen: screen }),
+
+  currentUser: null,
+  setCurrentUser: (user) => set({ currentUser: user }),
+  setSlots: (slots) => set({ slots }),
 
   slots: Array.from({ length: 8 }, (_, index) => ({
     id: index + 1,

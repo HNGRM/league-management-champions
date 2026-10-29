@@ -16,12 +16,14 @@ import {
   Edit3,
   Upload,
   Image as ImageIcon,
+  GraduationCap,
 } from "lucide-react";
 import { useGameStore } from "@/store/useGameStore";
 import { LeagueLanguage, PredefinedTeam } from "@/types/game";
 import { PREDEFINED_TEAMS } from "@/data/teams";
 import { PREDEFINED_MANAGERS } from "@/data/managers";
 import { getPlayersByTeamId } from "@/data/players";
+import { getCoachesByTeamId } from "@/data/coaches";
 import { getPlayerTraitById } from "@/data/playerTraits";
 import { getTeamLogo } from "@/data/teamLogos";
 import { getLeagueLogo } from "@/data/leagueLogos";
@@ -132,6 +134,9 @@ export default function TeamCreateScreen() {
     : null;
   const inspectedTeamPlayers = inspectingTeam
     ? getPlayersByTeamId(inspectingTeam.id)
+    : [];
+  const inspectedTeamCoaches = inspectingTeam
+    ? getCoachesByTeamId(inspectingTeam.id)
     : [];
   const starterCount = inspectedTeamPlayers.filter(
     (p) => p.contractAndRole.rosterStatus === "Starter"
@@ -565,7 +570,7 @@ export default function TeamCreateScreen() {
                         size="100%"
                         className="w-full h-full"
                       />
-                      <div className="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded-md bg-slate-950/85 backdrop-blur-sm border border-cyan-400/60 text-[9px] font-mono font-bold text-cyan-300 shadow">
+                      <div className="absolute top-0 left-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl backdrop-blur-md border-r border-b border-cyan-400/70 bg-cyan-950/95 font-mono font-black text-[11px] sm:text-xs text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.35)] tracking-wider">
                         HC
                       </div>
                     </div>
@@ -660,14 +665,22 @@ export default function TeamCreateScreen() {
                             size="100%"
                             className="w-full h-full"
                           />
-                          <div className="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded-md bg-slate-950/85 backdrop-blur-sm border border-cyan-400/60 text-[9px] font-mono font-bold text-cyan-300 shadow">
+                          {/* 좌상단 포지션 마크 (모서리 밀착 & 주전/후보 색상 동기화) */}
+                          <div
+                            className={`absolute top-0 left-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl backdrop-blur-md border-r border-b font-mono font-black text-[11px] sm:text-xs shadow-md tracking-wider ${
+                              isStarter
+                                ? "bg-cyan-950/95 border-cyan-400/70 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.35)]"
+                                : "bg-slate-900/95 border-slate-600/70 text-slate-400"
+                            }`}
+                          >
                             {player.contractAndRole.mainPos}
                           </div>
+                          {/* 우하단 주전/후보 마크 (모서리 밀착 & 주전/후보 색상 동기화) */}
                           <div
-                            className={`absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded-md backdrop-blur-sm border text-[9px] font-bold shadow ${
+                            className={`absolute bottom-0 right-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-tl-xl backdrop-blur-md border-l border-t font-bold text-[11px] sm:text-xs shadow-md tracking-tight ${
                               isStarter
-                                ? "bg-cyan-950/90 border-cyan-400/60 text-cyan-200"
-                                : "bg-slate-900/90 border-slate-600/60 text-slate-400"
+                                ? "bg-cyan-950/95 border-cyan-400/70 text-cyan-200 shadow-[0_0_12px_rgba(6,182,212,0.35)]"
+                                : "bg-slate-900/95 border-slate-600/70 text-slate-400"
                             }`}
                           >
                             {isStarter ? "주전" : "후보"}
@@ -676,18 +689,12 @@ export default function TeamCreateScreen() {
 
                         {/* 우측 선수 상세 정보 */}
                         <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
-                          <div className="flex items-center justify-between gap-1">
-                            <div className="flex items-center gap-1.5 min-w-0 truncate">
-                              <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate font-mono">
-                                {player.profile.nicknameEn}
-                              </span>
-                              <span className="text-[10px] text-slate-400 truncate">
-                                ({player.profile.nicknameKr})
-                              </span>
-                            </div>
-                            <span className="px-1.5 py-0.5 rounded bg-slate-800/90 text-slate-300 text-[9px] font-mono border border-slate-700/80 shrink-0">
-                              주 {player.contractAndRole.mainPos} · 부{" "}
-                              {player.contractAndRole.subPos}
+                          <div className="flex items-center gap-1.5 min-w-0 flex-wrap">
+                            <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate font-mono">
+                              {player.profile.nicknameEn}
+                            </span>
+                            <span className="text-[10px] text-slate-400 truncate">
+                              ({player.profile.nicknameKr})
                             </span>
                           </div>
 
@@ -785,6 +792,134 @@ export default function TeamCreateScreen() {
                               player.contractAndRole.marketValue
                             )}
                           </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* 섹션 3: 코치진 로스터 (소속 코치 목록) */}
+              <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-3.5 flex flex-col gap-2.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-bold text-cyan-300 flex items-center gap-1.5">
+                    <GraduationCap className="w-3.5 h-3.5 text-cyan-400" />
+                    코치진 로스터 ({inspectedTeamCoaches.length}인)
+                  </span>
+                  <span className="text-[9px] font-mono text-cyan-400/80 font-bold">
+                    COACHES
+                  </span>
+                </div>
+
+                <div className="flex flex-col gap-2.5">
+                  {inspectedTeamCoaches.map((coach) => {
+                    const coachOvr = Math.round(
+                      (coach.stats.ingame +
+                        coach.stats.analysis +
+                        coach.stats.training +
+                        coach.stats.managing +
+                        coach.stats.scouting) /
+                        5
+                    );
+
+                    return (
+                      <div
+                        key={coach.profile.coachId}
+                        className="p-3 rounded-2xl bg-slate-900/90 border border-slate-800/90 flex gap-3.5 items-center"
+                      >
+                        {/* 좌측 코치 2D 벡터 아바타 초상화 */}
+                        <div className="w-24 h-24 sm:w-28 sm:h-28 aspect-square rounded-2xl overflow-hidden bg-slate-950 border-2 border-indigo-400/50 shadow-[0_0_20px_rgba(99,102,241,0.25)] shrink-0 flex items-center justify-center relative">
+                          <AvatarRenderer
+                            dna={coach.profile.avatarConfig}
+                            teamId={inspectingTeam.id}
+                            league={inspectingTeam.league}
+                            size="100%"
+                            className="w-full h-full"
+                          />
+                          {/* 좌상단 코치 배지 */}
+                          <div className="absolute top-0 left-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl backdrop-blur-md border-r border-b border-indigo-400/70 bg-indigo-950/95 font-mono font-black text-[11px] sm:text-xs text-indigo-300 shadow-[0_0_12px_rgba(99,102,241,0.35)] tracking-wider">
+                            COACH
+                          </div>
+                        </div>
+
+                        {/* 우측 코치 상세 정보 */}
+                        <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
+                          <div className="flex items-center gap-1.5 min-w-0 flex-wrap">
+                            <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate font-mono">
+                              {coach.profile.nicknameEn}
+                            </span>
+                            <span className="text-[10px] text-slate-400 truncate">
+                              ({coach.profile.nicknameKr})
+                            </span>
+                          </div>
+
+                          <div className="flex items-center gap-1.5 text-[10px] text-slate-300 font-medium flex-wrap">
+                            <span>{coach.profile.age}세</span>
+                            <span className="text-slate-600">·</span>
+                            <span>
+                              {coach.profile.careerYears === 1
+                                ? "신임(1년차)"
+                                : `${coach.profile.careerYears}년차`}
+                            </span>
+                            <span className="text-slate-600">·</span>
+                            <span className="text-amber-300 font-semibold">
+                              종합 {coachOvr}
+                            </span>
+                            <span className="text-slate-600">·</span>
+                            <span className="text-cyan-300 font-semibold">
+                              {coach.profile.firstLanguage}
+                              {coach.profile.secondLanguage
+                                ? ` / ${coach.profile.secondLanguage}`
+                                : ""}
+                            </span>
+                          </div>
+
+                          {/* 5대 코치 핵심 스탯 */}
+                          <div className="text-[10px] text-slate-400 font-mono flex items-center gap-1 flex-wrap leading-tight">
+                            <span>
+                              인게임{" "}
+                              <b className="text-slate-200">
+                                {coach.stats.ingame}
+                              </b>
+                            </span>
+                            <span className="text-slate-700">·</span>
+                            <span>
+                              분석{" "}
+                              <b className="text-slate-200">
+                                {coach.stats.analysis}
+                              </b>
+                            </span>
+                            <span className="text-slate-700">·</span>
+                            <span>
+                              훈련{" "}
+                              <b className="text-slate-200">
+                                {coach.stats.training}
+                              </b>
+                            </span>
+                            <span className="text-slate-700">·</span>
+                            <span>
+                              관리{" "}
+                              <b className="text-slate-200">
+                                {coach.stats.managing}
+                              </b>
+                            </span>
+                            <span className="text-slate-700">·</span>
+                            <span>
+                              스카우트{" "}
+                              <b className="text-slate-200">
+                                {coach.stats.scouting}
+                              </b>
+                            </span>
+                          </div>
+
+                          <div className="flex items-center gap-1 mt-0.5 flex-wrap">
+                            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-indigo-300 text-[9px] border border-indigo-500/30 font-medium">
+                              {coach.contractAndRole.role || "미배정 코치"}
+                            </span>
+                            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[9px] border border-slate-700 font-medium font-mono">
+                              {coach.profile.status === "Active" ? "소속 계약" : coach.profile.status}
+                            </span>
+                          </div>
                         </div>
                       </div>
                     );
