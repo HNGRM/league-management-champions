@@ -2,6 +2,7 @@ import { Player, PlayerStats } from "@/types/player";
 import { Coach, CoachStats } from "@/types/coach";
 import { calculatePlayerOvr, calculatePlayerSalary } from "./salaryCalculator";
 import { generatePlayerStarQuality } from "./playerGenerator";
+import { autoAssignCoachRoles } from "./coachAssignment";
 
 export interface ContractEconomicsResult {
   salary: number;        // 연봉 (원화 기준, 100만 원 단위 반올림)
@@ -263,8 +264,9 @@ export function initializeCoach(coach: Coach): Coach {
 }
 
 /**
- * 코치 목록 전체에 대해 딥카피 후 계약 경제 주입
+ * 코치 목록 전체에 대해 딥카피 후 계약 경제 주입 및 5대 전담 보직 자동 배정
  */
 export function initializeCoaches(coaches: Coach[]): Coach[] {
-  return coaches.map((c) => initializeCoach(c));
+  const initialized = coaches.map((c) => initializeCoach(c));
+  return autoAssignCoachRoles(initialized);
 }

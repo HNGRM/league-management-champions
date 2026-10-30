@@ -6,8 +6,11 @@ export type { EntityStatus };
 
 export type CoachRole =
   | "인게임 코치"
-  | "전력분석 코치"
+  | "분석 코치"
   | "훈련 코치"
+  | "관리 코치"
+  | "스카우트 코치"
+  | "전력분석 코치"
   | "팀 관리 코치"
   | "스카우터";
 
