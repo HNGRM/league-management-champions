@@ -352,9 +352,9 @@ flowchart LR
 │   ├── Roster_Status    : 로스터 상태 (Starter: 주전 / Sub: 벤치 후보 / null: FA 무소속)
 │   ├── Main_Pos         : 주 포지션 (TOP, JGL, MID, BOT, SUP) - 전투 효율 100%
 │   ├── Sub_Pos          : 부 포지션 (선택 포지션) - 기본 효율 80% (Off_Pos는 50%)
-│   ├── Salary           : 연봉 (연간 구단 지출액, FA는 0)
-│   ├── Contract_Years   : 잔여 계약 연수 (마지막 3개월 잔여 시 'FA로이드' 발동, FA는 0)
-│   └── Market_Value     : 시장 추정 가치 (이적 시장 바이아웃 기준액, FA는 0)
+│   ├── Salary           : 연봉 (연간 구단 지출액, 초기 0)
+│   ├── Contract_Years   : 잔여 계약 연수 (초기 0)
+│   └── Market_Value     : 시장 추정 가치 (이적 시장 바이아웃 기준액, 초기 0)
 │
 ├── 3. 경기력 5대 스탯 (Stats : 1 ~ 100)
 │   ├── Mechanics        : 피지컬 (스킬 적중, 스킬 회피)

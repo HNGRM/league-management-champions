@@ -45,6 +45,31 @@ export type PlayerManagementPhilosophy = "매우 엄격함" | "엄격함" | "유
 
 export type LeagueLanguage = "KCL" | "CCL" | "ECL" | "ACL" | "PCL";
 
+// 4대 디비전 체계 (A: 1부(10팀), B: 2부(8팀), C: 3부(6팀), D: 4부(6팀/플레이어 시작))
+export type DivisionTier = "A" | "B" | "C" | "D";
+
+export interface TeamStanding {
+  rank: number;
+  teamId: string;
+  teamName: string;
+  teamNameEn: string;
+  shortName: string;
+  logoUrl: string | null;
+  isPlayer: boolean;
+  matchesPlayed: number;
+  wins: number;
+  losses: number;
+  points: number; // 득실차
+  winRate: number; // 승률 (%)
+}
+
+export interface LeagueDivisions {
+  A: TeamStanding[];
+  B: TeamStanding[];
+  C: TeamStanding[];
+  D: TeamStanding[];
+}
+
 // 5개 리그 사전 정의 팀 데이터
 export interface PredefinedTeam {
   id: string;
@@ -133,5 +158,7 @@ export interface SaveSlot {
   customTeamInfo?: CustomTeamInfo;
   selectedLeague?: LeagueLanguage | null;
   selectedTeam?: PredefinedTeam | null;
+  leagueDivisions?: LeagueDivisions;
+  currentDivision?: DivisionTier;
   lastPlayedAt?: string;
 }

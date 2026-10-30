@@ -27,7 +27,9 @@ import {
 import { useGameStore } from "@/store/useGameStore";
 import { getTeamLogo } from "@/data/teamLogos";
 import { getPlayersByTeamId } from "@/data/players";
+import { createInitialLeagueDivisions } from "@/data/divisions";
 import MyTeamRosterView from "@/components/dashboard/MyTeamRosterView";
+import LeagueStandingsView from "@/components/dashboard/LeagueStandingsView";
 
 // ================= 메인 탭 & 세부 탭 정의 =================
 type MainTabId = "NEWS" | "TEAM" | "ANALYSIS" | "LEAGUE";
@@ -106,6 +108,10 @@ export default function DashboardScreen() {
   const currentWeek = useGameStore((state) => state.currentWeek);
   const myPlayers = useGameStore((state) => state.myPlayers);
   const setMyPlayers = useGameStore((state) => state.setMyPlayers);
+  const selectedLeague = useGameStore((state) => state.selectedLeague);
+  const leagueDivisions = useGameStore((state) => state.leagueDivisions);
+  const setLeagueDivisions = useGameStore((state) => state.setLeagueDivisions);
+  const currentDivision = useGameStore((state) => state.currentDivision);
 
   // 대시보드 진입 시 혹시 myPlayers가 비어있고 팀이 선택되어 있다면 기본 로스터 복사 주입
   useEffect(() => {
@@ -122,6 +128,25 @@ export default function DashboardScreen() {
       }
     }
   }, [myPlayers.length, currentTeam?.id, selectedTeam?.id, setMyPlayers]);
+
+  // 대시보드 진입 시 혹시 leagueDivisions가 없다면 기본 4개 디비전 데이터 생성 및 주입
+  useEffect(() => {
+    if (!leagueDivisions && (currentTeam || selectedTeam)) {
+      const activeLeague = selectedLeague || "KCL";
+      const teamId = currentTeam?.id || selectedTeam?.id || "TEAM-01";
+      const nameKo = customTeamInfo.nameKo || currentTeam?.name || selectedTeam?.nameKo || "새 팀";
+      const nameEn = customTeamInfo.nameEn || selectedTeam?.nameEn || "New Team";
+      const shortName = customTeamInfo.shortName || currentTeam?.shortName || selectedTeam?.shortName || "NEW";
+      const initialDivs = createInitialLeagueDivisions(activeLeague, {
+        id: teamId,
+        nameKo,
+        nameEn,
+        shortName,
+        customLogoUrl: customTeamInfo.customLogoUrl,
+      });
+      setLeagueDivisions(initialDivs);
+    }
+  }, [leagueDivisions, currentTeam, selectedTeam, selectedLeague, customTeamInfo, setLeagueDivisions]);
 
   // 활성 메인 탭 & 메인 탭별 마지막 세부 탭 기억
   const [activeMainTab, setActiveMainTab] = useState<MainTabId>("NEWS");
@@ -312,6 +337,8 @@ export default function DashboardScreen() {
             const Icon = sub.icon;
             const isMyTeamPlayersTab =
               mainTab.id === "TEAM" && sub.id === "PLAYERS";
+            const isLeagueStandingsTab =
+              mainTab.id === "LEAGUE" && sub.id === "STANDINGS";
 
             return (
               <div
@@ -324,6 +351,24 @@ export default function DashboardScreen() {
                     players={myPlayers}
                     teamId={currentTeam?.id || selectedTeam?.id}
                     league={selectedTeam?.league}
+                  />
+                ) : isLeagueStandingsTab ? (
+                  <LeagueStandingsView
+                    divisions={leagueDivisions}
+                    currentDivision={currentDivision}
+                    leagueName={
+                      selectedLeague === "KCL"
+                        ? "한국 챔피언스 리그 (KCL)"
+                        : selectedLeague === "CCL"
+                        ? "중국 챔피언스 리그 (CCL)"
+                        : selectedLeague === "ECL"
+                        ? "EMEA 챔피언스 리그 (ECL)"
+                        : selectedLeague === "ACL"
+                        ? "아메리카 챔피언스 리그 (ACL)"
+                        : selectedLeague === "PCL"
+                        ? "태평양 챔피언스 리그 (PCL)"
+                        : "챔피언스 리그"
+                    }
                   />
                 ) : (
                   <div className="h-full min-h-[200px] rounded-2xl border border-dashed border-slate-700/70 bg-slate-900/40 flex flex-col items-center justify-center gap-2 text-center p-6">

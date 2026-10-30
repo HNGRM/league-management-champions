@@ -1,5 +1,14 @@
 import { create } from "zustand";
-import { SaveSlot, Team, ManagerProfile, PredefinedTeam, LeagueLanguage, CustomTeamInfo } from "@/types/game";
+import {
+  SaveSlot,
+  Team,
+  ManagerProfile,
+  PredefinedTeam,
+  LeagueLanguage,
+  CustomTeamInfo,
+  DivisionTier,
+  LeagueDivisions,
+} from "@/types/game";
 import { Player } from "@/types/player";
 import { createDefaultAvatarDna } from "@/types/avatar";
 
@@ -43,6 +52,12 @@ interface GameState {
   myPlayers: Player[];
   setMyPlayers: (players: Player[]) => void;
   updateMyPlayer: (playerId: string, updater: Partial<Player> | ((prev: Player) => Player)) => void;
+
+  // 디비전(A/B/C/D) 및 리그 순위 시스템
+  leagueDivisions: LeagueDivisions | null;
+  setLeagueDivisions: (divisions: LeagueDivisions | null) => void;
+  currentDivision: DivisionTier;
+  setCurrentDivision: (division: DivisionTier) => void;
 
   // 날짜 및 턴 진행
   currentYear: number;
@@ -155,6 +170,8 @@ export const useGameStore = create<GameState>((set) => ({
         languages: [],
       },
       myPlayers: [],
+      leagueDivisions: null,
+      currentDivision: "D",
     }),
 
   currentTeam: null,
@@ -173,6 +190,12 @@ export const useGameStore = create<GameState>((set) => ({
         return { ...p, ...updater };
       }),
     })),
+
+  // 디비전 및 순위 데이터
+  leagueDivisions: null,
+  setLeagueDivisions: (divisions) => set({ leagueDivisions: divisions }),
+  currentDivision: "D",
+  setCurrentDivision: (division) => set({ currentDivision: division }),
 
   currentYear: 2026,
   currentWeek: 1,

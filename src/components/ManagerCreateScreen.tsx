@@ -36,6 +36,7 @@ import {
   createRandomAvatarDna,
 } from "@/types/avatar";
 import { getPlayersByTeamId } from "@/data/players";
+import { createInitialLeagueDivisions } from "@/data/divisions";
 import { Player } from "@/types/player";
 
 // 언어 상세 설명 메타데이터
@@ -334,6 +335,16 @@ export default function ManagerCreateScreen() {
         JSON.parse(JSON.stringify(p))
       );
 
+      // 4개 디비전 (A/B/C/D) 초기 순위표 생성 및 플레이어 팀 리그 D(4부) 배치
+      const activeLeague = useGameStore.getState().selectedLeague || "KCL";
+      const initialDivisions = createInitialLeagueDivisions(activeLeague, {
+        id: selectedTeam?.id || "TEAM-01",
+        nameKo: finalTeamNameKo,
+        nameEn: customTeamInfo.nameEn || selectedTeam?.nameEn || "New Team",
+        shortName: finalShortName,
+        customLogoUrl: customTeamInfo.customLogoUrl,
+      });
+
       const newTeamData = {
         id: selectedTeam?.id || "TEAM-01",
         name: finalTeamNameKo,
@@ -359,17 +370,23 @@ export default function ManagerCreateScreen() {
                   customTeamInfo: { ...state.customTeamInfo },
                   selectedLeague: state.selectedLeague,
                   selectedTeam: state.selectedTeam,
+                  leagueDivisions: initialDivisions,
+                  currentDivision: "D",
                   lastPlayedAt: "방금 전",
                 }
               : s
           ),
           currentTeam: newTeamData,
           myPlayers: initialMyPlayers,
+          leagueDivisions: initialDivisions,
+          currentDivision: "D",
         }));
       } else {
         useGameStore.setState({
           currentTeam: newTeamData,
           myPlayers: initialMyPlayers,
+          leagueDivisions: initialDivisions,
+          currentDivision: "D",
         });
       }
 
@@ -390,6 +407,8 @@ export default function ManagerCreateScreen() {
             customTeamInfo: useGameStore.getState().customTeamInfo,
             selectedLeague: useGameStore.getState().selectedLeague,
             selectedTeam: useGameStore.getState().selectedTeam,
+            leagueDivisions: initialDivisions,
+            currentDivision: "D",
             currentYear: 1,
             currentWeek: 1,
           }

@@ -62,6 +62,8 @@ export default function SlotSelectScreen() {
         ...(targetSlot.managerProfile ? { managerProfile: targetSlot.managerProfile } : {}),
         ...(targetSlot.selectedLeague ? { selectedLeague: targetSlot.selectedLeague } : {}),
         ...(targetSlot.selectedTeam ? { selectedTeam: targetSlot.selectedTeam } : {}),
+        ...(targetSlot.leagueDivisions ? { leagueDivisions: targetSlot.leagueDivisions } : {}),
+        currentDivision: targetSlot.currentDivision || "D",
       });
       setScreen("DASHBOARD");
       return;
