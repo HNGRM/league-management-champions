@@ -270,3 +270,50 @@ export function initializeCoaches(coaches: Coach[]): Coach[] {
   const initialized = coaches.map((c) => initializeCoach(c));
   return autoAssignCoachRoles(initialized);
 }
+
+export interface TeamValueBreakdown {
+  rosterValue: number; // 선수단 총 시장가치
+  cashBalance: number; // 보유 현금
+  fandomValue: number; // 팬덤 가치 (서포터즈 팬 수 × 10,000원)
+  totalValue: number;  // 총 팀 가치
+}
+
+/**
+ * 팀 가치 세부 항목 및 총합 산정
+ * 공식: 선수단 총 시장가치 + 보유 현금 + 팬덤 가치(서포터즈 팬 수 × 10,000원)
+ */
+export function calculateTeamValueBreakdown(
+  team: { balance?: number; fans?: number } | null | undefined,
+  players: Player[] = []
+): TeamValueBreakdown {
+  const rosterValue = (players || []).reduce((sum, p) => {
+    const mv =
+      p.contractAndRole?.marketValue ||
+      calculateContractAndMarketValue(p, false).marketValue ||
+      0;
+    return sum + mv;
+  }, 0);
+
+  const cashBalance = team?.balance ?? 500_000_000;
+  const fans = team?.fans ?? 15_000;
+  const fandomValue = fans * 10_000;
+  const totalValue = rosterValue + cashBalance + fandomValue;
+
+  return {
+    rosterValue,
+    cashBalance,
+    fandomValue,
+    totalValue,
+  };
+}
+
+/**
+ * 팀 가치(Team Value) 산정
+ * 공식: 선수단 총 시장가치 + 보유 현금 + 팬덤 가치(서포터즈 팬 수 × 10,000원)
+ */
+export function calculateTeamValue(
+  team: { balance?: number; fans?: number } | null | undefined,
+  players: Player[] = []
+): number {
+  return calculateTeamValueBreakdown(team, players).totalValue;
+}

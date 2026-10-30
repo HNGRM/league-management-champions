@@ -20,6 +20,8 @@ import { createDefaultAvatarDna } from "@/types/avatar";
 import { getTeamLogo } from "@/data/teamLogos";
 import { PREDEFINED_TEAMS } from "@/data/teams";
 import { calculatePlayerOvr, autoAssignPlayerRoles } from "@/utils/playerAssignment";
+import { calculateTeamValue } from "@/utils/contractEconomics";
+import { formatKoreanMoney } from "@/utils/format";
 import { useGameStore } from "@/store/useGameStore";
 
 interface MyTeamInfoViewProps {
@@ -130,6 +132,12 @@ export default function MyTeamInfoView({
     const sum = filledStarters.reduce((acc, curr) => acc + curr.age, 0);
     return (sum / filledStarters.length).toFixed(1);
   }, [filledStarters]);
+
+  // 팀 가치 산정 (선수단 총 시장가치 + 보유 현금 + 팬덤 가치)
+  const teamValue = useMemo(
+    () => calculateTeamValue(team, players),
+    [team, players]
+  );
 
   return (
     <div className="flex flex-col gap-3 pb-6 select-none animate-in fade-in duration-200">
@@ -367,7 +375,7 @@ export default function MyTeamInfoView({
         </div>
       </div>
 
-      {/* ================= 3. 팬덤 및 위상 요약 (Fandom & Reputation - 3층 구조) ================= */}
+      {/* ================= 3. 팬덤 및 팀 가치 요약 (Fandom & Team Value - 3층 구조) ================= */}
       <div className="flex flex-col gap-2.5">
         {/* 1층: 팬덤 (서포터즈) */}
         <div className="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-3.5 flex items-center justify-between gap-3 shadow-sm">
@@ -409,23 +417,22 @@ export default function MyTeamInfoView({
           </div>
         </div>
 
-        {/* 3층: 팀 명성 */}
+        {/* 3층: 팀 가치 */}
         <div className="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-3.5 flex items-center justify-between gap-3 shadow-sm">
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
               <Trophy className="w-5 h-5" />
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="text-[11px] font-medium text-slate-400">팀 명성</span>
-              <div className="flex items-baseline gap-1 text-sm sm:text-base font-bold text-amber-300 font-mono tracking-tight">
-                <span>{team?.reputation || 25}</span>
-                <span className="text-[11px] text-slate-500 font-normal">/ 100</span>
+              <span className="text-[11px] font-medium text-slate-400">팀 가치</span>
+              <div className="flex items-baseline gap-1 text-sm sm:text-base font-bold text-amber-300 font-mono tracking-tight truncate">
+                <span>{formatKoreanMoney(teamValue)}</span>
               </div>
             </div>
           </div>
           <div className="text-right shrink-0">
             <span className="text-[11px] text-amber-300/90 font-mono bg-amber-950/60 border border-amber-500/30 px-2 py-0.5 rounded-full">
-              디비전 {currentDivision || "D"} 기준
+              총 자산 가치
             </span>
           </div>
         </div>

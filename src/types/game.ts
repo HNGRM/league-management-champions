@@ -113,7 +113,6 @@ export interface Team {
   foundedYear: number;
   balance: number;       // 팀 잔고 (자금)
   fans: number;          // 팬덤 수
-  reputation: number;    // 팀 명성 (0 ~ 100)
   roster: RosterPlayer[]; // 1군 로스터 (최신 Player 스키마)
   subRoster?: RosterPlayer[]; // 2군/후보 로스터
   staff: Manager[];      // 코칭스태프

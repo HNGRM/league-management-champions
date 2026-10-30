@@ -37,6 +37,7 @@ import { autoAssignCoachRoles } from "@/utils/coachAssignment";
 import MyTeamRosterView from "@/components/dashboard/MyTeamRosterView";
 import MyTeamCoachesView from "@/components/dashboard/MyTeamCoachesView";
 import MyTeamInfoView from "@/components/dashboard/MyTeamInfoView";
+import MyTeamFinanceView from "@/components/dashboard/MyTeamFinanceView";
 import MailboxView from "@/components/dashboard/MailboxView";
 import LeagueStandingsView from "@/components/dashboard/LeagueStandingsView";
 import SettingsModal from "@/components/SettingsModal";
@@ -458,6 +459,8 @@ export default function DashboardScreen() {
               mainTab.id === "TEAM" && sub.id === "TEAM_INFO";
             const isMailTab =
               mainTab.id === "TEAM" && sub.id === "MAIL";
+            const isFinanceTab =
+              mainTab.id === "TEAM" && sub.id === "FINANCE";
             const isMyTeamPlayersTab =
               mainTab.id === "ROSTER" && sub.id === "PLAYERS";
             const isMyTeamCoachesTab =
@@ -481,6 +484,12 @@ export default function DashboardScreen() {
                   />
                 ) : isMailTab ? (
                   <MailboxView currentYear={currentYear} />
+                ) : isFinanceTab ? (
+                  <MyTeamFinanceView
+                    team={currentTeam}
+                    players={myPlayers}
+                    coaches={myCoaches}
+                  />
                 ) : isMyTeamPlayersTab ? (
                   <MyTeamRosterView
                     players={myPlayers}

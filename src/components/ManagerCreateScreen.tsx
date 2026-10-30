@@ -360,7 +360,6 @@ export default function ManagerCreateScreen() {
         foundedYear: 2026,
         balance: 500000000,
         fans: 15000,
-        reputation: 50,
         roster: initialMyPlayers,
         staff: [],
       };

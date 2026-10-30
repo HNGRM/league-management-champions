@@ -36,3 +36,30 @@ export const formatEok = (amount: number): string => {
 export const formatKoreanCurrency = (amount: number): string => {
   return formatEok(amount);
 };
+
+/**
+ * 직관적인 한글 금액 표기 (예: 1,350,000,000 -> "13억 5,000만 원", 500,000,000 -> "5억 원", 85,000,000 -> "8,500만 원")
+ */
+export const formatKoreanMoney = (amount: number): string => {
+  const absAmount = Math.abs(Math.round(amount || 0));
+  if (absAmount === 0) return "0원";
+
+  const totalMan = Math.round(absAmount / 10_000);
+  const eok = Math.floor(totalMan / 10_000);
+  const man = totalMan % 10_000;
+
+  const parts: string[] = [];
+  if (eok > 0) parts.push(`${eok.toLocaleString()}억`);
+  if (man > 0) parts.push(`${man.toLocaleString()}만`);
+
+  if (parts.length === 0) return `${absAmount.toLocaleString()}원`;
+  return `${parts.join(" ")} 원`;
+};
+
+/**
+ * 요약 보조 텍스트용 짧은 억 단위 표기 (예: 680,000,000 -> "6.8억", 500,000,000 -> "5.0억")
+ */
+export const formatShortEok = (amount: number): string => {
+  const eok = (amount || 0) / 100_000_000;
+  return `${eok.toFixed(1)}억`;
+};
