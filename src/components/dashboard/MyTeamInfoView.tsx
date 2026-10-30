@@ -344,12 +344,22 @@ export default function MyTeamInfoView({
                   {item.pos}
                 </div>
 
-                {/* 주전 선수 영문 닉네임 */}
-                <div
-                  className="text-[10px] font-bold text-white font-mono truncate text-center w-full"
-                  title={item.nickname}
-                >
-                  {item.nickname}
+                {/* 주전 선수 닉네임 (영문 및 하단 회색 한글 이름) */}
+                <div className="flex flex-col items-center w-full min-w-0">
+                  <div
+                    className="text-[10px] font-bold text-white font-mono truncate text-center w-full leading-tight"
+                    title={item.nickname}
+                  >
+                    {item.nickname}
+                  </div>
+                  {item.isFilled && item.nameKo && (
+                    <div
+                      className="text-[9px] text-slate-400 font-medium truncate text-center w-full leading-tight mt-0.5"
+                      title={item.nameKo}
+                    >
+                      {item.nameKo}
+                    </div>
+                  )}
                 </div>
               </div>
             );
