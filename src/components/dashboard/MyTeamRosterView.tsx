@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import { Users, AlertCircle } from "lucide-react";
 import { Player, Position } from "@/types/player";
 import { getPlayerTraitById } from "@/data/playerTraits";
-import { formatKoreanCurrency } from "@/utils/format";
+import { formatEokParts } from "@/utils/format";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
 
 interface MyTeamRosterViewProps {
@@ -89,6 +89,9 @@ export default function MyTeamRosterView({
               player.stats.teamwork) /
               5
           );
+
+          const salaryParts = formatEokParts(player.contractAndRole.salary);
+          const marketParts = formatEokParts(player.contractAndRole.marketValue);
 
           return (
             <div
@@ -236,11 +239,27 @@ export default function MyTeamRosterView({
                 </div>
 
                 {/* 5열: 재정/계약 정보 */}
-                <span className="text-[9px] text-cyan-400 font-mono font-medium mt-0.5">
-                  연봉 {formatKoreanCurrency(player.contractAndRole.salary)} ·
-                  계약 {player.contractAndRole.contractYears}년 · 가치{" "}
-                  {formatKoreanCurrency(player.contractAndRole.marketValue)}
-                </span>
+                <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-mono font-medium mt-0.5 flex-wrap leading-tight">
+                  <span className="flex items-center gap-1 text-cyan-300 font-bold">
+                    <span className="text-slate-400 font-normal">연봉</span>
+                    <span>
+                      {salaryParts.integer}
+                      <span className="text-[0.85em] opacity-80">.{salaryParts.decimal}</span>
+                      <span className="text-[0.75em] opacity-70 ml-0.5 font-normal">{salaryParts.unit}</span>
+                    </span>
+                  </span>
+                  <span className="text-slate-700">·</span>
+                  <span>계약 {player.contractAndRole.contractYears}년</span>
+                  <span className="text-slate-700">·</span>
+                  <span className="flex items-center gap-1 text-slate-300 font-semibold">
+                    <span className="text-slate-400 font-normal">가치</span>
+                    <span>
+                      {marketParts.integer}
+                      <span className="text-[0.85em] opacity-80">.{marketParts.decimal}</span>
+                      <span className="text-[0.75em] opacity-70 ml-0.5 font-normal">{marketParts.unit}</span>
+                    </span>
+                  </span>
+                </div>
               </div>
             </div>
           );

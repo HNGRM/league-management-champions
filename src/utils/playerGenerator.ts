@@ -1,4 +1,5 @@
 import { Player, PlayerTalentAndGrowth } from "@/types/player";
+import { calculatePlayerSalary } from "./salaryCalculator";
 
 /**
  * [min, max] 범위의 랜덤 정수를 반환 (양 끝 포함)
@@ -117,6 +118,9 @@ export function generatePlayerTalent(player: Player): PlayerTalentAndGrowth {
 export function initializePlayer(player: Player): Player {
   const cloned: Player = JSON.parse(JSON.stringify(player));
   cloned.talentAndGrowth = generatePlayerTalent(cloned);
+  if (cloned.contractAndRole) {
+    cloned.contractAndRole.salary = calculatePlayerSalary(cloned);
+  }
   return cloned;
 }
 

@@ -155,14 +155,16 @@ export default function DashboardScreen() {
         (p) =>
           !p.talentAndGrowth ||
           p.talentAndGrowth.potential === 0 ||
-          !p.talentAndGrowth.potentialDecay
+          !p.talentAndGrowth.potentialDecay ||
+          !p.contractAndRole?.salary
       )
     ) {
-      // 기존 세이브 데이터 마이그레이션: potential이 0이거나 potentialDecay가 없는 경우 자동 생성 주입
+      // 기존 세이브 데이터 마이그레이션: potential이 0이거나 potentialDecay/salary가 없는 경우 자동 생성 주입
       const upgraded = myPlayers.map((p) =>
         !p.talentAndGrowth ||
         p.talentAndGrowth.potential === 0 ||
-        !p.talentAndGrowth.potentialDecay
+        !p.talentAndGrowth.potentialDecay ||
+        !p.contractAndRole?.salary
           ? initializePlayer(p)
           : p
       );

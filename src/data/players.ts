@@ -1,5 +1,6 @@
 import { Player, Position } from "@/types/player";
 import { generatePlayerTalent } from "@/utils/playerGenerator";
+import { calculatePlayerSalary } from "@/utils/salaryCalculator";
 import playersData from "./players.json";
 
 export const PLAYERS: Player[] = (playersData as unknown as Player[]).map((player) => {
@@ -12,6 +13,9 @@ export const PLAYERS: Player[] = (playersData as unknown as Player[]).map((playe
   };
   if (!p.talentAndGrowth || p.talentAndGrowth.potential === 0 || !p.talentAndGrowth.potentialDecay) {
     p.talentAndGrowth = generatePlayerTalent(p);
+  }
+  if (!p.contractAndRole?.salary || p.contractAndRole.salary === 0) {
+    p.contractAndRole.salary = calculatePlayerSalary(p);
   }
   return p;
 });
