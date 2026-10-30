@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import {
   X,
   Calendar,
@@ -29,7 +30,13 @@ export default function MailDetailBottomSheet({
   onClose,
   onAction,
 }: MailDetailBottomSheetProps) {
-  if (!isOpen || !mail) return null;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || !isOpen || !mail) return null;
 
   const getCategoryBadge = (category: MailItem["category"]) => {
     switch (category) {
@@ -62,16 +69,16 @@ export default function MailDetailBottomSheet({
 
   const badgeInfo = getCategoryBadge(mail.category);
 
-  return (
-    <>
-      {/* 딤드 배경 오버레이 */}
+  return createPortal(
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex flex-col justify-end items-center bg-black/75 backdrop-blur-sm animate-in fade-in duration-200"
+    >
+      {/* 바텀 시트 본체 (화면 하단 85% 높이, 모바일 섀시 max-w-[430px] 중앙 정렬) */}
       <div
-        onClick={onClose}
-        className="fixed inset-0 bg-black/65 backdrop-blur-sm z-40 animate-in fade-in duration-200"
-      />
-
-      {/* 바텀 시트 본체 (화면 하단 85% 높이) */}
-      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] h-[85vh] max-h-[85%] bg-slate-950 border-t-2 border-x border-slate-800 rounded-t-3xl z-50 flex flex-col shadow-[0_-12px_45px_rgba(0,0,0,0.85)] animate-in slide-in-from-bottom duration-300 overflow-hidden select-none">
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-[430px] h-[85vh] max-h-[85%] bg-slate-950 border-t-2 border-x border-slate-800 rounded-t-3xl shadow-[0_-12px_45px_rgba(0,0,0,0.85)] flex flex-col overflow-hidden animate-in slide-in-from-bottom duration-300 select-none"
+      >
         {/* 상단 드래그 핸들바 & 헤더 영역 */}
         <div className="shrink-0 pt-3 px-5 pb-3 border-b border-slate-800/80 bg-slate-900/60 flex flex-col gap-2">
           {/* 중앙 슬라이드 핸들바 */}
@@ -100,7 +107,7 @@ export default function MailDetailBottomSheet({
         <div className="flex-1 overflow-y-auto px-5 py-4 custom-scrollbar flex flex-col gap-4">
           {/* 메일 헤더 메타데이터 */}
           <div className="flex flex-col gap-2">
-            <h2 className="text-base sm:text-lg font-extrabold text-white tracking-tight leading-snug">
+            <h2 className="text-base sm:text-lg font-extrabold text-white tracking-tight leading-snug break-keep">
               {mail.title}
             </h2>
 
@@ -168,20 +175,20 @@ export default function MailDetailBottomSheet({
                     onClick={() => {
                       onAction?.(mail.id, "REJECTED");
                     }}
-                    className="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-rose-950/60 border border-slate-700 hover:border-rose-500/50 text-slate-300 hover:text-rose-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95 touch-manipulation"
+                    className="flex-1 py-3 px-2 rounded-xl bg-slate-900 hover:bg-rose-950/60 border border-slate-700 hover:border-rose-500/50 text-slate-300 hover:text-rose-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95 touch-manipulation min-w-0"
                   >
-                    <XCircle className="w-4 h-4 text-rose-400" />
-                    <span>거절하기</span>
+                    <XCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                    <span className="truncate">거절하기</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => {
                       onAction?.(mail.id, "ACCEPTED");
                     }}
-                    className="flex-1 py-3 rounded-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(6,182,212,0.35)] cursor-pointer active:scale-95 touch-manipulation"
+                    className="flex-1 py-3 px-2 rounded-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(6,182,212,0.35)] cursor-pointer active:scale-95 touch-manipulation min-w-0"
                   >
-                    <Handshake className="w-4 h-4 text-cyan-200" />
-                    <span>수락하기 (2.5억 원)</span>
+                    <Handshake className="w-4 h-4 text-cyan-200 shrink-0" />
+                    <span className="truncate">수락 (2.5억 원)</span>
                   </button>
                 </>
               )}
@@ -193,19 +200,19 @@ export default function MailDetailBottomSheet({
                     onClick={() => {
                       onAction?.(mail.id, "REJECTED");
                     }}
-                    className="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95 touch-manipulation"
+                    className="flex-1 py-3 px-2 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95 touch-manipulation min-w-0"
                   >
-                    <span>보류하기</span>
+                    <span className="truncate">보류하기</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => {
                       onAction?.(mail.id, "ACCEPTED");
                     }}
-                    className="flex-1 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(16,185,129,0.35)] cursor-pointer active:scale-95 touch-manipulation"
+                    className="flex-1 py-3 px-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(16,185,129,0.35)] cursor-pointer active:scale-95 touch-manipulation min-w-0"
                   >
-                    <Check className="w-4 h-4 text-emerald-100" />
-                    <span>계약 체결 (1.2억 원)</span>
+                    <Check className="w-4 h-4 text-emerald-100 shrink-0" />
+                    <span className="truncate">계약 체결 (1.2억 원)</span>
                   </button>
                 </>
               )}
@@ -218,7 +225,7 @@ export default function MailDetailBottomSheet({
                   }}
                   className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(6,182,212,0.35)] cursor-pointer active:scale-95 touch-manipulation"
                 >
-                  <CheckCircle2 className="w-4 h-4 text-cyan-200" />
+                  <CheckCircle2 className="w-4 h-4 text-cyan-200 shrink-0" />
                   <span>로스터 등록 확인 완료</span>
                 </button>
               )}
@@ -234,6 +241,7 @@ export default function MailDetailBottomSheet({
           )}
         </div>
       </div>
-    </>
+    </div>,
+    document.body
   );
 }
