@@ -28,7 +28,6 @@ import { getPlayerTraitById } from "@/data/playerTraits";
 import { getTeamLogo } from "@/data/teamLogos";
 import { getLeagueLogo } from "@/data/leagueLogos";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
-import { formatEok } from "@/utils/format";
 
 // 리그 선택 메타데이터
 interface LeagueSelectTabInfo {
@@ -693,19 +692,6 @@ export default function TeamCreateScreen() {
                             <span className="text-amber-300 font-semibold">
                               종합 {ovr}
                             </span>
-                            <span className="text-slate-600">·</span>
-                            <span className="text-emerald-400 font-medium">
-                              {player.contractAndRole.contractYears > 0
-                                ? `계약 ${player.contractAndRole.contractYears}년`
-                                : "FA"}
-                            </span>
-                            <span className="text-slate-600">·</span>
-                            <span className="text-slate-300 font-medium">
-                              가치{" "}
-                              {player.profile.isRetiring || !player.contractAndRole.marketValue
-                                ? "-"
-                                : formatEok(player.contractAndRole.marketValue)}
-                            </span>
                           </div>
 
                           <div className="text-[10px] text-slate-400 font-mono flex items-center gap-1 flex-wrap leading-tight">
@@ -843,19 +829,6 @@ export default function TeamCreateScreen() {
                             <span className="text-slate-600">·</span>
                             <span className="text-amber-300 font-semibold">
                               종합 {coachOvr}
-                            </span>
-                            <span className="text-slate-600">·</span>
-                            <span className="text-emerald-400 font-medium">
-                              {coach.contractAndRole.contractYears > 0
-                                ? `계약 ${coach.contractAndRole.contractYears}년`
-                                : "FA"}
-                            </span>
-                            <span className="text-slate-600">·</span>
-                            <span className="text-slate-300 font-medium">
-                              가치{" "}
-                              {coach.profile.isRetiring || !coach.contractAndRole.marketValue
-                                ? "-"
-                                : formatEok(coach.contractAndRole.marketValue)}
                             </span>
                             <span className="text-slate-600">·</span>
                             <span className="text-cyan-300 font-semibold">

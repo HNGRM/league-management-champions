@@ -1,6 +1,6 @@
 import { Player, PlayerTalentAndGrowth } from "@/types/player";
 import { calculatePlayerSalary } from "./salaryCalculator";
-import { calculateMarketValue } from "./contractEconomics";
+import { calculateContractAndMarketValue } from "./contractEconomics";
 
 /**
  * [min, max] 범위의 랜덤 정수를 반환 (양 끝 포함)
@@ -120,14 +120,10 @@ export function initializePlayer(player: Player): Player {
   const cloned: Player = JSON.parse(JSON.stringify(player));
   cloned.talentAndGrowth = generatePlayerTalent(cloned);
   if (cloned.contractAndRole) {
-    cloned.contractAndRole.salary = calculatePlayerSalary(cloned);
-    cloned.contractAndRole.marketValue = calculateMarketValue(
-      cloned.contractAndRole.salary,
-      cloned.contractAndRole.contractYears,
-      cloned.profile.age,
-      cloned.profile.isRetiring,
-      false
-    );
+    const economics = calculateContractAndMarketValue(cloned, false);
+    cloned.contractAndRole.salary = economics.salary;
+    cloned.contractAndRole.contractYears = economics.contractYears;
+    cloned.contractAndRole.marketValue = economics.marketValue;
   }
   return cloned;
 }

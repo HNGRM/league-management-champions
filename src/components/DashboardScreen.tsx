@@ -27,10 +27,13 @@ import {
 import { useGameStore } from "@/store/useGameStore";
 import { getTeamLogo } from "@/data/teamLogos";
 import { getPlayersByTeamId } from "@/data/players";
+import { getCoachesByTeamId } from "@/data/coaches";
 import { createInitialLeagueDivisions } from "@/data/divisions";
 import { deleteGameFromCloud } from "@/lib/saveManager";
 import { initializePlayer, initializePlayers } from "@/utils/playerGenerator";
+import { initializeCoaches } from "@/utils/contractEconomics";
 import MyTeamRosterView from "@/components/dashboard/MyTeamRosterView";
+import MyTeamCoachesView from "@/components/dashboard/MyTeamCoachesView";
 import LeagueStandingsView from "@/components/dashboard/LeagueStandingsView";
 import SettingsModal from "@/components/SettingsModal";
 
@@ -111,6 +114,8 @@ export default function DashboardScreen() {
   const currentWeek = useGameStore((state) => state.currentWeek);
   const myPlayers = useGameStore((state) => state.myPlayers);
   const setMyPlayers = useGameStore((state) => state.setMyPlayers);
+  const myCoaches = useGameStore((state) => state.myCoaches);
+  const setMyCoaches = useGameStore((state) => state.setMyCoaches);
   const selectedLeague = useGameStore((state) => state.selectedLeague);
   const leagueDivisions = useGameStore((state) => state.leagueDivisions);
   const setLeagueDivisions = useGameStore((state) => state.setLeagueDivisions);
@@ -171,6 +176,30 @@ export default function DashboardScreen() {
       setMyPlayers(upgraded);
     }
   }, [myPlayers, currentTeam?.id, selectedTeam?.id, setMyPlayers]);
+
+  // 대시보드 진입 시 혹시 myCoaches가 비어있고 팀이 선택되어 있다면 기본 코치진 복사 및 계약 경제 주입
+  useEffect(() => {
+    if (myCoaches.length === 0) {
+      const teamIdToLoad = currentTeam?.id || selectedTeam?.id;
+      if (teamIdToLoad) {
+        const defaultCoaches = getCoachesByTeamId(teamIdToLoad);
+        if (defaultCoaches.length > 0) {
+          const cloned = initializeCoaches(defaultCoaches);
+          setMyCoaches(cloned);
+        }
+      }
+    } else if (
+      myCoaches.some(
+        (c) =>
+          !c.contractAndRole?.salary ||
+          !c.contractAndRole?.contractYears
+      )
+    ) {
+      // 기존 세이브 데이터 마이그레이션
+      const upgraded = initializeCoaches(myCoaches);
+      setMyCoaches(upgraded);
+    }
+  }, [myCoaches, currentTeam?.id, selectedTeam?.id, setMyCoaches]);
 
   // 대시보드 진입 시 혹시 leagueDivisions가 없다면 기본 4개 디비전 데이터 생성 및 주입
   useEffect(() => {
@@ -418,6 +447,8 @@ export default function DashboardScreen() {
             const Icon = sub.icon;
             const isMyTeamPlayersTab =
               mainTab.id === "ROSTER" && sub.id === "PLAYERS";
+            const isMyTeamCoachesTab =
+              mainTab.id === "ROSTER" && sub.id === "COACHES";
             const isLeagueStandingsTab =
               mainTab.id === "LEAGUE" && sub.id === "STANDINGS";
 
@@ -430,6 +461,12 @@ export default function DashboardScreen() {
                 {isMyTeamPlayersTab ? (
                   <MyTeamRosterView
                     players={myPlayers}
+                    teamId={currentTeam?.id || selectedTeam?.id}
+                    league={selectedTeam?.league}
+                  />
+                ) : isMyTeamCoachesTab ? (
+                  <MyTeamCoachesView
+                    coaches={myCoaches}
                     teamId={currentTeam?.id || selectedTeam?.id}
                     league={selectedTeam?.league}
                   />

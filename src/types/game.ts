@@ -2,6 +2,7 @@
 
 import { AvatarDna } from "./avatar";
 import { Player as RosterPlayer } from "./player";
+import { Coach } from "./coach";
 
 export type Position = "TOP" | "JUG" | "MID" | "ADC" | "SUP";
 
@@ -154,6 +155,7 @@ export interface SaveSlot {
   isLocked: boolean;
   team?: Team;
   myPlayers?: RosterPlayer[];
+  myCoaches?: Coach[];
   managerProfile?: ManagerProfile;
   customTeamInfo?: CustomTeamInfo;
   selectedLeague?: LeagueLanguage | null;

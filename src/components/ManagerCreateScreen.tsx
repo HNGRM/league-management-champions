@@ -36,9 +36,12 @@ import {
   createRandomAvatarDna,
 } from "@/types/avatar";
 import { getPlayersByTeamId } from "@/data/players";
+import { getCoachesByTeamId } from "@/data/coaches";
 import { createInitialLeagueDivisions } from "@/data/divisions";
 import { initializePlayers } from "@/utils/playerGenerator";
+import { initializeCoaches } from "@/utils/contractEconomics";
 import { Player } from "@/types/player";
+import { Coach } from "@/types/coach";
 
 // 언어 상세 설명 메타데이터
 interface LanguageInfo {
@@ -334,6 +337,10 @@ export default function ManagerCreateScreen() {
       const defaultPlayers = selectedTeam ? getPlayersByTeamId(selectedTeam.id) : [];
       const initialMyPlayers: Player[] = initializePlayers(defaultPlayers);
 
+      // 내가 고른 팀의 기본 코치들을 깊은 복사하여 '나의 팀 코치' 독립 저장 공간에 초기화 (연봉, 계약기간, 시장가치 동적 주입)
+      const defaultCoaches = selectedTeam ? getCoachesByTeamId(selectedTeam.id) : [];
+      const initialMyCoaches: Coach[] = initializeCoaches(defaultCoaches);
+
       // 4개 디비전 (A/B/C/D) 초기 순위표 생성 및 플레이어 팀 리그 D(4부) 배치
       const activeLeague = useGameStore.getState().selectedLeague || "KCL";
       const initialDivisions = createInitialLeagueDivisions(activeLeague, {
@@ -365,6 +372,7 @@ export default function ManagerCreateScreen() {
                   isCreated: true,
                   team: newTeamData,
                   myPlayers: initialMyPlayers,
+                  myCoaches: initialMyCoaches,
                   managerProfile: { ...state.managerProfile },
                   customTeamInfo: { ...state.customTeamInfo },
                   selectedLeague: state.selectedLeague,
@@ -377,6 +385,7 @@ export default function ManagerCreateScreen() {
           ),
           currentTeam: newTeamData,
           myPlayers: initialMyPlayers,
+          myCoaches: initialMyCoaches,
           leagueDivisions: initialDivisions,
           currentDivision: "D",
         }));
@@ -384,6 +393,7 @@ export default function ManagerCreateScreen() {
         useGameStore.setState({
           currentTeam: newTeamData,
           myPlayers: initialMyPlayers,
+          myCoaches: initialMyCoaches,
           leagueDivisions: initialDivisions,
           currentDivision: "D",
         });
@@ -402,6 +412,7 @@ export default function ManagerCreateScreen() {
           {
             currentTeam: newTeamData,
             myPlayers: initialMyPlayers,
+            myCoaches: initialMyCoaches,
             managerProfile: useGameStore.getState().managerProfile,
             customTeamInfo: useGameStore.getState().customTeamInfo,
             selectedLeague: useGameStore.getState().selectedLeague,

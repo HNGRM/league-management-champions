@@ -247,3 +247,24 @@ export function calculateContractAndMarketValue(
     return { salary, contractYears, marketValue };
   }
 }
+
+/**
+ * 코치 객체를 딥카피하고 게임 시작 시 계약 경제(연봉, 계약기간, 시장가치)를 동적으로 주입
+ */
+export function initializeCoach(coach: Coach): Coach {
+  const cloned: Coach = JSON.parse(JSON.stringify(coach));
+  if (cloned.contractAndRole) {
+    const economics = calculateContractAndMarketValue(cloned, true);
+    cloned.contractAndRole.salary = economics.salary;
+    cloned.contractAndRole.contractYears = economics.contractYears;
+    cloned.contractAndRole.marketValue = economics.marketValue;
+  }
+  return cloned;
+}
+
+/**
+ * 코치 목록 전체에 대해 딥카피 후 계약 경제 주입
+ */
+export function initializeCoaches(coaches: Coach[]): Coach[] {
+  return coaches.map((c) => initializeCoach(c));
+}

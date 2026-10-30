@@ -10,6 +10,7 @@ import {
   LeagueDivisions,
 } from "@/types/game";
 import { Player } from "@/types/player";
+import { Coach } from "@/types/coach";
 import { createDefaultAvatarDna } from "@/types/avatar";
 
 export type GameScreen = "TITLE" | "SLOT_SELECT" | "MANAGER_CREATE" | "TEAM_CREATE" | "DASHBOARD";
@@ -52,6 +53,11 @@ interface GameState {
   myPlayers: Player[];
   setMyPlayers: (players: Player[]) => void;
   updateMyPlayer: (playerId: string, updater: Partial<Player> | ((prev: Player) => Player)) => void;
+
+  // 나의 팀 코치진 (기본 팀 코치 데이터와 별개로 독립 저장 공간)
+  myCoaches: Coach[];
+  setMyCoaches: (coaches: Coach[]) => void;
+  updateMyCoach: (coachId: string, updater: Partial<Coach> | ((prev: Coach) => Coach)) => void;
 
   // 디비전(A/B/C/D) 및 리그 순위 시스템
   leagueDivisions: LeagueDivisions | null;
@@ -170,6 +176,7 @@ export const useGameStore = create<GameState>((set) => ({
         languages: [],
       },
       myPlayers: [],
+      myCoaches: [],
       leagueDivisions: null,
       currentDivision: "D",
     }),
@@ -188,6 +195,20 @@ export const useGameStore = create<GameState>((set) => ({
           return updater(p);
         }
         return { ...p, ...updater };
+      }),
+    })),
+
+  // 나의 팀 코치진 초기값 및 액션
+  myCoaches: [],
+  setMyCoaches: (coaches) => set({ myCoaches: coaches }),
+  updateMyCoach: (coachId, updater) =>
+    set((state) => ({
+      myCoaches: state.myCoaches.map((c) => {
+        if (c.profile.coachId !== coachId) return c;
+        if (typeof updater === "function") {
+          return updater(c);
+        }
+        return { ...c, ...updater };
       }),
     })),
 
