@@ -12,6 +12,9 @@ import {
 import { Player } from "@/types/player";
 import { Coach } from "@/types/coach";
 import { createDefaultAvatarDna } from "@/types/avatar";
+import { swapPlayers, swapCoaches } from "@/utils/rosterSwap";
+import { autoAssignPlayerRoles } from "@/utils/playerAssignment";
+import { autoAssignCoachRoles } from "@/utils/coachAssignment";
 
 export type GameScreen = "TITLE" | "SLOT_SELECT" | "MANAGER_CREATE" | "TEAM_CREATE" | "DASHBOARD";
 
@@ -53,11 +56,15 @@ interface GameState {
   myPlayers: Player[];
   setMyPlayers: (players: Player[]) => void;
   updateMyPlayer: (playerId: string, updater: Partial<Player> | ((prev: Player) => Player)) => void;
+  swapMyPlayers: (playerIdA: string, playerIdB: string) => void;
+  autoAssignMyPlayers: () => void;
 
   // 나의 팀 코치진 (기본 팀 코치 데이터와 별개로 독립 저장 공간)
   myCoaches: Coach[];
   setMyCoaches: (coaches: Coach[]) => void;
   updateMyCoach: (coachId: string, updater: Partial<Coach> | ((prev: Coach) => Coach)) => void;
+  swapMyCoaches: (coachIdA: string, coachIdB: string) => void;
+  autoAssignMyCoaches: () => void;
 
   // 디비전(A/B/C/D) 및 리그 순위 시스템
   leagueDivisions: LeagueDivisions | null;
@@ -197,6 +204,14 @@ export const useGameStore = create<GameState>((set) => ({
         return { ...p, ...updater };
       }),
     })),
+  swapMyPlayers: (playerIdA, playerIdB) =>
+    set((state) => ({
+      myPlayers: swapPlayers(state.myPlayers, playerIdA, playerIdB),
+    })),
+  autoAssignMyPlayers: () =>
+    set((state) => ({
+      myPlayers: autoAssignPlayerRoles(state.myPlayers),
+    })),
 
   // 나의 팀 코치진 초기값 및 액션
   myCoaches: [],
@@ -210,6 +225,14 @@ export const useGameStore = create<GameState>((set) => ({
         }
         return { ...c, ...updater };
       }),
+    })),
+  swapMyCoaches: (coachIdA, coachIdB) =>
+    set((state) => ({
+      myCoaches: swapCoaches(state.myCoaches, coachIdA, coachIdB),
+    })),
+  autoAssignMyCoaches: () =>
+    set((state) => ({
+      myCoaches: autoAssignCoachRoles(state.myCoaches),
     })),
 
   // 디비전 및 순위 데이터

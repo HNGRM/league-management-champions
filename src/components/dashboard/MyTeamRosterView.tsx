@@ -1,14 +1,18 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
-import { Users, AlertCircle, ArrowLeftRight, Check, Sparkles } from "lucide-react";
+import React, { useEffect, useMemo, useState } from "react";
+import { Users, AlertCircle, ArrowLeftRight, Check, Zap, Sparkles } from "lucide-react";
 import { Player, Position } from "@/types/player";
 import { getPlayerTraitById } from "@/data/playerTraits";
 import { formatEokParts } from "@/utils/format";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
 import PlayerDetailModal from "@/components/dashboard/PlayerDetailModal";
 import { useGameStore } from "@/store/useGameStore";
-import { swapPlayers } from "@/utils/rosterSwap";
+import {
+  autoAssignPlayerRoles,
+  sortPlayersByRoleOrder,
+  calculatePlayerOvr,
+} from "@/utils/playerAssignment";
 
 interface MyTeamRosterViewProps {
   players: Player[];
@@ -16,20 +20,13 @@ interface MyTeamRosterViewProps {
   league?: string | null;
 }
 
-const POSITION_ORDER: Record<Position, number> = {
-  TOP: 0,
-  JGL: 1,
-  MID: 2,
-  BOT: 3,
-  SUP: 4,
-};
-
 export default function MyTeamRosterView({
   players,
   teamId,
   league,
 }: MyTeamRosterViewProps) {
-  const setMyPlayers = useGameStore((state) => state.setMyPlayers);
+  const swapMyPlayers = useGameStore((state) => state.swapMyPlayers);
+  const autoAssignMyPlayers = useGameStore((state) => state.autoAssignMyPlayers);
 
   // 역할 교체 모드 활성화 여부
   const [isSwapMode, setIsSwapMode] = useState<boolean>(false);
@@ -38,18 +35,29 @@ export default function MyTeamRosterView({
   // 일반 모드에서 팝업으로 상세 정보를 열람할 선수
   const [detailPlayer, setDetailPlayer] = useState<Player | null>(null);
 
-  // 주전 우선 -> 포지션 TOP, JGL, MID, BOT, SUP 순 정렬
-  const sortedPlayers = useMemo(() => {
-    return [...players].sort((a, b) => {
-      const statusOrderA = a.contractAndRole.rosterStatus === "Starter" ? 0 : 1;
-      const statusOrderB = b.contractAndRole.rosterStatus === "Starter" ? 0 : 1;
-      if (statusOrderA !== statusOrderB) {
-        return statusOrderA - statusOrderB;
+  // 컴포넌트 마운트 시 만약 주전이 한 명도 없다면(초기 진입) 자동으로 최적 주전 배정 수행
+  useEffect(() => {
+    if (players && players.length > 0) {
+      const hasStarter = players.some(
+        (p) => p.contractAndRole?.rosterStatus === "Starter"
+      );
+      if (!hasStarter) {
+        autoAssignMyPlayers();
       }
-      const posA = POSITION_ORDER[a.contractAndRole.mainPos] ?? 99;
-      const posB = POSITION_ORDER[b.contractAndRole.mainPos] ?? 99;
-      return posA - posB;
-    });
+    }
+  }, [players, autoAssignMyPlayers]);
+
+  // 원클릭 자동 배정 핸들러
+  const handleAutoAssign = () => {
+    if (players.length === 0) return;
+    autoAssignMyPlayers();
+    setSelectedPlayerId(null);
+  };
+
+  // 고정 렌더링 순서로 정렬:
+  // 위에서부터 주전 5명 (TOP -> JGL -> MID -> BOT -> SUP) 고정 순서, 그 아래 후보(Sub) 선수들
+  const sortedPlayers = useMemo(() => {
+    return sortPlayersByRoleOrder(players);
   }, [players]);
 
   const starterCount = useMemo(
@@ -83,8 +91,7 @@ export default function MyTeamRosterView({
       setSelectedPlayerId(null);
     } else {
       // 2단계: 두 번째 선수 터치 -> 즉시 맞교환!
-      const updated = swapPlayers(players, selectedPlayerId, player.profile.playerId);
-      setMyPlayers(updated);
+      swapMyPlayers(selectedPlayerId, player.profile.playerId);
       setSelectedPlayerId(null);
     }
   };
@@ -119,36 +126,51 @@ export default function MyTeamRosterView({
           </span>
         </div>
 
-        {/* 🔄 역할 교체 모드 토글 버튼 */}
-        <button
-          type="button"
-          onClick={() => {
-            if (isSwapMode) {
-              setIsSwapMode(false);
-              setSelectedPlayerId(null);
-            } else {
-              setIsSwapMode(true);
-              setSelectedPlayerId(null);
-            }
-          }}
-          className={`px-3 py-1.5 rounded-xl border text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer touch-manipulation active:scale-95 shadow-md ${
-            isSwapMode
-              ? "bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 border-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.4)]"
-              : "bg-slate-900/90 hover:bg-slate-850 border-cyan-500/40 text-cyan-300 hover:text-white hover:border-cyan-400"
-          }`}
-        >
-          {isSwapMode ? (
-            <>
-              <Check className="w-3.5 h-3.5 stroke-[2.5]" />
-              <span>교체 완료</span>
-            </>
-          ) : (
-            <>
-              <ArrowLeftRight className="w-3.5 h-3.5" />
-              <span>역할 교체</span>
-            </>
+        <div className="flex items-center gap-2">
+          {/* ⚡ 자동 배정 버튼 (교체 모드가 아닐 때 노출) */}
+          {!isSwapMode && (
+            <button
+              type="button"
+              onClick={handleAutoAssign}
+              title="라인별 최고 OVR 주전 최적 자동 배정"
+              className="px-2.5 py-1.5 rounded-xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 hover:text-white hover:bg-cyan-900/90 hover:border-cyan-400 active:scale-95 transition-all text-xs font-bold flex items-center gap-1 shadow-sm cursor-pointer touch-manipulation"
+            >
+              <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+              <span>자동 배정</span>
+            </button>
           )}
-        </button>
+
+          {/* 🔄 역할 교체 모드 토글 버튼 */}
+          <button
+            type="button"
+            onClick={() => {
+              if (isSwapMode) {
+                setIsSwapMode(false);
+                setSelectedPlayerId(null);
+              } else {
+                setIsSwapMode(true);
+                setSelectedPlayerId(null);
+              }
+            }}
+            className={`px-3 py-1.5 rounded-xl border text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer touch-manipulation active:scale-95 shadow-md ${
+              isSwapMode
+                ? "bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 border-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.5)] animate-pulse"
+                : "bg-slate-900/90 hover:bg-slate-850 border-cyan-500/40 text-cyan-300 hover:text-white hover:border-cyan-400"
+            }`}
+          >
+            {isSwapMode ? (
+              <>
+                <Check className="w-3.5 h-3.5 stroke-[2.5]" />
+                <span>교체 완료</span>
+              </>
+            ) : (
+              <>
+                <ArrowLeftRight className="w-3.5 h-3.5" />
+                <span>역할 교체</span>
+              </>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* 역할 교체 모드 안내 가이드 바 */}
@@ -164,7 +186,7 @@ export default function MyTeamRosterView({
                 {" ↔ "}맞바꿀 대상을 터치하세요 (취소는 재터치)
               </span>
             ) : (
-              <span>교체할 첫 번째 선수를 터치하세요.</span>
+              <span>교체할 첫 번째 대상을 선택하세요.</span>
             )}
           </span>
 
@@ -185,14 +207,7 @@ export default function MyTeamRosterView({
         {sortedPlayers.map((player) => {
           const isStarter = player.contractAndRole.rosterStatus === "Starter";
           const isSelected = selectedPlayerId === player.profile.playerId;
-          const ovr = Math.round(
-            (player.stats.mechanics +
-              player.stats.decision +
-              player.stats.mental +
-              player.stats.execution +
-              player.stats.teamwork) /
-              5
-          );
+          const ovr = calculatePlayerOvr(player);
 
           const salaryParts = formatEokParts(player.contractAndRole.salary);
           const marketParts = formatEokParts(player.contractAndRole.marketValue);

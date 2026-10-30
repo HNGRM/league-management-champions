@@ -25,7 +25,8 @@ export default function MyTeamCoachesView({
   teamId,
   league,
 }: MyTeamCoachesViewProps) {
-  const setMyCoaches = useGameStore((state) => state.setMyCoaches);
+  const swapMyCoaches = useGameStore((state) => state.swapMyCoaches);
+  const autoAssignMyCoaches = useGameStore((state) => state.autoAssignMyCoaches);
 
   // 역할 교체 모드 활성화 여부
   const [isSwapMode, setIsSwapMode] = useState<boolean>(false);
@@ -39,17 +40,15 @@ export default function MyTeamCoachesView({
     if (coaches.length > 0) {
       const hasAnyRole = coaches.some((c) => Boolean(c.contractAndRole?.role));
       if (!hasAnyRole) {
-        const assigned = autoAssignCoachRoles(coaches);
-        setMyCoaches(assigned);
+        autoAssignMyCoaches();
       }
     }
-  }, [coaches, setMyCoaches]);
+  }, [coaches, autoAssignMyCoaches]);
 
   // 원클릭 자동 배정 핸들러
   const handleAutoAssign = () => {
     if (coaches.length === 0) return;
-    const assigned = autoAssignCoachRoles(coaches);
-    setMyCoaches(assigned);
+    autoAssignMyCoaches();
     setSelectedCoachId(null);
   };
 
@@ -93,8 +92,7 @@ export default function MyTeamCoachesView({
       setSelectedCoachId(null);
     } else {
       // 2단계: 두 번째 코치 터치 -> 즉시 맞교환!
-      const updated = swapCoaches(coaches, selectedCoachId, coach.profile.coachId);
-      setMyCoaches(updated);
+      swapMyCoaches(selectedCoachId, coach.profile.coachId);
       setSelectedCoachId(null);
     }
   };
@@ -161,7 +159,7 @@ export default function MyTeamCoachesView({
             }}
             className={`px-3 py-1.5 rounded-xl border text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer touch-manipulation active:scale-95 shadow-md ${
               isSwapMode
-                ? "bg-gradient-to-r from-emerald-500 to-indigo-500 text-slate-950 border-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.4)]"
+                ? "bg-gradient-to-r from-emerald-500 to-indigo-500 text-slate-950 border-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.5)] animate-pulse"
                 : "bg-slate-900/90 hover:bg-slate-850 border-indigo-500/40 text-indigo-300 hover:text-white hover:border-indigo-400"
             }`}
           >
@@ -212,7 +210,7 @@ export default function MyTeamCoachesView({
                 {" ↔ "}맞바꿀 대상을 터치하세요 (취소는 재터치)
               </span>
             ) : (
-              <span>교체할 첫 번째 코치를 터치하세요.</span>
+              <span>교체할 첫 번째 대상을 선택하세요.</span>
             )}
           </span>
 

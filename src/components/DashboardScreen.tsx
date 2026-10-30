@@ -32,6 +32,8 @@ import { createInitialLeagueDivisions } from "@/data/divisions";
 import { deleteGameFromCloud } from "@/lib/saveManager";
 import { initializePlayer, initializePlayers } from "@/utils/playerGenerator";
 import { initializeCoaches } from "@/utils/contractEconomics";
+import { autoAssignPlayerRoles } from "@/utils/playerAssignment";
+import { autoAssignCoachRoles } from "@/utils/coachAssignment";
 import MyTeamRosterView from "@/components/dashboard/MyTeamRosterView";
 import MyTeamCoachesView from "@/components/dashboard/MyTeamCoachesView";
 import LeagueStandingsView from "@/components/dashboard/LeagueStandingsView";
@@ -151,7 +153,7 @@ export default function DashboardScreen() {
       if (teamIdToLoad) {
         const defaultPlayers = getPlayersByTeamId(teamIdToLoad);
         if (defaultPlayers.length > 0) {
-          const cloned = initializePlayers(defaultPlayers);
+          const cloned = autoAssignPlayerRoles(initializePlayers(defaultPlayers));
           setMyPlayers(cloned);
         }
       }
@@ -184,7 +186,7 @@ export default function DashboardScreen() {
       if (teamIdToLoad) {
         const defaultCoaches = getCoachesByTeamId(teamIdToLoad);
         if (defaultCoaches.length > 0) {
-          const cloned = initializeCoaches(defaultCoaches);
+          const cloned = autoAssignCoachRoles(initializeCoaches(defaultCoaches));
           setMyCoaches(cloned);
         }
       }

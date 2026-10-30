@@ -40,6 +40,8 @@ import { getCoachesByTeamId } from "@/data/coaches";
 import { createInitialLeagueDivisions } from "@/data/divisions";
 import { initializePlayers } from "@/utils/playerGenerator";
 import { initializeCoaches } from "@/utils/contractEconomics";
+import { autoAssignPlayerRoles } from "@/utils/playerAssignment";
+import { autoAssignCoachRoles } from "@/utils/coachAssignment";
 import { Player } from "@/types/player";
 import { Coach } from "@/types/coach";
 
@@ -333,13 +335,13 @@ export default function ManagerCreateScreen() {
       const finalTeamNameKo = customTeamInfo.nameKo || selectedTeam?.nameKo || "새 팀";
       const finalShortName = customTeamInfo.shortName || selectedTeam?.shortName || "NEW";
 
-      // 내가 고른 팀의 기본 선수들을 깊은 복사하여 '나의 팀 선수' 독립 저장 공간에 초기화 (Potential, PotentialDecay, StarQuality 동적 주입)
+      // 내가 고른 팀의 기본 선수들을 깊은 복사하여 '나의 팀 선수' 독립 저장 공간에 초기화 (Potential, PotentialDecay, StarQuality 동적 주입 및 라인별 최고 OVR 자동 배정)
       const defaultPlayers = selectedTeam ? getPlayersByTeamId(selectedTeam.id) : [];
-      const initialMyPlayers: Player[] = initializePlayers(defaultPlayers);
+      const initialMyPlayers: Player[] = autoAssignPlayerRoles(initializePlayers(defaultPlayers));
 
-      // 내가 고른 팀의 기본 코치들을 깊은 복사하여 '나의 팀 코치' 독립 저장 공간에 초기화 (연봉, 계약기간, 시장가치 동적 주입)
+      // 내가 고른 팀의 기본 코치들을 깊은 복사하여 '나의 팀 코치' 독립 저장 공간에 초기화 (연봉, 계약기간, 시장가치 동적 주입 및 5대 전담 보직 자동 배정)
       const defaultCoaches = selectedTeam ? getCoachesByTeamId(selectedTeam.id) : [];
-      const initialMyCoaches: Coach[] = initializeCoaches(defaultCoaches);
+      const initialMyCoaches: Coach[] = autoAssignCoachRoles(initializeCoaches(defaultCoaches));
 
       // 4개 디비전 (A/B/C/D) 초기 순위표 생성 및 플레이어 팀 리그 D(4부) 배치
       const activeLeague = useGameStore.getState().selectedLeague || "KCL";
