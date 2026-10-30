@@ -673,6 +673,11 @@ export default function TeamCreateScreen() {
                             <span className="text-[10px] text-slate-400 truncate">
                               ({player.profile.nicknameKr})
                             </span>
+                            {player.profile.isRetiring && (
+                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 shrink-0">
+                                ⏳ 은퇴 예정
+                              </span>
+                            )}
                           </div>
 
                           <div className="flex items-center gap-1.5 text-[10px] text-slate-300 font-medium flex-wrap">
@@ -806,6 +811,11 @@ export default function TeamCreateScreen() {
                             <span className="text-[10px] text-slate-400 truncate">
                               ({coach.profile.nicknameKr})
                             </span>
+                            {coach.profile.isRetiring && (
+                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 shrink-0">
+                                ⏳ 은퇴 예정
+                              </span>
+                            )}
                           </div>
 
                           <div className="flex items-center gap-1.5 text-[10px] text-slate-300 font-medium flex-wrap">

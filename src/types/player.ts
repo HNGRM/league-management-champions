@@ -18,6 +18,8 @@ export interface PlayerProfile {
   secondLanguage: LeagueLanguage | null; // 제2외국어 (KCL, CCL, ECL, ACL, PCL 중 1개 혹은 없음)
   availableYear: number;                 // 게임 등장 연차 (1: 1년차 현역/FA, 2~10: N년차 신입 루키)
   status: EntityStatus;                  // 활동 상태 ("Active": 구단소속, "FA": 자유계약, "Upcoming": 미래등장)
+  retirementDesire: number;              // 은퇴의사 (0 ~ 100, 나이와 연차가 높을수록 상승)
+  isRetiring: boolean;                   // 은퇴 예정 플래그 (true인 경우 이번 시즌이 마지막)
 }
 
 export interface PlayerContractAndRole {
