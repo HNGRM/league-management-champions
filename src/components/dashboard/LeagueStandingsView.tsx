@@ -11,15 +11,22 @@ interface LeagueStandingsViewProps {
   leagueName?: string;
 }
 
-const TIER_ORDER: DivisionTier[] = ["D", "C", "B", "A"];
+const TIER_ORDER: DivisionTier[] = ["A", "B", "C", "D"];
 
 export default function LeagueStandingsView({
   divisions,
   currentDivision = "D",
   leagueName = "챔피언스 리그",
 }: LeagueStandingsViewProps) {
-  // 사용자가 열람 중인 디비전 탭 (기본값: 플레이어의 현재 소속 리그 D)
+  // 사용자가 열람 중인 디비전 탭 (기본값: 플레이어의 현재 소속 리그, 예: 리그 D)
   const [selectedTier, setSelectedTier] = useState<DivisionTier>(currentDivision);
+
+  // 소속 디비전 정보가 변경되거나 로드될 때 내 소속 리그로 자동 동기화
+  React.useEffect(() => {
+    if (currentDivision) {
+      setSelectedTier(currentDivision);
+    }
+  }, [currentDivision]);
 
   if (!divisions) {
     return (
@@ -37,7 +44,7 @@ export default function LeagueStandingsView({
 
   return (
     <div className="flex flex-col gap-3 pb-6 select-none">
-      {/* 1. 디비전 전환 탭 바 (D -> C -> B -> A) */}
+      {/* 1. 디비전 전환 탭 바 (A -> B -> C -> D) */}
       <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-1.5 flex gap-1">
         {TIER_ORDER.map((tier) => {
           const meta = DIVISION_METAS[tier];
