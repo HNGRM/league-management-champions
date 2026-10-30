@@ -4,6 +4,8 @@ import React, { useMemo } from "react";
 import {
   Trophy,
   Wallet,
+  Users,
+  Heart,
   TrendingUp,
   TrendingDown,
   ArrowUpRight,
@@ -24,7 +26,7 @@ import { Team } from "@/types/game";
 import { Player } from "@/types/player";
 import { Coach } from "@/types/coach";
 import { calculateTeamValueBreakdown } from "@/utils/contractEconomics";
-import { formatKoreanMoney, formatShortEok } from "@/utils/format";
+import { formatKoreanMoney } from "@/utils/format";
 
 interface MyTeamFinanceViewProps {
   team: Team | null;
@@ -112,7 +114,7 @@ export default function MyTeamFinanceView({
     [team, players]
   );
 
-  // 수입 / 지출 합계 및 시즌 예상 결산 차액
+  // 수입 / 지출 합계 및 이번 시즌 예상 결산 차액
   const totalIncome = useMemo(
     () => INCOME_ITEMS.reduce((sum, item) => sum + item.amount, 0),
     []
@@ -128,42 +130,47 @@ export default function MyTeamFinanceView({
 
   return (
     <div className="flex flex-col gap-3 pb-6 select-none animate-in fade-in duration-200">
-      {/* ================= 1. 상단: 팀 가치 & 자금 요약 카드 ================= */}
+      {/* ================= 1. 팀 추정 가치 통합 카드 (3대 세부 탭 포함) ================= */}
       <div className="bg-gradient-to-br from-slate-900/95 via-slate-900/85 to-slate-950/95 border border-slate-800/90 rounded-2xl p-4 shadow-sm relative overflow-hidden flex flex-col gap-3">
         {/* 배경 네온 글로우 */}
         <div className="absolute -top-12 -right-12 w-36 h-36 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
         <div className="absolute -bottom-12 -left-12 w-36 h-36 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
 
-        {/* 🏆 팀 추정 가치 메인 블록 */}
-        <div className="flex flex-col gap-1.5 pb-3 border-b border-slate-800/80 relative z-10">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5">
-              <div className="w-6 h-6 rounded-lg bg-amber-500/15 border border-amber-500/40 flex items-center justify-center text-amber-400">
-                <Trophy className="w-3.5 h-3.5" />
-              </div>
-              <span className="text-xs font-bold text-slate-300">
-                팀 추정 가치
-              </span>
+        {/* 🏆 팀 추정 가치 상단 헤더 */}
+        <div className="flex items-center justify-between pb-3 border-b border-slate-800/80 relative z-10 gap-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <div className="w-7 h-7 rounded-lg bg-amber-500/15 border border-amber-500/40 flex items-center justify-center text-amber-400 shrink-0">
+              <Trophy className="w-4 h-4" />
             </div>
-            <span className="px-2 py-0.5 rounded-full bg-amber-950/70 border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold">
-              TEAM VALUE
+            <span className="text-xs sm:text-sm font-bold text-slate-200 truncate">
+              팀 추정 가치
             </span>
           </div>
 
-          <div className="text-xl sm:text-2xl font-black text-amber-300 font-mono tracking-tight mt-0.5">
+          <span className="text-base sm:text-lg font-black text-amber-300 font-mono tracking-tight shrink-0">
             {formatKoreanMoney(totalValue)}
-          </div>
-
-          <div className="text-[11px] text-slate-400 font-mono leading-relaxed break-keep">
-            (선수단 가치 {formatShortEok(rosterValue)} + 보유 현금{" "}
-            {formatShortEok(cashBalance)} + 팬덤 {formatShortEok(fandomValue)})
-          </div>
+          </span>
         </div>
 
-        {/* 💰 총 보유 자금 & 📊 시즌 예상 결산 (2단 행) */}
+        {/* 팀 추정 가치 3대 세부 탭 (선수단 가치 / 총 보유 자금 / 팬덤 자산) */}
         <div className="flex flex-col gap-2 relative z-10">
-          {/* 총 보유 자금 */}
-          <div className="rounded-xl bg-slate-950/70 border border-slate-800/80 px-3.5 py-2.5 flex items-center justify-between gap-2">
+          {/* 세부 1: 선수단 가치 */}
+          <div className="rounded-xl bg-slate-950/75 border border-slate-800/80 px-3.5 py-2.5 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-7 h-7 rounded-lg bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0">
+                <Users className="w-4 h-4" />
+              </div>
+              <span className="text-xs font-bold text-slate-300 truncate">
+                선수단 가치
+              </span>
+            </div>
+            <span className="text-sm font-extrabold text-indigo-300 font-mono shrink-0">
+              {formatKoreanMoney(rosterValue)}
+            </span>
+          </div>
+
+          {/* 세부 2: 총 보유 자금 */}
+          <div className="rounded-xl bg-slate-950/75 border border-slate-800/80 px-3.5 py-2.5 flex items-center justify-between gap-2">
             <div className="flex items-center gap-2 min-w-0">
               <div className="w-7 h-7 rounded-lg bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
                 <Wallet className="w-4 h-4" />
@@ -172,125 +179,146 @@ export default function MyTeamFinanceView({
                 총 보유 자금
               </span>
             </div>
-            <span className="text-sm sm:text-base font-extrabold text-cyan-300 font-mono shrink-0">
+            <span className="text-sm font-extrabold text-cyan-300 font-mono shrink-0">
               {formatKoreanMoney(cashBalance)}
             </span>
           </div>
 
-          {/* 시즌 예상 결산 */}
-          <div className="rounded-xl bg-slate-950/70 border border-slate-800/80 px-3.5 py-2.5 flex items-center justify-between gap-2">
+          {/* 세부 3: 팬덤 자산 */}
+          <div className="rounded-xl bg-slate-950/75 border border-slate-800/80 px-3.5 py-2.5 flex items-center justify-between gap-2">
             <div className="flex items-center gap-2 min-w-0">
-              <div
-                className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 border ${
-                  isSurplus
-                    ? "bg-emerald-500/15 border-emerald-500/30 text-emerald-400"
-                    : "bg-rose-500/15 border-rose-500/30 text-rose-400"
-                }`}
-              >
-                {isSurplus ? (
-                  <TrendingUp className="w-4 h-4" />
-                ) : (
-                  <TrendingDown className="w-4 h-4" />
-                )}
+              <div className="w-7 h-7 rounded-lg bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-400 shrink-0">
+                <Heart className="w-4 h-4" />
               </div>
               <span className="text-xs font-bold text-slate-300 truncate">
-                시즌 예상 결산
+                팬덤 자산
               </span>
             </div>
-            <span
-              className={`text-xs sm:text-sm font-extrabold font-mono shrink-0 ${
-                isSurplus ? "text-emerald-300" : "text-rose-300"
-              }`}
-            >
-              {isSurplus
-                ? `흑자 (+${formatKoreanMoney(netProfit)} 예상)`
-                : `적자 (-${formatKoreanMoney(Math.abs(netProfit))} 예상)`}
+            <span className="text-sm font-extrabold text-rose-300 font-mono shrink-0">
+              {formatKoreanMoney(fandomValue)}
             </span>
           </div>
         </div>
       </div>
 
-      {/* ================= 2. 수입 요약 (4대 항목 대칭) ================= */}
-      <div className="bg-slate-900/80 border border-slate-800/90 rounded-2xl p-4 shadow-sm flex flex-col gap-2.5">
-        {/* 섹션 헤더 + 누적 총수입 합계 뱃지 */}
-        <div className="flex items-center justify-between pb-2 border-b border-slate-800/80">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-              <ArrowUpRight className="w-3.5 h-3.5" />
+      {/* ================= 2. 이번 시즌 예상 결산 통합 카드 ================= */}
+      <div className="bg-gradient-to-br from-slate-900/95 via-slate-900/85 to-slate-950/95 border border-slate-800/90 rounded-2xl p-4 shadow-sm flex flex-col gap-3">
+        {/* 📊 이번 시즌 예상 결산 상단 헤더 */}
+        <div className="flex items-center justify-between pb-3 border-b border-slate-800/80 gap-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <div
+              className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 border ${
+                isSurplus
+                  ? "bg-emerald-500/15 border-emerald-500/30 text-emerald-400"
+                  : "bg-rose-500/15 border-rose-500/30 text-rose-400"
+              }`}
+            >
+              {isSurplus ? (
+                <TrendingUp className="w-4 h-4" />
+              ) : (
+                <TrendingDown className="w-4 h-4" />
+              )}
             </div>
-            <span className="text-xs font-bold text-slate-200">수입 요약</span>
+            <span className="text-xs sm:text-sm font-bold text-slate-200 truncate">
+              이번 시즌 예상 결산
+            </span>
           </div>
 
-          <span className="px-2.5 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono font-bold text-[11px] shadow-sm">
-            총수입 +{formatKoreanMoney(totalIncome)}
+          <span
+            className={`text-xs sm:text-sm font-extrabold font-mono shrink-0 ${
+              isSurplus ? "text-emerald-300" : "text-rose-300"
+            }`}
+          >
+            {isSurplus
+              ? `흑자 (+${formatKoreanMoney(netProfit)} 예상)`
+              : `적자 (-${formatKoreanMoney(Math.abs(netProfit))} 예상)`}
           </span>
         </div>
 
-        {/* 4대 수입 항목 리스트 */}
-        <div className="flex flex-col gap-1.5">
-          {INCOME_ITEMS.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={item.id}
-                className="px-3 py-2.5 rounded-xl bg-slate-950/60 border border-slate-800/70 flex items-center justify-between gap-2"
-              >
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <Icon className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span className="text-xs font-medium text-slate-300 truncate">
-                    {item.label}
-                  </span>
-                </div>
-                <span className="text-xs font-bold text-emerald-300 font-mono shrink-0">
-                  {item.displayAmount}
-                </span>
+        {/* 하위 1: 이번 시즌 수입 요약 (4개 세부 탭 포함) */}
+        <div className="bg-slate-950/60 border border-slate-800/80 rounded-2xl p-3.5 flex flex-col gap-2.5">
+          <div className="flex items-center justify-between pb-2 border-b border-slate-800/70 gap-2">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-6 h-6 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* ================= 3. 지출 요약 (4대 항목 대칭) ================= */}
-      <div className="bg-slate-900/80 border border-slate-800/90 rounded-2xl p-4 shadow-sm flex flex-col gap-2.5">
-        {/* 섹션 헤더 + 누적 총지출 합계 뱃지 */}
-        <div className="flex items-center justify-between pb-2 border-b border-slate-800/80">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-lg bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-400">
-              <ArrowDownRight className="w-3.5 h-3.5" />
+              <span className="text-xs font-bold text-slate-200 truncate">
+                이번 시즌 수입 요약
+              </span>
             </div>
-            <span className="text-xs font-bold text-slate-200">지출 요약</span>
+
+            <span className="px-2.5 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono font-bold text-[11px] shrink-0">
+              총수입 +{formatKoreanMoney(totalIncome)}
+            </span>
           </div>
 
-          <span className="px-2.5 py-0.5 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-300 font-mono font-bold text-[11px] shadow-sm">
-            총지출 -{formatKoreanMoney(totalExpense)}
-          </span>
-        </div>
-
-        {/* 4대 지출 항목 리스트 */}
-        <div className="flex flex-col gap-1.5">
-          {EXPENSE_ITEMS.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={item.id}
-                className="px-3 py-2.5 rounded-xl bg-slate-950/60 border border-slate-800/70 flex items-center justify-between gap-2"
-              >
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <Icon className="w-3.5 h-3.5 text-rose-400 shrink-0" />
-                  <span className="text-xs font-medium text-slate-300 truncate">
-                    {item.label}
+          {/* 4대 수입 세부 항목 */}
+          <div className="flex flex-col gap-1.5">
+            {INCOME_ITEMS.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.id}
+                  className="px-3 py-2.5 rounded-xl bg-slate-900/70 border border-slate-800/70 flex items-center justify-between gap-2"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <Icon className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span className="text-xs font-medium text-slate-300 truncate">
+                      {item.label}
+                    </span>
+                  </div>
+                  <span className="text-xs font-bold text-emerald-300 font-mono shrink-0">
+                    {item.displayAmount}
                   </span>
                 </div>
-                <span className="text-xs font-bold text-rose-300 font-mono shrink-0">
-                  {item.displayAmount}
-                </span>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* 하위 2: 이번 시즌 지출 요약 (4개 세부 탭 포함) */}
+        <div className="bg-slate-950/60 border border-slate-800/80 rounded-2xl p-3.5 flex flex-col gap-2.5">
+          <div className="flex items-center justify-between pb-2 border-b border-slate-800/70 gap-2">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-6 h-6 rounded-lg bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-400 shrink-0">
+                <ArrowDownRight className="w-3.5 h-3.5" />
               </div>
-            );
-          })}
+              <span className="text-xs font-bold text-slate-200 truncate">
+                이번 시즌 지출 요약
+              </span>
+            </div>
+
+            <span className="px-2.5 py-0.5 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-300 font-mono font-bold text-[11px] shrink-0">
+              총지출 -{formatKoreanMoney(totalExpense)}
+            </span>
+          </div>
+
+          {/* 4대 지출 세부 항목 */}
+          <div className="flex flex-col gap-1.5">
+            {EXPENSE_ITEMS.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.id}
+                  className="px-3 py-2.5 rounded-xl bg-slate-900/70 border border-slate-800/70 flex items-center justify-between gap-2"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <Icon className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+                    <span className="text-xs font-medium text-slate-300 truncate">
+                      {item.label}
+                    </span>
+                  </div>
+                  <span className="text-xs font-bold text-rose-300 font-mono shrink-0">
+                    {item.displayAmount}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
-      {/* ================= 4. 메인 스폰서 센터 카드 ================= */}
+      {/* ================= 3. 메인 스폰서 센터 카드 ================= */}
       <div className="bg-gradient-to-br from-slate-900/90 via-indigo-950/25 to-slate-950/95 border border-indigo-500/35 rounded-2xl p-4 shadow-sm flex flex-col gap-3 relative overflow-hidden">
         <div className="absolute -top-10 -right-10 w-28 h-28 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
 
