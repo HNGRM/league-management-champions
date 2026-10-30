@@ -77,10 +77,25 @@ export function createInitialLeagueDivisions(
 
   const sortedTeams = [...allTeams].sort((a, b) => getTeamNum(a.id) - getTeamNum(b.id));
 
-  const teamsA = sortedTeams.slice(0, 10);  // 001 ~ 010 (10팀)
-  const teamsB = sortedTeams.slice(10, 18); // 011 ~ 018 (8팀)
-  const teamsC = sortedTeams.slice(18, 24); // 019 ~ 024 (6팀)
-  const teamsD = sortedTeams.slice(24, 30); // 025 ~ 030 (6팀)
+  // 플레이어가 선택한 기존 팀 조회 (예: "KCL-001" 서울 엠페러스)
+  const playerSelectedTeam = sortedTeams.find((t) => t.id === playerTeam.id);
+
+  let remainingTeams: typeof sortedTeams;
+  if (playerSelectedTeam) {
+    // 1) 플레이어가 기존 30개 팀 중 하나를 선택한 경우:
+    // 해당 팀을 리스트에서 빼고, 그 뒤에 있던 팀들은 연쇄적으로 한 단계씩 앞으로 승격/이동!
+    remainingTeams = sortedTeams.filter((t) => t.id !== playerTeam.id);
+  } else {
+    // 2) 신규 커스텀 창단 팀인 경우:
+    // 상위 29개 팀 유지 (30번째 슬롯을 커스텀 팀이 대체)
+    remainingTeams = sortedTeams.slice(0, 29);
+  }
+
+  // 남은 29개 팀을 상위 디비전부터 순서대로 채움
+  const teamsA = remainingTeams.slice(0, 10);  // 1 ~ 10위 (10팀)
+  const teamsB = remainingTeams.slice(10, 18); // 11 ~ 18위 (8팀)
+  const teamsC = remainingTeams.slice(18, 24); // 19 ~ 24위 (6팀)
+  const teamsD = remainingTeams.slice(24, 29); // 25 ~ 29위 (5팀)
 
   const toStanding = (
     team: typeof sortedTeams[0],
@@ -117,26 +132,28 @@ export function createInitialLeagueDivisions(
   const standingsB: TeamStanding[] = teamsB.map((t, idx) => toStanding(t, idx, false));
   const standingsC: TeamStanding[] = teamsC.map((t, idx) => toStanding(t, idx, false));
 
-  // 플레이어 팀을 리그 D에 배치
-  // 플레이어가 고른 팀이 025~030번 중 하나인지 확인
-  const playerNum = getTeamNum(playerTeam.id);
-  const matchedDIndex = teamsD.findIndex((t) => getTeamNum(t.id) === playerNum);
+  // 리그 D는 상위 5팀(순위 1~5위) + 마지막 6번째 자리에 플레이어 팀(순위 6위) 배치!
+  const playerStanding: TeamStanding = {
+    rank: 6,
+    teamId: playerTeam.id,
+    teamName: playerTeam.nameKo,
+    teamNameEn: playerTeam.nameEn,
+    shortName: playerTeam.shortName,
+    logoUrl:
+      playerTeam.customLogoUrl ||
+      (playerSelectedTeam ? getTeamLogo(playerSelectedTeam.id) : null),
+    isPlayer: true,
+    matchesPlayed: 0,
+    wins: 0,
+    losses: 0,
+    points: 0,
+    winRate: 0,
+  };
 
-  let standingsD: TeamStanding[];
-  if (matchedDIndex !== -1) {
-    // 025~030번 팀 중 하나를 선택한 경우: 해당 위치를 플레이어 팀으로 교체
-    standingsD = teamsD.map((t, idx) => {
-      const isPlayer = idx === matchedDIndex;
-      return toStanding(t, idx, isPlayer, isPlayer ? playerTeam : undefined);
-    });
-  } else {
-    // 001~024번 팀을 선택했거나 커스텀 팀인 경우:
-    // 기획 원칙에 따라 리그 D의 마지막 6번째 슬롯(30번 팀)을 플레이어 팀으로 대체하여 합류!
-    standingsD = teamsD.map((t, idx) => {
-      const isPlayer = idx === teamsD.length - 1; // 마지막 슬롯(30번 슬롯)
-      return toStanding(t, idx, isPlayer, isPlayer ? playerTeam : undefined);
-    });
-  }
+  const standingsD: TeamStanding[] = [
+    ...teamsD.map((t, idx) => toStanding(t, idx, false)),
+    playerStanding,
+  ];
 
   return {
     A: standingsA,

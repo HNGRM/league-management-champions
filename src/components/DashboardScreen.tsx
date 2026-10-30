@@ -174,6 +174,33 @@ export default function DashboardScreen() {
     }
   }, [leagueDivisions, currentTeam, selectedTeam, selectedLeague, customTeamInfo, setLeagueDivisions]);
 
+  // 기존 세이브 데이터 중 플레이어 팀이 상위 디비전(A/B/C)에 중복 남아있는 경우 자동 보정 (Cascade Shift-Up 적용)
+  useEffect(() => {
+    if (leagueDivisions && (currentTeam || selectedTeam)) {
+      const playerTeamId = currentTeam?.id || selectedTeam?.id;
+      const isDuplicatedInUpper =
+        leagueDivisions.A.some((t) => t.teamId === playerTeamId) ||
+        leagueDivisions.B.some((t) => t.teamId === playerTeamId) ||
+        leagueDivisions.C.some((t) => t.teamId === playerTeamId);
+
+      if (isDuplicatedInUpper) {
+        const activeLeague = selectedLeague || "KCL";
+        const teamId = playerTeamId || "TEAM-01";
+        const nameKo = customTeamInfo.nameKo || currentTeam?.name || selectedTeam?.nameKo || "새 팀";
+        const nameEn = customTeamInfo.nameEn || selectedTeam?.nameEn || "New Team";
+        const shortName = customTeamInfo.shortName || currentTeam?.shortName || selectedTeam?.shortName || "NEW";
+        const repairedDivs = createInitialLeagueDivisions(activeLeague, {
+          id: teamId,
+          nameKo,
+          nameEn,
+          shortName,
+          customLogoUrl: customTeamInfo.customLogoUrl,
+        });
+        setLeagueDivisions(repairedDivs);
+      }
+    }
+  }, [leagueDivisions, currentTeam, selectedTeam, selectedLeague, customTeamInfo, setLeagueDivisions]);
+
   // 활성 메인 탭 & 메인 탭별 마지막 세부 탭 기억
   const [activeMainTab, setActiveMainTab] = useState<MainTabId>("NEWS");
   const [activeSubTabs, setActiveSubTabs] = useState<Record<MainTabId, number>>({
