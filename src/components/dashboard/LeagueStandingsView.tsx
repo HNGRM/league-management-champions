@@ -378,20 +378,25 @@ export default function LeagueStandingsView({
                     </div>
                   )}
 
-                  {/* 팀명 및 내 팀 배지 (영문이름 (한글이름) 포맷) */}
-                  <div className="flex items-center gap-1.5 min-w-0 truncate">
-                    <span
-                      className={`text-xs font-bold truncate ${
-                        isMyTeam ? "text-cyan-200" : "text-white"
-                      }`}
-                    >
-                      {team.teamNameEn && team.teamNameEn !== team.teamName
-                        ? `${team.teamNameEn} (${team.teamName})`
-                        : team.teamName}
-                    </span>
-                    {isMyTeam && (
-                      <span className="px-1 py-0.2 rounded bg-cyan-400 text-slate-950 font-black text-[9px] shrink-0 shadow">
-                        MY
+                  {/* 팀명 (1행: 영문명 + MY 배지 / 2행: 한글명 줄바꿈) */}
+                  <div className="flex flex-col min-w-0 leading-tight">
+                    <div className="flex items-center gap-1 min-w-0">
+                      <span
+                        className={`text-xs font-bold truncate ${
+                          isMyTeam ? "text-cyan-200" : "text-slate-100"
+                        }`}
+                      >
+                        {team.teamNameEn || team.teamName}
+                      </span>
+                      {isMyTeam && (
+                        <span className="px-1 py-0.2 rounded bg-cyan-400 text-slate-950 font-black text-[8px] shrink-0 shadow-xs">
+                          MY
+                        </span>
+                      )}
+                    </div>
+                    {team.teamNameEn && team.teamNameEn !== team.teamName && (
+                      <span className="text-[10px] text-slate-400 truncate font-medium">
+                        ({team.teamName})
                       </span>
                     )}
                   </div>
