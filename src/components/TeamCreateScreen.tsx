@@ -29,12 +29,6 @@ import { getTeamLogo } from "@/data/teamLogos";
 import { getLeagueLogo } from "@/data/leagueLogos";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
 
-const AGING_TYPE_LABEL: Record<string, string> = {
-  Early: "조기만개형",
-  Normal: "표준형",
-  Late: "대기만성형",
-};
-
 const formatKoreanCurrency = (amount: number): string => {
   if (amount >= 100000000) {
     const eok = amount / 100000000;
@@ -641,9 +635,6 @@ export default function TeamCreateScreen() {
                         player.stats.teamwork) /
                         5
                     );
-                    const agingLabel =
-                      AGING_TYPE_LABEL[player.talentAndGrowth.agingType] ||
-                      "표준형";
 
                     return (
                       <div
@@ -773,9 +764,6 @@ export default function TeamCreateScreen() {
                                 </span>
                               );
                             })}
-                            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[9px] border border-slate-700 font-medium">
-                              {agingLabel}
-                            </span>
                             <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[9px] border border-slate-700 font-medium">
                               스타성 {player.talentAndGrowth.starQuality}
                             </span>

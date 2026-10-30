@@ -29,6 +29,7 @@ import { getTeamLogo } from "@/data/teamLogos";
 import { getPlayersByTeamId } from "@/data/players";
 import { createInitialLeagueDivisions } from "@/data/divisions";
 import { deleteGameFromCloud } from "@/lib/saveManager";
+import { initializePlayer, initializePlayers } from "@/utils/playerGenerator";
 import MyTeamRosterView from "@/components/dashboard/MyTeamRosterView";
 import LeagueStandingsView from "@/components/dashboard/LeagueStandingsView";
 import SettingsModal from "@/components/SettingsModal";
@@ -145,14 +146,29 @@ export default function DashboardScreen() {
       if (teamIdToLoad) {
         const defaultPlayers = getPlayersByTeamId(teamIdToLoad);
         if (defaultPlayers.length > 0) {
-          const cloned = defaultPlayers.map((p) =>
-            JSON.parse(JSON.stringify(p))
-          );
+          const cloned = initializePlayers(defaultPlayers);
           setMyPlayers(cloned);
         }
       }
+    } else if (
+      myPlayers.some(
+        (p) =>
+          !p.talentAndGrowth ||
+          p.talentAndGrowth.potential === 0 ||
+          !p.talentAndGrowth.potentialDecay
+      )
+    ) {
+      // 기존 세이브 데이터 마이그레이션: potential이 0이거나 potentialDecay가 없는 경우 자동 생성 주입
+      const upgraded = myPlayers.map((p) =>
+        !p.talentAndGrowth ||
+        p.talentAndGrowth.potential === 0 ||
+        !p.talentAndGrowth.potentialDecay
+          ? initializePlayer(p)
+          : p
+      );
+      setMyPlayers(upgraded);
     }
-  }, [myPlayers.length, currentTeam?.id, selectedTeam?.id, setMyPlayers]);
+  }, [myPlayers, currentTeam?.id, selectedTeam?.id, setMyPlayers]);
 
   // 대시보드 진입 시 혹시 leagueDivisions가 없다면 기본 4개 디비전 데이터 생성 및 주입
   useEffect(() => {

@@ -37,6 +37,7 @@ import {
 } from "@/types/avatar";
 import { getPlayersByTeamId } from "@/data/players";
 import { createInitialLeagueDivisions } from "@/data/divisions";
+import { initializePlayers } from "@/utils/playerGenerator";
 import { Player } from "@/types/player";
 
 // 언어 상세 설명 메타데이터
@@ -329,11 +330,9 @@ export default function ManagerCreateScreen() {
       const finalTeamNameKo = customTeamInfo.nameKo || selectedTeam?.nameKo || "새 팀";
       const finalShortName = customTeamInfo.shortName || selectedTeam?.shortName || "NEW";
 
-      // 내가 고른 팀의 기본 선수들을 깊은 복사하여 '나의 팀 선수' 독립 저장 공간에 초기화
+      // 내가 고른 팀의 기본 선수들을 깊은 복사하여 '나의 팀 선수' 독립 저장 공간에 초기화 (Potential, PotentialDecay, StarQuality 동적 주입)
       const defaultPlayers = selectedTeam ? getPlayersByTeamId(selectedTeam.id) : [];
-      const initialMyPlayers: Player[] = defaultPlayers.map((p) =>
-        JSON.parse(JSON.stringify(p))
-      );
+      const initialMyPlayers: Player[] = initializePlayers(defaultPlayers);
 
       // 4개 디비전 (A/B/C/D) 초기 순위표 생성 및 플레이어 팀 리그 D(4부) 배치
       const activeLeague = useGameStore.getState().selectedLeague || "KCL";

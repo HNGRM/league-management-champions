@@ -1,13 +1,20 @@
 import { Player, Position } from "@/types/player";
+import { generatePlayerTalent } from "@/utils/playerGenerator";
 import playersData from "./players.json";
 
-export const PLAYERS: Player[] = (playersData as Player[]).map((player) => ({
-  ...player,
-  traitsAndMastery: {
-    ...player.traitsAndMastery,
-    traits: Array.from(new Set(player.traitsAndMastery.traits)),
-  },
-}));
+export const PLAYERS: Player[] = (playersData as unknown as Player[]).map((player) => {
+  const p: Player = {
+    ...player,
+    traitsAndMastery: {
+      ...player.traitsAndMastery,
+      traits: Array.from(new Set(player.traitsAndMastery.traits)),
+    },
+  };
+  if (!p.talentAndGrowth || p.talentAndGrowth.potential === 0 || !p.talentAndGrowth.potentialDecay) {
+    p.talentAndGrowth = generatePlayerTalent(p);
+  }
+  return p;
+});
 
 const POSITION_ORDER: Record<Position, number> = {
   TOP: 0,

@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import { Users, AlertCircle } from "lucide-react";
 import { Player, Position } from "@/types/player";
 import { getPlayerTraitById } from "@/data/playerTraits";
-import { AGING_TYPE_LABEL, formatKoreanCurrency } from "@/utils/format";
+import { formatKoreanCurrency } from "@/utils/format";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
 
 interface MyTeamRosterViewProps {
@@ -89,8 +89,6 @@ export default function MyTeamRosterView({
               player.stats.teamwork) /
               5
           );
-          const agingLabel =
-            AGING_TYPE_LABEL[player.talentAndGrowth.agingType] || "표준형";
 
           return (
             <div
@@ -232,9 +230,6 @@ export default function MyTeamRosterView({
                       );
                     }
                   )}
-                  <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[9px] border border-slate-700 font-medium">
-                    {agingLabel}
-                  </span>
                   <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[9px] border border-slate-700 font-medium">
                     스타성 {player.talentAndGrowth.starQuality}
                   </span>

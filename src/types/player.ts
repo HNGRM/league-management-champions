@@ -4,7 +4,6 @@ import { ActivePlayerCondition } from "./playerCondition";
 export type Position = "TOP" | "JGL" | "MID" | "BOT" | "SUP";
 export type RosterStatus = "Starter" | "Sub" | "FA";
 export type EntityStatus = "Active" | "FA" | "Upcoming";
-export type AgingType = "Early" | "Normal" | "Late";
 export type FormLevel = "최상" | "상승" | "보통" | "하락" | "최악";
 export type LeagueLanguage = "KCL" | "CCL" | "ECL" | "ACL" | "PCL";
 
@@ -39,10 +38,18 @@ export interface PlayerStats {
   teamwork: number;          // 팀워크 (1~100)
 }
 
+export interface PlayerStatsExp {
+  mechanics: number;         // 메카닉 경험치 (0~100)
+  decision: number;          // 판단력 경험치 (0~100)
+  mental: number;            // 정신력 경험치 (0~100)
+  execution: number;         // 결정력 경험치 (0~100)
+  teamwork: number;          // 팀워크 경험치 (0~100)
+}
+
 export interface PlayerTalentAndGrowth {
-  potential: number;         // 성장기대치 (0~100: 훈련 시 스탯 상승/하락 확률)
-  agingType: AgingType;      // 에이징 커브 유형 (Early / Normal / Late)
-  starQuality: number;       // 스타성 (1~100: 팬덤 유입 및 MD 판매 배율)
+  potential: number;         // 성장기대치 (0~100: 훈련 시 스탯 상승 확률 단일 연산)
+  potentialDecay: number;    // 연간 잠재력 감퇴치 (히든 스탯: 표준 7~8 [70%], 롱런 4~5 [15%], 조기쇠퇴 10~11 [15%] - 비공개)
+  starQuality: number;       // 스타성 (1~100: 팬덤 유입 및 MD 판매 배율, 디비전 체급별 기준 ±25)
 }
 
 export interface PlayerTraitsAndMastery {
@@ -62,6 +69,7 @@ export interface Player {
   profile: PlayerProfile;
   contractAndRole: PlayerContractAndRole;
   stats: PlayerStats;
+  statsExp: PlayerStatsExp;
   talentAndGrowth: PlayerTalentAndGrowth;
   traitsAndMastery: PlayerTraitsAndMastery;
   conditionAndForm: PlayerConditionAndForm;
