@@ -37,6 +37,7 @@ import { autoAssignCoachRoles } from "@/utils/coachAssignment";
 import MyTeamRosterView from "@/components/dashboard/MyTeamRosterView";
 import MyTeamCoachesView from "@/components/dashboard/MyTeamCoachesView";
 import MyTeamInfoView from "@/components/dashboard/MyTeamInfoView";
+import MailboxView from "@/components/dashboard/MailboxView";
 import LeagueStandingsView from "@/components/dashboard/LeagueStandingsView";
 import SettingsModal from "@/components/SettingsModal";
 
@@ -129,6 +130,8 @@ export default function DashboardScreen() {
   const selectedSlotId = useGameStore((state) => state.selectedSlotId);
   const slots = useGameStore((state) => state.slots);
   const setSlots = useGameStore((state) => state.setSlots);
+  const mails = useGameStore((state) => state.mails);
+  const unreadMailCount = mails.filter((m) => !m.isRead).length;
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
@@ -422,6 +425,9 @@ export default function DashboardScreen() {
               >
                 <Icon className="w-3.5 h-3.5 shrink-0" />
                 <span className="truncate">{sub.label}</span>
+                {sub.id === "MAIL" && unreadMailCount > 0 && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shrink-0" />
+                )}
               </button>
             );
           })}
@@ -450,6 +456,8 @@ export default function DashboardScreen() {
             const Icon = sub.icon;
             const isMyTeamInfoTab =
               mainTab.id === "TEAM" && sub.id === "TEAM_INFO";
+            const isMailTab =
+              mainTab.id === "TEAM" && sub.id === "MAIL";
             const isMyTeamPlayersTab =
               mainTab.id === "ROSTER" && sub.id === "PLAYERS";
             const isMyTeamCoachesTab =
@@ -471,6 +479,8 @@ export default function DashboardScreen() {
                     players={myPlayers}
                     league={selectedTeam?.league || selectedLeague || "KCL"}
                   />
+                ) : isMailTab ? (
+                  <MailboxView currentYear={currentYear} />
                 ) : isMyTeamPlayersTab ? (
                   <MyTeamRosterView
                     players={myPlayers}

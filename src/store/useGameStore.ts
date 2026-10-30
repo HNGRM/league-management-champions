@@ -11,6 +11,7 @@ import {
 } from "@/types/game";
 import { Player } from "@/types/player";
 import { Coach, CoachRole } from "@/types/coach";
+import { MailItem, INITIAL_MAILS } from "@/data/dummyMails";
 import { createDefaultAvatarDna } from "@/types/avatar";
 import { swapPlayers, swapCoaches, assignCoachRole } from "@/utils/rosterSwap";
 import { autoAssignPlayerRoles } from "@/utils/playerAssignment";
@@ -72,6 +73,13 @@ interface GameState {
   setLeagueDivisions: (divisions: LeagueDivisions | null) => void;
   currentDivision: DivisionTier;
   setCurrentDivision: (division: DivisionTier) => void;
+
+  // 메일함 시스템
+  mails: MailItem[];
+  setMails: (mails: MailItem[]) => void;
+  markMailAsRead: (mailId: string) => void;
+  markAllMailsAsRead: () => void;
+  updateMailAction: (mailId: string, state: "ACCEPTED" | "REJECTED" | "COMPLETED") => void;
 
   // 날짜 및 턴 진행
   currentYear: number;
@@ -246,6 +254,26 @@ export const useGameStore = create<GameState>((set) => ({
   setLeagueDivisions: (divisions) => set({ leagueDivisions: divisions }),
   currentDivision: "D",
   setCurrentDivision: (division) => set({ currentDivision: division }),
+
+  // 메일함 초기 데이터 및 액션
+  mails: INITIAL_MAILS,
+  setMails: (mails) => set({ mails }),
+  markMailAsRead: (mailId) =>
+    set((state) => ({
+      mails: state.mails.map((m) =>
+        m.id === mailId ? { ...m, isRead: true } : m
+      ),
+    })),
+  markAllMailsAsRead: () =>
+    set((state) => ({
+      mails: state.mails.map((m) => ({ ...m, isRead: true })),
+    })),
+  updateMailAction: (mailId, actionState) =>
+    set((state) => ({
+      mails: state.mails.map((m) =>
+        m.id === mailId ? { ...m, isRead: true, actionState } : m
+      ),
+    })),
 
   currentYear: 2026,
   currentWeek: 1,
