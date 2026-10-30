@@ -172,7 +172,7 @@ export default function MailDetailBottomSheet({
                     className="flex-1 py-3 px-2 rounded-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(6,182,212,0.35)] cursor-pointer active:scale-95 touch-manipulation min-w-0"
                   >
                     <Handshake className="w-4 h-4 text-cyan-200 shrink-0" />
-                    <span className="truncate">수락 (2.5억 원)</span>
+                    <span className="truncate">수락 (2.50억 원)</span>
                   </button>
                 </div>
               )}
@@ -196,7 +196,7 @@ export default function MailDetailBottomSheet({
                     className="flex-1 py-3 px-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(16,185,129,0.35)] cursor-pointer active:scale-95 touch-manipulation min-w-0"
                   >
                     <Check className="w-4 h-4 text-emerald-100 shrink-0" />
-                    <span className="truncate">계약 체결 (1.2억 원)</span>
+                    <span className="truncate">계약 체결 (1.20억 원)</span>
                   </button>
                 </div>
               )}

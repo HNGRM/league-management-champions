@@ -47,28 +47,28 @@ const INCOME_ITEMS: FinanceLineItem[] = [
     id: "sponsor",
     label: "스폰서 지원금",
     amount: 150_000_000,
-    displayAmount: "+1.5억 원",
+    displayAmount: "+1.50억 원",
     icon: Handshake,
   },
   {
     id: "ticket_goods",
     label: "홈경기 티켓 & 굿즈 판매",
     amount: 80_000_000,
-    displayAmount: "+8,000만 원",
+    displayAmount: "+0.80억 원",
     icon: Ticket,
   },
   {
     id: "prize",
     label: "대회 순위 상금",
     amount: 50_000_000,
-    displayAmount: "+5,000만 원",
+    displayAmount: "+0.50억 원",
     icon: Award,
   },
   {
     id: "transfer_out",
     label: "선수·코치 매각(이적료)",
     amount: 40_000_000,
-    displayAmount: "+4,000만 원",
+    displayAmount: "+0.40억 원",
     icon: UserMinus,
   },
 ];
@@ -78,28 +78,28 @@ const EXPENSE_ITEMS: FinanceLineItem[] = [
     id: "salary",
     label: "선수·코치 연봉",
     amount: 160_000_000,
-    displayAmount: "-1.6억 원",
+    displayAmount: "-1.60억 원",
     icon: Wallet,
   },
   {
     id: "transfer_in",
     label: "선수·코치 영입(이적료)",
     amount: 40_000_000,
-    displayAmount: "-4,000만 원",
+    displayAmount: "-0.40억 원",
     icon: UserPlus,
   },
   {
     id: "facility",
     label: "시설 유지비",
     amount: 20_000_000,
-    displayAmount: "-2,000만 원",
+    displayAmount: "-0.20억 원",
     icon: Wrench,
   },
   {
     id: "penalty",
     label: "계약해지 위약금",
     amount: 10_000_000,
-    displayAmount: "-1,000만 원",
+    displayAmount: "-0.10억 원",
     icon: AlertTriangle,
   },
 ];
@@ -356,7 +356,7 @@ export default function MyTeamFinanceView({
           <div className="px-3.5 py-2 rounded-xl bg-slate-950/60 border border-slate-800/70 flex items-center justify-between gap-2">
             <span className="text-xs font-medium text-slate-400">기본 지원금</span>
             <span className="text-xs font-bold text-cyan-300 font-mono">
-              연간 1.2억 원
+              연간 1.20억 원
             </span>
           </div>
 
@@ -388,7 +388,7 @@ export default function MyTeamFinanceView({
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
               <span className="text-xs font-bold text-emerald-300 font-mono">
-                +5,000만 원 (진행 중)
+                +0.50억 원 (진행 중)
               </span>
             </div>
           </div>
