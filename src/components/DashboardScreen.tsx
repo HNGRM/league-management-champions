@@ -356,19 +356,7 @@ export default function DashboardScreen() {
                   <LeagueStandingsView
                     divisions={leagueDivisions}
                     currentDivision={currentDivision}
-                    leagueName={
-                      selectedLeague === "KCL"
-                        ? "한국 챔피언스 리그 (KCL)"
-                        : selectedLeague === "CCL"
-                        ? "중국 챔피언스 리그 (CCL)"
-                        : selectedLeague === "ECL"
-                        ? "EMEA 챔피언스 리그 (ECL)"
-                        : selectedLeague === "ACL"
-                        ? "아메리카 챔피언스 리그 (ACL)"
-                        : selectedLeague === "PCL"
-                        ? "태평양 챔피언스 리그 (PCL)"
-                        : "챔피언스 리그"
-                    }
+                    playerLeague={selectedLeague || "KCL"}
                   />
                 ) : (
                   <div className="h-full min-h-[200px] rounded-2xl border border-dashed border-slate-700/70 bg-slate-900/40 flex flex-col items-center justify-center gap-2 text-center p-6">

@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-import { Trophy, ArrowUpRight, ArrowDownRight, Sparkles } from "lucide-react";
-import { DivisionTier, LeagueDivisions, TeamStanding } from "@/types/game";
-import { DIVISION_METAS } from "@/data/divisions";
+import React, { useState, useEffect, useRef } from "react";
+import { Trophy, ArrowUpRight, ArrowDownRight, Sparkles, ChevronDown, Check, Globe } from "lucide-react";
+import { DivisionTier, LeagueDivisions, LeagueLanguage, TeamStanding } from "@/types/game";
+import { DIVISION_METAS, REGIONAL_LEAGUES, getAiLeagueDivisions } from "@/data/divisions";
 
 interface LeagueStandingsViewProps {
   divisions: LeagueDivisions | null;
   currentDivision?: DivisionTier;
-  leagueName?: string;
+  playerLeague?: LeagueLanguage;
 }
 
 const TIER_ORDER: DivisionTier[] = ["A", "B", "C", "D"];
@@ -16,40 +16,188 @@ const TIER_ORDER: DivisionTier[] = ["A", "B", "C", "D"];
 export default function LeagueStandingsView({
   divisions,
   currentDivision = "D",
-  leagueName = "챔피언스 리그",
+  playerLeague = "KCL",
 }: LeagueStandingsViewProps) {
-  // 사용자가 열람 중인 디비전 탭 (기본값: 플레이어의 현재 소속 리그, 예: 리그 D)
+  // 열람 중인 지역 리그 (기본값: 플레이어의 소속 지역 리그)
+  const [selectedLeagueCode, setSelectedLeagueCode] = useState<LeagueLanguage>(playerLeague);
+  // 열람 중인 디비전 탭 (기본값: 플레이어의 소속 디비전 D)
   const [selectedTier, setSelectedTier] = useState<DivisionTier>(currentDivision);
+  // 드롭다운 열림/닫힘 상태
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // 소속 디비전 정보가 변경되거나 로드될 때 내 소속 리그로 자동 동기화
-  React.useEffect(() => {
+  // 외부 클릭 시 드롭다운 닫기
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    if (isDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isDropdownOpen]);
+
+  // 플레이어 소속 리그 변경 시 동기화
+  useEffect(() => {
+    if (playerLeague) {
+      setSelectedLeagueCode(playerLeague);
+    }
+  }, [playerLeague]);
+
+  // 플레이어 소속 디비전 변경 시 동기화
+  useEffect(() => {
     if (currentDivision) {
       setSelectedTier(currentDivision);
     }
   }, [currentDivision]);
 
-  if (!divisions) {
-    return (
-      <div className="h-full min-h-[260px] rounded-2xl border border-dashed border-slate-800 bg-slate-950/40 flex flex-col items-center justify-center gap-2 p-6 text-center">
-        <Trophy className="w-8 h-8 text-slate-600 animate-pulse" />
-        <span className="text-sm font-bold text-slate-400">
-          리그 순위 정보를 불러오는 중입니다...
-        </span>
-      </div>
-    );
-  }
+  // 현재 열람 중인 리그가 플레이어 소속 리그인지 여부
+  const isViewingPlayerLeague = selectedLeagueCode === playerLeague;
 
+  // 현재 열람 중인 리그의 4개 디비전 데이터 (플레이어 소속이면 실제 저장된 divisions, 타 리그면 AI divisions)
+  const activeDivisions = isViewingPlayerLeague && divisions
+    ? divisions
+    : getAiLeagueDivisions(selectedLeagueCode);
+
+  const activeLeagueInfo =
+    REGIONAL_LEAGUES.find((l) => l.code === selectedLeagueCode) || REGIONAL_LEAGUES[0];
   const activeMeta = DIVISION_METAS[selectedTier];
-  const standings: TeamStanding[] = divisions[selectedTier] || [];
+  const standings: TeamStanding[] = activeDivisions ? activeDivisions[selectedTier] || [] : [];
+
+  const handleSelectLeague = (code: LeagueLanguage) => {
+    setSelectedLeagueCode(code);
+    setIsDropdownOpen(false);
+    // 내 소속 지역으로 돌아왔을 때는 내 소속 디비전(D)으로 자동 선택
+    if (code === playerLeague) {
+      setSelectedTier(currentDivision || "D");
+    }
+  };
 
   return (
     <div className="flex flex-col gap-3 pb-6 select-none">
-      {/* 1. 디비전 전환 탭 바 (A -> B -> C -> D) */}
-      <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-1.5 flex gap-1">
+      {/* 1. 지역 리그 선택 드롭다운 (A/B/C/D 탭 상단) */}
+      <div className="relative z-30" ref={dropdownRef}>
+        <button
+          type="button"
+          onClick={() => setIsDropdownOpen((prev) => !prev)}
+          className="w-full bg-slate-900/90 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-2.5 flex items-center justify-between transition-all duration-150 cursor-pointer shadow-sm group touch-manipulation"
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            {/* 리그 로고 썸네일 */}
+            <div className="w-8 h-8 rounded-xl bg-white border border-slate-700/80 p-0.5 flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={activeLeagueInfo.logoUrl}
+                alt={activeLeagueInfo.code}
+                className="w-full h-full object-contain"
+              />
+            </div>
+
+            <div className="flex flex-col text-left min-w-0">
+              <div className="flex items-center gap-1.5">
+                <span className="text-xs font-black text-slate-100 group-hover:text-cyan-300 transition-colors truncate">
+                  {activeLeagueInfo.koreanName}
+                </span>
+                <span className="font-mono text-[10px] font-bold text-slate-400">
+                  ({activeLeagueInfo.code})
+                </span>
+                {isViewingPlayerLeague && (
+                  <span className="px-1.5 py-0.2 rounded bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-bold text-[9px] shrink-0">
+                    내 소속 지역
+                  </span>
+                )}
+              </div>
+              <span className="text-[10px] text-slate-400 truncate">
+                {activeLeagueInfo.region} · 총 30개 팀 참가
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-1 pl-2 text-slate-400 group-hover:text-cyan-400 shrink-0">
+            <span className="text-[11px] font-medium hidden sm:inline">리그 변경</span>
+            <ChevronDown
+              className={`w-4 h-4 transition-transform duration-200 ${
+                isDropdownOpen ? "rotate-180 text-cyan-400" : ""
+              }`}
+            />
+          </div>
+        </button>
+
+        {/* 드롭다운 메뉴 팝오버 */}
+        {isDropdownOpen && (
+          <div className="absolute top-full left-0 right-0 mt-1.5 rounded-2xl bg-slate-950/95 backdrop-blur-xl border border-slate-800 shadow-2xl p-1.5 flex flex-col gap-1 z-40 animate-in fade-in-0 zoom-in-95 duration-150">
+            <div className="px-2.5 py-1 flex items-center justify-between text-[10px] font-mono font-bold text-slate-400 border-b border-slate-800/80 pb-1.5 mb-0.5">
+              <span className="flex items-center gap-1.5">
+                <Globe className="w-3.5 h-3.5 text-cyan-400" />
+                지역 리그 선택 (5개 지역)
+              </span>
+              <span className="text-[9px] text-slate-400">전 세계 150개 팀</span>
+            </div>
+
+            {REGIONAL_LEAGUES.map((league) => {
+              const isSelected = league.code === selectedLeagueCode;
+              const isHome = league.code === playerLeague;
+
+              return (
+                <button
+                  key={league.code}
+                  type="button"
+                  onClick={() => handleSelectLeague(league.code)}
+                  className={`w-full px-2.5 py-2 rounded-xl flex items-center justify-between text-left transition-all cursor-pointer touch-manipulation ${
+                    isSelected
+                      ? "bg-cyan-500/15 border border-cyan-400/50 text-cyan-100 shadow-xs"
+                      : "hover:bg-slate-900 border border-transparent text-slate-300"
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="w-7 h-7 rounded-lg bg-white border border-slate-700/80 p-0.5 flex items-center justify-center shrink-0 overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={league.logoUrl}
+                        alt={league.code}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <div className="flex flex-col min-w-0">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-xs font-bold truncate">
+                          {league.koreanName}
+                        </span>
+                        <span className="font-mono text-[10px] text-slate-400">
+                          ({league.code})
+                        </span>
+                        {isHome && (
+                          <span className="px-1 py-0.2 rounded bg-cyan-500/20 text-cyan-300 text-[8px] font-bold border border-cyan-500/30">
+                            내 소속
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-[10px] text-slate-400 truncate">
+                        {league.region}
+                      </span>
+                    </div>
+                  </div>
+
+                  {isSelected && (
+                    <div className="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
+                      <Check className="w-3.5 h-3.5 stroke-[3]" />
+                    </div>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* 2. 디비전 전환 탭 바 (A -> B -> C -> D) */}
+      <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-1.5 flex gap-1 z-10">
         {TIER_ORDER.map((tier) => {
           const meta = DIVISION_METAS[tier];
           const isSelected = selectedTier === tier;
-          const isMyDivision = currentDivision === tier;
+          const isMyDivision = isViewingPlayerLeague && currentDivision === tier;
 
           return (
             <button
@@ -80,7 +228,7 @@ export default function LeagueStandingsView({
         })}
       </div>
 
-      {/* 2. 현재 선택된 디비전 메타 배너 */}
+      {/* 3. 현재 선택된 디비전 메타 배너 */}
       <div className="bg-slate-900/90 border border-slate-800/90 rounded-2xl p-3 flex flex-col gap-1.5 shadow-sm">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 min-w-0">
@@ -90,7 +238,7 @@ export default function LeagueStandingsView({
               {activeMeta.name}
             </span>
             <span className="text-xs font-bold text-white tracking-tight truncate">
-              {leagueName} · {activeMeta.subName}
+              {activeLeagueInfo.koreanName} · {activeMeta.subName}
             </span>
           </div>
 
@@ -153,7 +301,7 @@ export default function LeagueStandingsView({
         </div>
       </div>
 
-      {/* 3. 공식 순위표 테이블 (Standings Table) */}
+      {/* 4. 공식 순위표 테이블 (Standings Table) */}
       <div className="bg-slate-950/70 border border-slate-800 rounded-2xl overflow-hidden shadow-sm">
         {/* 테이블 헤더 */}
         <div className="grid grid-cols-12 px-3 py-2 bg-slate-900/90 border-b border-slate-800 text-[10px] font-mono text-slate-400 font-bold items-center">
@@ -169,6 +317,8 @@ export default function LeagueStandingsView({
         {/* 테이블 본문 */}
         <div className="divide-y divide-slate-800/60">
           {standings.map((team, idx) => {
+            const isMyTeam = isViewingPlayerLeague && team.isPlayer;
+
             const isPromotionZone =
               (selectedTier === "D" && idx < 2) ||
               (selectedTier === "C" && idx < 2) ||
@@ -184,7 +334,7 @@ export default function LeagueStandingsView({
               <div
                 key={team.teamId}
                 className={`grid grid-cols-12 px-3 py-2.5 items-center transition-colors relative ${
-                  team.isPlayer
+                  isMyTeam
                     ? "bg-gradient-to-r from-cyan-950/60 via-blue-950/40 to-slate-900/80 border-l-4 border-l-cyan-400"
                     : isPromotionZone
                     ? "hover:bg-slate-900/40 border-l-2 border-l-emerald-500/70"
@@ -215,6 +365,7 @@ export default function LeagueStandingsView({
                   {/* 팀 로고 */}
                   {team.logoUrl ? (
                     <div className="w-6 h-6 rounded-lg bg-white border border-slate-700 p-0.5 flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={team.logoUrl}
                         alt={team.teamName}
@@ -227,16 +378,18 @@ export default function LeagueStandingsView({
                     </div>
                   )}
 
-                  {/* 팀명 및 내 팀 배지 */}
+                  {/* 팀명 및 내 팀 배지 (영문이름 (한글이름) 포맷) */}
                   <div className="flex items-center gap-1.5 min-w-0 truncate">
                     <span
                       className={`text-xs font-bold truncate ${
-                        team.isPlayer ? "text-cyan-200" : "text-white"
+                        isMyTeam ? "text-cyan-200" : "text-white"
                       }`}
                     >
-                      {team.teamName}
+                      {team.teamNameEn && team.teamNameEn !== team.teamName
+                        ? `${team.teamNameEn} (${team.teamName})`
+                        : team.teamName}
                     </span>
-                    {team.isPlayer && (
+                    {isMyTeam && (
                       <span className="px-1 py-0.2 rounded bg-cyan-400 text-slate-950 font-black text-[9px] shrink-0 shadow">
                         MY
                       </span>
@@ -274,10 +427,10 @@ export default function LeagueStandingsView({
         </div>
       </div>
 
-      {/* 4. 안내 문구 */}
-      <div className="px-2 text-[10px] text-slate-500 font-medium flex items-center justify-between">
+      {/* 5. 안내 문구 */}
+      <div className="px-2 text-[10px] text-slate-400 font-medium flex items-center justify-between">
         <span>※ 정규 시즌 매치 결과에 따라 순위가 실시간 갱신됩니다.</span>
-        <span className="font-mono text-slate-600">동률 시: 득실차 ➔ 승자승 순</span>
+        <span className="font-mono text-slate-400">동률 시: 득실차 ➔ 승자승 순</span>
       </div>
     </div>
   );
