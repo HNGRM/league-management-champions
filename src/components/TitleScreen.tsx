@@ -1,39 +1,69 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Play, Trophy, Shield, Sparkles, User, LogOut, LogIn } from "lucide-react";
+import { Play, Trophy, Shield, Sparkles, User, LogOut, LogIn, Loader2 } from "lucide-react";
 import { useGameStore } from "@/store/useGameStore";
 import { supabase } from "@/lib/supabase";
+import { fetchUserSlots } from "@/lib/saveManager";
 import AuthModal from "./AuthModal";
 
 export default function TitleScreen() {
   const setScreen = useGameStore((state) => state.setScreen);
   const currentUser = useGameStore((state) => state.currentUser);
   const setCurrentUser = useGameStore((state) => state.setCurrentUser);
+  const setSlots = useGameStore((state) => state.setSlots);
 
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [isLoadingSlots, setIsLoadingSlots] = useState(false);
 
-  // 세션 확인 및 구독
+  // 세션 확인 및 사전 슬롯 프리페칭 (백그라운드 동기화)
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => {
       setCurrentUser(user);
+      if (user?.id) {
+        fetchUserSlots(user.id)
+          .then((cloudSlots) => {
+            setSlots(cloudSlots);
+          })
+          .catch((err) => console.error("[TitleScreen] 슬롯 사전 로딩 실패:", err));
+      }
     });
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      setCurrentUser(session?.user || null);
+      const user = session?.user || null;
+      setCurrentUser(user);
+      if (user?.id) {
+        fetchUserSlots(user.id)
+          .then((cloudSlots) => {
+            setSlots(cloudSlots);
+          })
+          .catch((err) => console.error("[TitleScreen] 세션 변경 슬롯 로딩 실패:", err));
+      }
     });
 
     return () => {
       subscription.unsubscribe();
     };
-  }, [setCurrentUser]);
+  }, [setCurrentUser, setSlots]);
 
-  const handleStartGame = (e: React.MouseEvent | React.TouchEvent) => {
+  const handleStartGame = async (e: React.MouseEvent | React.TouchEvent) => {
     e.stopPropagation();
-    if (currentUser) {
-      setScreen("SLOT_SELECT");
+    if (isLoadingSlots) return;
+
+    if (currentUser?.id) {
+      setIsLoadingSlots(true);
+      try {
+        const cloudSlots = await fetchUserSlots(currentUser.id);
+        setSlots(cloudSlots);
+        setScreen("SLOT_SELECT");
+      } catch (err) {
+        console.error("[TitleScreen] 슬롯 로딩 실패:", err);
+        setScreen("SLOT_SELECT");
+      } finally {
+        setIsLoadingSlots(false);
+      }
     } else {
       setIsAuthOpen(true);
     }
@@ -110,7 +140,7 @@ export default function TitleScreen() {
         </h1>
 
         <p className="mt-4 text-xs text-slate-300/80 max-w-[260px] leading-relaxed">
-          나만의 e스포츠 구단을 창단하고 최고의 챔피언들과 함께 리그를 정복하세요.
+          나만의 e스포츠 팀을 창단하고 최고의 챔피언들과 함께 리그를 정복하세요.
         </p>
       </div>
 
@@ -119,16 +149,40 @@ export default function TitleScreen() {
         <button
           type="button"
           onClick={handleStartGame}
-          className="relative group w-full py-4 px-6 rounded-2xl font-bold text-base tracking-wide flex items-center justify-center gap-2.5 transition-all duration-150 cursor-pointer overflow-hidden touch-manipulation active:scale-95 hover:scale-[1.02] bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 text-white shadow-[0_0_25px_rgba(6,182,212,0.45)] border border-cyan-300/40 hover:shadow-[0_0_35px_rgba(6,182,212,0.65)]"
+          disabled={isLoadingSlots}
+          className={`relative group w-full py-4 px-6 rounded-2xl font-bold text-base tracking-wide flex items-center justify-center gap-2.5 transition-all duration-150 cursor-pointer overflow-hidden touch-manipulation active:scale-95 hover:scale-[1.02] border ${
+            isLoadingSlots
+              ? "bg-slate-800/90 border-cyan-500/50 text-cyan-300 cursor-wait shadow-[0_0_20px_rgba(6,182,212,0.25)]"
+              : "bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 text-white shadow-[0_0_25px_rgba(6,182,212,0.45)] border-cyan-300/40 hover:shadow-[0_0_35px_rgba(6,182,212,0.65)]"
+          }`}
         >
           {/* 반사광 효과 */}
-          <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 pointer-events-none" />
+          {!isLoadingSlots && (
+            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 pointer-events-none" />
+          )}
 
-          <Play className="w-5 h-5 fill-current text-cyan-100 pointer-events-none" />
-          <span className="text-white drop-shadow-sm pointer-events-none">
-            {currentUser ? "게임 시작" : "로그인 후 시작"}
-          </span>
+          {isLoadingSlots ? (
+            <>
+              <Loader2 className="w-5 h-5 animate-spin text-cyan-300 pointer-events-none" />
+              <span className="text-cyan-200 drop-shadow-sm pointer-events-none font-medium">
+                저장 데이터 불러오는 중...
+              </span>
+            </>
+          ) : (
+            <>
+              <Play className="w-5 h-5 fill-current text-cyan-100 pointer-events-none" />
+              <span className="text-white drop-shadow-sm pointer-events-none">
+                {currentUser ? "게임 시작" : "로그인 후 시작"}
+              </span>
+            </>
+          )}
         </button>
+
+        {isLoadingSlots && (
+          <div className="flex items-center justify-center gap-1.5 text-[11px] text-cyan-400 font-mono animate-pulse">
+            <span>클라우드 세이브 슬롯을 동기화하고 있습니다...</span>
+          </div>
+        )}
 
         <div className="flex justify-between items-center px-1 text-[11px] text-cyan-500/50 font-mono">
           <span>Ver 0.1.0-alpha</span>
@@ -140,9 +194,24 @@ export default function TitleScreen() {
       <AuthModal
         isOpen={isAuthOpen}
         onClose={() => setIsAuthOpen(false)}
-        onSuccess={() => {
+        onSuccess={async () => {
           setIsAuthOpen(false);
-          setScreen("SLOT_SELECT");
+          setIsLoadingSlots(true);
+          try {
+            const {
+              data: { user },
+            } = await supabase.auth.getUser();
+            if (user?.id) {
+              setCurrentUser(user);
+              const cloudSlots = await fetchUserSlots(user.id);
+              setSlots(cloudSlots);
+            }
+          } catch (err) {
+            console.error("[AuthModal] 슬롯 로딩 실패:", err);
+          } finally {
+            setIsLoadingSlots(false);
+            setScreen("SLOT_SELECT");
+          }
         }}
       />
     </div>

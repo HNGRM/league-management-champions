@@ -26,10 +26,13 @@ export default function SlotSelectScreen() {
   const scrollTopRef = useRef(0);
   const hasMovedRef = useRef(false);
 
-  // 클라우드 세이브 슬롯 로딩
+  // 클라우드 세이브 슬롯 로딩 (타이틀 화면에서 사전 로딩된 경우 깜빡임 방지)
   useEffect(() => {
     if (currentUser?.id) {
-      setLoadingCloud(true);
+      const alreadyHasData = slots.some((s) => s.isCreated);
+      if (!alreadyHasData) {
+        setLoadingCloud(true);
+      }
       fetchUserSlots(currentUser.id)
         .then((cloudSlots) => {
           setSlots(cloudSlots);
