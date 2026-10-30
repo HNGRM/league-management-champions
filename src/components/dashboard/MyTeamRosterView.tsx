@@ -263,13 +263,13 @@ export default function MyTeamRosterView({
 
               {/* 우측 선수 상세 정보 */}
               <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
-                {/* 1열: 닉네임, 은퇴예정 배지, 주/부 포지션 or 스왑 아이콘 */}
+                {/* 1열: 닉네임, 은퇴예정 배지, 스왑 배지(교체 모드 시) */}
                 <div className="flex items-center justify-between gap-1">
-                  <div className="flex items-center gap-1.5 min-w-0 truncate">
+                  <div className="flex items-center gap-1.5 min-w-0">
                     <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate font-mono">
                       {player.profile.nicknameEn}
                     </span>
-                    <span className="text-[10px] text-slate-400 truncate">
+                    <span className="text-[10px] text-slate-400 shrink-0">
                       ({player.profile.nicknameKr})
                     </span>
                     {player.profile.isRetiring && (
@@ -279,7 +279,7 @@ export default function MyTeamRosterView({
                     )}
                   </div>
 
-                  {isSwapMode ? (
+                  {isSwapMode && (
                     <span
                       className={`px-2 py-0.5 rounded text-[10px] font-bold font-mono border flex items-center gap-1 shrink-0 ${
                         isSelected
@@ -289,11 +289,6 @@ export default function MyTeamRosterView({
                     >
                       <ArrowLeftRight className="w-3 h-3" />
                       <span>{isSelected ? "선택됨" : "교체"}</span>
-                    </span>
-                  ) : (
-                    <span className="px-1.5 py-0.5 rounded bg-slate-800/90 text-slate-300 text-[9px] font-mono border border-slate-700/80 shrink-0">
-                      주 {player.contractAndRole.mainPos} · 부{" "}
-                      {player.contractAndRole.subPos}
                     </span>
                   )}
                 </div>
