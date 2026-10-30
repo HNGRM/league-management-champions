@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Coach } from "@/types/coach";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
 import { formatEokParts } from "@/utils/format";
@@ -20,7 +21,13 @@ export default function CoachDetailModal({
   league,
   onClose,
 }: CoachDetailModalProps) {
-  if (!coach) return null;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || !coach) return null;
 
   const coachOvr = Math.round(
     (coach.stats.ingame +
@@ -43,7 +50,7 @@ export default function CoachDetailModal({
     { key: "SCT", label: "스카우트", value: coach.stats.scouting, color: "from-pink-500 to-rose-500" },
   ];
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
       onClick={onClose}
@@ -252,6 +259,7 @@ export default function CoachDetailModal({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

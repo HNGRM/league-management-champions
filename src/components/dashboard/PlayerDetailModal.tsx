@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Player } from "@/types/player";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
 import { getPlayerTraitById } from "@/data/playerTraits";
@@ -20,7 +21,13 @@ export default function PlayerDetailModal({
   league,
   onClose,
 }: PlayerDetailModalProps) {
-  if (!player) return null;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || !player) return null;
 
   const isStarter = player.contractAndRole.rosterStatus === "Starter";
   const ovr = Math.round(
@@ -43,7 +50,7 @@ export default function PlayerDetailModal({
     { label: "팀워크", value: player.stats.teamwork, color: "from-emerald-500 to-teal-500" },
   ];
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
       onClick={onClose}
@@ -266,6 +273,7 @@ export default function PlayerDetailModal({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
