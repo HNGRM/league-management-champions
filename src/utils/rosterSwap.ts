@@ -1,5 +1,6 @@
 import { Player } from "@/types/player";
-import { Coach } from "@/types/coach";
+import { Coach, CoachRole } from "@/types/coach";
+import { getCoachRoleMeta } from "./coachAssignment";
 
 /**
  * 선수 역할/포지션 맞교환 (Swap) 알고리즘
@@ -112,6 +113,42 @@ export function swapCoaches(
         contractAndRole: {
           ...c.contractAndRole,
           role: roleA,
+        },
+      };
+    }
+    return c;
+  });
+}
+
+/**
+ * 코치를 특정 전담 보직(공석)에 배정하는 알고리즘
+ * 1. 대상 코치에게 targetRole을 배정합니다.
+ * 2. 만약 다른 코치가 이미 그 targetRole을 맡고 있었다면, 그 코치는 미배정(null)으로 전환됩니다.
+ */
+export function assignCoachRole(
+  coaches: Coach[],
+  coachId: string,
+  targetRole: CoachRole
+): Coach[] {
+  const targetMeta = getCoachRoleMeta(targetRole);
+
+  return coaches.map((c) => {
+    if (c.profile.coachId === coachId) {
+      return {
+        ...c,
+        contractAndRole: {
+          ...c.contractAndRole,
+          role: targetRole,
+        },
+      };
+    }
+    // 동일한 보직(직책 코드 일치)을 맡고 있던 다른 코치가 있다면 미배정(null)으로 전환
+    if (getCoachRoleMeta(c.contractAndRole?.role).code === targetMeta.code) {
+      return {
+        ...c,
+        contractAndRole: {
+          ...c.contractAndRole,
+          role: null,
         },
       };
     }

@@ -10,9 +10,9 @@ import {
   LeagueDivisions,
 } from "@/types/game";
 import { Player } from "@/types/player";
-import { Coach } from "@/types/coach";
+import { Coach, CoachRole } from "@/types/coach";
 import { createDefaultAvatarDna } from "@/types/avatar";
-import { swapPlayers, swapCoaches } from "@/utils/rosterSwap";
+import { swapPlayers, swapCoaches, assignCoachRole } from "@/utils/rosterSwap";
 import { autoAssignPlayerRoles } from "@/utils/playerAssignment";
 import { autoAssignCoachRoles } from "@/utils/coachAssignment";
 
@@ -64,6 +64,7 @@ interface GameState {
   setMyCoaches: (coaches: Coach[]) => void;
   updateMyCoach: (coachId: string, updater: Partial<Coach> | ((prev: Coach) => Coach)) => void;
   swapMyCoaches: (coachIdA: string, coachIdB: string) => void;
+  assignMyCoachRole: (coachId: string, role: CoachRole) => void;
   autoAssignMyCoaches: () => void;
 
   // 디비전(A/B/C/D) 및 리그 순위 시스템
@@ -229,6 +230,10 @@ export const useGameStore = create<GameState>((set) => ({
   swapMyCoaches: (coachIdA, coachIdB) =>
     set((state) => ({
       myCoaches: swapCoaches(state.myCoaches, coachIdA, coachIdB),
+    })),
+  assignMyCoachRole: (coachId, role) =>
+    set((state) => ({
+      myCoaches: assignCoachRole(state.myCoaches, coachId, role),
     })),
   autoAssignMyCoaches: () =>
     set((state) => ({
