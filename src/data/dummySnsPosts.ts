@@ -1,0 +1,138 @@
+export interface SnsPost {
+  id: string;
+  authorType: "FAN" | "HATER" | "REPORTER" | "ANALYST";
+  authorName: string;
+  authorHandle: string;
+  isVerified?: boolean;
+  content: string; // 반드시 1~2줄의 짧은 단문
+  timeAgo: string;
+  likes: number;
+  retweets: number;
+}
+
+export const INITIAL_SNS_POSTS: SnsPost[] = [
+  {
+    id: "SNS_001",
+    authorType: "FAN",
+    authorName: "서울 팬 1호",
+    authorHandle: "@Seoul_Fan_1호",
+    timeAgo: "방금 전",
+    content: "오늘 2세트 한타 스킬 연계 진짜 예술이었음... 우리 팀 팀워크 폼 미쳤다!",
+    likes: 842,
+    retweets: 124,
+  },
+  {
+    id: "SNS_002",
+    authorType: "HATER",
+    authorName: "미드차이noob",
+    authorHandle: "@mid_gap_noob",
+    timeAgo: "5분 전",
+    content: "솔직히 오늘 바론 오더 누가 내림? 다 이긴 게임 뇌절해서 던지네 ㅋㅋㅋ",
+    likes: 312,
+    retweets: 89,
+  },
+  {
+    id: "SNS_003",
+    authorType: "ANALYST",
+    authorName: "[분석] 박해설의 메타 연구소",
+    authorHandle: "@meta_lab_park",
+    isVerified: true,
+    timeAgo: "15분 전",
+    content: "이번 14.1 패치는 무조건 탱커 메타입니다. 돌진 조합은 이제 버리세요.",
+    likes: 1950,
+    retweets: 540,
+  },
+  {
+    id: "SNS_004",
+    authorType: "REPORTER",
+    authorName: "[기자] e스포츠 인사이드",
+    authorHandle: "@esports_inside_kr",
+    isVerified: true,
+    timeAgo: "30분 전",
+    content: "[단독] 1부 명문 서울 엠퍼러스, D리그 특급 유망주에게 바이아웃 오퍼 제출.",
+    likes: 3850,
+    retweets: 1200,
+  },
+  {
+    id: "SNS_005",
+    authorType: "FAN",
+    authorName: "영광의챔피언",
+    authorHandle: "@Glory_Champions",
+    timeAgo: "1시간 전",
+    content: "주전 탑라이너 손목 부상이라던데 제발 큰 부상 아니길 ㅠㅠ 푹 쉬고 와라!",
+    likes: 520,
+    retweets: 78,
+  },
+  {
+    id: "SNS_006",
+    authorType: "HATER",
+    authorName: "냉정한비판가",
+    authorHandle: "@cold_critic",
+    timeAgo: "2시간 전",
+    content: "상대 팀 모스트픽 뻔히 알면서 밴픽에서 안 자르고 뭐 함? 감독 사퇴해라.",
+    likes: 640,
+    retweets: 215,
+  },
+  {
+    id: "SNS_007",
+    authorType: "FAN",
+    authorName: "e스포츠매니아",
+    authorHandle: "@Esports_Maniac",
+    timeAgo: "3시간 전",
+    content: "감독님 인터뷰에서 다음 경기 무조건 2:0으로 턴다는데 패기 지린다 ㅋㅋㅋ",
+    likes: 1120,
+    retweets: 340,
+  },
+  {
+    id: "SNS_008",
+    authorType: "ANALYST",
+    authorName: "[분석] 박해설의 메타 연구소",
+    authorHandle: "@meta_lab_park",
+    isVerified: true,
+    timeAgo: "4시간 전",
+    content: "비숙련 챔피언 기용 페널티가 이번 시즌 승부처입니다. 챔피언 폭 넓혀야 함.",
+    likes: 1430,
+    retweets: 410,
+  },
+  {
+    id: "SNS_009",
+    authorType: "REPORTER",
+    authorName: "[기자] e스포츠 인사이드",
+    authorHandle: "@esports_inside_kr",
+    isVerified: true,
+    timeAgo: "5시간 전",
+    content: "[속보] 해외 리그 슈퍼스타, 역대 최고 바이아웃 50.00억 원에 계약 체결 완료.",
+    likes: 4210,
+    retweets: 1850,
+  },
+  {
+    id: "SNS_010",
+    authorType: "FAN",
+    authorName: "D리그서포터",
+    authorHandle: "@D_League_Supporter",
+    timeAgo: "6시간 전",
+    content: "우리 팀 이번 시즌 유니폼 실물 떴는데 역대급으로 잘 뽑힘! 바로 구매 완료.",
+    likes: 980,
+    retweets: 150,
+  },
+  {
+    id: "SNS_011",
+    authorType: "HATER",
+    authorName: "독설게이머",
+    authorHandle: "@toxic_gamer",
+    timeAgo: "7시간 전",
+    content: "연봉은 억대로 쳐받으면서 분당 CS 7개도 못 먹는 선수가 있다? ㅋㅋㅋ",
+    likes: 450,
+    retweets: 180,
+  },
+  {
+    id: "SNS_012",
+    authorType: "FAN",
+    authorName: "롤챔피언십",
+    authorHandle: "@LoL_Championship",
+    timeAgo: "8시간 전",
+    content: "개막전까지 D-3! 이번 시즌은 진짜 언더독의 반란 한번 가보자!",
+    likes: 1560,
+    retweets: 290,
+  },
+];

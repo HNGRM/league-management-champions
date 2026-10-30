@@ -38,6 +38,7 @@ import MyTeamRosterView from "@/components/dashboard/MyTeamRosterView";
 import MyTeamCoachesView from "@/components/dashboard/MyTeamCoachesView";
 import MyTeamInfoView from "@/components/dashboard/MyTeamInfoView";
 import MyTeamFinanceView from "@/components/dashboard/MyTeamFinanceView";
+import MyTeamSnsView from "@/components/dashboard/MyTeamSnsView";
 import MailboxView from "@/components/dashboard/MailboxView";
 import LeagueStandingsView from "@/components/dashboard/LeagueStandingsView";
 import SettingsModal from "@/components/SettingsModal";
@@ -461,6 +462,8 @@ export default function DashboardScreen() {
               mainTab.id === "TEAM" && sub.id === "MAIL";
             const isFinanceTab =
               mainTab.id === "TEAM" && sub.id === "FINANCE";
+            const isSnsTab =
+              mainTab.id === "TEAM" && sub.id === "SNS";
             const isMyTeamPlayersTab =
               mainTab.id === "ROSTER" && sub.id === "PLAYERS";
             const isMyTeamCoachesTab =
@@ -489,6 +492,11 @@ export default function DashboardScreen() {
                     team={currentTeam}
                     players={myPlayers}
                     coaches={myCoaches}
+                  />
+                ) : isSnsTab ? (
+                  <MyTeamSnsView
+                    teamName={teamNameKo}
+                    teamLogoUrl={teamLogoUrl}
                   />
                 ) : isMyTeamPlayersTab ? (
                   <MyTeamRosterView
