@@ -367,49 +367,67 @@ export default function MyTeamInfoView({
         </div>
       </div>
 
-      {/* ================= 3. 팬덤 및 위상 요약 (Fandom & Reputation) ================= */}
-      <div className="grid grid-cols-3 gap-2">
-        {/* 팬덤 (서포터즈) */}
-        <div className="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-3 flex flex-col justify-between gap-1 shadow-sm">
-          <div className="flex items-center gap-1.5 text-slate-400">
-            <Users className="w-3.5 h-3.5 text-rose-400 shrink-0" />
-            <span className="text-[10px] font-medium">팬덤 (서포터즈)</span>
+      {/* ================= 3. 팬덤 및 위상 요약 (Fandom & Reputation - 3층 구조) ================= */}
+      <div className="flex flex-col gap-2.5">
+        {/* 1층: 팬덤 (서포터즈) */}
+        <div className="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-3.5 flex items-center justify-between gap-3 shadow-sm">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-9 h-9 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400 shrink-0">
+              <Users className="w-5 h-5" />
+            </div>
+            <div className="flex flex-col min-w-0">
+              <span className="text-[11px] font-medium text-slate-400">팬덤 (서포터즈)</span>
+              <span className="text-sm sm:text-base font-bold text-white font-mono tracking-tight truncate">
+                {team?.fans ? `${team.fans.toLocaleString()}명` : "15,000명"}
+              </span>
+            </div>
           </div>
-          <div className="text-sm font-bold text-white font-mono tracking-tight truncate">
-            {team?.fans ? `${team.fans.toLocaleString()}명` : "15,000명"}
+          <div className="text-right shrink-0">
+            <span className="text-[11px] text-rose-300/90 font-mono bg-rose-950/60 border border-rose-500/30 px-2 py-0.5 rounded-full">
+              열성 서포터즈
+            </span>
           </div>
-          <span className="text-[9px] text-slate-500 font-mono truncate">
-            열성 서포터즈
-          </span>
         </div>
 
-        {/* 홈구장 */}
-        <div className="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-3 flex flex-col justify-between gap-1 shadow-sm">
-          <div className="flex items-center gap-1.5 text-slate-400">
-            <Building2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-            <span className="text-[10px] font-medium">홈구장</span>
+        {/* 2층: 홈구장 (긴 연고지 도시명도 온전히 표시) */}
+        <div className="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-3.5 flex items-center justify-between gap-3 shadow-sm">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
+              <Building2 className="w-5 h-5" />
+            </div>
+            <div className="flex flex-col min-w-0">
+              <span className="text-[11px] font-medium text-slate-400">홈구장</span>
+              <span className="text-sm sm:text-base font-bold text-white tracking-tight truncate">
+                {homeArena}
+              </span>
+            </div>
           </div>
-          <div className="text-sm font-bold text-white tracking-tight truncate">
-            {homeArena}
+          <div className="text-right shrink-0">
+            <span className="text-[11px] text-cyan-300/90 font-mono bg-cyan-950/60 border border-cyan-500/30 px-2 py-0.5 rounded-full">
+              연고지 {cityName}
+            </span>
           </div>
-          <span className="text-[9px] text-slate-500 font-mono truncate">
-            연고지 {cityName}
-          </span>
         </div>
 
-        {/* 팀 명성 */}
-        <div className="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-3 flex flex-col justify-between gap-1 shadow-sm">
-          <div className="flex items-center gap-1.5 text-slate-400">
-            <Trophy className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-            <span className="text-[10px] font-medium">팀 명성</span>
+        {/* 3층: 팀 명성 */}
+        <div className="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-3.5 flex items-center justify-between gap-3 shadow-sm">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
+              <Trophy className="w-5 h-5" />
+            </div>
+            <div className="flex flex-col min-w-0">
+              <span className="text-[11px] font-medium text-slate-400">팀 명성</span>
+              <div className="flex items-baseline gap-1 text-sm sm:text-base font-bold text-amber-300 font-mono tracking-tight">
+                <span>{team?.reputation || 25}</span>
+                <span className="text-[11px] text-slate-500 font-normal">/ 100</span>
+              </div>
+            </div>
           </div>
-          <div className="text-sm font-bold text-amber-300 font-mono tracking-tight flex items-center gap-1">
-            <span>{team?.reputation || 25}</span>
-            <span className="text-[10px] text-slate-500 font-normal">/ 100</span>
+          <div className="text-right shrink-0">
+            <span className="text-[11px] text-amber-300/90 font-mono bg-amber-950/60 border border-amber-500/30 px-2 py-0.5 rounded-full">
+              디비전 {currentDivision || "D"} 기준
+            </span>
           </div>
-          <span className="text-[9px] text-slate-500 font-mono truncate">
-            디비전 {currentDivision || "D"} 기준
-          </span>
         </div>
       </div>
     </div>
