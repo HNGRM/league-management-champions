@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import {
   X,
+  SlidersHorizontal,
+  Home,
   Gamepad2,
   Monitor,
   Volume2,
@@ -14,8 +16,9 @@ import {
   ShieldAlert,
 } from "lucide-react";
 import DisbandConfirmModal from "./DisbandConfirmModal";
+import { useGameStore } from "@/store/useGameStore";
 
-type SettingsTab = "PLAY" | "DISPLAY" | "AUDIO" | "ACCOUNT" | "ETC";
+type SettingsTab = "GENERAL" | "PLAY" | "DISPLAY" | "AUDIO" | "ACCOUNT" | "ETC";
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -26,9 +29,11 @@ interface SettingsModalProps {
   slotNumber: number;
   userEmail?: string | null;
   onDisbandConfirm: () => Promise<void> | void;
+  onGoToTitle?: () => void;
 }
 
 const SETTINGS_TABS: { id: SettingsTab; label: string; icon: React.ElementType }[] = [
+  { id: "GENERAL", label: "일반", icon: SlidersHorizontal },
   { id: "PLAY", label: "플레이", icon: Gamepad2 },
   { id: "DISPLAY", label: "화면", icon: Monitor },
   { id: "AUDIO", label: "오디오", icon: Volume2 },
@@ -45,9 +50,20 @@ export default function SettingsModal({
   slotNumber,
   userEmail,
   onDisbandConfirm,
+  onGoToTitle,
 }: SettingsModalProps) {
-  const [activeTab, setActiveTab] = useState<SettingsTab>("ACCOUNT");
+  const setScreen = useGameStore((state) => state.setScreen);
+  const [activeTab, setActiveTab] = useState<SettingsTab>("GENERAL");
   const [isDisbandModalOpen, setIsDisbandModalOpen] = useState(false);
+
+  const handleGoToTitle = () => {
+    onClose();
+    if (onGoToTitle) {
+      onGoToTitle();
+    } else {
+      setScreen("TITLE");
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -112,6 +128,34 @@ export default function SettingsModal({
 
             {/* 우측 설정 컨텐츠 영역 */}
             <div className="flex-1 p-4 overflow-y-auto scrollbar-none flex flex-col">
+              {/* 0. 일반 탭 (맨 위 탭: 타이틀 화면 이동 등 시스템 핵심 옵션) */}
+              {activeTab === "GENERAL" && (
+                <div className="flex flex-col gap-4">
+                  <div className="rounded-2xl bg-slate-900/90 border border-slate-800 p-4 flex flex-col gap-3 shadow-sm">
+                    <div className="flex items-center gap-2 text-cyan-300 font-bold text-xs pb-2 border-b border-slate-800">
+                      <SlidersHorizontal className="w-4 h-4 text-cyan-400" />
+                      <span>시스템 일반 설정</span>
+                    </div>
+
+                    <div className="flex flex-col gap-1.5">
+                      <span className="text-xs font-bold text-white">타이틀 화면 복귀</span>
+                      <p className="text-[11px] text-slate-400 leading-relaxed">
+                        현재 진행 중인 세이브 상태를 유지한 채, 메인 타이틀 화면(게임 시작 화면)으로 이동합니다.
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={handleGoToTitle}
+                      className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] cursor-pointer active:scale-98 touch-manipulation mt-1"
+                    >
+                      <Home className="w-4 h-4" />
+                      <span>타이틀 화면으로</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+
               {/* 1. 플레이 탭 */}
               {activeTab === "PLAY" && (
                 <div className="flex-1 flex flex-col items-center justify-center gap-3 text-center p-4">
@@ -218,7 +262,7 @@ export default function SettingsModal({
                     </div>
 
                     <p className="text-[11px] text-rose-300/80 leading-relaxed">
-                      현재 슬롯의 구단 데이터를 완전히 해체하고 세이브 파일을 영구 삭제합니다.
+                      현재 슬롯의 팀 데이터를 완전히 해체하고 세이브 파일을 영구 삭제합니다.
                     </p>
 
                     <button

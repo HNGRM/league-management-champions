@@ -566,6 +566,10 @@ export default function DashboardScreen() {
         slotNumber={selectedSlotId || 1}
         userEmail={currentUser?.email}
         onDisbandConfirm={handleDisbandTeam}
+        onGoToTitle={() => {
+          setIsSettingsOpen(false);
+          setScreen("TITLE");
+        }}
       />
     </div>
   );
