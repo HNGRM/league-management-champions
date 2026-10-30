@@ -70,16 +70,12 @@ export default function MyTeamInfoView({
   const managerFullName = `${managerNameEn} (${managerNameKo})`;
   const managerAge = managerProfile.age || 32;
 
-  // 언어 텍스트 표기
+  // 언어 텍스트 표기 ("사용 언어: KCL / CCL" 형식)
   const languagesText = useMemo(() => {
     if (!managerProfile.languages || managerProfile.languages.length === 0) {
-      return `${activeLeague} (모국어)`;
+      return `사용 언어: ${activeLeague}`;
     }
-    const [first, second] = managerProfile.languages;
-    if (!second) {
-      return `${first} (모국어)`;
-    }
-    return `${first} (모국어) · ${second} (제2외국어)`;
+    return `사용 언어: ${managerProfile.languages.join(" / ")}`;
   }, [managerProfile.languages, activeLeague]);
 
   // 5개 라인 주전 전력 분석 (TOP -> JGL -> MID -> BOT -> SUP)
@@ -145,9 +141,9 @@ export default function MyTeamInfoView({
           <div className="absolute -top-12 -right-12 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
 
           <div className="flex items-center gap-3.5 relative z-10">
-            {/* 팀 로고 */}
+            {/* 팀 로고 (약 1.5배 확대: w-20 h-20 sm:w-24 sm:h-24) */}
             {teamLogoUrl ? (
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-cyan-400/50 p-1 flex items-center justify-center shrink-0 overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.25)]">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white border border-cyan-400/50 p-1.5 flex items-center justify-center shrink-0 overflow-hidden shadow-[0_0_18px_rgba(6,182,212,0.3)]">
                 <img
                   src={teamLogoUrl}
                   alt={teamNameKo}
@@ -155,7 +151,7 @@ export default function MyTeamInfoView({
                 />
               </div>
             ) : (
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-slate-950 border border-cyan-400/50 flex items-center justify-center shrink-0 font-mono font-black text-sm text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.2)]">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-slate-950 border border-cyan-400/50 flex items-center justify-center shrink-0 font-mono font-black text-lg text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.25)]">
                 {teamShortName}
               </div>
             )}
@@ -175,23 +171,27 @@ export default function MyTeamInfoView({
                 {teamNameEn}
               </span>
 
-              {/* 리그/디비전 및 스폰서 뱃지 행 */}
-              <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
-                <span className="px-2 py-0.5 rounded-full bg-indigo-950/70 border border-indigo-500/40 text-indigo-300 font-bold text-[10px] flex items-center gap-1 shrink-0 shadow-sm">
-                  <Trophy className="w-3 h-3 text-amber-400" />
-                  <span>{divisionText}</span>
-                </span>
-                <span className="px-2 py-0.5 rounded-full bg-slate-800/80 border border-slate-700/60 text-slate-400 text-[10px] font-medium flex items-center gap-1 shrink-0">
-                  <Handshake className="w-3 h-3 text-slate-500" />
-                  <span>스폰서 없음</span>
-                </span>
+              {/* 리그/디비전 및 메인 스폰서 뱃지 (줄바꿈 분리) */}
+              <div className="flex flex-col gap-1.5 mt-1">
+                <div>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 font-bold text-[10px] shadow-sm">
+                    <Trophy className="w-3 h-3 text-amber-400" />
+                    <span>{divisionText}</span>
+                  </span>
+                </div>
+                <div>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-800/80 border border-slate-700/60 text-slate-400 text-[10px] font-medium">
+                    <Handshake className="w-3 h-3 text-slate-500" />
+                    <span>메인 스폰서: 스폰서 없음</span>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* 감독(Manager) 프로필 요약 카드 */}
-        <div className="bg-slate-900/85 border border-indigo-500/30 rounded-2xl p-3.5 flex gap-3.5 items-center relative overflow-hidden shadow-sm">
+        <div className="bg-slate-900/85 border border-indigo-500/30 rounded-2xl p-3.5 flex items-start gap-3.5 relative overflow-hidden shadow-sm">
           {/* 상단 우측 감독 직책 표기 */}
           <div className="absolute top-2.5 right-3 px-2 py-0.5 rounded-full bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 text-[9px] font-bold font-mono tracking-wider flex items-center gap-1">
             <Sparkles className="w-2.5 h-2.5 text-amber-400" />
@@ -199,7 +199,7 @@ export default function MyTeamInfoView({
           </div>
 
           {/* 감독 아바타 */}
-          <div className="w-20 h-20 sm:w-22 sm:h-22 aspect-square rounded-2xl overflow-hidden bg-slate-950 border-2 border-indigo-400/50 shadow-[0_0_15px_rgba(99,102,241,0.25)] shrink-0 flex items-center justify-center relative">
+          <div className="w-22 h-22 sm:w-24 sm:h-24 aspect-square rounded-2xl overflow-hidden bg-slate-950 border-2 border-indigo-400/50 shadow-[0_0_15px_rgba(99,102,241,0.25)] shrink-0 flex items-center justify-center relative mt-0.5">
             <AvatarRenderer
               dna={managerProfile.faceDna || createDefaultAvatarDna()}
               teamId={team?.id || matchedPredefined?.id}
@@ -214,7 +214,7 @@ export default function MyTeamInfoView({
           </div>
 
           {/* 감독 상세 스펙 */}
-          <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
+          <div className="flex-1 min-w-0 flex flex-col gap-1">
             {/* 1열: 이름, 나이 */}
             <div className="flex items-center gap-1.5 min-w-0 pr-20">
               <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate font-mono">
@@ -225,7 +225,7 @@ export default function MyTeamInfoView({
               </span>
             </div>
 
-            {/* 2열: 명성 및 언어 */}
+            {/* 2열: 명성 및 사용 언어 */}
             <div className="flex items-center gap-2 text-[10px] text-slate-300 font-mono flex-wrap">
               <span className="flex items-center gap-1 text-amber-300 font-bold">
                 <Award className="w-3 h-3 text-amber-400 shrink-0" />
@@ -237,20 +237,20 @@ export default function MyTeamInfoView({
               </span>
             </div>
 
-            {/* 3열: 감독 성향 3종 태그 (전술, 재정, 선수 관리) */}
-            <div className="flex items-center gap-1 flex-wrap mt-0.5">
-              <span className="px-1.5 py-0.5 rounded bg-slate-800/90 border border-slate-700/60 text-slate-300 text-[9px] font-medium flex items-center gap-1">
-                <Swords className="w-2.5 h-2.5 text-amber-400 shrink-0" />
-                <span>{managerProfile.tactics || "공격적"}</span>
-              </span>
-              <span className="px-1.5 py-0.5 rounded bg-slate-800/90 border border-slate-700/60 text-slate-300 text-[9px] font-medium flex items-center gap-1">
-                <Wallet className="w-2.5 h-2.5 text-emerald-400 shrink-0" />
-                <span>{managerProfile.finance || "신중함"}</span>
-              </span>
-              <span className="px-1.5 py-0.5 rounded bg-slate-800/90 border border-slate-700/60 text-slate-300 text-[9px] font-medium flex items-center gap-1">
-                <UserCheck className="w-2.5 h-2.5 text-indigo-400 shrink-0" />
-                <span>{managerProfile.playerManagement || "유연함"}</span>
-              </span>
+            {/* 3열: 감독 성향 3종 (각 성향마다 줄바꿈 및 아이콘과 동일한 컬러 적용) */}
+            <div className="flex flex-col gap-1.5 mt-1.5 w-full">
+              <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-amber-950/40 border border-amber-500/40 text-amber-300 text-[10px] font-semibold w-fit">
+                <Swords className="w-3 h-3 text-amber-400 shrink-0" />
+                <span>전술성향: {managerProfile.tactics || "공격적"}</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-[10px] font-semibold w-fit">
+                <Wallet className="w-3 h-3 text-emerald-400 shrink-0" />
+                <span>재정성향: {managerProfile.finance || "신중함"}</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-indigo-950/40 border border-indigo-500/40 text-indigo-300 text-[10px] font-semibold w-fit">
+                <UserCheck className="w-3 h-3 text-indigo-400 shrink-0" />
+                <span>선수관리성향: {managerProfile.playerManagement || "유연함"}</span>
+              </div>
             </div>
           </div>
         </div>
