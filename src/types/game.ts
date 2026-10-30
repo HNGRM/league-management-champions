@@ -99,6 +99,7 @@ export interface ManagerProfile {
   nameEn: string; // 감독 닉네임 (영문, 최대 14자)
   portrait: string; // 빈 문자열("")이면 미선택 상태
   faceDna?: AvatarDna | null; // 커스텀 아바타 DNA
+  age?: number; // 감독 만 나이 (기본 32세)
   tactics: TacticalPhilosophy | null;
   finance: FinancialPhilosophy | null;
   playerManagement: PlayerManagementPhilosophy | null;

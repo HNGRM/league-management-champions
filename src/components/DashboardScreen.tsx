@@ -36,6 +36,7 @@ import { autoAssignPlayerRoles } from "@/utils/playerAssignment";
 import { autoAssignCoachRoles } from "@/utils/coachAssignment";
 import MyTeamRosterView from "@/components/dashboard/MyTeamRosterView";
 import MyTeamCoachesView from "@/components/dashboard/MyTeamCoachesView";
+import MyTeamInfoView from "@/components/dashboard/MyTeamInfoView";
 import LeagueStandingsView from "@/components/dashboard/LeagueStandingsView";
 import SettingsModal from "@/components/SettingsModal";
 
@@ -447,6 +448,8 @@ export default function DashboardScreen() {
         >
           {mainTab.subTabs.map((sub) => {
             const Icon = sub.icon;
+            const isMyTeamInfoTab =
+              mainTab.id === "TEAM" && sub.id === "TEAM_INFO";
             const isMyTeamPlayersTab =
               mainTab.id === "ROSTER" && sub.id === "PLAYERS";
             const isMyTeamCoachesTab =
@@ -460,7 +463,15 @@ export default function DashboardScreen() {
                 className="h-full px-4 py-1 overflow-y-auto custom-scrollbar"
                 style={{ width: `${100 / subTabCount}%` }}
               >
-                {isMyTeamPlayersTab ? (
+                {isMyTeamInfoTab ? (
+                  <MyTeamInfoView
+                    team={currentTeam}
+                    predefinedTeam={selectedTeam}
+                    managerProfile={managerProfile}
+                    players={myPlayers}
+                    league={selectedTeam?.league || selectedLeague || "KCL"}
+                  />
+                ) : isMyTeamPlayersTab ? (
                   <MyTeamRosterView
                     players={myPlayers}
                     teamId={currentTeam?.id || selectedTeam?.id}

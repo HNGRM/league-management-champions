@@ -153,6 +153,7 @@ export const useGameStore = create<GameState>((set) => ({
     nameEn: "",
     portrait: "",
     faceDna: createDefaultAvatarDna(),
+    age: 32,
     tactics: null,
     finance: null,
     playerManagement: null,
