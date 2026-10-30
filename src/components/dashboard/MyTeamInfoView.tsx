@@ -241,15 +241,15 @@ export default function MyTeamInfoView({
             <div className="flex flex-col gap-1.5 mt-1.5 w-full">
               <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-amber-950/40 border border-amber-500/40 text-amber-300 text-[10px] font-semibold w-fit">
                 <Swords className="w-3 h-3 text-amber-400 shrink-0" />
-                <span>전술성향: {managerProfile.tactics || "공격적"}</span>
+                <span>전술: {managerProfile.tactics || "공격적"}</span>
               </div>
               <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-[10px] font-semibold w-fit">
                 <Wallet className="w-3 h-3 text-emerald-400 shrink-0" />
-                <span>재정성향: {managerProfile.finance || "신중함"}</span>
+                <span>재정: {managerProfile.finance || "신중함"}</span>
               </div>
               <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-indigo-950/40 border border-indigo-500/40 text-indigo-300 text-[10px] font-semibold w-fit">
                 <UserCheck className="w-3 h-3 text-indigo-400 shrink-0" />
-                <span>선수관리성향: {managerProfile.playerManagement || "유연함"}</span>
+                <span>선수관리: {managerProfile.playerManagement || "유연함"}</span>
               </div>
             </div>
           </div>
