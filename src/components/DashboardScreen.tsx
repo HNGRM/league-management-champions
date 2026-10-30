@@ -2,19 +2,18 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import {
-  Newspaper,
+  Shield,
   Users,
   Play,
-  ChartColumn,
+  Swords,
   Trophy,
   Mail,
-  Mic,
   Hash,
-  Shield,
   User,
   GraduationCap,
   Dumbbell,
   Wallet,
+  Building2,
   Layers,
   Ban,
   Target,
@@ -35,7 +34,7 @@ import LeagueStandingsView from "@/components/dashboard/LeagueStandingsView";
 import SettingsModal from "@/components/SettingsModal";
 
 // ================= 메인 탭 & 세부 탭 정의 =================
-type MainTabId = "NEWS" | "TEAM" | "ANALYSIS" | "LEAGUE";
+type MainTabId = "TEAM" | "ROSTER" | "TACTICS" | "LEAGUE";
 
 interface SubTabDef {
   id: string;
@@ -53,34 +52,34 @@ interface MainTabDef {
 
 const MAIN_TABS: MainTabDef[] = [
   {
-    id: "NEWS",
-    label: "소식",
-    labelEn: "NEWS",
-    icon: Newspaper,
+    id: "TEAM",
+    label: "팀",
+    labelEn: "TEAM",
+    icon: Shield,
     subTabs: [
+      { id: "TEAM_INFO", label: "팀정보", icon: Shield },
       { id: "MAIL", label: "메일함", icon: Mail },
-      { id: "INTERVIEW", label: "인터뷰", icon: Mic },
+      { id: "FINANCE", label: "재정", icon: Wallet },
       { id: "SNS", label: "SNS", icon: Hash },
     ],
   },
   {
-    id: "TEAM",
-    label: "팀",
-    labelEn: "TEAM",
+    id: "ROSTER",
+    label: "선수단",
+    labelEn: "ROSTER",
     icon: Users,
     subTabs: [
-      { id: "TEAM_INFO", label: "팀정보", icon: Shield },
       { id: "PLAYERS", label: "선수", icon: User },
       { id: "COACHES", label: "코치", icon: GraduationCap },
       { id: "TRAINING", label: "훈련", icon: Dumbbell },
-      { id: "FINANCE", label: "재정", icon: Wallet },
+      { id: "FACILITY", label: "시설", icon: Building2 },
     ],
   },
   {
-    id: "ANALYSIS",
-    label: "분석",
-    labelEn: "ANALYSIS",
-    icon: ChartColumn,
+    id: "TACTICS",
+    label: "전력",
+    labelEn: "TACTICS",
+    icon: Swords,
     subTabs: [
       { id: "TIER", label: "티어", icon: Layers },
       { id: "BANPICK", label: "밴픽", icon: Ban },
@@ -202,12 +201,12 @@ export default function DashboardScreen() {
   }, [leagueDivisions, currentTeam, selectedTeam, selectedLeague, customTeamInfo, setLeagueDivisions]);
 
   // 활성 메인 탭 & 메인 탭별 마지막 세부 탭 기억
-  const [activeMainTab, setActiveMainTab] = useState<MainTabId>("NEWS");
+  const [activeMainTab, setActiveMainTab] = useState<MainTabId>("TEAM");
   const [activeSubTabs, setActiveSubTabs] = useState<Record<MainTabId, number>>({
-    NEWS: 0,
     TEAM: 0,
-    ANALYSIS: 0,
-    LEAGUE: 0,
+    ROSTER: 0,
+    TACTICS: 0,
+    LEAGUE: 1, // 리그 진입 시 기본으로 '순위' 탭 선택
   });
 
   const mainTab = MAIN_TABS.find((t) => t.id === activeMainTab) || MAIN_TABS[0];
@@ -400,7 +399,7 @@ export default function DashboardScreen() {
           {mainTab.subTabs.map((sub) => {
             const Icon = sub.icon;
             const isMyTeamPlayersTab =
-              mainTab.id === "TEAM" && sub.id === "PLAYERS";
+              mainTab.id === "ROSTER" && sub.id === "PLAYERS";
             const isLeagueStandingsTab =
               mainTab.id === "LEAGUE" && sub.id === "STANDINGS";
 
