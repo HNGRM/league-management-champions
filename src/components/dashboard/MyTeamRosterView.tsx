@@ -106,7 +106,7 @@ export default function MyTeamRosterView({
           등록된 팀 선수가 없습니다.
         </p>
         <p className="text-xs text-slate-500">
-          스카우트나 이적 시장을 통해 선수를 영입해 보세요.
+          선수 영입이나 이적 시장을 통해 선수를 영입해 보세요.
         </p>
       </div>
     );

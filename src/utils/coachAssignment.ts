@@ -1,11 +1,13 @@
 import { Coach, CoachRole } from "@/types/coach";
 
 export type CoachRoleCode = "ING" | "ANA" | "TRN" | "MNG" | "SCT" | "UNA";
+export type CoachRoleBadge = "인게임" | "분석" | "훈련" | "관리" | "영입" | "미배정";
 
 export interface CoachRoleMeta {
   role: CoachRole;
   statKey: "ingame" | "analysis" | "training" | "managing" | "scouting";
   code: CoachRoleCode;
+  badge: CoachRoleBadge;
   order: number;
   description: string;
 }
@@ -15,6 +17,7 @@ export const COACH_ROLES_META: CoachRoleMeta[] = [
     role: "인게임 코치",
     statKey: "ingame",
     code: "ING",
+    badge: "인게임",
     order: 1,
     description: "인게임 밴픽 및 오더 보정",
   },
@@ -22,6 +25,7 @@ export const COACH_ROLES_META: CoachRoleMeta[] = [
     role: "분석 코치",
     statKey: "analysis",
     code: "ANA",
+    badge: "분석",
     order: 2,
     description: "메타 분석 및 전력 리포트",
   },
@@ -29,6 +33,7 @@ export const COACH_ROLES_META: CoachRoleMeta[] = [
     role: "훈련 코치",
     statKey: "training",
     code: "TRN",
+    badge: "훈련",
     order: 3,
     description: "선수 스탯 훈련 및 숙련도 성장",
   },
@@ -36,15 +41,17 @@ export const COACH_ROLES_META: CoachRoleMeta[] = [
     role: "관리 코치",
     statKey: "managing",
     code: "MNG",
+    badge: "관리",
     order: 4,
     description: "체력/의욕 관리 및 컨디션 케어",
   },
   {
-    role: "스카우트 코치",
+    role: "영입 코치",
     statKey: "scouting",
     code: "SCT",
+    badge: "영입",
     order: 5,
-    description: "유망주 발굴 및 협상력",
+    description: "유망주 발굴 및 계약 협상력",
   },
 ];
 
@@ -59,26 +66,28 @@ export const ROLE_CODE_ORDER: Record<CoachRoleCode, number> = {
 
 export function getCoachRoleMeta(role: CoachRole | string | null | undefined): {
   code: CoachRoleCode;
+  badge: CoachRoleBadge;
   label: string;
   order: number;
   isAssigned: boolean;
 } {
   switch (role) {
     case "인게임 코치":
-      return { code: "ING", label: "인게임 코치", order: 1, isAssigned: true };
+      return { code: "ING", badge: "인게임", label: "인게임 코치", order: 1, isAssigned: true };
     case "분석 코치":
     case "전력분석 코치":
-      return { code: "ANA", label: "분석 코치", order: 2, isAssigned: true };
+      return { code: "ANA", badge: "분석", label: "분석 코치", order: 2, isAssigned: true };
     case "훈련 코치":
-      return { code: "TRN", label: "훈련 코치", order: 3, isAssigned: true };
+      return { code: "TRN", badge: "훈련", label: "훈련 코치", order: 3, isAssigned: true };
     case "관리 코치":
     case "팀 관리 코치":
-      return { code: "MNG", label: "관리 코치", order: 4, isAssigned: true };
+      return { code: "MNG", badge: "관리", label: "관리 코치", order: 4, isAssigned: true };
+    case "영입 코치":
     case "스카우트 코치":
     case "스카우터":
-      return { code: "SCT", label: "스카우트 코치", order: 5, isAssigned: true };
+      return { code: "SCT", badge: "영입", label: "영입 코치", order: 5, isAssigned: true };
     default:
-      return { code: "UNA", label: "미배정 코치", order: 6, isAssigned: false };
+      return { code: "UNA", badge: "미배정", label: "미배정 코치", order: 6, isAssigned: false };
   }
 }
 
@@ -171,7 +180,7 @@ export function autoAssignCoachRoles(coaches: Coach[]): Coach[] {
  * 2. [ANA] 분석 코치
  * 3. [TRN] 훈련 코치
  * 4. [MNG] 관리 코치
- * 5. [SCT] 스카우트 코치
+ * 5. [SCT] 영입 코치
  * 6. [UNA] 미배정 코치 (종합 OVR 내림차순 -> 닉네임 오름차순)
  */
 export function sortCoachesByRoleOrder(coaches: Coach[]): Coach[] {

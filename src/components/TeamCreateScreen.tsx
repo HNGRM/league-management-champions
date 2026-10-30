@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import {
   ArrowLeft,
   Check,
@@ -28,6 +28,11 @@ import { getPlayerTraitById } from "@/data/playerTraits";
 import { getTeamLogo } from "@/data/teamLogos";
 import { getLeagueLogo } from "@/data/leagueLogos";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
+import {
+  autoAssignCoachRoles,
+  sortCoachesByRoleOrder,
+  getCoachRoleMeta,
+} from "@/utils/coachAssignment";
 
 // 리그 선택 메타데이터
 interface LeagueSelectTabInfo {
@@ -115,9 +120,12 @@ export default function TeamCreateScreen() {
   const inspectedTeamPlayers = inspectingTeam
     ? getPlayersByTeamId(inspectingTeam.id)
     : [];
-  const inspectedTeamCoaches = inspectingTeam
-    ? getCoachesByTeamId(inspectingTeam.id)
-    : [];
+  const inspectedTeamCoaches = useMemo(() => {
+    if (!inspectingTeam) return [];
+    const rawCoaches = getCoachesByTeamId(inspectingTeam.id);
+    const assigned = autoAssignCoachRoles(rawCoaches);
+    return sortCoachesByRoleOrder(assigned);
+  }, [inspectingTeam]);
   const starterCount = inspectedTeamPlayers.filter(
     (p) => p.contractAndRole.rosterStatus === "Starter"
   ).length;
@@ -773,6 +781,7 @@ export default function TeamCreateScreen() {
 
                 <div className="flex flex-col gap-2.5">
                   {inspectedTeamCoaches.map((coach) => {
+                    const roleMeta = getCoachRoleMeta(coach.contractAndRole?.role);
                     const coachOvr = Math.round(
                       (coach.stats.ingame +
                         coach.stats.analysis +
@@ -796,9 +805,15 @@ export default function TeamCreateScreen() {
                             size="100%"
                             className="w-full h-full"
                           />
-                          {/* 좌상단 코치 배지 */}
-                          <div className="absolute top-0 left-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl backdrop-blur-md border-r border-b border-indigo-400/70 bg-indigo-950/95 font-mono font-black text-[11px] sm:text-xs text-indigo-300 shadow-[0_0_12px_rgba(99,102,241,0.35)] tracking-wider">
-                            COACH
+                          {/* 좌상단 코치 한글 직책 배지 */}
+                          <div
+                            className={`absolute top-0 left-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl backdrop-blur-md border-r border-b font-bold text-[11px] sm:text-xs tracking-tight shadow-md ${
+                              roleMeta.isAssigned
+                                ? "border-indigo-400/70 bg-indigo-950/95 text-indigo-300 shadow-[0_0_12px_rgba(99,102,241,0.35)]"
+                                : "border-slate-600/70 bg-slate-900/95 text-slate-400"
+                            }`}
+                          >
+                            {roleMeta.badge}
                           </div>
                         </div>
 
@@ -870,7 +885,7 @@ export default function TeamCreateScreen() {
                             </span>
                             <span className="text-slate-700">·</span>
                             <span>
-                              스카우트{" "}
+                              영입{" "}
                               <b className="text-slate-200">
                                 {coach.stats.scouting}
                               </b>
@@ -879,7 +894,7 @@ export default function TeamCreateScreen() {
 
                           <div className="flex items-center gap-1 mt-0.5 flex-wrap">
                             <span className="px-1.5 py-0.5 rounded bg-slate-800 text-indigo-300 text-[9px] border border-indigo-500/30 font-medium">
-                              {coach.contractAndRole.role || "미배정 코치"}
+                              {roleMeta.label}
                             </span>
                             <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[9px] border border-slate-700 font-medium font-mono">
                               {coach.profile.status === "Active" ? "소속 계약" : coach.profile.status}

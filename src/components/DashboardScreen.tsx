@@ -90,7 +90,7 @@ const MAIN_TABS: MainTabDef[] = [
       { id: "TIER", label: "티어", icon: Layers },
       { id: "BANPICK", label: "밴픽", icon: Ban },
       { id: "STRATEGY", label: "전략", icon: Target },
-      { id: "SCOUT", label: "스카우트", icon: Search },
+      { id: "SCOUT", label: "영입", icon: Search },
     ],
   },
   {

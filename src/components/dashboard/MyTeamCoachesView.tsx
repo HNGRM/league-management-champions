@@ -54,7 +54,7 @@ export default function MyTeamCoachesView({
 
   // 고정 렌더링 순서로 정렬:
   // 1. [ING] 인게임 코치 -> 2. [ANA] 분석 코치 -> 3. [TRN] 훈련 코치 ->
-  // 4. [MNG] 관리 코치 -> 5. [SCT] 스카우트 코치 -> 6. [UNA] 미배정 코치들
+  // 4. [MNG] 관리 코치 -> 5. [SCT] 영입 코치 -> 6. [UNA] 미배정 코치들
   const sortedCoaches = useMemo(() => {
     return sortCoachesByRoleOrder(coaches);
   }, [coaches]);
@@ -271,15 +271,15 @@ export default function MyTeamCoachesView({
                   className="w-full h-full"
                 />
 
-                {/* 좌상단 3글자 직책 이니셜 배지 (ING, ANA, TRN, MNG, SCT, UNA) */}
+                {/* 좌상단 한글 직책 배지 (인게임, 분석, 훈련, 관리, 영입, 미배정) */}
                 <div
-                  className={`absolute top-0 left-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl backdrop-blur-md border-r border-b font-mono font-black text-[11px] sm:text-xs tracking-wider shadow-md ${
+                  className={`absolute top-0 left-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl backdrop-blur-md border-r border-b font-bold text-[11px] sm:text-xs tracking-tight shadow-md ${
                     roleMeta.isAssigned
                       ? "border-indigo-400/70 bg-indigo-950/95 text-indigo-300 shadow-[0_0_12px_rgba(99,102,241,0.35)]"
                       : "border-slate-600/70 bg-slate-900/95 text-slate-400"
                   }`}
                 >
-                  {roleMeta.code}
+                  {roleMeta.badge}
                 </div>
               </div>
 
@@ -422,7 +422,7 @@ export default function MyTeamCoachesView({
                         : ""
                     }
                   >
-                    스카우트{" "}
+                    영입{" "}
                     <b
                       className={
                         roleMeta.code === "SCT"

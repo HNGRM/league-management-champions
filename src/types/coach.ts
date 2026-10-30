@@ -9,6 +9,7 @@ export type CoachRole =
   | "분석 코치"
   | "훈련 코치"
   | "관리 코치"
+  | "영입 코치"
   | "스카우트 코치"
   | "전력분석 코치"
   | "팀 관리 코치"
@@ -31,7 +32,7 @@ export interface CoachProfile {
 
 export interface CoachContractAndRole {
   teamId: string | null;                 // 소속 구단 ID (예: "KCL-001", 무소속 FA는 null)
-  role: CoachRole | null;                // 5대 보직 (인게임 코치, 전력분석 코치, 훈련 코치, 팀 관리 코치, 스카우터, 미배정 시 null)
+  role: CoachRole | null;                // 5대 보직 (인게임 코치, 분석 코치, 훈련 코치, 관리 코치, 영입 코치, 미배정 시 null)
   salary: number;                        // 연봉 (원화 기준, 초기 0)
   contractYears: number;                 // 잔여 계약 연수 (초기 0)
   marketValue: number;                   // 시장 추정 가치 (초기 0)
@@ -42,7 +43,7 @@ export interface CoachStats {
   analysis: number;                      // 전력분석 (챔피언 티어 정리, 전력 분석 리포트)
   training: number;                      // 훈련 (스탯 증가, 챔피언 숙련도 증가)
   managing: number;                      // 팀 관리 (체력 조절, 의욕 조절)
-  scouting: number;                      // 스카우트 (선수 발견, 계약 성사)
+  scouting: number;                      // 영입 (선수 발견, 계약 성사)
 }
 
 export interface Coach {

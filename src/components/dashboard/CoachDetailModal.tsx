@@ -47,7 +47,7 @@ export default function CoachDetailModal({
     { key: "ANA", label: "전력분석", value: coach.stats.analysis, color: "from-indigo-500 to-purple-500" },
     { key: "TRN", label: "훈련", value: coach.stats.training, color: "from-emerald-500 to-teal-500" },
     { key: "MNG", label: "팀 관리", value: coach.stats.managing, color: "from-amber-500 to-orange-500" },
-    { key: "SCT", label: "스카우트", value: coach.stats.scouting, color: "from-pink-500 to-rose-500" },
+    { key: "SCT", label: "영입", value: coach.stats.scouting, color: "from-pink-500 to-rose-500" },
   ];
 
   return createPortal(
@@ -63,13 +63,13 @@ export default function CoachDetailModal({
         <div className="px-4 py-3 border-b border-slate-800/80 flex items-center justify-between bg-slate-900/60 shrink-0">
           <div className="flex items-center gap-2">
             <span
-              className={`px-2 py-0.5 rounded text-[10px] font-bold font-mono tracking-wider ${
+              className={`px-2 py-0.5 rounded text-[10px] font-bold tracking-tight ${
                 roleMeta.isAssigned
                   ? "bg-indigo-950 border border-indigo-500/50 text-indigo-300"
                   : "bg-slate-800 border border-slate-700 text-slate-400"
               }`}
             >
-              {roleMeta.code}
+              {roleMeta.badge}
             </span>
             <span className="text-xs font-bold text-slate-200">
               코치 상세 프로필
@@ -99,13 +99,13 @@ export default function CoachDetailModal({
                 className="w-full h-full"
               />
               <div
-                className={`absolute top-0 left-0 px-2 py-0.5 rounded-br-lg font-mono font-bold text-[10px] ${
+                className={`absolute top-0 left-0 px-2 py-0.5 rounded-br-lg font-bold text-[10px] tracking-tight ${
                   roleMeta.isAssigned
                     ? "bg-indigo-950/90 border-r border-b border-indigo-400/50 text-indigo-300"
                     : "bg-slate-900/90 border-r border-b border-slate-600/50 text-slate-400"
                 }`}
               >
-                {roleMeta.code}
+                {roleMeta.badge}
               </div>
             </div>
 
@@ -140,7 +140,7 @@ export default function CoachDetailModal({
 
               <div className="flex items-center gap-1 text-[10px] text-slate-400 font-mono">
                 <span className="px-1.5 py-0.5 rounded bg-indigo-950/80 text-indigo-300 border border-indigo-500/30">
-                  {roleMeta.isAssigned ? `[${roleMeta.code}] ${roleMeta.label}` : "미배정 코치"}
+                  {roleMeta.label}
                 </span>
                 <span className="text-cyan-300">
                   · {coach.profile.firstLanguage}
