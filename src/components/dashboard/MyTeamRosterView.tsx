@@ -254,15 +254,23 @@ export default function MyTeamRosterView({
                     </span>
                   </span>
                   <span className="text-slate-700">·</span>
-                  <span>계약 {player.contractAndRole.contractYears}년</span>
+                  <span className="text-emerald-400 font-medium">
+                    {player.contractAndRole.contractYears > 0
+                      ? `계약 ${player.contractAndRole.contractYears}년`
+                      : "FA"}
+                  </span>
                   <span className="text-slate-700">·</span>
                   <span className="flex items-center gap-1 text-slate-300 font-semibold">
                     <span className="text-slate-400 font-normal">가치</span>
-                    <span>
-                      {marketParts.integer}
-                      <span className="text-[0.85em] opacity-80">.{marketParts.decimal}</span>
-                      <span className="text-[0.75em] opacity-70 ml-0.5 font-normal">{marketParts.unit}</span>
-                    </span>
+                    {player.profile.isRetiring || !player.contractAndRole.marketValue ? (
+                      <span className="text-slate-500 font-normal">-</span>
+                    ) : (
+                      <span>
+                        {marketParts.integer}
+                        <span className="text-[0.85em] opacity-80">.{marketParts.decimal}</span>
+                        <span className="text-[0.75em] opacity-70 ml-0.5 font-normal">{marketParts.unit}</span>
+                      </span>
+                    )}
                   </span>
                 </div>
               </div>
