@@ -23,13 +23,16 @@ import {
   ListOrdered,
   ChartBar,
   BookOpen,
+  Settings,
 } from "lucide-react";
 import { useGameStore } from "@/store/useGameStore";
 import { getTeamLogo } from "@/data/teamLogos";
 import { getPlayersByTeamId } from "@/data/players";
 import { createInitialLeagueDivisions } from "@/data/divisions";
+import { deleteGameFromCloud } from "@/lib/saveManager";
 import MyTeamRosterView from "@/components/dashboard/MyTeamRosterView";
 import LeagueStandingsView from "@/components/dashboard/LeagueStandingsView";
+import SettingsModal from "@/components/SettingsModal";
 
 // ================= 메인 탭 & 세부 탭 정의 =================
 type MainTabId = "NEWS" | "TEAM" | "ANALYSIS" | "LEAGUE";
@@ -112,6 +115,29 @@ export default function DashboardScreen() {
   const leagueDivisions = useGameStore((state) => state.leagueDivisions);
   const setLeagueDivisions = useGameStore((state) => state.setLeagueDivisions);
   const currentDivision = useGameStore((state) => state.currentDivision);
+  const setScreen = useGameStore((state) => state.setScreen);
+  const resetCreationState = useGameStore((state) => state.resetCreationState);
+  const currentUser = useGameStore((state) => state.currentUser);
+  const selectedSlotId = useGameStore((state) => state.selectedSlotId);
+  const slots = useGameStore((state) => state.slots);
+  const setSlots = useGameStore((state) => state.setSlots);
+
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
+  // 팀 해체 (세이브 초기화) 처리
+  const handleDisbandTeam = async () => {
+    if (selectedSlotId) {
+      if (currentUser?.id) {
+        await deleteGameFromCloud(currentUser.id, selectedSlotId);
+      }
+      const updatedSlots = slots.map((s) =>
+        s.id === selectedSlotId ? { id: s.id, isCreated: false, isLocked: false } : s
+      );
+      setSlots(updatedSlots);
+    }
+    resetCreationState();
+    setScreen("SLOT_SELECT");
+  };
 
   // 대시보드 진입 시 혹시 myPlayers가 비어있고 팀이 선택되어 있다면 기본 로스터 복사 주입
   useEffect(() => {
@@ -278,11 +304,22 @@ export default function DashboardScreen() {
             </div>
           </div>
 
-          <div className="flex flex-col items-end shrink-0">
-            <span className="text-[10px] font-mono font-bold text-cyan-400 tracking-widest">
-              {currentYear} SEASON
-            </span>
-            <span className="text-xs font-bold text-slate-200">{currentWeek}주차</span>
+          <div className="flex items-center gap-2 shrink-0">
+            <div className="flex flex-col items-end">
+              <span className="text-[10px] font-mono font-bold text-cyan-400 tracking-widest">
+                {currentYear} SEASON
+              </span>
+              <span className="text-xs font-bold text-slate-200">{currentWeek}주차</span>
+            </div>
+            {/* 설정 버튼 */}
+            <button
+              type="button"
+              onClick={() => setIsSettingsOpen(true)}
+              className="w-8 h-8 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-800/80 flex items-center justify-center text-slate-400 hover:text-cyan-300 transition-all cursor-pointer shadow-sm group touch-manipulation"
+              title="환경설정"
+            >
+              <Settings className="w-4 h-4 transition-transform group-hover:rotate-45 duration-200" />
+            </button>
           </div>
         </div>
       </div>
@@ -424,6 +461,18 @@ export default function DashboardScreen() {
           })}
         </div>
       </div>
+
+      {/* 환경설정 모달 */}
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        teamName={teamNameKo}
+        managerNameEn={managerProfile?.nameEn || managerProfile?.name || "DIRECTOR"}
+        managerNameKo={managerProfile?.nameKo || managerName}
+        slotNumber={selectedSlotId || 1}
+        userEmail={currentUser?.email}
+        onDisbandConfirm={handleDisbandTeam}
+      />
     </div>
   );
 }

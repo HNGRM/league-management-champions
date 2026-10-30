@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { ArrowLeft, PlusCircle, Lock, AlertCircle, Sparkles, ChevronRight, ChevronsDown, Loader2, Cloud } from "lucide-react";
+import { ArrowLeft, PlusCircle, Lock, AlertCircle, Sparkles, ChevronRight, ChevronsDown, Loader2, Cloud, Trash2 } from "lucide-react";
 import { useGameStore } from "@/store/useGameStore";
-import { fetchUserSlots } from "@/lib/saveManager";
+import { fetchUserSlots, deleteGameFromCloud } from "@/lib/saveManager";
+import { SaveSlot } from "@/types/game";
+import DisbandConfirmModal from "@/components/DisbandConfirmModal";
 
 export default function SlotSelectScreen() {
   const setScreen = useGameStore((state) => state.setScreen);
@@ -15,6 +17,7 @@ export default function SlotSelectScreen() {
 
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [loadingCloud, setLoadingCloud] = useState(false);
+  const [disbandSlot, setDisbandSlot] = useState<SaveSlot | null>(null);
 
   // 마우스 드래그 스크롤 참조
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -42,6 +45,28 @@ export default function SlotSelectScreen() {
     setTimeout(() => {
       setToastMessage(null);
     }, 2200);
+  };
+
+  // 팀 해체 (슬롯 초기화) 확정 처리
+  const handleConfirmDisband = async () => {
+    if (!disbandSlot) return;
+    const slotId = disbandSlot.id;
+    try {
+      if (currentUser?.id) {
+        await deleteGameFromCloud(currentUser.id, slotId);
+        const freshSlots = await fetchUserSlots(currentUser.id);
+        setSlots(freshSlots);
+      } else {
+        const updated = slots.map((s) =>
+          s.id === slotId ? { id: s.id, isCreated: false, isLocked: false } : s
+        );
+        setSlots(updated);
+      }
+      showToast(`슬롯 ${slotId}번 팀이 해체되었습니다.`);
+      setDisbandSlot(null);
+    } catch (err: any) {
+      showToast("팀 해체 처리 중 오류가 발생했습니다.");
+    }
   };
 
   const handleSlotClick = (slotId: number, isLocked: boolean) => {
@@ -178,9 +203,9 @@ export default function SlotSelectScreen() {
                   : "bg-slate-900/60 border-cyan-500/30 hover:border-cyan-400/60 cursor-pointer hover:bg-slate-800/60 active:scale-[0.98]"
               }`}
             >
-              {/* 슬롯 상단: 번호 및 상태 뱃지 */}
-              <div className="flex items-center justify-between mb-2 pointer-events-none">
-                <div className="flex items-center gap-2">
+              {/* 슬롯 상단: 번호 및 상태 뱃지, 휴지통 버튼 */}
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2 pointer-events-none">
                   <span className="text-xs font-mono font-bold text-cyan-400/90 tracking-wider">
                     SLOT {String(slot.id).padStart(2, "0")}
                   </span>
@@ -191,9 +216,24 @@ export default function SlotSelectScreen() {
                   )}
                 </div>
 
+                {/* 활성 슬롯: 휴지통 아이콘 버튼 */}
+                {isSlotActive && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setDisbandSlot(slot);
+                    }}
+                    className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/20 border border-transparent hover:border-rose-500/30 transition-all cursor-pointer touch-manipulation z-10"
+                    title="팀 해체 (슬롯 초기화)"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                )}
+
                 {/* 잠금 여부 표시 */}
                 {isSlotLocked && (
-                  <div className="flex items-center gap-1 text-[11px] text-slate-500 font-mono">
+                  <div className="flex items-center gap-1 text-[11px] text-slate-500 font-mono pointer-events-none">
                     <Lock className="w-3.5 h-3.5" />
                     <span>LOCKED</span>
                   </div>
@@ -252,7 +292,7 @@ export default function SlotSelectScreen() {
                         <p className="text-[10px] text-slate-500 font-mono">
                           {isSlotLocked
                             ? "이전 슬롯을 먼저 클리어하세요"
-                            : "새로운 구단 창단 및 리그 참가"}
+                            : "새로운 팀 창단 및 리그 참가"}
                         </p>
                       </div>
                     </div>
@@ -272,8 +312,22 @@ export default function SlotSelectScreen() {
 
       {/* 하단 여백 및 가이드 문구 */}
       <div className="py-3 px-6 text-center text-[11px] text-cyan-500/40 font-mono shrink-0">
-        슬롯을 클릭하여 이전 게임을 이어하거나 새로운 구단을 창단하세요.
+        슬롯을 클릭하여 이전 게임을 이어하거나 새로운 팀을 창단하세요.
       </div>
+
+      {/* 슬롯 해체 2단계 확인 모달 */}
+      <DisbandConfirmModal
+        isOpen={!!disbandSlot}
+        teamName={disbandSlot?.team?.name || "선택된 팀"}
+        managerNameEn={
+          disbandSlot?.managerProfile?.nameEn ||
+          disbandSlot?.managerProfile?.name ||
+          "DIRECTOR"
+        }
+        slotNumber={disbandSlot?.id}
+        onConfirm={handleConfirmDisband}
+        onClose={() => setDisbandSlot(null)}
+      />
     </div>
   );
 }
