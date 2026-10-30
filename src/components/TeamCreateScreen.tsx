@@ -29,20 +29,6 @@ import { getTeamLogo } from "@/data/teamLogos";
 import { getLeagueLogo } from "@/data/leagueLogos";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
 
-const formatKoreanCurrency = (amount: number): string => {
-  if (amount >= 100000000) {
-    const eok = amount / 100000000;
-    const formatted = Number.isInteger(eok)
-      ? eok.toString()
-      : eok.toFixed(1).replace(/\.0$/, "");
-    return `${formatted}억`;
-  }
-  if (amount >= 10000) {
-    return `${Math.round(amount / 10000).toLocaleString()}만`;
-  }
-  return `${amount.toLocaleString()}원`;
-};
-
 // 리그 선택 메타데이터
 interface LeagueSelectTabInfo {
   code: LeagueLanguage;
@@ -701,10 +687,6 @@ export default function TeamCreateScreen() {
                             <span className="text-amber-300 font-semibold">
                               종합 {ovr}
                             </span>
-                            <span className="text-slate-600">·</span>
-                            <span className="text-cyan-300 font-semibold">
-                              잠재 {player.talentAndGrowth.potential}
-                            </span>
                           </div>
 
                           <div className="text-[10px] text-slate-400 font-mono flex items-center gap-1 flex-wrap leading-tight">
@@ -764,22 +746,7 @@ export default function TeamCreateScreen() {
                                 </span>
                               );
                             })}
-                            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[9px] border border-slate-700 font-medium">
-                              스타성 {player.talentAndGrowth.starQuality}
-                            </span>
                           </div>
-
-                          <span className="text-[9px] text-cyan-400 font-mono font-medium mt-0.5">
-                            연봉{" "}
-                            {formatKoreanCurrency(
-                              player.contractAndRole.salary
-                            )}{" "}
-                            · 계약 {player.contractAndRole.contractYears}년 ·
-                            가치{" "}
-                            {formatKoreanCurrency(
-                              player.contractAndRole.marketValue
-                            )}
-                          </span>
                         </div>
                       </div>
                     );
