@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import { Coach } from "@/types/coach";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
-import { GraduationCap, AlertCircle, Coins, Zap } from "lucide-react";
+import { GraduationCap, AlertCircle, Coins, Zap, ArrowLeftRight, Check } from "lucide-react";
 import { formatEokParts } from "@/utils/format";
 import { useGameStore } from "@/store/useGameStore";
 import {
@@ -11,6 +11,8 @@ import {
   sortCoachesByRoleOrder,
   getCoachRoleMeta,
 } from "@/utils/coachAssignment";
+import CoachDetailModal from "@/components/dashboard/CoachDetailModal";
+import { swapCoaches } from "@/utils/rosterSwap";
 
 interface MyTeamCoachesViewProps {
   coaches: Coach[];
@@ -24,6 +26,13 @@ export default function MyTeamCoachesView({
   league,
 }: MyTeamCoachesViewProps) {
   const setMyCoaches = useGameStore((state) => state.setMyCoaches);
+
+  // 역할 교체 모드 활성화 여부
+  const [isSwapMode, setIsSwapMode] = useState<boolean>(false);
+  // 교체 대상 1단계 선택된 코치 ID
+  const [selectedCoachId, setSelectedCoachId] = useState<string | null>(null);
+  // 일반 모드에서 상세 정보 팝업으로 열람할 코치
+  const [detailCoach, setDetailCoach] = useState<Coach | null>(null);
 
   // 초기 진입 시: 아직 보직이 하나도 배정되어 있지 않거나 비어있는 경우 자동 배정 실행
   useEffect(() => {
@@ -41,6 +50,7 @@ export default function MyTeamCoachesView({
     if (coaches.length === 0) return;
     const assigned = autoAssignCoachRoles(coaches);
     setMyCoaches(assigned);
+    setSelectedCoachId(null);
   };
 
   // 고정 렌더링 순서로 정렬:
@@ -49,6 +59,12 @@ export default function MyTeamCoachesView({
   const sortedCoaches = useMemo(() => {
     return sortCoachesByRoleOrder(coaches);
   }, [coaches]);
+
+  // 선택된 1단계 코치 객체
+  const selectedCoach = useMemo(
+    () => coaches.find((c) => c.profile.coachId === selectedCoachId),
+    [coaches, selectedCoachId]
+  );
 
   // 총 연봉 계산
   const totalSalary = useMemo(() => {
@@ -59,6 +75,29 @@ export default function MyTeamCoachesView({
   }, [sortedCoaches]);
 
   const totalSalaryParts = formatEokParts(totalSalary);
+
+  // 카드 클릭 핸들러 (모드에 따라 상세 팝업 or 2-Step 스왑)
+  const handleCardClick = (coach: Coach) => {
+    if (!isSwapMode) {
+      // 일반 모드: 상세 모달 열기
+      setDetailCoach(coach);
+      return;
+    }
+
+    // 역할 교체 모드: 2-Step 탭 스왑
+    if (!selectedCoachId) {
+      // 1단계: 첫 번째 코치 선택
+      setSelectedCoachId(coach.profile.coachId);
+    } else if (selectedCoachId === coach.profile.coachId) {
+      // 동일 카드 다시 터치: 취소
+      setSelectedCoachId(null);
+    } else {
+      // 2단계: 두 번째 코치 터치 -> 즉시 맞교환!
+      const updated = swapCoaches(coaches, selectedCoachId, coach.profile.coachId);
+      setMyCoaches(updated);
+      setSelectedCoachId(null);
+    }
+  };
 
   if (sortedCoaches.length === 0) {
     return (
@@ -78,7 +117,7 @@ export default function MyTeamCoachesView({
 
   return (
     <div className="flex flex-col gap-2.5 pb-4 select-none">
-      {/* 코치진 통계 요약 바 & 자동 배정 액션 버튼 */}
+      {/* 코치진 통계 요약 바 & 액션 버튼 */}
       <div className="bg-slate-950/70 border border-slate-800 rounded-2xl p-3 flex items-center justify-between shrink-0 shadow-sm flex-wrap gap-2">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
@@ -94,16 +133,49 @@ export default function MyTeamCoachesView({
           </div>
         </div>
 
-        <div className="flex items-center gap-2.5">
-          {/* ⚡ 자동 배정 버튼 */}
+        <div className="flex items-center gap-2">
+          {/* ⚡ 자동 배정 버튼 (교체 모드가 아닐 때 노출) */}
+          {!isSwapMode && (
+            <button
+              type="button"
+              onClick={handleAutoAssign}
+              title="스탯 기반 5대 전담 보직 최적 자동 배정"
+              className="px-2.5 py-1.5 rounded-xl bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 hover:text-white hover:bg-indigo-900/90 hover:border-indigo-400 active:scale-95 transition-all text-xs font-bold flex items-center gap-1 shadow-sm cursor-pointer touch-manipulation"
+            >
+              <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+              <span>자동 배정</span>
+            </button>
+          )}
+
+          {/* 🔄 역할 교체 모드 토글 버튼 */}
           <button
             type="button"
-            onClick={handleAutoAssign}
-            title="스탯 기반 5대 전담 보직 최적 자동 배정"
-            className="px-2.5 py-1 rounded-xl bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 hover:text-white hover:bg-indigo-900/90 hover:border-indigo-400 active:scale-95 transition-all text-[11px] font-bold flex items-center gap-1 shadow-sm cursor-pointer touch-manipulation"
+            onClick={() => {
+              if (isSwapMode) {
+                setIsSwapMode(false);
+                setSelectedCoachId(null);
+              } else {
+                setIsSwapMode(true);
+                setSelectedCoachId(null);
+              }
+            }}
+            className={`px-3 py-1.5 rounded-xl border text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer touch-manipulation active:scale-95 shadow-md ${
+              isSwapMode
+                ? "bg-gradient-to-r from-emerald-500 to-indigo-500 text-slate-950 border-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.4)]"
+                : "bg-slate-900/90 hover:bg-slate-850 border-indigo-500/40 text-indigo-300 hover:text-white hover:border-indigo-400"
+            }`}
           >
-            <Zap className="w-3 h-3 text-amber-400 fill-amber-400" />
-            <span>자동 배정</span>
+            {isSwapMode ? (
+              <>
+                <Check className="w-3.5 h-3.5 stroke-[2.5]" />
+                <span>교체 완료</span>
+              </>
+            ) : (
+              <>
+                <ArrowLeftRight className="w-3.5 h-3.5" />
+                <span>역할 교체</span>
+              </>
+            )}
           </button>
 
           <div className="h-6 w-px bg-slate-800" />
@@ -127,6 +199,35 @@ export default function MyTeamCoachesView({
         </div>
       </div>
 
+      {/* 역할 교체 모드 안내 가이드 바 */}
+      {isSwapMode && (
+        <div className="bg-indigo-950/70 border border-indigo-500/50 rounded-xl px-3 py-2 flex items-center justify-between animate-in fade-in slide-in-from-top-1 duration-200">
+          <span className="text-[11px] font-bold text-indigo-200 flex items-center gap-1.5 flex-wrap">
+            <ArrowLeftRight className="w-3.5 h-3.5 text-indigo-400 shrink-0 animate-pulse" />
+            {selectedCoachId && selectedCoach ? (
+              <span>
+                <b className="text-white underline underline-offset-2">
+                  {selectedCoach.profile.nicknameEn}
+                </b>
+                {" ↔ "}맞바꿀 대상을 터치하세요 (취소는 재터치)
+              </span>
+            ) : (
+              <span>교체할 첫 번째 코치를 터치하세요.</span>
+            )}
+          </span>
+
+          {selectedCoachId && (
+            <button
+              type="button"
+              onClick={() => setSelectedCoachId(null)}
+              className="text-[10px] text-slate-400 hover:text-white underline cursor-pointer shrink-0 ml-2"
+            >
+              선택 취소
+            </button>
+          )}
+        </div>
+      )}
+
       {/* 코치 목록 카드 */}
       <div className="flex flex-col gap-2.5">
         {sortedCoaches.map((coach) => {
@@ -140,13 +241,21 @@ export default function MyTeamCoachesView({
           );
 
           const roleMeta = getCoachRoleMeta(coach.contractAndRole?.role);
+          const isSelected = selectedCoachId === coach.profile.coachId;
           const salaryParts = formatEokParts(coach.contractAndRole?.salary || 0);
           const marketParts = formatEokParts(coach.contractAndRole?.marketValue || 0);
 
           return (
             <div
               key={coach.profile.coachId}
-              className="p-3 rounded-2xl bg-slate-900/90 border border-slate-800/90 flex gap-3.5 items-center hover:border-slate-700 transition-colors"
+              onClick={() => handleCardClick(coach)}
+              className={`p-3 rounded-2xl border flex gap-3.5 items-center transition-all cursor-pointer ${
+                isSelected
+                  ? "bg-indigo-950/70 border-indigo-400 ring-2 ring-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.45)] scale-[1.01]"
+                  : isSwapMode
+                  ? "bg-slate-900/90 border-slate-700 hover:border-indigo-400/70 hover:bg-slate-850 active:scale-[0.99]"
+                  : "bg-slate-900/90 border-slate-800/90 hover:border-slate-700 hover:bg-slate-850 active:scale-[0.99]"
+              }`}
             >
               {/* 좌측 코치 아바타 초상화 */}
               <div
@@ -178,7 +287,7 @@ export default function MyTeamCoachesView({
 
               {/* 우측 코치 상세 정보 */}
               <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
-                {/* 1열: 닉네임, 은퇴예정 배지, 담당 보직 */}
+                {/* 1열: 닉네임, 은퇴예정 배지, 담당 보직 or 스왑 배지 */}
                 <div className="flex items-center justify-between gap-1">
                   <div className="flex items-center gap-1.5 min-w-0 truncate">
                     <span className="text-xs sm:text-sm font-bold text-white tracking-tight truncate font-mono">
@@ -193,17 +302,31 @@ export default function MyTeamCoachesView({
                       </span>
                     )}
                   </div>
-                  <span
-                    className={`px-1.5 py-0.5 rounded text-[9px] border font-medium shrink-0 font-mono ${
-                      roleMeta.isAssigned
-                        ? "bg-indigo-950/80 text-indigo-300 border-indigo-500/40"
-                        : "bg-slate-800/90 text-slate-400 border-slate-700/60"
-                    }`}
-                  >
-                    {roleMeta.isAssigned
-                      ? `[${roleMeta.code}] ${roleMeta.label}`
-                      : "미배정 (UNA)"}
-                  </span>
+
+                  {isSwapMode ? (
+                    <span
+                      className={`px-2 py-0.5 rounded text-[10px] font-bold font-mono border flex items-center gap-1 shrink-0 ${
+                        isSelected
+                          ? "bg-indigo-400 text-slate-950 border-indigo-300 animate-pulse"
+                          : "bg-indigo-950/80 text-indigo-300 border-indigo-500/40"
+                      }`}
+                    >
+                      <ArrowLeftRight className="w-3 h-3" />
+                      <span>{isSelected ? "선택됨" : "교체"}</span>
+                    </span>
+                  ) : (
+                    <span
+                      className={`px-1.5 py-0.5 rounded text-[9px] border font-medium shrink-0 font-mono ${
+                        roleMeta.isAssigned
+                          ? "bg-indigo-950/80 text-indigo-300 border-indigo-500/40"
+                          : "bg-slate-800/90 text-slate-400 border-slate-700/60"
+                      }`}
+                    >
+                      {roleMeta.isAssigned
+                        ? `[${roleMeta.code}] ${roleMeta.label}`
+                        : "미배정 (UNA)"}
+                    </span>
+                  )}
                 </div>
 
                 {/* 2열: 나이, 연차, 종합, 언어 */}
@@ -370,6 +493,14 @@ export default function MyTeamCoachesView({
           );
         })}
       </div>
+
+      {/* 코치 상세 정보 열람 팝업 모달 */}
+      <CoachDetailModal
+        coach={detailCoach}
+        teamId={teamId}
+        league={league}
+        onClose={() => setDetailCoach(null)}
+      />
     </div>
   );
 }
