@@ -139,10 +139,87 @@ export default function MailDetailBottomSheet({
             </p>
           </div>
 
-          {/* 필수 액션 상태 배너 (이미 처리된 경우) */}
+          {/* 필수 액션 선택 영역 (본문 내부: 수락/거절 등 의사 결정) */}
+          {mail.hasAction && mail.actionState === "PENDING" && (
+            <div className="p-3.5 rounded-2xl bg-slate-900/90 border border-indigo-500/30 flex flex-col gap-3 shadow-lg shadow-black/30 animate-in fade-in duration-200">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-300">
+                  <AlertCircle className="w-4 h-4 text-indigo-400" />
+                  <span>안건 의사 결정</span>
+                </div>
+                <span className="text-[10px] text-slate-400 font-mono">
+                  선택 시 즉시 처리
+                </span>
+              </div>
+
+              {mail.actionType === "ACCEPT_REJECT" && (
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onAction?.(mail.id, "REJECTED");
+                    }}
+                    className="flex-1 py-3 px-2 rounded-xl bg-slate-950 hover:bg-rose-950/60 border border-slate-700 hover:border-rose-500/50 text-slate-300 hover:text-rose-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95 touch-manipulation min-w-0"
+                  >
+                    <XCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                    <span className="truncate">거절하기</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onAction?.(mail.id, "ACCEPTED");
+                    }}
+                    className="flex-1 py-3 px-2 rounded-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(6,182,212,0.35)] cursor-pointer active:scale-95 touch-manipulation min-w-0"
+                  >
+                    <Handshake className="w-4 h-4 text-cyan-200 shrink-0" />
+                    <span className="truncate">수락 (2.5억 원)</span>
+                  </button>
+                </div>
+              )}
+
+              {mail.actionType === "CONTRACT_SIGN" && (
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onAction?.(mail.id, "REJECTED");
+                    }}
+                    className="flex-1 py-3 px-2 rounded-xl bg-slate-950 hover:bg-slate-850 border border-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95 touch-manipulation min-w-0"
+                  >
+                    <span className="truncate">보류하기</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onAction?.(mail.id, "ACCEPTED");
+                    }}
+                    className="flex-1 py-3 px-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(16,185,129,0.35)] cursor-pointer active:scale-95 touch-manipulation min-w-0"
+                  >
+                    <Check className="w-4 h-4 text-emerald-100 shrink-0" />
+                    <span className="truncate">계약 체결 (1.2억 원)</span>
+                  </button>
+                </div>
+              )}
+
+              {mail.actionType === "CONFIRM" && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    onAction?.(mail.id, "COMPLETED");
+                  }}
+                  className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(6,182,212,0.35)] cursor-pointer active:scale-95 touch-manipulation"
+                >
+                  <CheckCircle2 className="w-4 h-4 text-cyan-200 shrink-0" />
+                  <span>로스터 등록 확인 완료</span>
+                </button>
+              )}
+            </div>
+          )}
+
+          {/* 필수 액션 상태 배너 (선택 완료 후 초록/빨간색 표시창) */}
           {mail.actionState && mail.actionState !== "PENDING" && (
             <div
-              className={`p-3 rounded-xl border flex items-center gap-2 text-xs font-bold ${
+              className={`p-3.5 rounded-2xl border flex items-center gap-2.5 text-xs font-bold animate-in fade-in duration-200 ${
                 mail.actionState === "ACCEPTED" || mail.actionState === "COMPLETED"
                   ? "bg-emerald-950/60 border-emerald-500/40 text-emerald-300"
                   : "bg-rose-950/60 border-rose-500/40 text-rose-300"
@@ -164,81 +241,15 @@ export default function MailDetailBottomSheet({
           )}
         </div>
 
-        {/* 하단 액션 버튼 영역 */}
+        {/* 하단 확인 / 닫기 버튼 영역 (어떤 메일이든 항상 고정) */}
         <div className="shrink-0 p-4 border-t border-slate-800/80 bg-slate-900/90">
-          {mail.hasAction && mail.actionState === "PENDING" ? (
-            <div className="flex items-center gap-2">
-              {mail.actionType === "ACCEPT_REJECT" && (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onAction?.(mail.id, "REJECTED");
-                    }}
-                    className="flex-1 py-3 px-2 rounded-xl bg-slate-900 hover:bg-rose-950/60 border border-slate-700 hover:border-rose-500/50 text-slate-300 hover:text-rose-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95 touch-manipulation min-w-0"
-                  >
-                    <XCircle className="w-4 h-4 text-rose-400 shrink-0" />
-                    <span className="truncate">거절하기</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onAction?.(mail.id, "ACCEPTED");
-                    }}
-                    className="flex-1 py-3 px-2 rounded-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(6,182,212,0.35)] cursor-pointer active:scale-95 touch-manipulation min-w-0"
-                  >
-                    <Handshake className="w-4 h-4 text-cyan-200 shrink-0" />
-                    <span className="truncate">수락 (2.5억 원)</span>
-                  </button>
-                </>
-              )}
-
-              {mail.actionType === "CONTRACT_SIGN" && (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onAction?.(mail.id, "REJECTED");
-                    }}
-                    className="flex-1 py-3 px-2 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-700 text-slate-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95 touch-manipulation min-w-0"
-                  >
-                    <span className="truncate">보류하기</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onAction?.(mail.id, "ACCEPTED");
-                    }}
-                    className="flex-1 py-3 px-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(16,185,129,0.35)] cursor-pointer active:scale-95 touch-manipulation min-w-0"
-                  >
-                    <Check className="w-4 h-4 text-emerald-100 shrink-0" />
-                    <span className="truncate">계약 체결 (1.2억 원)</span>
-                  </button>
-                </>
-              )}
-
-              {mail.actionType === "CONFIRM" && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    onAction?.(mail.id, "COMPLETED");
-                  }}
-                  className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(6,182,212,0.35)] cursor-pointer active:scale-95 touch-manipulation"
-                >
-                  <CheckCircle2 className="w-4 h-4 text-cyan-200 shrink-0" />
-                  <span>로스터 등록 확인 완료</span>
-                </button>
-              )}
-            </div>
-          ) : (
-            <button
-              type="button"
-              onClick={onClose}
-              className="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-700/80 text-slate-200 font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95 touch-manipulation"
-            >
-              <span>확인 / 닫기</span>
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={onClose}
+            className="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-700/80 hover:border-slate-600 text-slate-200 font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95 touch-manipulation shadow-sm"
+          >
+            <span>확인 / 닫기</span>
+          </button>
         </div>
       </div>
     </div>,
