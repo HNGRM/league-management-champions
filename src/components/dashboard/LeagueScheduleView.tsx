@@ -305,9 +305,9 @@ export default function LeagueScheduleView() {
                     return (
                       <div
                         key={item.id}
-                        className="flex items-center justify-center rounded-xl bg-slate-950/25 border border-dashed border-slate-800/40 min-h-[30px] h-[30px] select-none"
+                        className="flex items-center justify-center rounded-lg bg-slate-950/30 border border-slate-800/40 h-[26px] shrink-0 select-none"
                       >
-                        <span className="text-[10px] text-slate-700/50 font-mono">-</span>
+                        <span className="text-[9px] text-slate-700/60 font-mono leading-none">-</span>
                       </div>
                     );
                   }
@@ -315,15 +315,15 @@ export default function LeagueScheduleView() {
                   return (
                     <div
                       key={item.id}
-                      className="flex items-center justify-between py-1 px-2 rounded-xl bg-slate-950/70 border border-slate-800/90 text-xs gap-1.5 min-h-[30px] h-[30px]"
+                      className="flex items-center justify-between px-2 rounded-lg bg-slate-950/70 border border-slate-800/90 text-xs gap-1.5 h-[26px] shrink-0"
                     >
                       <div className="flex items-center gap-1.5 min-w-0">
                         <span
-                          className={`text-[10px] font-mono font-bold shrink-0 ${item.tagClass}`}
+                          className={`text-[9.5px] font-mono font-bold shrink-0 leading-none ${item.tagClass}`}
                         >
                           {item.tag}
                         </span>
-                        <div className="w-4 h-4 rounded-md bg-slate-900 border border-slate-700 p-0.5 flex items-center justify-center shrink-0 overflow-hidden text-[10px]">
+                        <div className="w-3.5 h-3.5 rounded bg-slate-900 border border-slate-700 p-0.5 flex items-center justify-center shrink-0 overflow-hidden text-[9px]">
                           {item.logoUrl ? (
                             // eslint-disable-next-line @next/next/no-img-element
                             <img
@@ -332,32 +332,32 @@ export default function LeagueScheduleView() {
                               className="w-full h-full object-contain"
                             />
                           ) : item.icon ? (
-                            <span>{item.icon}</span>
+                            <span className="leading-none">{item.icon}</span>
                           ) : (
-                            <Shield className="w-3 h-3 text-slate-500" />
+                            <Shield className="w-2.5 h-2.5 text-slate-500" />
                           )}
                         </div>
-                        <span className="text-[11px] font-bold text-slate-200 truncate max-w-[130px]">
+                        <span className="text-[10.5px] font-bold text-slate-200 truncate max-w-[130px] leading-none">
                           {item.title}
                         </span>
                         {item.badge && (
                           <span
-                            className={`px-1 py-0.2 rounded text-[8px] font-bold border shrink-0 ${item.badgeClass}`}
+                            className={`px-1 py-0.2 rounded text-[7.5px] font-bold border shrink-0 leading-none ${item.badgeClass}`}
                           >
                             {item.badge}
                           </span>
                         )}
                         {item.subText && (
-                          <span className="text-[9px] font-mono text-slate-400 font-bold shrink-0">
+                          <span className="text-[8px] font-mono text-slate-400 font-bold shrink-0 leading-none">
                             {item.subText}
                           </span>
                         )}
                       </div>
 
                       {/* 경기/이벤트 결과 또는 상태 뱃지 */}
-                      <div className="shrink-0 font-mono">
+                      <div className="shrink-0 font-mono flex items-center">
                         <span
-                          className={`px-1.5 py-0.5 rounded text-[9px] border ${item.statusClass}`}
+                          className={`px-1.5 py-0.5 rounded text-[8px] border leading-none ${item.statusClass}`}
                         >
                           {item.statusText}
                         </span>
