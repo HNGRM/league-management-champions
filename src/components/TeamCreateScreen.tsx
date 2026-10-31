@@ -23,6 +23,7 @@ import { LeagueLanguage, PredefinedTeam } from "@/types/game";
 import { PREDEFINED_TEAMS } from "@/data/teams";
 import { PREDEFINED_MANAGERS } from "@/data/managers";
 import { getPlayersByTeamId } from "@/data/players";
+import { getPositionNameKo } from "@/types/player";
 import { getCoachesByTeamId } from "@/data/coaches";
 import { getPlayerTraitById } from "@/data/playerTraits";
 import { getTeamLogo } from "@/data/teamLogos";
@@ -558,7 +559,7 @@ export default function TeamCreateScreen() {
                         size="100%"
                         className="w-full h-full"
                       />
-                      <div className="absolute top-0 left-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl backdrop-blur-md border-r border-b border-cyan-400/70 bg-cyan-950/95 font-mono font-black text-[11px] sm:text-xs text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.35)] tracking-wider">
+                      <div className="absolute -top-0.5 -left-0.5 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl rounded-tl-2xl backdrop-blur-md border-r border-b border-cyan-400/70 bg-cyan-950/95 font-mono font-black text-[11px] sm:text-xs text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.35)] tracking-wider">
                         HC
                       </div>
                     </div>
@@ -652,17 +653,17 @@ export default function TeamCreateScreen() {
                           />
                           {/* 좌상단 포지션 마크 (모서리 밀착 & 주전/후보 색상 동기화) */}
                           <div
-                            className={`absolute top-0 left-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl backdrop-blur-md border-r border-b font-mono font-black text-[11px] sm:text-xs shadow-md tracking-wider ${
+                            className={`absolute -top-0.5 -left-0.5 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl rounded-tl-2xl backdrop-blur-md border-r border-b font-mono font-black text-[11px] sm:text-xs shadow-md tracking-wider ${
                               isStarter
                                 ? "bg-cyan-950/95 border-cyan-400/70 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.35)]"
                                 : "bg-slate-900/95 border-slate-600/70 text-slate-400"
                             }`}
                           >
-                            {player.contractAndRole.mainPos}
+                            {getPositionNameKo(player.contractAndRole.mainPos)}
                           </div>
                           {/* 우하단 주전/후보 마크 (모서리 밀착 & 주전/후보 색상 동기화) */}
                           <div
-                            className={`absolute bottom-0 right-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-tl-xl backdrop-blur-md border-l border-t font-bold text-[11px] sm:text-xs shadow-md tracking-tight ${
+                            className={`absolute -bottom-0.5 -right-0.5 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-tl-xl rounded-br-2xl backdrop-blur-md border-l border-t font-bold text-[11px] sm:text-xs shadow-md tracking-tight ${
                               isStarter
                                 ? "bg-cyan-950/95 border-cyan-400/70 text-cyan-200 shadow-[0_0_12px_rgba(6,182,212,0.35)]"
                                 : "bg-slate-900/95 border-slate-600/70 text-slate-400"
@@ -807,7 +808,7 @@ export default function TeamCreateScreen() {
                           />
                           {/* 좌상단 코치 한글 직책 배지 */}
                           <div
-                            className={`absolute top-0 left-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl backdrop-blur-md border-r border-b font-bold text-[11px] sm:text-xs tracking-tight shadow-md ${
+                            className={`absolute -top-0.5 -left-0.5 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl rounded-tl-2xl backdrop-blur-md border-r border-b font-bold text-[11px] sm:text-xs tracking-tight shadow-md ${
                               roleMeta.isAssigned
                                 ? "border-indigo-400/70 bg-indigo-950/95 text-indigo-300 shadow-[0_0_12px_rgba(99,102,241,0.35)]"
                                 : "border-slate-600/70 bg-slate-900/95 text-slate-400"

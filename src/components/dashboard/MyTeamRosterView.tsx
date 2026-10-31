@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import { Users, AlertCircle, ArrowLeftRight, Check, Zap, Sparkles } from "lucide-react";
-import { Player, Position } from "@/types/player";
+import { Player, Position, getPositionNameKo } from "@/types/player";
 import { getPlayerTraitById } from "@/data/playerTraits";
 import { formatEokParts } from "@/utils/format";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
@@ -241,17 +241,17 @@ export default function MyTeamRosterView({
                 />
                 {/* 좌상단 포지션 마크 */}
                 <div
-                  className={`absolute top-0 left-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl backdrop-blur-md border-r border-b font-mono font-black text-[11px] sm:text-xs shadow-md tracking-wider ${
+                  className={`absolute -top-0.5 -left-0.5 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl rounded-tl-2xl backdrop-blur-md border-r border-b font-mono font-black text-[11px] sm:text-xs shadow-md tracking-wider ${
                     isStarter
                       ? "bg-cyan-950/95 border-cyan-400/70 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.35)]"
                       : "bg-slate-900/95 border-slate-600/70 text-slate-400"
                   }`}
                 >
-                  {player.contractAndRole.mainPos}
+                  {getPositionNameKo(player.contractAndRole.mainPos)}
                 </div>
                 {/* 우하단 주전/후보 마크 */}
                 <div
-                  className={`absolute bottom-0 right-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-tl-xl backdrop-blur-md border-l border-t font-bold text-[11px] sm:text-xs shadow-md tracking-tight ${
+                  className={`absolute -bottom-0.5 -right-0.5 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-tl-xl rounded-br-2xl backdrop-blur-md border-l border-t font-bold text-[11px] sm:text-xs shadow-md tracking-tight ${
                     isStarter
                       ? "bg-cyan-950/95 border-cyan-400/70 text-cyan-200 shadow-[0_0_12px_rgba(6,182,212,0.35)]"
                       : "bg-slate-900/95 border-slate-600/70 text-slate-400"

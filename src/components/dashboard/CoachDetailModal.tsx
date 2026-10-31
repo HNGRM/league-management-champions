@@ -99,7 +99,7 @@ export default function CoachDetailModal({
                 className="w-full h-full"
               />
               <div
-                className={`absolute top-0 left-0 px-2 py-0.5 rounded-br-lg font-bold text-[10px] tracking-tight ${
+                className={`absolute -top-0.5 -left-0.5 px-2 py-0.5 rounded-br-lg rounded-tl-2xl font-bold text-[10px] tracking-tight ${
                   roleMeta.isAssigned
                     ? "bg-indigo-950/90 border-r border-b border-indigo-400/50 text-indigo-300"
                     : "bg-slate-900/90 border-r border-b border-slate-600/50 text-slate-400"

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Player } from "@/types/player";
+import { Player, getPositionNameKo } from "@/types/player";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
 import { getPlayerTraitById } from "@/data/playerTraits";
 import { formatEokParts } from "@/utils/format";
@@ -98,8 +98,8 @@ export default function PlayerDetailModal({
                 size="100%"
                 className="w-full h-full"
               />
-              <div className="absolute top-0 left-0 px-2 py-0.5 rounded-br-lg bg-cyan-950/90 border-r border-b border-cyan-400/50 font-mono font-bold text-[10px] text-cyan-300">
-                {player.contractAndRole.mainPos}
+              <div className="absolute -top-0.5 -left-0.5 px-2 py-0.5 rounded-br-lg rounded-tl-2xl bg-cyan-950/90 border-r border-b border-cyan-400/50 font-mono font-bold text-[10px] text-cyan-300">
+                {getPositionNameKo(player.contractAndRole.mainPos)}
               </div>
             </div>
 
@@ -134,7 +134,7 @@ export default function PlayerDetailModal({
 
               <div className="flex items-center gap-1 text-[10px] text-slate-400 font-mono">
                 <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
-                  주 {player.contractAndRole.mainPos} · 부 {player.contractAndRole.subPos}
+                  주 {getPositionNameKo(player.contractAndRole.mainPos)} · 부 {getPositionNameKo(player.contractAndRole.subPos)}
                 </span>
                 <span className="text-cyan-300">
                   · {player.profile.firstLanguage}

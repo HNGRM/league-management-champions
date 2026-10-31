@@ -258,7 +258,7 @@ export default function MyTeamCoachesView({
 
           {/* 좌상단 한글 직책 배지 (인게임, 분석, 훈련, 관리, 영입, 미배정) */}
           <div
-            className={`absolute top-0 left-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl backdrop-blur-md border-r border-b font-bold text-[11px] sm:text-xs tracking-tight shadow-md ${
+            className={`absolute -top-0.5 -left-0.5 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl rounded-tl-2xl backdrop-blur-md border-r border-b font-bold text-[11px] sm:text-xs tracking-tight shadow-md ${
               roleMeta.isAssigned
                 ? "border-indigo-400/70 bg-indigo-950/95 text-indigo-300 shadow-[0_0_12px_rgba(99,102,241,0.35)]"
                 : "border-slate-600/70 bg-slate-900/95 text-slate-400"
@@ -504,7 +504,7 @@ export default function MyTeamCoachesView({
           }`}
         >
           {/* 좌상단 한글 직책 배지 (흐린 톤) */}
-          <div className="absolute top-0 left-0 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl backdrop-blur-md border-r border-b font-bold text-[11px] sm:text-xs tracking-tight border-slate-700/60 bg-slate-900/85 text-slate-400">
+          <div className="absolute -top-0.5 -left-0.5 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-br-xl rounded-tl-2xl backdrop-blur-md border-r border-b font-bold text-[11px] sm:text-xs tracking-tight border-slate-700/60 bg-slate-900/85 text-slate-400">
             {meta.badge}
           </div>
 

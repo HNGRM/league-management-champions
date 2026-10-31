@@ -8,6 +8,19 @@ export type EntityStatus = "Active" | "FA" | "Upcoming";
 export type FormLevel = "최상" | "상승" | "보통" | "하락" | "최악";
 export type LeagueLanguage = "KCL" | "CCL" | "ECL" | "ACL" | "PCL";
 
+export const POSITION_NAMES_KO: Record<Position, string> = {
+  TOP: "탑",
+  JGL: "정글",
+  MID: "미드",
+  BOT: "바텀",
+  SUP: "서폿",
+};
+
+export function getPositionNameKo(pos: Position | string | undefined | null): string {
+  if (!pos) return "";
+  return POSITION_NAMES_KO[pos as Position] || pos;
+}
+
 export interface PlayerProfile {
   playerId: string;                      // 예: "P_0001" ~ "P_1250"
   nicknameKr: string;                    // 한글 닉네임 (예: "제니스")

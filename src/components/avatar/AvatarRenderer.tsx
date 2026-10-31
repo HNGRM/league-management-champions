@@ -1174,7 +1174,7 @@ export default function AvatarRenderer({
         </defs>
 
         {showBackground && (
-          <rect width="200" height="200" rx="16" fill={`url(#bg-grad-${teamId || "default"})`} />
+          <rect width="200" height="200" fill={`url(#bg-grad-${teamId || "default"})`} />
         )}
 
         {renderBackHair()}

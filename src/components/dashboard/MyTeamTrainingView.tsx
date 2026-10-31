@@ -13,7 +13,7 @@ import {
   Shield,
   HelpCircle,
 } from "lucide-react";
-import { Player } from "@/types/player";
+import { Player, getPositionNameKo } from "@/types/player";
 import { Coach } from "@/types/coach";
 import { PlayerTrainingAssignment, getTrainingTypeInfo } from "@/types/training";
 import { getChampionById } from "@/data/champions";
@@ -270,7 +270,7 @@ export default function MyTeamTrainingView({
                 <div className="flex items-center gap-1.5 min-w-0">
                   {/* 포지션 뱃지 */}
                   <span className="px-1.5 py-0.5 rounded-md bg-slate-800 border border-slate-700 text-cyan-300 font-mono font-bold text-[10px] shrink-0">
-                    {player.contractAndRole?.mainPos}
+                    {getPositionNameKo(player.contractAndRole?.mainPos)}
                   </span>
 
                   {/* 닉네임 */}

@@ -9,7 +9,7 @@ import {
   getWeekDetailedEvents,
 } from "@/types/schedule";
 import { TeamStanding } from "@/types/game";
-import { Player } from "@/types/player";
+import { Player, getPositionNameKo } from "@/types/player";
 import { getChampionById } from "@/data/champions";
 import {
   Shield,
@@ -555,7 +555,7 @@ export default function ScheduleMatchDetailModal({
                           className="px-1.5 py-0.2 rounded bg-rose-900/60 border border-rose-500/60 text-white text-[9px] font-bold"
                         >
                           {p.profile.nicknameKr || p.profile.nicknameEn} (
-                          {p.contractAndRole.mainPos}) :{" "}
+                          {getPositionNameKo(p.contractAndRole.mainPos)}) :{" "}
                           {p.conditionAndForm?.stamina ?? 0}%
                         </span>
                       ))}

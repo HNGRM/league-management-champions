@@ -14,7 +14,7 @@ import {
   UserCheck,
 } from "lucide-react";
 import { Team, PredefinedTeam, ManagerProfile } from "@/types/game";
-import { Player, Position } from "@/types/player";
+import { Player, Position, getPositionNameKo } from "@/types/player";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
 import { createDefaultAvatarDna } from "@/types/avatar";
 import { getTeamLogo } from "@/data/teamLogos";
@@ -216,7 +216,7 @@ export default function MyTeamInfoView({
               className="w-full h-full"
             />
             {/* 좌상단 감독 뱃지 */}
-            <div className="absolute top-0 left-0 px-2 py-0.5 rounded-br-xl backdrop-blur-md border-r border-b border-indigo-400/70 bg-indigo-950/95 text-indigo-300 font-bold text-[10px] tracking-tight shadow-md">
+            <div className="absolute -top-0.5 -left-0.5 px-2 py-0.5 rounded-br-xl rounded-tl-2xl backdrop-blur-md border-r border-b border-indigo-400/70 bg-indigo-950/95 text-indigo-300 font-bold text-[10px] tracking-tight shadow-md">
               감독
             </div>
           </div>
@@ -349,7 +349,7 @@ export default function MyTeamInfoView({
 
                 {/* 라인 포지션 배지 */}
                 <div className="px-1.5 py-0.5 rounded-md bg-slate-800/90 border border-slate-700/60 text-[10px] font-bold font-mono text-slate-300 text-center w-full shadow-sm">
-                  {item.pos}
+                  {getPositionNameKo(item.pos)}
                 </div>
 
                 {/* 주전 선수 닉네임 (영문 및 하단 회색 한글 이름) */}

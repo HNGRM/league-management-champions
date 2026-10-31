@@ -16,7 +16,7 @@ import {
   Users,
   Dumbbell,
 } from "lucide-react";
-import { Player, Position } from "@/types/player";
+import { Player, Position, getPositionNameKo } from "@/types/player";
 import { Champion } from "@/types/champion";
 import {
   TrainingType,
@@ -190,7 +190,7 @@ export default function TrainingSettingModal({
                   {player.profile.nicknameEn} ({player.profile.nicknameKr})
                 </span>
                 <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-800 text-cyan-300 border border-slate-700">
-                  {player.contractAndRole?.mainPos}
+                  {getPositionNameKo(player.contractAndRole?.mainPos)}
                 </span>
                 <span className="text-[10px] text-slate-400">
                   {player.contractAndRole?.rosterStatus === "Starter"
