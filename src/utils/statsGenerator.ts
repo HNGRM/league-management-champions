@@ -5,7 +5,7 @@ import { PREDEFINED_TEAMS } from "@/data/teams";
 import { getPlayersByTeamId } from "@/data/players";
 import { getTeamLogo } from "@/data/teamLogos";
 import { champions, getChampionsByPosition } from "@/data/champions";
-import { DIVISION_METAS } from "@/data/divisions";
+import { DIVISION_METAS, getAiLeagueDivisions } from "@/data/divisions";
 import { calculatePlayerOvr } from "@/utils/playerAssignment";
 import { isTier1Champion } from "@/utils/metaTiers";
 
@@ -36,33 +36,44 @@ function seededRange(seed: string, min: number, max: number): number {
  * @param leagueId 리그 코드 (기본값: "KCL")
  * @param division 디비전 코드 (기본값: "D")
  * @param customTeamId 플레이어 팀 ID
+ * @param customTeamName 플레이어 팀 이름 (옵션)
  * @param customPlayers 플레이어 팀 선수단 로스터 (플레이어 조작 정보 반영)
+ * @param customStandings 해당 디비전 순위표 (leagueDivisions[division])
  */
 export function generateLeaguePlayerStats(
   leagueId: string = "KCL",
   division: string = "D",
   customTeamId?: string,
-  customPlayers?: any[]
+  customTeamName?: string,
+  customPlayers?: any[],
+  customStandings?: TeamStanding[]
 ): PlayerStatsSummary[] {
   const currentTier = (division as DivisionTier) || "D";
-  const meta = DIVISION_METAS[currentTier] || DIVISION_METAS.D;
-  const [minId, maxId] = meta.idRange;
 
-  // 해당 디비전 소속 팀 필터링
-  const leagueTeams = PREDEFINED_TEAMS.filter((t) => t.league === leagueId);
-  const divisionTeams = leagueTeams.filter((t) => {
-    const num = parseInt(t.id.replace(/^[A-Z]+-/, ""), 10);
-    return num >= minId && num <= maxId;
-  });
+  // customStandings가 존재하면 순위표의 실제 팀들(플레이어 팀 포함)을 100% 동일하게 사용
+  // 없을 경우 AI 리그 순위표에서 해당 디비전 팀 목록을 가져옴
+  const targetStandings: TeamStanding[] =
+    customStandings && customStandings.length > 0
+      ? customStandings
+      : (getAiLeagueDivisions(leagueId as LeagueLanguage)[currentTier] || []);
 
   const playerStatsList: PlayerStatsSummary[] = [];
 
   // 각 팀의 선발(Starter) 선수단 추출
-  divisionTeams.forEach((team) => {
-    const isPlayerTeam = customTeamId && team.id === customTeamId;
+  targetStandings.forEach((standing) => {
+    const tId = standing.teamId;
+    const isPlayerTeam =
+      standing.isPlayer || (customTeamId ? tId === customTeamId : false);
+    const teamName = standing.teamName || (isPlayerTeam && customTeamName ? customTeamName : tId);
+
+    // 팀 로스터 추출: 플레이어 팀인 경우 customPlayers 우선
     let teamRoster = isPlayerTeam && customPlayers && customPlayers.length > 0
       ? customPlayers
-      : getPlayersByTeamId(team.id);
+      : getPlayersByTeamId(tId);
+
+    if (teamRoster.length === 0 && isPlayerTeam && customPlayers && customPlayers.length > 0) {
+      teamRoster = customPlayers;
+    }
 
     // 주전 우선, 없으면 앞선 5명 추출
     const starters = teamRoster.filter(
@@ -71,7 +82,7 @@ export function generateLeaguePlayerStats(
     const activePlayers = starters.length >= 5 ? starters.slice(0, 5) : teamRoster.slice(0, 5);
 
     activePlayers.forEach((player) => {
-      const pId = player.profile.playerId;
+      const pId = player.profile?.playerId || `P_${tId}_${Math.random()}`;
       const pos: Position = player.contractAndRole?.mainPos || "MID";
       const ovr = calculatePlayerOvr(player);
 
@@ -156,7 +167,6 @@ export function generateLeaguePlayerStats(
       });
 
       const top3Champs = sortedByMastery.slice(0, 3);
-      // 경기 수 분배 (예: matchesPlayed = 14 -> 6, 5, 3)
       const g1 = Math.round(matchesPlayed * 0.45);
       const g2 = Math.round(matchesPlayed * 0.35);
       const g3 = Math.max(1, matchesPlayed - g1 - g2);
@@ -177,9 +187,11 @@ export function generateLeaguePlayerStats(
 
       playerStatsList.push({
         playerId: pId,
-        playerName: `${player.profile.nicknameEn} (${player.profile.nicknameKr})`,
-        teamId: team.id,
-        teamName: team.nameKo,
+        playerName: player.profile
+          ? `${player.profile.nicknameEn} (${player.profile.nicknameKr})`
+          : `선수 (${pos})`,
+        teamId: tId,
+        teamName,
         position: pos,
         matchesPlayed,
         avgKills,
@@ -189,6 +201,7 @@ export function generateLeaguePlayerStats(
         avgRating,
         mvpCount,
         mostPicks,
+        isPlayerTeam,
       });
     });
   });
@@ -201,37 +214,45 @@ export function generateLeaguePlayerStats(
  *
  * @param leagueId 리그 코드 (기본값: "KCL")
  * @param division 디비전 코드 (기본값: "D")
- * @param customTeam 플레이어 팀 정보
- * @param customStandings 기존 순위표 데이터 (있는 경우 경기 수 연동)
+ * @param customTeamId 플레이어 팀 ID
+ * @param customTeamName 플레이어 팀 이름 (옵션)
+ * @param customStandings 기존 순위표 데이터 (leagueDivisions[division])
+ * @param customTeamLogo 플레이어 팀 커스텀 로고 (옵션)
  */
 export function generateLeagueTeamStats(
   leagueId: string = "KCL",
   division: string = "D",
-  customTeam?: Team,
-  customStandings?: TeamStanding[]
+  customTeamId?: string,
+  customTeamName?: string,
+  customStandings?: TeamStanding[],
+  customTeamLogo?: string | null
 ): TeamStatsSummary[] {
   const currentTier = (division as DivisionTier) || "D";
-  const meta = DIVISION_METAS[currentTier] || DIVISION_METAS.D;
-  const [minId, maxId] = meta.idRange;
 
-  const leagueTeams = PREDEFINED_TEAMS.filter((t) => t.league === leagueId);
-  const divisionTeams = leagueTeams.filter((t) => {
-    const num = parseInt(t.id.replace(/^[A-Z]+-/, ""), 10);
-    return num >= minId && num <= maxId;
-  });
+  // customStandings가 존재하면 순위표의 실제 팀들(플레이어 팀 포함)을 100% 동일하게 사용
+  // 없을 경우 AI 리그 순위표에서 해당 디비전 팀 목록을 가져옴
+  const targetStandings: TeamStanding[] =
+    customStandings && customStandings.length > 0
+      ? customStandings
+      : (getAiLeagueDivisions(leagueId as LeagueLanguage)[currentTier] || []);
 
-  return divisionTeams.map((team) => {
-    const tId = team.id;
-    const isPlayerTeam = customTeam && customTeam.id === tId;
-    const teamName = isPlayerTeam ? (customTeam.name || team.nameKo) : team.nameKo;
-    const teamLogo = getTeamLogo(tId) || null;
+  return targetStandings.map((standing) => {
+    const tId = standing.teamId;
+    const isPlayerTeam =
+      standing.isPlayer || (customTeamId ? tId === customTeamId : false);
+    const teamName = standing.teamName || (isPlayerTeam && customTeamName ? customTeamName : tId);
+    const teamLogo =
+      standing.logoUrl ||
+      (isPlayerTeam && customTeamLogo ? customTeamLogo : getTeamLogo(tId)) ||
+      null;
 
-    // 순위표 연동 경기 수 또는 기본 14경기
-    const matchedStanding = customStandings?.find((s) => s.teamId === tId);
-    const matchesPlayed = matchedStanding?.matchesPlayed || Math.round(seededRange(`${tId}_t_games`, 12, 16));
+    // 순위표 연동 경기 수 또는 기본 12~16경기 (시즌 개막 전 모의 통계)
+    const matchesPlayed = standing.matchesPlayed > 0
+      ? standing.matchesPlayed
+      : Math.round(seededRange(`${tId}_t_games`, 12, 16));
 
-    const winRate = matchedStanding && matchesPlayed > 0
-      ? (matchedStanding.wins / matchesPlayed)
+    const winRate = standing.matchesPlayed > 0
+      ? (standing.wins / standing.matchesPlayed)
       : seededRange(`${tId}_t_wr`, 0.35, 0.7);
 
     // 현실적인 팀 합산 스탯
@@ -266,6 +287,7 @@ export function generateLeagueTeamStats(
       avgRating,
       firstBloodRate,
       objectiveControlRate,
+      isPlayer: isPlayerTeam,
     };
   });
 }

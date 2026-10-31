@@ -19,6 +19,7 @@ export interface PlayerStatsSummary {
     games: number;
     winRate: number; // 승률 (%)
   }[]; // 모스트픽 상위 3개
+  isPlayerTeam?: boolean; // 플레이어 팀 소속 선수 여부
 }
 
 // 2. 팀 통계 모델
@@ -34,6 +35,7 @@ export interface TeamStatsSummary {
   avgRating: number;
   firstBloodRate: number; // 선취점 획득률 (0~100%)
   objectiveControlRate: number; // 오브젝트 제어율 (0~100%)
+  isPlayer?: boolean; // 플레이어 팀 여부
 }
 
 // 3. 챔피언 통계 모델

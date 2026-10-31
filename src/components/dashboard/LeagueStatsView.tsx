@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { useGameStore } from "@/store/useGameStore";
 import { Position, getPositionNameKo } from "@/types/player";
+import { DivisionTier } from "@/types/game";
 import {
   ChampionStatsSummary,
   ChampionTierGrade,
@@ -63,8 +64,24 @@ export default function LeagueStatsView() {
   const selectedLeague = useGameStore((state) => state.selectedLeague) || "KCL";
   const currentDivision = useGameStore((state) => state.currentDivision) || "D";
   const currentTeam = useGameStore((state) => state.currentTeam);
+  const selectedTeam = useGameStore((state) => state.selectedTeam);
+  const customTeamInfo = useGameStore((state) => state.customTeamInfo);
   const myPlayers = useGameStore((state) => state.myPlayers);
   const leagueDivisions = useGameStore((state) => state.leagueDivisions);
+
+  // 플레이어 팀 식별 정보 추출 (커스텀 생성 팀 및 선택 팀 완벽 지원)
+  const playerTeamId = currentTeam?.id || selectedTeam?.id || "TEAM-01";
+  const playerTeamName = customTeamInfo.nameKo || currentTeam?.name || selectedTeam?.nameKo || "우리 팀";
+  const playerTeamLogo = customTeamInfo.customLogoUrl || (currentTeam ? getTeamLogo(currentTeam.id) : null);
+
+  // 현재 열람 중인 디비전 (기본값: 플레이어의 소속 디비전 D)
+  const [selectedDivision, setSelectedDivision] = useState<DivisionTier>(currentDivision);
+
+  useEffect(() => {
+    if (currentDivision) {
+      setSelectedDivision(currentDivision);
+    }
+  }, [currentDivision]);
 
   // 상단 3개 메인 탭: "PLAYER" | "TEAM" | "CHAMPION"
   const [activeTab, setActiveTab] = useState<StatsTab>("PLAYER");
@@ -103,29 +120,33 @@ export default function LeagueStatsView() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [editingChampId]);
 
-  // 1. 선수 통계 데이터 (엔진 함수 연동)
+  // 1. 선수 통계 데이터 (선택한 디비전의 실제 순위표 팀 연동)
+  const currentDivisionStandings = leagueDivisions
+    ? leagueDivisions[selectedDivision]
+    : undefined;
+
   const initialPlayerStats = useMemo(() => {
     return generateLeaguePlayerStats(
       selectedLeague,
-      currentDivision,
-      currentTeam?.id,
-      myPlayers
+      selectedDivision,
+      playerTeamId,
+      playerTeamName,
+      myPlayers,
+      currentDivisionStandings
     );
-  }, [selectedLeague, currentDivision, currentTeam?.id, myPlayers]);
+  }, [selectedLeague, selectedDivision, playerTeamId, playerTeamName, myPlayers, currentDivisionStandings]);
 
-  // 2. 팀 통계 데이터 (엔진 함수 연동)
-  const currentDivisionStandings = leagueDivisions
-    ? leagueDivisions[currentDivision]
-    : undefined;
-
+  // 2. 팀 통계 데이터 (선택한 디비전의 실제 순위표 팀 연동)
   const teamStats = useMemo(() => {
     return generateLeagueTeamStats(
       selectedLeague,
-      currentDivision,
-      currentTeam || undefined,
-      currentDivisionStandings
+      selectedDivision,
+      playerTeamId,
+      playerTeamName,
+      currentDivisionStandings,
+      playerTeamLogo
     );
-  }, [selectedLeague, currentDivision, currentTeam, currentDivisionStandings]);
+  }, [selectedLeague, selectedDivision, playerTeamId, playerTeamName, currentDivisionStandings, playerTeamLogo]);
 
   // 3. 챔피언 통계 데이터 (엔진 함수 연동 & 티어 수정 상태 보존)
   const [championStats, setChampionStats] = useState<ChampionStatsSummary[]>([]);
@@ -272,7 +293,7 @@ export default function LeagueStatsView() {
           </button>
         </div>
 
-        {/* Row 2: 검색창 & 정렬 드롭다운 */}
+        {/* Row 2: 검색창 & 디비전 선택 & 정렬 드롭다운 */}
         <div className="flex items-center gap-2 w-full">
           {/* 검색창 */}
           <div className="relative flex-1 min-w-0">
@@ -291,6 +312,22 @@ export default function LeagueStatsView() {
               className="w-full pl-8 pr-2.5 py-1.5 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white placeholder-slate-500 outline-none focus:border-cyan-500/60 transition-colors shadow-inner font-sans"
             />
           </div>
+
+          {/* 선수 탭인 경우 디비전 선택기 */}
+          {activeTab === "PLAYER" && (
+            <div className="flex items-center gap-1 shrink-0">
+              <select
+                value={selectedDivision}
+                onChange={(e) => setSelectedDivision(e.target.value as DivisionTier)}
+                className="bg-slate-950/80 border border-slate-800 rounded-xl px-2 py-1.5 text-xs font-bold text-amber-300 outline-none focus:border-cyan-500/60 cursor-pointer shadow-inner"
+              >
+                <option value="A">1부 (A)</option>
+                <option value="B">2부 (B)</option>
+                <option value="C">3부 (C)</option>
+                <option value="D">4부 (D){currentDivision === "D" ? " ★" : ""}</option>
+              </select>
+            </div>
+          )}
 
           {/* 정렬 드롭다운 */}
           <div className="flex items-center gap-1 shrink-0">
@@ -339,7 +376,7 @@ export default function LeagueStatsView() {
         </div>
       </div>
 
-      {/* ================= 2. 서브 필터 탭 (포지션 / 역할군) ================= */}
+      {/* ================= 2. 서브 필터 탭 (포지션 / 디비전 / 역할군) ================= */}
       {activeTab === "PLAYER" && (
         <div className="flex items-center gap-1 bg-slate-950/70 border border-slate-800/80 rounded-xl p-1 overflow-x-auto custom-scrollbar">
           {POSITION_FILTERS.map((tab) => {
@@ -361,6 +398,32 @@ export default function LeagueStatsView() {
           })}
           <div className="ml-auto text-[11px] font-mono text-slate-500 pr-2 shrink-0">
             총 {filteredPlayers.length}명
+          </div>
+        </div>
+      )}
+
+      {activeTab === "TEAM" && (
+        <div className="flex items-center gap-1 bg-slate-950/70 border border-slate-800/80 rounded-xl p-1 overflow-x-auto custom-scrollbar">
+          {(["A", "B", "C", "D"] as DivisionTier[]).map((tier) => {
+            const isActive = selectedDivision === tier;
+            const isMyDiv = tier === currentDivision;
+            return (
+              <button
+                key={tier}
+                type="button"
+                onClick={() => setSelectedDivision(tier)}
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                  isActive
+                    ? "bg-slate-800 text-cyan-300 border border-cyan-400/40 shadow-xs"
+                    : "text-slate-400 hover:text-white hover:bg-slate-900"
+                }`}
+              >
+                {tier}부 리그{isMyDiv ? " (소속)" : ""}
+              </button>
+            );
+          })}
+          <div className="ml-auto text-[11px] font-mono text-slate-500 pr-2 shrink-0">
+            총 {filteredTeams.length}팀
           </div>
         </div>
       )}
@@ -414,7 +477,7 @@ export default function LeagueStatsView() {
                   </tr>
                 ) : (
                   filteredPlayers.map((player, idx) => {
-                    const isMyPlayer = currentTeam?.id && player.teamId === currentTeam.id;
+                    const isMyPlayer = player.isPlayerTeam || (playerTeamId ? player.teamId === playerTeamId : false);
                     const rank = idx + 1;
 
                     // KDA 색상 분기
@@ -469,7 +532,9 @@ export default function LeagueStatsView() {
                               </span>
                             </div>
                             <div className="text-[10px] text-slate-400 truncate mt-0.5 font-sans flex items-center gap-1">
-                              <span>{player.teamName}</span>
+                              <span className={isMyPlayer ? "text-cyan-400/90 font-medium" : ""}>
+                                {player.teamName}
+                              </span>
                               <span className="text-slate-600">·</span>
                               <span className="font-mono text-slate-400">{player.matchesPlayed}G</span>
                             </div>
@@ -579,8 +644,9 @@ export default function LeagueStatsView() {
                   </tr>
                 ) : (
                   filteredTeams.map((team, idx) => {
-                    const isMyTeam = currentTeam?.id && team.teamId === currentTeam.id;
+                    const isMyTeam = team.isPlayer || (playerTeamId ? team.teamId === playerTeamId : false);
                     const rank = idx + 1;
+                    const teamLogoSrc = team.teamLogo || (isMyTeam ? playerTeamLogo : null);
 
                     return (
                       <tr
@@ -612,12 +678,11 @@ export default function LeagueStatsView() {
                         <td className="py-2 px-2 font-sans">
                           <div className="flex flex-col min-w-0">
                             <div className="flex items-center gap-1.5 min-w-0">
-                              {team.teamLogo ? (
-                                <Image
-                                  src={team.teamLogo}
+                              {teamLogoSrc ? (
+                                /* eslint-disable-next-line @next/next/no-img-element */
+                                <img
+                                  src={teamLogoSrc}
                                   alt={team.teamName}
-                                  width={18}
-                                  height={18}
                                   className="w-4 h-4 rounded object-contain shrink-0"
                                 />
                               ) : (
@@ -872,8 +937,8 @@ export default function LeagueStatsView() {
             {activeTab === "CHAMPION" && "구단 선정 티어는 감독과 코칭스태프가 직접 변경하여 밴픽 전략에 반영할 수 있습니다."}
           </span>
         </div>
-        <span className="font-mono text-slate-600">
-          {selectedLeague} · 디비전 {currentDivision}
+        <span className="font-mono text-slate-600 shrink-0">
+          {selectedLeague} · 디비전 {selectedDivision}
         </span>
       </div>
     </div>
