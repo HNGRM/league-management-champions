@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { useGameStore } from "@/store/useGameStore";
 import { Position, getPositionNameKo } from "@/types/player";
-import { DivisionTier } from "@/types/game";
+import { DivisionTier, LeagueDivisions, LeagueLanguage } from "@/types/game";
 import {
   ChampionStatsSummary,
   ChampionTierGrade,
@@ -35,6 +35,7 @@ import {
 } from "@/utils/statsGenerator";
 import { getChampionById } from "@/data/champions";
 import { getTeamLogo } from "@/data/teamLogos";
+import { createInitialLeagueDivisions } from "@/data/divisions";
 
 type StatsTab = "PLAYER" | "TEAM" | "CHAMPION";
 
@@ -60,9 +61,21 @@ const CHAMPION_ROLE_FILTERS = [
   "디버퍼",
 ];
 
-export default function LeagueStatsView() {
-  const selectedLeague = useGameStore((state) => state.selectedLeague) || "KCL";
-  const currentDivision = useGameStore((state) => state.currentDivision) || "D";
+interface LeagueStatsViewProps {
+  divisions?: LeagueDivisions | null;
+  currentDivision?: DivisionTier;
+  playerLeague?: LeagueLanguage;
+}
+
+export default function LeagueStatsView({
+  divisions: propDivisions,
+  currentDivision: propDivision,
+  playerLeague: propLeague,
+}: LeagueStatsViewProps = {}) {
+  const storeLeague = useGameStore((state) => state.selectedLeague);
+  const selectedLeague = propLeague || storeLeague || "KCL";
+  const storeDivision = useGameStore((state) => state.currentDivision);
+  const currentDivision = propDivision || storeDivision || "D";
   const currentTeam = useGameStore((state) => state.currentTeam);
   const selectedTeam = useGameStore((state) => state.selectedTeam);
   const customTeamInfo = useGameStore((state) => state.customTeamInfo);
@@ -120,9 +133,22 @@ export default function LeagueStatsView() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [editingChampId]);
 
+  // 순위표 데이터: propDivisions -> leagueDivisions -> 없으면 즉시 createInitialLeagueDivisions 생성
+  const activeDivisions = useMemo(() => {
+    if (propDivisions) return propDivisions;
+    if (leagueDivisions) return leagueDivisions;
+    return createInitialLeagueDivisions(selectedLeague as LeagueLanguage, {
+      id: playerTeamId,
+      nameKo: playerTeamName,
+      nameEn: customTeamInfo.nameEn || selectedTeam?.nameEn || "New Team",
+      shortName: customTeamInfo.shortName || currentTeam?.shortName || selectedTeam?.shortName || "NEW",
+      customLogoUrl: playerTeamLogo,
+    });
+  }, [propDivisions, leagueDivisions, selectedLeague, playerTeamId, playerTeamName, customTeamInfo, selectedTeam, currentTeam, playerTeamLogo]);
+
   // 1. 선수 통계 데이터 (선택한 디비전의 실제 순위표 팀 연동)
-  const currentDivisionStandings = leagueDivisions
-    ? leagueDivisions[selectedDivision]
+  const currentDivisionStandings = activeDivisions
+    ? activeDivisions[selectedDivision]
     : undefined;
 
   const initialPlayerStats = useMemo(() => {

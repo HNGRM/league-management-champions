@@ -568,7 +568,11 @@ export default function DashboardScreen() {
                     playerLeague={selectedLeague || "KCL"}
                   />
                 ) : isLeagueStatsTab ? (
-                  <LeagueStatsView />
+                  <LeagueStatsView
+                    divisions={leagueDivisions}
+                    currentDivision={currentDivision}
+                    playerLeague={selectedLeague || "KCL"}
+                  />
                 ) : (
                   <div className="h-full min-h-[200px] rounded-2xl border border-dashed border-slate-700/70 bg-slate-900/40 flex flex-col items-center justify-center gap-2 text-center p-6">
                     <div className="w-12 h-12 rounded-2xl bg-slate-950/80 border border-cyan-500/30 flex items-center justify-center text-cyan-400">

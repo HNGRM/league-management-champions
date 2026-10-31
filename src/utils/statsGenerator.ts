@@ -64,9 +64,9 @@ export function generateLeaguePlayerStats(
     const tId = standing.teamId;
     const isPlayerTeam =
       standing.isPlayer || (customTeamId ? tId === customTeamId : false);
-    const teamName = standing.teamName || (isPlayerTeam && customTeamName ? customTeamName : tId);
+    const teamName = isPlayerTeam && customTeamName ? customTeamName : (standing.teamName || tId);
 
-    // 팀 로스터 추출: 플레이어 팀인 경우 customPlayers 우선
+    // 팀 로스터 추출: 플레이어 팀인 경우 무조건 customPlayers(myPlayers) 우선
     let teamRoster = isPlayerTeam && customPlayers && customPlayers.length > 0
       ? customPlayers
       : getPlayersByTeamId(tId);
@@ -240,10 +240,10 @@ export function generateLeagueTeamStats(
     const tId = standing.teamId;
     const isPlayerTeam =
       standing.isPlayer || (customTeamId ? tId === customTeamId : false);
-    const teamName = standing.teamName || (isPlayerTeam && customTeamName ? customTeamName : tId);
+    const teamName = isPlayerTeam && customTeamName ? customTeamName : (standing.teamName || tId);
     const teamLogo =
-      standing.logoUrl ||
-      (isPlayerTeam && customTeamLogo ? customTeamLogo : getTeamLogo(tId)) ||
+      (isPlayerTeam && customTeamLogo ? customTeamLogo : standing.logoUrl) ||
+      getTeamLogo(tId) ||
       null;
 
     // 순위표 연동 경기 수 또는 기본 12~16경기 (시즌 개막 전 모의 통계)
