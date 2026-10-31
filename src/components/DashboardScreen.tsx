@@ -43,6 +43,7 @@ import MyTeamFinanceView from "@/components/dashboard/MyTeamFinanceView";
 import MyTeamSnsView from "@/components/dashboard/MyTeamSnsView";
 import MailboxView from "@/components/dashboard/MailboxView";
 import LeagueStandingsView from "@/components/dashboard/LeagueStandingsView";
+import LeagueScheduleView from "@/components/dashboard/LeagueScheduleView";
 import SettingsModal from "@/components/SettingsModal";
 
 // ================= 메인 탭 & 세부 탭 정의 =================
@@ -394,7 +395,9 @@ export default function DashboardScreen() {
               <span className="text-[10px] font-mono font-bold text-cyan-400 tracking-widest">
                 {currentYear} SEASON
               </span>
-              <span className="text-xs font-bold text-slate-200">{currentWeek}주차</span>
+              <span className="text-xs font-bold text-slate-200">
+                {Math.floor((currentWeek - 1) / 4) + 1}월 {((currentWeek - 1) % 4) + 1}주차 ({currentWeek}주)
+              </span>
             </div>
             {/* 설정 버튼 */}
             <button
@@ -476,6 +479,8 @@ export default function DashboardScreen() {
               mainTab.id === "ROSTER" && sub.id === "TRAINING";
             const isMyTeamFacilityTab =
               mainTab.id === "ROSTER" && sub.id === "FACILITY";
+            const isLeagueScheduleTab =
+              mainTab.id === "LEAGUE" && sub.id === "SCHEDULE";
             const isLeagueStandingsTab =
               mainTab.id === "LEAGUE" && sub.id === "STANDINGS";
 
@@ -527,6 +532,8 @@ export default function DashboardScreen() {
                   />
                 ) : isMyTeamFacilityTab ? (
                   <MyTeamFacilityView />
+                ) : isLeagueScheduleTab ? (
+                  <LeagueScheduleView />
                 ) : isLeagueStandingsTab ? (
                   <LeagueStandingsView
                     divisions={leagueDivisions}

@@ -17,6 +17,7 @@ import { swapPlayers, swapCoaches, assignCoachRole } from "@/utils/rosterSwap";
 import { autoAssignPlayerRoles } from "@/utils/playerAssignment";
 import { autoAssignCoachRoles } from "@/utils/coachAssignment";
 import { processWeeklyTraining } from "@/utils/trainingCalculator";
+import { MatchSchedule } from "@/types/schedule";
 import {
   FacilityId,
   FacilityLevels,
@@ -92,6 +93,10 @@ interface GameState {
   facilities: FacilityLevels;
   upgradeFacility: (facilityId: FacilityId) => boolean;
   setFacilityLevel: (facilityId: FacilityId, level: number) => void;
+
+  // 연간 48주 리그 스케줄
+  seasonSchedule: MatchSchedule[];
+  setSeasonSchedule: (schedule: MatchSchedule[]) => void;
 
   // 날짜 및 턴 진행
   currentYear: number;
@@ -337,7 +342,10 @@ export const useGameStore = create<GameState>((set) => ({
       },
     })),
 
-  currentYear: 2026,
+  seasonSchedule: [],
+  setSeasonSchedule: (schedule: MatchSchedule[]) => set({ seasonSchedule: schedule }),
+
+  currentYear: 2027,
   currentWeek: 1,
   advanceTurn: () =>
     set((state) => {
@@ -355,8 +363,79 @@ export const useGameStore = create<GameState>((set) => ({
       const currentFans = state.currentTeam?.fans ?? 15_000;
       const addedFans = Math.max(10, Math.round(currentFans * fandomGrowthRate));
 
+      // 현재 진행 주차(currentWeek)의 경기 결과 정산
+      const currentWeekNum = state.currentWeek;
+      const updatedSchedule = state.seasonSchedule.map((match) => {
+        if (match.week === currentWeekNum && match.status === "SCHEDULED") {
+          const isPlayerMatch = match.isPlayerMatch;
+          const seed = match.week * 19 + match.id.charCodeAt(match.id.length - 1);
+          const playerWon = (seed % 10) >= 3;
+          const isClose = (seed % 3) === 0;
+
+          let homeScore = 2;
+          let awayScore = 0;
+          let winnerId = match.homeTeamId;
+
+          if (match.format === "Bo5") {
+            if (isPlayerMatch) {
+              if (playerWon) {
+                homeScore = match.isHome ? 3 : (isClose ? 2 : 1);
+                awayScore = match.isHome ? (isClose ? 2 : 1) : 3;
+                winnerId = match.isHome ? match.homeTeamId : match.awayTeamId;
+              } else {
+                homeScore = match.isHome ? (isClose ? 2 : 1) : 3;
+                awayScore = match.isHome ? 3 : (isClose ? 2 : 1);
+                winnerId = match.isHome ? match.awayTeamId : match.homeTeamId;
+              }
+            } else {
+              homeScore = 3;
+              awayScore = isClose ? 2 : 1;
+              winnerId = match.homeTeamId;
+            }
+          } else {
+            // Bo3
+            if (isPlayerMatch) {
+              if (playerWon) {
+                homeScore = match.isHome ? 2 : (isClose ? 1 : 0);
+                awayScore = match.isHome ? (isClose ? 1 : 0) : 2;
+                winnerId = match.isHome ? match.homeTeamId : match.awayTeamId;
+              } else {
+                homeScore = match.isHome ? (isClose ? 1 : 0) : 2;
+                awayScore = match.isHome ? 2 : (isClose ? 1 : 0);
+                winnerId = match.isHome ? match.awayTeamId : match.homeTeamId;
+              }
+            } else {
+              homeScore = 2;
+              awayScore = isClose ? 1 : 0;
+              winnerId = match.homeTeamId;
+            }
+          }
+
+          return {
+            ...match,
+            status: "COMPLETED" as const,
+            result: {
+              homeScore,
+              awayScore,
+              winnerId,
+            },
+          };
+        }
+        return match;
+      });
+
+      // 주차 진행 및 연간 48주 순환
+      let nextWeek = state.currentWeek + 1;
+      let nextYear = state.currentYear;
+      if (nextWeek > 48) {
+        nextWeek = 1;
+        nextYear += 1;
+      }
+
       return {
-        currentWeek: state.currentWeek + 1,
+        currentWeek: nextWeek,
+        currentYear: nextYear,
+        seasonSchedule: updatedSchedule,
         myPlayers: updatedPlayers,
         currentTeam: state.currentTeam
           ? {

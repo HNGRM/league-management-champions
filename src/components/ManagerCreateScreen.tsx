@@ -420,7 +420,7 @@ export default function ManagerCreateScreen() {
             selectedTeam: useGameStore.getState().selectedTeam,
             leagueDivisions: initialDivisions,
             currentDivision: "D",
-            currentYear: 1,
+            currentYear: 2027,
             currentWeek: 1,
           }
         );
