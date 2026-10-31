@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { Coach, CoachRole } from "@/types/coach";
 import AvatarRenderer from "@/components/avatar/AvatarRenderer";
 import {
@@ -36,6 +37,7 @@ export default function MyTeamCoachesView({
   const assignMyCoachRole = useGameStore((state) => state.assignMyCoachRole);
   const autoAssignMyCoaches = useGameStore((state) => state.autoAssignMyCoaches);
 
+  const [mounted, setMounted] = useState<boolean>(false);
   // 역할 교체 모드 활성화 여부
   const [isSwapMode, setIsSwapMode] = useState<boolean>(false);
   // 교체 대상 1단계 선택된 코치 ID
@@ -53,6 +55,10 @@ export default function MyTeamCoachesView({
       setToastMessage((prev) => (prev === message ? null : prev));
     }, 2500);
   };
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // 초기 진입 시: 아직 보직이 하나도 배정되어 있지 않거나 비어있는 경우 자동 배정 실행
   useEffect(() => {
@@ -753,13 +759,18 @@ export default function MyTeamCoachesView({
         onClose={() => setDetailCoach(null)}
       />
 
-      {/* 공석 클릭 시 안내 토스트 팝업 */}
-      {toastMessage && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 max-w-[90vw] sm:max-w-md px-4 py-2.5 rounded-xl bg-slate-900/95 border border-indigo-500/50 text-indigo-100 text-xs font-bold shadow-[0_4px_24px_rgba(0,0,0,0.7)] flex items-center gap-2 backdrop-blur-md animate-in fade-in slide-in-from-bottom-2 duration-200">
-          <AlertCircle className="w-4 h-4 text-indigo-400 shrink-0" />
-          <span>{toastMessage}</span>
-        </div>
-      )}
+      {/* 공석 클릭 시 안내 토스트 팝업 (Portal로 중앙 정렬) */}
+      {mounted &&
+        toastMessage &&
+        createPortal(
+          <div className="fixed inset-x-0 bottom-24 z-50 flex justify-center pointer-events-none px-4">
+            <div className="max-w-[390px] px-4 py-2.5 rounded-2xl bg-slate-900/95 border border-indigo-500/60 text-indigo-100 text-xs font-bold shadow-[0_8px_30px_rgba(0,0,0,0.85)] flex items-center gap-2 backdrop-blur-md animate-in fade-in slide-in-from-bottom-2 duration-200">
+              <AlertCircle className="w-4 h-4 text-indigo-400 shrink-0" />
+              <span>{toastMessage}</span>
+            </div>
+          </div>,
+          document.body
+        )}
     </div>
   );
 }

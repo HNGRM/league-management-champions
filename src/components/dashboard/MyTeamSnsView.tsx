@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import {
   RotateCw,
   Heart,
@@ -27,12 +28,17 @@ export default function MyTeamSnsView({
   teamName = "우리 팀",
   teamLogoUrl,
 }: MyTeamSnsViewProps) {
+  const [mounted, setMounted] = useState(false);
   const [posts, setPosts] = useState<SnsPost[]>(INITIAL_SNS_POSTS);
   const [likedMap, setLikedMap] = useState<Record<string, boolean>>({});
   const [retweetedMap, setRetweetedMap] = useState<Record<string, boolean>>({});
   const [selectedFilter, setSelectedFilter] = useState<SnsFilter>("ALL");
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -291,13 +297,18 @@ export default function MyTeamSnsView({
         })}
       </div>
 
-      {/* 토스트 알림 */}
-      {toastMessage && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 max-w-[90vw] px-4 py-2 rounded-xl bg-slate-900/95 border border-cyan-500/50 text-cyan-100 text-xs font-bold shadow-[0_4px_24px_rgba(0,0,0,0.7)] flex items-center gap-2 backdrop-blur-md animate-in fade-in slide-in-from-bottom-2 duration-200">
-          <Sparkles className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-          <span>{toastMessage}</span>
-        </div>
-      )}
+      {/* 토스트 알림 (Portal로 중앙 정렬) */}
+      {mounted &&
+        toastMessage &&
+        createPortal(
+          <div className="fixed inset-x-0 bottom-24 z-50 flex justify-center pointer-events-none px-4">
+            <div className="max-w-[390px] px-4 py-2.5 rounded-2xl bg-slate-900/95 border border-cyan-500/60 text-cyan-100 text-xs font-bold shadow-[0_8px_30px_rgba(0,0,0,0.85)] flex items-center gap-2 backdrop-blur-md animate-in fade-in slide-in-from-bottom-2 duration-200">
+              <Sparkles className="w-4 h-4 text-cyan-400 shrink-0" />
+              <span>{toastMessage}</span>
+            </div>
+          </div>,
+          document.body
+        )}
     </div>
   );
 }
