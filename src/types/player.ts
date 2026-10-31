@@ -1,5 +1,6 @@
 import { AvatarDna } from "./avatar";
 import { ActivePlayerCondition } from "./playerCondition";
+import { PlayerTrainingAssignment } from "./training";
 
 export type Position = "TOP" | "JGL" | "MID" | "BOT" | "SUP";
 export type RosterStatus = "Starter" | "Sub" | "FA";
@@ -75,4 +76,5 @@ export interface Player {
   talentAndGrowth: PlayerTalentAndGrowth;
   traitsAndMastery: PlayerTraitsAndMastery;
   conditionAndForm: PlayerConditionAndForm;
+  trainingAssignment?: PlayerTrainingAssignment;
 }

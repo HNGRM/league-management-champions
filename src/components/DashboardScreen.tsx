@@ -36,6 +36,7 @@ import { autoAssignPlayerRoles } from "@/utils/playerAssignment";
 import { autoAssignCoachRoles } from "@/utils/coachAssignment";
 import MyTeamRosterView from "@/components/dashboard/MyTeamRosterView";
 import MyTeamCoachesView from "@/components/dashboard/MyTeamCoachesView";
+import MyTeamTrainingView from "@/components/dashboard/MyTeamTrainingView";
 import MyTeamInfoView from "@/components/dashboard/MyTeamInfoView";
 import MyTeamFinanceView from "@/components/dashboard/MyTeamFinanceView";
 import MyTeamSnsView from "@/components/dashboard/MyTeamSnsView";
@@ -120,6 +121,8 @@ export default function DashboardScreen() {
   const currentWeek = useGameStore((state) => state.currentWeek);
   const myPlayers = useGameStore((state) => state.myPlayers);
   const setMyPlayers = useGameStore((state) => state.setMyPlayers);
+  const updateMyPlayer = useGameStore((state) => state.updateMyPlayer);
+  const advanceTurn = useGameStore((state) => state.advanceTurn);
   const myCoaches = useGameStore((state) => state.myCoaches);
   const setMyCoaches = useGameStore((state) => state.setMyCoaches);
   const selectedLeague = useGameStore((state) => state.selectedLeague);
@@ -468,6 +471,8 @@ export default function DashboardScreen() {
               mainTab.id === "ROSTER" && sub.id === "PLAYERS";
             const isMyTeamCoachesTab =
               mainTab.id === "ROSTER" && sub.id === "COACHES";
+            const isMyTeamTrainingTab =
+              mainTab.id === "ROSTER" && sub.id === "TRAINING";
             const isLeagueStandingsTab =
               mainTab.id === "LEAGUE" && sub.id === "STANDINGS";
 
@@ -510,6 +515,13 @@ export default function DashboardScreen() {
                     teamId={currentTeam?.id || selectedTeam?.id}
                     league={selectedTeam?.league}
                   />
+                ) : isMyTeamTrainingTab ? (
+                  <MyTeamTrainingView
+                    players={myPlayers}
+                    coaches={myCoaches}
+                    onUpdatePlayer={updateMyPlayer}
+                    onSetPlayers={setMyPlayers}
+                  />
                 ) : isLeagueStandingsTab ? (
                   <LeagueStandingsView
                     divisions={leagueDivisions}
@@ -539,13 +551,14 @@ export default function DashboardScreen() {
       <div className="shrink-0 px-3 pt-2 pb-3 border-t border-slate-800/60 bg-slate-950/50 backdrop-blur-sm">
         <div className="grid grid-cols-5 items-end gap-1">
           {[MAIN_TABS[0], MAIN_TABS[1], null, MAIN_TABS[2], MAIN_TABS[3]].map((tab) => {
-            // 중앙: ▶ 진행 버튼 (게임 시스템 연동 전까지는 동작 없음)
+            // 중앙: ▶ 주간 진행 버튼 (주간 훈련 및 체력/숙련도 정산 반영)
             if (!tab) {
               return (
                 <div key="advance" className="flex justify-center">
                   <button
                     type="button"
-                    aria-label="다음 진행"
+                    aria-label="주간 진행"
+                    onClick={advanceTurn}
                     className="-mt-6 w-16 h-16 rounded-full bg-gradient-to-br from-cyan-400 via-blue-600 to-indigo-600 border-2 border-cyan-200/60 text-white shadow-[0_0_25px_rgba(6,182,212,0.55)] flex items-center justify-center active:scale-95 transition-all cursor-pointer touch-manipulation"
                   >
                     <Play className="w-7 h-7 fill-white translate-x-0.5" />

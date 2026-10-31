@@ -1,0 +1,1936 @@
+[
+  {
+    "id": "001",
+    "nameKr": "보우마스터",
+    "nameEn": "BowMaster",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "소규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "BOT",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "바텀레이너",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_001_BowMaster.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_001_BowMaster.jpg"
+    }
+  },
+  {
+    "id": "002",
+    "nameKr": "레이저슈터",
+    "nameEn": "LaserShooter",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "유동적범위",
+    "combatStyle": "견제방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "MID",
+      "BOT"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_002_LaserShooter.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_002_LaserShooter.jpg"
+    }
+  },
+  {
+    "id": "003",
+    "nameKr": "스나이퍼",
+    "nameEn": "Sniper",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "소규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "BOT",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "바텀레이너",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_003_Sniper.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_003_Sniper.jpg"
+    }
+  },
+  {
+    "id": "004",
+    "nameKr": "에이전트",
+    "nameEn": "Agent",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "유동적사거리",
+    "area": "소규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반정체",
+    "positions": [
+      "MID",
+      "BOT",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_004_Agent.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_004_Agent.jpg"
+    }
+  },
+  {
+    "id": "005",
+    "nameKr": "샷건블래스터",
+    "nameEn": "ShotgunBlaster",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "유동적사거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "BOT",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "바텀레이너",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_005_ShotgunBlaster.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_005_ShotgunBlaster.jpg"
+    }
+  },
+  {
+    "id": "006",
+    "nameKr": "닌자",
+    "nameEn": "Ninja",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "소규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반정체",
+    "positions": [
+      "MID",
+      "BOT"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_006_Ninja.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_006_Ninja.jpg"
+    }
+  },
+  {
+    "id": "007",
+    "nameKr": "저글러",
+    "nameEn": "Juggler",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "대규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "BOT",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "바텀레이너",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_007_Juggler.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_007_Juggler.jpg"
+    }
+  },
+  {
+    "id": "008",
+    "nameKr": "폴리스",
+    "nameEn": "Police",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "소규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "초반강력",
+    "positions": [
+      "BOT",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "바텀레이너",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_008_Police.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_008_Police.jpg"
+    }
+  },
+  {
+    "id": "009",
+    "nameKr": "머스킷티어",
+    "nameEn": "Musketeer",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "BOT",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "바텀레이너",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_009_Musketeer.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_009_Musketeer.jpg"
+    }
+  },
+  {
+    "id": "010",
+    "nameKr": "헤비봄버",
+    "nameEn": "HeavyBomber",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "대규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "MID",
+      "BOT",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_010_HeavyBomber.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_010_HeavyBomber.jpg"
+    }
+  },
+  {
+    "id": "011",
+    "nameKr": "부메랑마스터",
+    "nameEn": "BoomerangMaster",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "유동적사거리",
+    "area": "유동적범위",
+    "combatStyle": "견제방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "MID",
+      "BOT",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_011_BoomerangMaster.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_011_BoomerangMaster.jpg"
+    }
+  },
+  {
+    "id": "012",
+    "nameKr": "캐논슈터",
+    "nameEn": "CannonShooter",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "BOT",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "바텀레이너",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_012_CannonShooter.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_012_CannonShooter.jpg"
+    }
+  },
+  {
+    "id": "013",
+    "nameKr": "버서커",
+    "nameEn": "Berserker",
+    "primaryRole": "물리딜러",
+    "secondaryRole": "탱커",
+    "attackRange": "근거리",
+    "area": "유동적범위",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_013_Berserker.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_013_Berserker.jpg"
+    }
+  },
+  {
+    "id": "014",
+    "nameKr": "복서",
+    "nameEn": "Boxer",
+    "primaryRole": "물리딜러",
+    "secondaryRole": "탱커",
+    "attackRange": "근거리",
+    "area": "소규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "초반강력",
+    "positions": [
+      "SUP",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_014_Boxer.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_014_Boxer.jpg"
+    }
+  },
+  {
+    "id": "015",
+    "nameKr": "펜싱마스터",
+    "nameEn": "FencingMaster",
+    "primaryRole": "물리딜러",
+    "secondaryRole": "탱커",
+    "attackRange": "근거리",
+    "area": "소규모",
+    "combatStyle": "유동적방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "MID",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_015_FencingMaster.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_015_FencingMaster.jpg"
+    }
+  },
+  {
+    "id": "016",
+    "nameKr": "롱스피어",
+    "nameEn": "LongSpear",
+    "primaryRole": "물리딜러",
+    "secondaryRole": "탱커",
+    "attackRange": "유동적사거리",
+    "area": "유동적범위",
+    "combatStyle": "견제방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_016_LongSpear.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_016_LongSpear.jpg"
+    }
+  },
+  {
+    "id": "017",
+    "nameKr": "헤비메이스",
+    "nameEn": "HeavyMace",
+    "primaryRole": "물리딜러",
+    "secondaryRole": "탱커",
+    "attackRange": "근거리",
+    "area": "대규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반정체",
+    "positions": [
+      "SUP",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_017_HeavyMace.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_017_HeavyMace.jpg"
+    }
+  },
+  {
+    "id": "018",
+    "nameKr": "그레이트소드",
+    "nameEn": "GreatSword",
+    "primaryRole": "물리딜러",
+    "secondaryRole": "탱커",
+    "attackRange": "근거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_018_GreatSword.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_018_GreatSword.jpg"
+    }
+  },
+  {
+    "id": "019",
+    "nameKr": "어쌔신",
+    "nameEn": "Assassin",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "근거리",
+    "area": "소규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "초반강력",
+    "positions": [
+      "MID",
+      "BOT",
+      "JGL"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너",
+      "정글러"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_019_Assassin.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_019_Assassin.jpg"
+    }
+  },
+  {
+    "id": "020",
+    "nameKr": "블레이드윙",
+    "nameEn": "BladeWing",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "근거리",
+    "area": "소규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "MID",
+      "BOT",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_020_BladeWing.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_020_BladeWing.jpg"
+    }
+  },
+  {
+    "id": "021",
+    "nameKr": "그림리퍼",
+    "nameEn": "GrimReaper",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "근거리",
+    "area": "유동적범위",
+    "combatStyle": "정석방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "MID",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_021_GrimReaper.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_021_GrimReaper.jpg"
+    }
+  },
+  {
+    "id": "022",
+    "nameKr": "팬텀시프",
+    "nameEn": "PhantomThief",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "근거리",
+    "area": "소규모",
+    "combatStyle": "유동적방식",
+    "powerCurve": "중반정체",
+    "positions": [
+      "MID",
+      "BOT",
+      "JGL"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너",
+      "정글러"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_022_PhantomThief.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_022_PhantomThief.jpg"
+    }
+  },
+  {
+    "id": "023",
+    "nameKr": "플래그베어러",
+    "nameEn": "FlagBearer",
+    "primaryRole": "물리딜러",
+    "secondaryRole": "버퍼",
+    "attackRange": "근거리",
+    "area": "대규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "SUP",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_023_FlagBearer.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_023_FlagBearer.jpg"
+    }
+  },
+  {
+    "id": "024",
+    "nameKr": "워드러머",
+    "nameEn": "WarDrummer",
+    "primaryRole": "물리딜러",
+    "secondaryRole": "버퍼",
+    "attackRange": "유동적사거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "SUP",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_024_WarDrummer.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_024_WarDrummer.jpg"
+    }
+  },
+  {
+    "id": "025",
+    "nameKr": "체인헌터",
+    "nameEn": "ChainHunter",
+    "primaryRole": "물리딜러",
+    "secondaryRole": "디버퍼",
+    "attackRange": "유동적사거리",
+    "area": "소규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "중반정체",
+    "positions": [
+      "MID",
+      "BOT",
+      "SUP",
+      "JGL"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너",
+      "서포터",
+      "정글러"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_025_ChainHunter.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_025_ChainHunter.jpg"
+    }
+  },
+  {
+    "id": "026",
+    "nameKr": "해머브레이커",
+    "nameEn": "HammerBreaker",
+    "primaryRole": "물리딜러",
+    "secondaryRole": "디버퍼",
+    "attackRange": "근거리",
+    "area": "대규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "SUP",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_026_HammerBreaker.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_026_HammerBreaker.jpg"
+    }
+  },
+  {
+    "id": "027",
+    "nameKr": "플레임위치",
+    "nameEn": "FlameWitch",
+    "primaryRole": "마법딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "MID",
+      "BOT"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_027_FlameWitch.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_027_FlameWitch.jpg"
+    }
+  },
+  {
+    "id": "028",
+    "nameKr": "메카위자드",
+    "nameEn": "MechaWizard",
+    "primaryRole": "마법딜러",
+    "secondaryRole": null,
+    "attackRange": "유동적사거리",
+    "area": "소규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "MID",
+      "BOT"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_028_MechaWizard.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_028_MechaWizard.jpg"
+    }
+  },
+  {
+    "id": "029",
+    "nameKr": "포이즌메이지",
+    "nameEn": "PoisonMage",
+    "primaryRole": "마법딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "유동적범위",
+    "combatStyle": "견제방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "MID",
+      "SUP",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "서포터",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_029_PoisonMage.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_029_PoisonMage.jpg"
+    }
+  },
+  {
+    "id": "030",
+    "nameKr": "스타게이저",
+    "nameEn": "StarGazer",
+    "primaryRole": "마법딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "대규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "MID",
+      "BOT",
+      "SUP",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너",
+      "서포터",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_030_StarGazer.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_030_StarGazer.jpg"
+    }
+  },
+  {
+    "id": "031",
+    "nameKr": "룬블레이더",
+    "nameEn": "RuneBlader",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "탱커",
+    "attackRange": "유동적사거리",
+    "area": "유동적범위",
+    "combatStyle": "돌진방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "MID",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_031_RuneBlader.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_031_RuneBlader.jpg"
+    }
+  },
+  {
+    "id": "032",
+    "nameKr": "미스틱댄서",
+    "nameEn": "MysticDancer",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "탱커",
+    "attackRange": "근거리",
+    "area": "유동적범위",
+    "combatStyle": "유동적방식",
+    "powerCurve": "중반정체",
+    "positions": [
+      "MID",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_032_MysticDancer.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_032_MysticDancer.jpg"
+    }
+  },
+  {
+    "id": "033",
+    "nameKr": "지오맨서",
+    "nameEn": "Geomancer",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "탱커",
+    "attackRange": "근거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "MID",
+      "SUP",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "서포터",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_033_Geomancer.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_033_Geomancer.jpg"
+    }
+  },
+  {
+    "id": "034",
+    "nameKr": "웨이브서퍼",
+    "nameEn": "WaveSurfer",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "탱커",
+    "attackRange": "유동적사거리",
+    "area": "대규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "초반강력",
+    "positions": [
+      "MID",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_034_WaveSurfer.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_034_WaveSurfer.jpg"
+    }
+  },
+  {
+    "id": "035",
+    "nameKr": "엑소시스트",
+    "nameEn": "Exorcist",
+    "primaryRole": "마법딜러",
+    "secondaryRole": null,
+    "attackRange": "근거리",
+    "area": "소규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "초반강력",
+    "positions": [
+      "MID",
+      "JGL"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "정글러"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_035_Exorcist.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_035_Exorcist.jpg"
+    }
+  },
+  {
+    "id": "036",
+    "nameKr": "키네시스",
+    "nameEn": "Kinesis",
+    "primaryRole": "마법딜러",
+    "secondaryRole": null,
+    "attackRange": "유동적사거리",
+    "area": "유동적범위",
+    "combatStyle": "유동적방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "MID",
+      "BOT",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_036_Kinesis.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_036_Kinesis.jpg"
+    }
+  },
+  {
+    "id": "037",
+    "nameKr": "볼트러너",
+    "nameEn": "VoltRunner",
+    "primaryRole": "마법딜러",
+    "secondaryRole": null,
+    "attackRange": "근거리",
+    "area": "소규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반정체",
+    "positions": [
+      "MID",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_037_VoltRunner.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_037_VoltRunner.jpg"
+    }
+  },
+  {
+    "id": "038",
+    "nameKr": "네크로맨서",
+    "nameEn": "Necromancer",
+    "primaryRole": "마법딜러",
+    "secondaryRole": null,
+    "attackRange": "유동적사거리",
+    "area": "소규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "초반강력",
+    "positions": [
+      "MID",
+      "SUP",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "서포터",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_038_Necromancer.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_038_Necromancer.jpg"
+    }
+  },
+  {
+    "id": "039",
+    "nameKr": "루미너스",
+    "nameEn": "Luminous",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "버퍼",
+    "attackRange": "원거리",
+    "area": "소규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "MID",
+      "BOT",
+      "SUP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너",
+      "서포터"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_039_Luminous.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_039_Luminous.jpg"
+    }
+  },
+  {
+    "id": "040",
+    "nameKr": "드루이드",
+    "nameEn": "Druid",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "버퍼",
+    "attackRange": "유동적사거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "SUP",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_040_Druid.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_040_Druid.jpg"
+    }
+  },
+  {
+    "id": "041",
+    "nameKr": "윈드메이커",
+    "nameEn": "WindMaker",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "버퍼",
+    "attackRange": "원거리",
+    "area": "대규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "MID",
+      "SUP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "서포터"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_041_WindMaker.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_041_WindMaker.jpg"
+    }
+  },
+  {
+    "id": "042",
+    "nameKr": "바드",
+    "nameEn": "Bard",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "버퍼",
+    "attackRange": "원거리",
+    "area": "대규모",
+    "combatStyle": "유동적방식",
+    "powerCurve": "중반정체",
+    "positions": [
+      "BOT",
+      "SUP"
+    ],
+    "positionNamesKr": [
+      "바텀레이너",
+      "서포터"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_042_Bard.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_042_Bard.jpg"
+    }
+  },
+  {
+    "id": "043",
+    "nameKr": "프로스트위치",
+    "nameEn": "FrostWitch",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "디버퍼",
+    "attackRange": "원거리",
+    "area": "대규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "중반정체",
+    "positions": [
+      "MID",
+      "SUP",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "서포터",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_043_FrostWitch.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_043_FrostWitch.jpg"
+    }
+  },
+  {
+    "id": "044",
+    "nameKr": "크로노스",
+    "nameEn": "Chronos",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "디버퍼",
+    "attackRange": "원거리",
+    "area": "유동적범위",
+    "combatStyle": "정석방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "MID",
+      "SUP",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "서포터",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_044_Chronos.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_044_Chronos.jpg"
+    }
+  },
+  {
+    "id": "045",
+    "nameKr": "페어리",
+    "nameEn": "Fairy",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "디버퍼",
+    "attackRange": "원거리",
+    "area": "소규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "초반강력",
+    "positions": [
+      "MID",
+      "SUP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "서포터"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_045_Fairy.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_045_Fairy.jpg"
+    }
+  },
+  {
+    "id": "046",
+    "nameKr": "나이트메어",
+    "nameEn": "Nightmare",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "디버퍼",
+    "attackRange": "유동적사거리",
+    "area": "대규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "MID",
+      "SUP",
+      "JGL"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "서포터",
+      "정글러"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_046_Nightmare.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_046_Nightmare.jpg"
+    }
+  },
+  {
+    "id": "047",
+    "nameKr": "아이언실드",
+    "nameEn": "IronShield",
+    "primaryRole": "탱커",
+    "secondaryRole": null,
+    "attackRange": "근거리",
+    "area": "소규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "SUP",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_047_IronShield.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_047_IronShield.jpg"
+    }
+  },
+  {
+    "id": "048",
+    "nameKr": "좀비워리어",
+    "nameEn": "ZombieWarrior",
+    "primaryRole": "탱커",
+    "secondaryRole": null,
+    "attackRange": "근거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "SUP",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_048_ZombieWarrior.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_048_ZombieWarrior.jpg"
+    }
+  },
+  {
+    "id": "049",
+    "nameKr": "라이온하트",
+    "nameEn": "LionHeart",
+    "primaryRole": "탱커",
+    "secondaryRole": "물리딜러",
+    "attackRange": "근거리",
+    "area": "유동적범위",
+    "combatStyle": "돌진방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_049_LionHeart.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_049_LionHeart.jpg"
+    }
+  },
+  {
+    "id": "050",
+    "nameKr": "자이언트비틀",
+    "nameEn": "GiantBeetle",
+    "primaryRole": "탱커",
+    "secondaryRole": "물리딜러",
+    "attackRange": "근거리",
+    "area": "소규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "초반강력",
+    "positions": [
+      "SUP",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_050_GiantBeetle.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_050_GiantBeetle.jpg"
+    }
+  },
+  {
+    "id": "051",
+    "nameKr": "카발리어",
+    "nameEn": "Cavalier",
+    "primaryRole": "탱커",
+    "secondaryRole": "물리딜러",
+    "attackRange": "유동적사거리",
+    "area": "소규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반정체",
+    "positions": [
+      "SUP",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_051_Cavalier.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_051_Cavalier.jpg"
+    }
+  },
+  {
+    "id": "052",
+    "nameKr": "소울이터",
+    "nameEn": "SoulEater",
+    "primaryRole": "탱커",
+    "secondaryRole": "마법딜러",
+    "attackRange": "근거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "MID",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_052_SoulEater.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_052_SoulEater.jpg"
+    }
+  },
+  {
+    "id": "053",
+    "nameKr": "드레이크",
+    "nameEn": "Drake",
+    "primaryRole": "탱커",
+    "secondaryRole": "마법딜러",
+    "attackRange": "유동적사거리",
+    "area": "대규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_053_Drake.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_053_Drake.jpg"
+    }
+  },
+  {
+    "id": "054",
+    "nameKr": "메탈골렘",
+    "nameEn": "MetalGolem",
+    "primaryRole": "탱커",
+    "secondaryRole": "마법딜러",
+    "attackRange": "근거리",
+    "area": "유동적범위",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "SUP",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_054_MetalGolem.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_054_MetalGolem.jpg"
+    }
+  },
+  {
+    "id": "055",
+    "nameKr": "헤드셰프",
+    "nameEn": "HeadChef",
+    "primaryRole": "탱커",
+    "secondaryRole": "버퍼",
+    "attackRange": "근거리",
+    "area": "소규모",
+    "combatStyle": "유동적방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "SUP",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_055_HeadChef.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_055_HeadChef.jpg"
+    }
+  },
+  {
+    "id": "056",
+    "nameKr": "우드스피릿",
+    "nameEn": "WoodSpirit",
+    "primaryRole": "탱커",
+    "secondaryRole": "버퍼",
+    "attackRange": "근거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "SUP",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_056_WoodSpirit.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_056_WoodSpirit.jpg"
+    }
+  },
+  {
+    "id": "057",
+    "nameKr": "뱅가드",
+    "nameEn": "Vanguard",
+    "primaryRole": "탱커",
+    "secondaryRole": "버퍼",
+    "attackRange": "근거리",
+    "area": "대규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반정체",
+    "positions": [
+      "SUP",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_057_Vanguard.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_057_Vanguard.jpg"
+    }
+  },
+  {
+    "id": "058",
+    "nameKr": "아누비스",
+    "nameEn": "Anubis",
+    "primaryRole": "탱커",
+    "secondaryRole": "디버퍼",
+    "attackRange": "유동적사거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "SUP",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_058_Anubis.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_058_Anubis.jpg"
+    }
+  },
+  {
+    "id": "059",
+    "nameKr": "판다워리어",
+    "nameEn": "PandaWarrior",
+    "primaryRole": "탱커",
+    "secondaryRole": "디버퍼",
+    "attackRange": "근거리",
+    "area": "소규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "초반강력",
+    "positions": [
+      "SUP",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_059_PandaWarrior.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_059_PandaWarrior.jpg"
+    }
+  },
+  {
+    "id": "060",
+    "nameKr": "킹슬라임",
+    "nameEn": "KingSlime",
+    "primaryRole": "탱커",
+    "secondaryRole": "디버퍼",
+    "attackRange": "근거리",
+    "area": "유동적범위",
+    "combatStyle": "유동적방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "SUP",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_060_KingSlime.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_060_KingSlime.jpg"
+    }
+  },
+  {
+    "id": "061",
+    "nameKr": "코일거너",
+    "nameEn": "CoilGunner",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "소규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "BOT",
+      "MID"
+    ],
+    "positionNamesKr": [
+      "바텀레이너",
+      "미드레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_061_CoilGunner.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_061_CoilGunner.jpg"
+    }
+  },
+  {
+    "id": "062",
+    "nameKr": "테이머",
+    "nameEn": "Tamer",
+    "primaryRole": "물리딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "소규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "BOT",
+      "JGL"
+    ],
+    "positionNamesKr": [
+      "바텀레이너",
+      "정글러"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_062_Tamer.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_062_Tamer.jpg"
+    }
+  },
+  {
+    "id": "063",
+    "nameKr": "헤모맨서",
+    "nameEn": "Hemomancer",
+    "primaryRole": "마법딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "소규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "MID",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_063_Hemomancer.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_063_Hemomancer.jpg"
+    }
+  },
+  {
+    "id": "064",
+    "nameKr": "소닉펄스",
+    "nameEn": "SonicPulse",
+    "primaryRole": "마법딜러",
+    "secondaryRole": null,
+    "attackRange": "원거리",
+    "area": "대규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "초반강력",
+    "positions": [
+      "MID",
+      "BOT",
+      "SUP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너",
+      "서포터"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_064_SonicPulse.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_064_SonicPulse.jpg"
+    }
+  },
+  {
+    "id": "065",
+    "nameKr": "갬블러",
+    "nameEn": "Gambler",
+    "primaryRole": "물리딜러",
+    "secondaryRole": "마법딜러",
+    "attackRange": "원거리",
+    "area": "소규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "BOT",
+      "MID"
+    ],
+    "positionNamesKr": [
+      "바텀레이너",
+      "미드레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_065_Gambler.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_065_Gambler.jpg"
+    }
+  },
+  {
+    "id": "066",
+    "nameKr": "플라즈마헌터",
+    "nameEn": "PlasmaHunter",
+    "primaryRole": "물리딜러",
+    "secondaryRole": "마법딜러",
+    "attackRange": "유동적사거리",
+    "area": "소규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "MID",
+      "BOT",
+      "JGL"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너",
+      "정글러"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_066_PlasmaHunter.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_066_PlasmaHunter.jpg"
+    }
+  },
+  {
+    "id": "067",
+    "nameKr": "스펠소드",
+    "nameEn": "SpellSword",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "물리딜러",
+    "attackRange": "유동적사거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "MID",
+      "BOT",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "바텀레이너",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_067_SpellSword.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_067_SpellSword.jpg"
+    }
+  },
+  {
+    "id": "068",
+    "nameKr": "섀도우클로",
+    "nameEn": "ShadowClaw",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "물리딜러",
+    "attackRange": "근거리",
+    "area": "소규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "MID",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_068_ShadowClaw.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_068_ShadowClaw.jpg"
+    }
+  },
+  {
+    "id": "069",
+    "nameKr": "마그마로드",
+    "nameEn": "MagmaLord",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "탱커",
+    "attackRange": "근거리",
+    "area": "대규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "JGL",
+      "SUP"
+    ],
+    "positionNamesKr": [
+      "정글러",
+      "서포터"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_069_MagmaLord.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_069_MagmaLord.jpg"
+    }
+  },
+  {
+    "id": "070",
+    "nameKr": "그래비톤",
+    "nameEn": "Graviton",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "탱커",
+    "attackRange": "유동적사거리",
+    "area": "소규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "SUP",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_070_Graviton.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_070_Graviton.jpg"
+    }
+  },
+  {
+    "id": "071",
+    "nameKr": "소울거너",
+    "nameEn": "SoulGunner",
+    "primaryRole": "물리딜러",
+    "secondaryRole": "버퍼",
+    "attackRange": "원거리",
+    "area": "대규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "후반강력",
+    "positions": [
+      "BOT",
+      "SUP",
+      "MID"
+    ],
+    "positionNamesKr": [
+      "바텀레이너",
+      "서포터",
+      "미드레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_071_SoulGunner.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_071_SoulGunner.jpg"
+    }
+  },
+  {
+    "id": "072",
+    "nameKr": "오로라위버",
+    "nameEn": "AuroraWeaver",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "버퍼",
+    "attackRange": "원거리",
+    "area": "소규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "MID",
+      "SUP",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "서포터",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_072_AuroraWeaver.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_072_AuroraWeaver.jpg"
+    }
+  },
+  {
+    "id": "073",
+    "nameKr": "하푼헌터",
+    "nameEn": "HarpoonHunter",
+    "primaryRole": "물리딜러",
+    "secondaryRole": "디버퍼",
+    "attackRange": "원거리",
+    "area": "소규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "초반강력",
+    "positions": [
+      "BOT",
+      "SUP",
+      "MID"
+    ],
+    "positionNamesKr": [
+      "바텀레이너",
+      "서포터",
+      "미드레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_073_HarpoonHunter.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_073_HarpoonHunter.jpg"
+    }
+  },
+  {
+    "id": "074",
+    "nameKr": "브램블위치",
+    "nameEn": "BrambleWitch",
+    "primaryRole": "마법딜러",
+    "secondaryRole": "디버퍼",
+    "attackRange": "원거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "MID",
+      "SUP",
+      "JGL"
+    ],
+    "positionNamesKr": [
+      "미드레이너",
+      "서포터",
+      "정글러"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_074_BrambleWitch.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_074_BrambleWitch.jpg"
+    }
+  },
+  {
+    "id": "075",
+    "nameKr": "토템샤먼",
+    "nameEn": "TotemShaman",
+    "primaryRole": "버퍼",
+    "secondaryRole": "탱커",
+    "attackRange": "근거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "SUP",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_075_TotemShaman.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_075_TotemShaman.jpg"
+    }
+  },
+  {
+    "id": "076",
+    "nameKr": "랜턴키퍼",
+    "nameEn": "LanternKeeper",
+    "primaryRole": "버퍼",
+    "secondaryRole": "탱커",
+    "attackRange": "유동적사거리",
+    "area": "소규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "안전지속",
+    "positions": [
+      "SUP",
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_076_LanternKeeper.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_076_LanternKeeper.jpg"
+    }
+  },
+  {
+    "id": "077",
+    "nameKr": "퍼퓸메이커",
+    "nameEn": "PerfumeMaker",
+    "primaryRole": "버퍼",
+    "secondaryRole": "디버퍼",
+    "attackRange": "원거리",
+    "area": "대규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "SUP",
+      "MID"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "미드레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_077_PerfumeMaker.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_077_PerfumeMaker.jpg"
+    }
+  },
+  {
+    "id": "078",
+    "nameKr": "마그넷타이탄",
+    "nameEn": "MagnetTitan",
+    "primaryRole": "디버퍼",
+    "secondaryRole": "탱커",
+    "attackRange": "유동적사거리",
+    "area": "대규모",
+    "combatStyle": "정석방식",
+    "powerCurve": "초반강력",
+    "positions": [
+      "SUP",
+      "JGL"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "정글러"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_078_MagnetTitan.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_078_MagnetTitan.jpg"
+    }
+  },
+  {
+    "id": "079",
+    "nameKr": "스콜피온킹",
+    "nameEn": "ScorpionKing",
+    "primaryRole": "디버퍼",
+    "secondaryRole": "탱커",
+    "attackRange": "근거리",
+    "area": "소규모",
+    "combatStyle": "돌진방식",
+    "powerCurve": "중반강력",
+    "positions": [
+      "JGL",
+      "TOP"
+    ],
+    "positionNamesKr": [
+      "정글러",
+      "탑레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_079_ScorpionKing.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_079_ScorpionKing.jpg"
+    }
+  },
+  {
+    "id": "080",
+    "nameKr": "아르카나",
+    "nameEn": "Arcana",
+    "primaryRole": "디버퍼",
+    "secondaryRole": "버퍼",
+    "attackRange": "원거리",
+    "area": "대규모",
+    "combatStyle": "견제방식",
+    "powerCurve": "중반정체",
+    "positions": [
+      "SUP",
+      "MID"
+    ],
+    "positionNamesKr": [
+      "서포터",
+      "미드레이너"
+    ],
+    "images": {
+      "illustration": "/img/champions/Aspect_16_9/aspect_16_9_080_Arcana.png",
+      "portrait": "/img/champions/Aspect_1_1/aspect_1_1_080_Arcana.jpg"
+    }
+  }
+]

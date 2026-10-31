@@ -16,6 +16,7 @@ import { createDefaultAvatarDna } from "@/types/avatar";
 import { swapPlayers, swapCoaches, assignCoachRole } from "@/utils/rosterSwap";
 import { autoAssignPlayerRoles } from "@/utils/playerAssignment";
 import { autoAssignCoachRoles } from "@/utils/coachAssignment";
+import { processWeeklyTraining } from "@/utils/trainingManager";
 
 export type GameScreen = "TITLE" | "SLOT_SELECT" | "MANAGER_CREATE" | "TEAM_CREATE" | "DASHBOARD";
 
@@ -278,7 +279,15 @@ export const useGameStore = create<GameState>((set) => ({
   currentYear: 2026,
   currentWeek: 1,
   advanceTurn: () =>
-    set((state) => ({
-      currentWeek: state.currentWeek + 1,
-    })),
+    set((state) => {
+      const updatedPlayers = processWeeklyTraining(
+        state.myPlayers,
+        state.myCoaches,
+        1
+      );
+      return {
+        currentWeek: state.currentWeek + 1,
+        myPlayers: updatedPlayers,
+      };
+    }),
 }));
