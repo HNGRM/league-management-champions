@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ArrowLeft, PlusCircle, Lock, AlertCircle, Sparkles, ChevronRight, ChevronsDown, Loader2, Cloud, Trash2 } from "lucide-react";
 import { useGameStore } from "@/store/useGameStore";
-import { fetchUserSlots, deleteGameFromCloud } from "@/lib/saveManager";
+import { fetchUserSlots, deleteGameFromCloud, recalculateSlotLocks } from "@/lib/saveManager";
 import { SaveSlot } from "@/types/game";
 import DisbandConfirmModal from "@/components/DisbandConfirmModal";
 
@@ -64,11 +64,13 @@ export default function SlotSelectScreen() {
         const updated = slots.map((s) =>
           s.id === slotId ? { id: s.id, isCreated: false, isLocked: false } : s
         );
-        setSlots(updated);
+        setSlots(recalculateSlotLocks(updated));
       }
       if (selectedSlotId === slotId) {
         resetCreationState();
       }
+      // 로딩 텀 (500ms)
+      await new Promise((resolve) => setTimeout(resolve, 500));
       showToast(`슬롯 ${slotId}번 팀이 해체되었습니다.`);
       setDisbandSlot(null);
     } catch (err: any) {

@@ -85,6 +85,24 @@ export async function fetchUserSlots(userId: string): Promise<SaveSlot[]> {
 }
 
 /**
+ * 8개 슬롯의 연속 잠금 상태를 재계산 (이전 슬롯이 생성되어 있어야 다음 슬롯 해금)
+ */
+export function recalculateSlotLocks(slots: SaveSlot[]): SaveSlot[] {
+  return slots.map((slot, index) => {
+    if (slot.isCreated) {
+      return { ...slot, isLocked: false };
+    }
+    const isFirst = index === 0;
+    const prevSlot = index > 0 ? slots[index - 1] : null;
+    const isPrevCreated = isFirst || (prevSlot?.isCreated ?? false);
+    return {
+      ...slot,
+      isLocked: !isPrevCreated,
+    };
+  });
+}
+
+/**
  * 현재 게임 상태를 지정된 슬롯에 클라우드 저장(Upsert)합니다.
  */
 export async function saveGameToCloud(

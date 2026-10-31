@@ -23,13 +23,14 @@ import {
   ChartBar,
   BookOpen,
   Settings,
+  Loader2,
 } from "lucide-react";
 import { useGameStore } from "@/store/useGameStore";
 import { getTeamLogo } from "@/data/teamLogos";
 import { getPlayersByTeamId } from "@/data/players";
 import { getCoachesByTeamId } from "@/data/coaches";
 import { createInitialLeagueDivisions } from "@/data/divisions";
-import { deleteGameFromCloud } from "@/lib/saveManager";
+import { deleteGameFromCloud, fetchUserSlots, recalculateSlotLocks } from "@/lib/saveManager";
 import { initializePlayer, initializePlayers } from "@/utils/playerGenerator";
 import { initializeCoaches } from "@/utils/contractEconomics";
 import { autoAssignPlayerRoles } from "@/utils/playerAssignment";
@@ -140,20 +141,44 @@ export default function DashboardScreen() {
   const unreadMailCount = mails.filter((m) => !m.isRead).length;
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isDisbanding, setIsDisbanding] = useState(false);
 
   // 팀 해체 (세이브 초기화) 처리
   const handleDisbandTeam = async () => {
     if (selectedSlotId) {
-      if (currentUser?.id) {
-        await deleteGameFromCloud(currentUser.id, selectedSlotId);
+      setIsDisbanding(true);
+      try {
+        // 1. 즉시 로컬 슬롯 상태에서 삭제 및 연속 잠금(SLOT 02 닫힘)을 먼저 재계산하여 동기화
+        const initialUpdated = slots.map((s) =>
+          s.id === selectedSlotId
+            ? { id: s.id, isCreated: false, isLocked: false }
+            : s
+        );
+        const lockedSlots = recalculateSlotLocks(initialUpdated);
+        setSlots(lockedSlots);
+
+        // 2. 클라우드 세이브 삭제 및 최신 슬롯 데이터 동기화
+        if (currentUser?.id) {
+          await deleteGameFromCloud(currentUser.id, selectedSlotId);
+          const freshSlots = await fetchUserSlots(currentUser.id);
+          setSlots(freshSlots);
+        }
+
+        // 3. 슬롯이 안정적으로 닫히고 정리되는 체감을 제공하는 로딩 텀 (600ms 보장)
+        await new Promise((resolve) => setTimeout(resolve, 600));
+      } catch (err) {
+        console.error("팀 해체 처리 중 오류 발생:", err);
+      } finally {
+        resetCreationState();
+        setIsDisbanding(false);
+        setIsSettingsOpen(false);
+        setScreen("SLOT_SELECT");
       }
-      const updatedSlots = slots.map((s) =>
-        s.id === selectedSlotId ? { id: s.id, isCreated: false, isLocked: false } : s
-      );
-      setSlots(updatedSlots);
+    } else {
+      resetCreationState();
+      setIsSettingsOpen(false);
+      setScreen("SLOT_SELECT");
     }
-    resetCreationState();
-    setScreen("SLOT_SELECT");
   };
 
   // 대시보드 진입 시 혹시 myPlayers가 비어있고 팀이 선택되어 있다면 기본 로스터 복사 주입
@@ -621,6 +646,21 @@ export default function DashboardScreen() {
           setScreen("TITLE");
         }}
       />
+
+      {/* 팀 해체 & 슬롯 재구성 로딩 오버레이 */}
+      {isDisbanding && (
+        <div className="fixed inset-0 z-[100] bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-center gap-3 animate-in fade-in duration-200 select-none">
+          <Loader2 className="w-8 h-8 text-cyan-400 animate-spin" />
+          <div className="text-center flex flex-col gap-1">
+            <p className="text-sm font-bold text-white tracking-tight">
+              팀 데이터 삭제 중...
+            </p>
+            <p className="text-xs text-slate-400 font-mono">
+              슬롯 상태를 동기화하고 있습니다.
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
