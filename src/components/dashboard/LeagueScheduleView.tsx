@@ -240,7 +240,7 @@ export default function LeagueScheduleView() {
       </div>
 
       {/* ================= 2. 가로형 와이드 주차 리스트 (4개 Row Cards) ================= */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         {monthWeeks.map((week) => {
           const { monthWeek } = getWeekMonthInfo(week);
           const isCurrentPlayWeek = week === currentWeek;
@@ -264,7 +264,7 @@ export default function LeagueScheduleView() {
                 setSelectedWeek(week);
                 setIsModalOpen(true);
               }}
-              className={`w-full rounded-2xl p-2.5 sm:p-3 border transition-all text-left flex flex-col gap-2 relative cursor-pointer ${
+              className={`w-full rounded-2xl p-2 sm:p-2.5 border transition-all text-left flex flex-col gap-1.5 relative cursor-pointer ${
                 isSelected
                   ? "bg-slate-800/95 border-cyan-400 ring-2 ring-cyan-400/50 shadow-[0_0_16px_rgba(6,182,212,0.3)]"
                   : isCurrentPlayWeek
@@ -273,7 +273,7 @@ export default function LeagueScheduleView() {
               }`}
             >
               {/* 상단: 주차 정보 및 현재 진행 배지 */}
-              <div className="flex items-center justify-between w-full border-b border-slate-800/70 pb-1.5">
+              <div className="flex items-center justify-between w-full border-b border-slate-800/70 pb-1">
                 <div className="flex items-center gap-1.5">
                   <span className="text-xs font-black text-white">
                     {selectedMonth}월 {monthWeek}주차
@@ -299,13 +299,13 @@ export default function LeagueScheduleView() {
               </div>
 
               {/* 중앙: 무조건 3개의 통일된 칸 (슬롯) 리스트 */}
-              <div className="flex flex-col gap-1.5 w-full">
+              <div className="flex flex-col gap-1 w-full">
                 {slots.map((item) => {
                   if (item.isEmpty) {
                     return (
                       <div
                         key={item.id}
-                        className="flex items-center justify-center rounded-xl bg-slate-950/25 border border-dashed border-slate-800/40 min-h-[34px] h-[34px] select-none"
+                        className="flex items-center justify-center rounded-xl bg-slate-950/25 border border-dashed border-slate-800/40 min-h-[30px] h-[30px] select-none"
                       >
                         <span className="text-[10px] text-slate-700/50 font-mono">-</span>
                       </div>
@@ -315,7 +315,7 @@ export default function LeagueScheduleView() {
                   return (
                     <div
                       key={item.id}
-                      className="flex items-center justify-between p-1.5 px-2 rounded-xl bg-slate-950/70 border border-slate-800/90 text-xs gap-2 min-h-[34px]"
+                      className="flex items-center justify-between py-1 px-2 rounded-xl bg-slate-950/70 border border-slate-800/90 text-xs gap-1.5 min-h-[30px] h-[30px]"
                     >
                       <div className="flex items-center gap-1.5 min-w-0">
                         <span
