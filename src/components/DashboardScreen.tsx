@@ -266,7 +266,7 @@ export default function DashboardScreen() {
     TEAM: 0,
     ROSTER: 0,
     TACTICS: 0,
-    LEAGUE: 1, // 리그 진입 시 기본으로 '순위' 탭 선택
+    LEAGUE: 0, // 리그 진입 시 기본으로 '일정(SCHEDULE)' 탭 선택
   });
 
   const mainTab = MAIN_TABS.find((t) => t.id === activeMainTab) || MAIN_TABS[0];

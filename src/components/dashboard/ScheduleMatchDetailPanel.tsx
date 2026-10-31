@@ -154,9 +154,9 @@ export default function ScheduleMatchDetailPanel({
 
       {/* 2. 메인 콘텐츠: 매치 주간 vs 이벤트/휴식 주간 */}
       {isMatchWeek && homeTeam && awayTeam ? (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-          {/* (1) 좌측: 매치 프리뷰 대진 그래픽 (7칸) */}
-          <div className="lg:col-span-7 bg-slate-950/70 border border-slate-800 rounded-xl p-4 flex flex-col justify-between gap-3">
+        <div className="flex flex-col gap-3">
+          {/* (1) 매치 프리뷰 대진 그래픽 */}
+          <div className="bg-slate-950/70 border border-slate-800 rounded-xl p-3.5 flex flex-col justify-between gap-2.5">
             {/* 홈 vs 원정 그래픽 */}
             <div className="grid grid-cols-9 items-center py-2">
               {/* 홈 팀 */}
@@ -277,8 +277,8 @@ export default function ScheduleMatchDetailPanel({
             </div>
           </div>
 
-          {/* (2) 우측: 상대 팀 핵심 경계 챔피언 TOP 3 (5칸) */}
-          <div className="lg:col-span-5 bg-slate-950/70 border border-slate-800 rounded-xl p-4 flex flex-col justify-between gap-2.5">
+          {/* (2) 상대 팀 핵심 경계 챔피언 TOP 3 */}
+          <div className="bg-slate-950/70 border border-slate-800 rounded-xl p-3.5 flex flex-col justify-between gap-2.5">
             <div className="flex items-center justify-between border-b border-slate-800/80 pb-2">
               <div className="flex items-center gap-1.5">
                 <Swords className="w-4 h-4 text-rose-400" />
@@ -343,27 +343,25 @@ export default function ScheduleMatchDetailPanel({
         </div>
       ) : (
         /* 이벤트 / 비경기 주간 안내 */
-        <div className="bg-slate-950/70 border border-slate-800 rounded-xl p-5 flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-cyan-900/40 via-purple-900/30 to-slate-900 border border-cyan-500/30 flex items-center justify-center text-3xl sm:text-4xl shadow-inner shrink-0">
+        <div className="bg-slate-950/70 border border-slate-800 rounded-xl p-3.5 flex items-start gap-3">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-900/40 via-purple-900/30 to-slate-900 border border-cyan-500/30 flex items-center justify-center text-2xl shadow-inner shrink-0">
             {match?.eventIcon || phaseMeta.icon}
           </div>
-          <div className="flex-1 text-center sm:text-left space-y-1.5">
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
-              <h4 className="text-base sm:text-lg font-black text-white">
+          <div className="flex-1 space-y-1 min-w-0">
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <h4 className="text-xs font-black text-white truncate">
                 {match?.eventName || `${selectedWeek}주차 공식 이벤트`}
               </h4>
-              <span className={`px-2 py-0.5 rounded-md text-[10px] font-mono font-bold border ${phaseMeta.badgeClass}`}>
+              <span className={`px-1.5 py-0.2 rounded text-[9px] font-mono font-bold border ${phaseMeta.badgeClass}`}>
                 {phaseMeta.nameKr}
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-[11px] text-slate-300 leading-relaxed">
               {match?.eventDescription || phaseMeta.description}
             </p>
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-1 text-[11px] text-cyan-400">
-              <span className="flex items-center gap-1">
-                <Sparkles className="w-3.5 h-3.5" />
-                감독 전략 권장: 선수단 체력 집중 관리 및 스탯 훈련 극대화
-              </span>
+            <div className="flex items-center gap-1 pt-0.5 text-[10px] text-cyan-400">
+              <Sparkles className="w-3 h-3 shrink-0" />
+              <span className="truncate">감독 권장: 체력 집중 관리 및 훈련 극대화</span>
             </div>
           </div>
         </div>
@@ -381,7 +379,7 @@ export default function ScheduleMatchDetailPanel({
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="flex flex-col gap-2.5">
           {/* 체력 상태 점검 */}
           <div
             className={`p-3 rounded-xl border flex flex-col gap-1.5 ${
@@ -477,7 +475,7 @@ export default function ScheduleMatchDetailPanel({
             <span className="text-[10px] text-slate-400 font-mono">Bo3 라운드 로빈</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 pt-1">
+          <div className="flex flex-col gap-1.5 pt-1">
             {weekMatches.map((m, idx) => {
               const hTeam = getTeamInfo(m.homeTeamId);
               const aTeam = getTeamInfo(m.awayTeamId);

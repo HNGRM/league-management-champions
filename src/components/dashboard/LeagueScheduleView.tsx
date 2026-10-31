@@ -19,12 +19,7 @@ import {
   Calendar,
   Navigation,
   Shield,
-  Clock,
-  CheckCircle2,
   Trophy,
-  Users,
-  Eye,
-  Filter,
 } from "lucide-react";
 
 export default function LeagueScheduleView() {
@@ -40,7 +35,7 @@ export default function LeagueScheduleView() {
   const seasonSchedule = useGameStore((state) => state.seasonSchedule);
   const setSeasonSchedule = useGameStore((state) => state.setSeasonSchedule);
 
-  // 연도 표시 (생성 연도 2026의 다음 해 2027 정립)
+  // 연도 표시 (창단 연도 다음 해 2027 정립)
   const displayYear =
     currentYear < 100
       ? (currentTeam?.foundedYear || 2026) + currentYear
@@ -146,24 +141,25 @@ export default function LeagueScheduleView() {
   const arenaName = arenaDef?.levels[arenaLevel]?.name || "소형 아레나";
 
   return (
-    <div className="flex flex-col gap-4 max-w-7xl mx-auto pb-8">
+    <div className="flex flex-col gap-3 w-full pb-8 select-none animate-in fade-in duration-200">
       {/* ================= 1. 상단 월 네비게이터 & 필터 바 ================= */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-3 sm:p-4 shadow-lg backdrop-blur-sm flex flex-col md:flex-row items-center justify-between gap-3">
-        {/* 좌측: 월 컨트롤 ([ < ] 2027년 X월 [ > ] & [📍 오늘로 이동]) */}
-        <div className="flex items-center gap-2 w-full md:w-auto justify-between md:justify-start">
-          <div className="flex items-center bg-slate-950/80 border border-slate-800 rounded-xl p-1 shadow-inner">
+      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-2.5 shadow-md flex flex-col gap-2">
+        {/* 1행: 월 선택기 & 오늘로 이동 버튼 */}
+        <div className="flex items-center justify-between gap-2">
+          {/* 월 이동기 */}
+          <div className="flex items-center bg-slate-950/80 border border-slate-800/90 rounded-xl p-0.5 shadow-inner">
             <button
               type="button"
               onClick={handlePrevMonth}
               title="이전달 이동"
-              className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+              className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 active:scale-95 transition-all cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
 
-            <div className="px-3 py-1 flex items-center gap-1.5 min-w-[120px] justify-center text-center">
-              <Calendar className="w-3.5 h-3.5 text-cyan-400" />
-              <span className="text-sm font-black text-white tracking-tight">
+            <div className="px-2.5 py-0.5 flex items-center gap-1.5 justify-center text-center">
+              <Calendar className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+              <span className="text-xs font-black text-white tracking-tight">
                 {displayYear}년 {selectedMonth}월
               </span>
             </div>
@@ -172,66 +168,65 @@ export default function LeagueScheduleView() {
               type="button"
               onClick={handleNextMonth}
               title="다음달 이동"
-              className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+              className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 active:scale-95 transition-all cursor-pointer"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
 
+          {/* 오늘로 이동 버튼 */}
           <button
             type="button"
             onClick={handleJumpToToday}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cyan-500/15 border border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/25 text-xs font-bold transition-all cursor-pointer shadow-xs shrink-0"
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-cyan-500/15 border border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/25 active:scale-95 text-[11px] font-bold transition-all cursor-pointer shadow-xs shrink-0"
           >
-            <Navigation className="w-3.5 h-3.5 text-cyan-400" />
-            <span>오늘로 이동</span>
+            <Navigation className="w-3 h-3 text-cyan-400" />
+            <span>오늘 (W{currentWeek})</span>
           </button>
         </div>
 
-        {/* 중앙: 시즌 페이즈 뱃지 */}
-        <div className="flex items-center gap-2">
+        {/* 2행: 시즌 페이즈 뱃지 & 필터 토글 */}
+        <div className="flex items-center justify-between gap-2 pt-1.5 border-t border-slate-800/70">
+          {/* 시즌 페이즈 */}
           <div
-            className={`px-3 py-1.5 rounded-xl border text-xs font-bold flex items-center gap-2 transition-all shadow-md ${phaseMeta.badgeClass}`}
+            className={`px-2 py-0.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5 shadow-xs truncate ${phaseMeta.badgeClass}`}
           >
-            <span className="text-sm">{phaseMeta.icon}</span>
+            <span>{phaseMeta.icon}</span>
             <span className="font-mono tracking-tight font-black">{phaseMeta.nameKr}</span>
-            <span className="text-[10px] opacity-75 font-mono hidden sm:inline">
-              ({phaseMeta.weeksSpan})
-            </span>
           </div>
-        </div>
 
-        {/* 우측: 필터 토글 ([ 우리 팀 경기만 ] / [ 리그 전체 경기 ]) */}
-        <div className="flex items-center bg-slate-950/80 border border-slate-800 rounded-xl p-1 w-full md:w-auto justify-center">
-          <button
-            type="button"
-            onClick={() => setFilterMode("MY_TEAM")}
-            className={`flex-1 md:flex-none px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
-              filterMode === "MY_TEAM"
-                ? "bg-cyan-500 text-slate-950 shadow-sm"
-                : "text-slate-400 hover:text-slate-200"
-            }`}
-          >
-            <Shield className="w-3.5 h-3.5" />
-            <span>우리 팀 경기만</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setFilterMode("ALL")}
-            className={`flex-1 md:flex-none px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
-              filterMode === "ALL"
-                ? "bg-cyan-500 text-slate-950 shadow-sm"
-                : "text-slate-400 hover:text-slate-200"
-            }`}
-          >
-            <Trophy className="w-3.5 h-3.5" />
-            <span>리그 전체 경기</span>
-          </button>
+          {/* 필터 토글: 우리 팀 vs 전체 */}
+          <div className="flex items-center bg-slate-950/80 border border-slate-800 rounded-lg p-0.5 shrink-0">
+            <button
+              type="button"
+              onClick={() => setFilterMode("MY_TEAM")}
+              className={`px-2 py-0.5 rounded text-[10px] font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                filterMode === "MY_TEAM"
+                  ? "bg-cyan-500 text-slate-950 shadow-sm"
+                  : "text-slate-400 hover:text-slate-200"
+              }`}
+            >
+              <Shield className="w-3 h-3" />
+              <span>우리 팀</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setFilterMode("ALL")}
+              className={`px-2 py-0.5 rounded text-[10px] font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                filterMode === "ALL"
+                  ? "bg-cyan-500 text-slate-950 shadow-sm"
+                  : "text-slate-400 hover:text-slate-200"
+              }`}
+            >
+              <Trophy className="w-3 h-3" />
+              <span>리그 전체</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* ================= 2. 월간 4주 캘린더 그리드 (4 Cards) ================= */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+      {/* ================= 2. 월간 4주 캘린더 2x2 그리드 ================= */}
+      <div className="grid grid-cols-2 gap-2">
         {monthWeeks.map((week) => {
           const { monthWeek } = getWeekMonthInfo(week);
           const isCurrentPlayWeek = week === currentWeek;
@@ -274,40 +269,40 @@ export default function LeagueScheduleView() {
               key={week}
               type="button"
               onClick={() => setSelectedWeek(week)}
-              className={`rounded-2xl p-4 flex flex-col justify-between text-left transition-all duration-200 cursor-pointer relative overflow-hidden group min-h-[160px] border ${
+              className={`rounded-xl p-2.5 flex flex-col justify-between text-left transition-all duration-150 cursor-pointer relative overflow-hidden border min-h-[105px] ${
                 isSelected
-                  ? "bg-slate-800/90 border-cyan-400 ring-2 ring-cyan-400/40 shadow-[0_0_20px_rgba(6,182,212,0.25)]"
+                  ? "bg-slate-800/95 border-cyan-400 ring-2 ring-cyan-400/50 shadow-[0_0_15px_rgba(6,182,212,0.3)]"
                   : isCurrentPlayWeek
-                  ? "bg-slate-900/90 border-cyan-500/60 ring-1 ring-cyan-500/30 hover:border-cyan-400 shadow-md"
-                  : "bg-slate-900/60 border-slate-800/90 hover:bg-slate-800/60 hover:border-slate-700 shadow-sm"
+                  ? "bg-slate-900/90 border-cyan-500/60 hover:border-cyan-400 shadow-sm"
+                  : "bg-slate-900/60 border-slate-800/80 hover:bg-slate-800/60 hover:border-slate-700 shadow-xs"
               }`}
             >
               {/* 상단 헤더: 주차 명칭 및 NOW 배지 */}
-              <div className="flex items-center justify-between w-full border-b border-slate-800/80 pb-2.5">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-xs font-black text-white">
+              <div className="flex items-center justify-between w-full border-b border-slate-800/60 pb-1.5">
+                <div className="flex items-center gap-1">
+                  <span className="text-[11px] font-black text-white">
                     {selectedMonth}월 {monthWeek}주차
                   </span>
-                  <span className="text-[10px] text-slate-400 font-mono">
+                  <span className="text-[9px] text-slate-400 font-mono">
                     (W{week})
                   </span>
                 </div>
 
                 {isCurrentPlayWeek && (
-                  <span className="px-2 py-0.5 rounded-full bg-cyan-500 text-slate-950 font-black text-[9px] flex items-center gap-1 shadow-sm animate-pulse">
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-950" />
-                    NOW 현재
+                  <span className="px-1.5 py-0.2 rounded-full bg-cyan-500 text-slate-950 font-black text-[8px] flex items-center gap-0.5 shadow-sm animate-pulse">
+                    <span className="w-1 h-1 rounded-full bg-slate-950" />
+                    NOW
                   </span>
                 )}
               </div>
 
               {/* 본문 블록: 정규 경기 vs 이벤트 주간 */}
-              <div className="py-2.5 flex-1 flex flex-col justify-center">
+              <div className="py-1.5 flex-1 flex flex-col justify-center">
                 {isMatchWeek && opponentTeam ? (
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-1.5">
                     {/* 상대 팀 로고 + 팀명 */}
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-xl bg-slate-950 border border-slate-700/80 p-1 flex items-center justify-center shrink-0 shadow-xs overflow-hidden">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-5 h-5 rounded-md bg-slate-950 border border-slate-700 p-0.5 flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
                         {opponentTeam.logoUrl ? (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img
@@ -316,23 +311,18 @@ export default function LeagueScheduleView() {
                             className="w-full h-full object-contain"
                           />
                         ) : (
-                          <Shield className="w-4 h-4 text-slate-500" />
+                          <Shield className="w-3 h-3 text-slate-500" />
                         )}
                       </div>
-                      <div className="min-w-0 flex-1">
-                        <span className="text-[10px] text-slate-400 font-mono block leading-none">
-                          VS
-                        </span>
-                        <span className="text-xs font-bold text-slate-100 truncate block">
-                          {opponentTeam.name}
-                        </span>
-                      </div>
+                      <span className="text-[11px] font-bold text-slate-100 truncate min-w-0">
+                        {opponentTeam.name}
+                      </span>
                     </div>
 
                     {/* 배지 행: 장소(홈/원정) & 포맷 */}
-                    <div className="flex items-center gap-1.5 flex-wrap">
+                    <div className="flex items-center gap-1">
                       <span
-                        className={`px-1.5 py-0.2 rounded text-[10px] font-bold border ${
+                        className={`px-1 py-0.2 rounded text-[9px] font-bold border ${
                           pMatch.isHome
                             ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
                             : "bg-blue-500/15 text-blue-300 border-blue-500/30"
@@ -340,69 +330,56 @@ export default function LeagueScheduleView() {
                       >
                         {pMatch.isHome ? "홈경기" : "원정"}
                       </span>
-                      <span className="px-1.5 py-0.2 rounded text-[10px] font-mono font-bold bg-slate-800 text-slate-300 border border-slate-700">
+                      <span className="px-1 py-0.2 rounded text-[9px] font-mono font-bold bg-slate-800 text-slate-300 border border-slate-700">
                         {pMatch.format}
                       </span>
                       {filterMode === "ALL" && weekAllMatches.length > 1 && (
-                        <span className="px-1.5 py-0.2 rounded text-[9px] font-mono text-cyan-400 bg-cyan-950/40 border border-cyan-500/30">
-                          리그 {weekAllMatches.length}경기
+                        <span className="px-1 py-0.2 rounded text-[8px] font-mono text-cyan-400 bg-cyan-950/40 border border-cyan-500/30">
+                          총 {weekAllMatches.length}경기
                         </span>
                       )}
                     </div>
                   </div>
                 ) : (
                   /* 비경기 / 공식 이벤트 주간 */
-                  <div className="flex items-center gap-2.5 py-1">
-                    <span className="text-2xl p-2 rounded-xl bg-slate-950/70 border border-slate-800 shrink-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl p-1 rounded-lg bg-slate-950/70 border border-slate-800 shrink-0">
                       {pMatch?.eventIcon || "❄️"}
                     </span>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-xs font-bold text-slate-200 line-clamp-2 leading-snug">
-                        {pMatch?.eventName || "공식 이벤트 주간"}
-                      </p>
-                      <span className="text-[10px] text-slate-400 font-mono mt-0.5 block">
-                        비경기 주간
-                      </span>
-                    </div>
+                    <p className="text-[11px] font-bold text-slate-200 line-clamp-2 leading-tight min-w-0">
+                      {pMatch?.eventName || "공식 이벤트 주간"}
+                    </p>
                   </div>
                 )}
               </div>
 
               {/* 하단 상태 바: 스코어(승패) or 예정/D-Day */}
-              <div className="border-t border-slate-800/80 pt-2 flex items-center justify-between">
+              <div className="border-t border-slate-800/60 pt-1 flex items-center justify-between text-[9px] font-mono">
                 {isCompleted && pMatch.result ? (
-                  <div className="flex items-center justify-between w-full">
-                    <span
-                      className={`px-2 py-0.5 rounded text-[10px] font-mono font-black border ${
-                        isPlayerWin
-                          ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
-                          : "bg-rose-500/20 text-rose-300 border-rose-500/40"
-                      }`}
-                    >
-                      {pMatch.result.homeScore} : {pMatch.result.awayScore}{" "}
-                      {isPlayerWin ? "승" : "패"}
-                    </span>
-                    <span className="text-[10px] text-slate-400 font-mono">경기 종료</span>
-                  </div>
+                  <span
+                    className={`px-1.5 py-0.2 rounded font-black border ${
+                      isPlayerWin
+                        ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
+                        : "bg-rose-500/20 text-rose-300 border-rose-500/40"
+                    }`}
+                  >
+                    {pMatch.result.homeScore} : {pMatch.result.awayScore} {isPlayerWin ? "승" : "패"}
+                  </span>
                 ) : isCurrentPlayWeek ? (
-                  <div className="flex items-center justify-between w-full">
-                    <span className="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-[10px] font-bold font-mono">
-                      오늘 (D-Day)
-                    </span>
-                    <span className="text-[10px] text-cyan-400 font-mono">진행 중</span>
-                  </div>
+                  <span className="px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-bold">
+                    오늘 (D-Day)
+                  </span>
                 ) : week > currentWeek ? (
-                  <div className="flex items-center justify-between w-full">
-                    <span className="px-2 py-0.5 rounded bg-slate-800/80 text-slate-400 text-[10px] font-mono">
-                      예정 (D-{(week - currentWeek) * 7})
-                    </span>
-                    <span className="text-[10px] text-slate-400 font-mono">예정됨</span>
-                  </div>
+                  <span className="text-slate-400">
+                    예정 (D-{(week - currentWeek) * 7})
+                  </span>
                 ) : (
-                  <div className="flex items-center justify-between w-full">
-                    <span className="text-[10px] text-slate-400 font-mono">완료</span>
-                  </div>
+                  <span className="text-slate-400">완료</span>
                 )}
+
+                <span className="text-[9px] text-slate-500">
+                  {isCompleted ? "종료" : isCurrentPlayWeek ? "진행 중" : "대기"}
+                </span>
               </div>
             </button>
           );
