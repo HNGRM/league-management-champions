@@ -8,7 +8,7 @@ import {
   SEASON_PHASE_METAS,
   getSeasonPhaseForMonth,
   getWeekMonthInfo,
-  getWeekSpecialBadge,
+  getWeekSlots,
 } from "@/types/schedule";
 import { generateAnnualSeasonSchedule } from "@/data/scheduleGenerator";
 import { FACILITIES } from "@/types/facility";
@@ -248,11 +248,13 @@ export default function LeagueScheduleView() {
 
           // 해당 주차의 플레이어 경기 목록 (0~2경기)
           const weekMatches = activeSchedule.filter((m) => m.week === week && m.isPlayerMatch);
-          const specialBadge = getWeekSpecialBadge(week);
 
           // 주차 전체 완료 여부 판정
           const allMatchesCompleted =
             weekMatches.length > 0 && weekMatches.every((m) => m.status === "COMPLETED");
+
+          // 무조건 3개의 통일된 칸(슬롯) 생성
+          const slots = getWeekSlots(week, weekMatches, divisionTeams, currentWeek);
 
           return (
             <button
@@ -296,112 +298,60 @@ export default function LeagueScheduleView() {
                 </div>
               </div>
 
-              {/* 중앙/우측: 최대 3개 이내의 핵심 이벤트 뱃지 영역 */}
-              <div className="flex flex-col gap-1.5">
-                {/* 1) 시즌 / 이적 시장 핵심 뱃지 (있을 경우) */}
-                {specialBadge && (
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={`px-2 py-0.5 rounded-md text-[10px] font-bold border flex items-center gap-1 shadow-xs ${specialBadge.badgeClass}`}
-                    >
-                      <span className="text-xs">{specialBadge.icon}</span>
-                      <span>{specialBadge.text}</span>
-                    </span>
-                  </div>
-                )}
-
-                {/* 2) 경기 뱃지 목록 (1~2개) */}
-                {weekMatches.length > 0 ? (
-                  <div className="flex flex-col gap-1">
-                    {weekMatches.map((m, idx) => {
-                      const oppId = m.isHome ? m.awayTeamId : m.homeTeamId;
-                      const opp = divisionTeams.find((t) => t.teamId === oppId);
-                      const isCompleted = m.status === "COMPLETED" && m.result;
-                      let isWin = false;
-                      if (isCompleted && m.result) {
-                        isWin = m.isHome
-                          ? m.result.homeScore > m.result.awayScore
-                          : m.result.awayScore > m.result.homeScore;
-                      }
-
-                      return (
-                        <div
-                          key={m.id}
-                          className="flex items-center justify-between p-1.5 px-2 rounded-xl bg-slate-950/70 border border-slate-800/90 text-xs gap-2"
+              {/* 중앙: 무조건 3개의 통일된 칸 (슬롯) 리스트 */}
+              <div className="flex flex-col gap-1.5 w-full">
+                {slots.map((item) => (
+                  <div
+                    key={item.id}
+                    className="flex items-center justify-between p-1.5 px-2 rounded-xl bg-slate-950/70 border border-slate-800/90 text-xs gap-2 min-h-[34px]"
+                  >
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <span
+                        className={`text-[10px] font-mono font-bold shrink-0 ${item.tagClass}`}
+                      >
+                        {item.tag}
+                      </span>
+                      <div className="w-4 h-4 rounded-md bg-slate-900 border border-slate-700 p-0.5 flex items-center justify-center shrink-0 overflow-hidden text-[10px]">
+                        {item.logoUrl ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={item.logoUrl}
+                            alt={item.title}
+                            className="w-full h-full object-contain"
+                          />
+                        ) : item.icon ? (
+                          <span>{item.icon}</span>
+                        ) : (
+                          <Shield className="w-3 h-3 text-slate-500" />
+                        )}
+                      </div>
+                      <span className="text-[11px] font-bold text-slate-200 truncate max-w-[130px]">
+                        {item.title}
+                      </span>
+                      {item.badge && (
+                        <span
+                          className={`px-1 py-0.2 rounded text-[8px] font-bold border shrink-0 ${item.badgeClass}`}
                         >
-                          <div className="flex items-center gap-1.5 min-w-0">
-                            <span className="text-[10px] font-mono text-cyan-400 font-bold shrink-0">
-                              {weekMatches.length > 1 ? `${idx + 1}차전` : "경기"}
-                            </span>
-                            <div className="w-4 h-4 rounded-md bg-slate-900 border border-slate-700 p-0.5 flex items-center justify-center shrink-0 overflow-hidden">
-                              {opp?.logoUrl ? (
-                                // eslint-disable-next-line @next/next/no-img-element
-                                <img
-                                  src={opp.logoUrl}
-                                  alt={opp.teamName}
-                                  className="w-full h-full object-contain"
-                                />
-                              ) : (
-                                <Shield className="w-3 h-3 text-slate-500" />
-                              )}
-                            </div>
-                            <span className="text-[11px] font-bold text-slate-200 truncate max-w-[130px]">
-                              {opp?.teamName || m.eventName || "상대팀"}
-                            </span>
-                            <span
-                              className={`px-1 py-0.2 rounded text-[8px] font-bold border shrink-0 ${
-                                m.isHome
-                                  ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
-                                  : "bg-blue-500/15 text-blue-300 border-blue-500/30"
-                              }`}
-                            >
-                              {m.isHome ? "홈" : "원정"}
-                            </span>
-                            <span className="text-[9px] font-mono text-slate-400 font-bold shrink-0">
-                              {m.format}
-                            </span>
-                          </div>
-
-                          {/* 경기 결과 / 예정 뱃지 */}
-                          <div className="shrink-0 font-mono">
-                            {isCompleted && m.result ? (
-                              <span
-                                className={`px-1.5 py-0.5 rounded text-[10px] font-black border ${
-                                  isWin
-                                    ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
-                                    : "bg-rose-500/20 text-rose-300 border-rose-500/40"
-                                }`}
-                              >
-                                {m.result.homeScore} : {m.result.awayScore}{" "}
-                                {isWin ? "승" : "패"}
-                              </span>
-                            ) : week === currentWeek ? (
-                              <span className="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-[9px] font-bold">
-                                {weekMatches.length > 1
-                                  ? `${idx + 1}차전 대기`
-                                  : "경기 대기"}
-                              </span>
-                            ) : (
-                              <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[9px]">
-                                {weekMatches.length > 1
-                                  ? `${idx + 1}차전 예정`
-                                  : "예정"}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                ) : (
-                  /* 경기가 없는 주간 */
-                  !specialBadge && (
-                    <div className="flex items-center gap-1.5 py-1 text-slate-400 text-xs">
-                      <span className="text-sm">🏖️</span>
-                      <span className="text-[11px] font-medium">비경기 주간 (훈련 및 전술 정비)</span>
+                          {item.badge}
+                        </span>
+                      )}
+                      {item.subText && (
+                        <span className="text-[9px] font-mono text-slate-400 font-bold shrink-0">
+                          {item.subText}
+                        </span>
+                      )}
                     </div>
-                  )
-                )}
+
+                    {/* 경기/이벤트 결과 또는 상태 뱃지 */}
+                    <div className="shrink-0 font-mono">
+                      <span
+                        className={`px-1.5 py-0.5 rounded text-[9px] border ${item.statusClass}`}
+                      >
+                        {item.statusText}
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </button>
           );

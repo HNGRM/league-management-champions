@@ -203,9 +203,7 @@ export default function ScheduleMatchDetailModal({
                     <div className="flex items-center justify-between border-b border-slate-800/60 pb-1.5 text-xs">
                       <div className="flex items-center gap-1.5 font-bold">
                         <span className="text-cyan-400 font-mono text-[11px]">
-                          {playerMatches.length > 1
-                            ? `[${idx + 1}차전]`
-                            : "[공식 매치]"}
+                          [경기]
                         </span>
                         <span className="text-white text-[11px]">
                           {match.eventName || "정규 리그전"}
@@ -421,9 +419,7 @@ export default function ScheduleMatchDetailModal({
                         >
                           <Swords className="w-4 h-4" />
                           <span>
-                            {playerMatches.length > 1
-                              ? `${idx + 1}차전 경기 시작 (${match.format})`
-                              : `공식 경기 시작 (${match.format})`}
+                            공식 경기 시작 ({match.format})
                           </span>
                         </button>
                         <p className="text-[9px] text-slate-400 text-center mt-1">

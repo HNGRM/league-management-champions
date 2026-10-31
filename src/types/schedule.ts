@@ -323,3 +323,211 @@ export function getSeasonPhaseForMonth(month: number): SeasonPhase {
   const startWeek = (Math.max(1, Math.min(12, month)) - 1) * 4 + 1;
   return getSeasonPhase(startWeek);
 }
+
+/**
+ * 주차별 3개 고정 슬롯 아이템 인터페이스 (시즌 개막/이적/경기/공식일정/훈련 등)
+ */
+export interface WeekSlotItem {
+  id: string;
+  type: "MATCH" | "EVENT" | "TRAINING" | "TACTICS" | "REST";
+  tag: string; // "경기" | "이벤트" | "훈련" | "전술" | "휴식"
+  tagClass: string;
+  icon?: string;
+  logoUrl?: string | null;
+  title: string;
+  badge?: string; // "홈" | "원정" | "공식 일정" | "스탯 육성" 등
+  badgeClass?: string;
+  subText?: string; // "Bo3" | "Bo5"
+  statusText: string;
+  statusClass: string;
+  isCompleted?: boolean;
+}
+
+/**
+ * 각 주차별로 정확히 3개의 통일된 칸(슬롯)을 구성하여 반환하는 생성 함수
+ */
+export function getWeekSlots(
+  week: number,
+  weekMatches: MatchSchedule[],
+  divisionTeams: { teamId: string; teamName: string; logoUrl?: string | null }[],
+  currentWeek: number
+): WeekSlotItem[] {
+  const slots: WeekSlotItem[] = [];
+  const isPast = week < currentWeek;
+  const isNow = week === currentWeek;
+
+  // 1. 해당 주차의 핵심 특별 뱃지 (스프링 개막, 이적 시장 등)
+  const specialBadge = getWeekSpecialBadge(week);
+  if (specialBadge) {
+    let tag = "이벤트";
+    let tagClass = "text-amber-400";
+    let badge = "공식 일정";
+    let badgeClass = "bg-amber-500/15 text-amber-300 border-amber-500/30";
+
+    if (specialBadge.type.includes("TRANSFER")) {
+      tagClass = "text-orange-400";
+      badge = "이적 시장";
+      badgeClass = "bg-orange-500/15 text-orange-300 border-orange-500/30";
+    } else if (specialBadge.type === "SEASON_START") {
+      tagClass = "text-emerald-400";
+      badge = "공식 일정";
+      badgeClass = "bg-emerald-500/15 text-emerald-300 border-emerald-500/30";
+    } else if (specialBadge.type === "SEASON_END") {
+      tagClass = "text-slate-400";
+      badge = "시즌 폐막";
+      badgeClass = "bg-slate-500/15 text-slate-300 border-slate-500/30";
+    }
+
+    slots.push({
+      id: `special-${week}`,
+      type: "EVENT",
+      tag,
+      tagClass,
+      icon: specialBadge.icon,
+      title: specialBadge.text,
+      badge,
+      badgeClass,
+      statusText: isPast ? "종료" : isNow ? "진행 중" : "예정",
+      statusClass: isPast
+        ? "bg-slate-800 text-slate-400 border-slate-700"
+        : isNow
+        ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40 font-bold"
+        : "bg-slate-800/80 text-slate-400 border-slate-700/60",
+    });
+  }
+
+  // 2. 해당 주차의 플레이어 경기 목록 (1차전/2차전 구분 없이 모두 '경기'로 통일)
+  for (let i = 0; i < weekMatches.length; i++) {
+    const m = weekMatches[i];
+    const oppId = m.isHome ? m.awayTeamId : m.homeTeamId;
+    const opp = divisionTeams.find((t) => t.teamId === oppId);
+    const isCompleted = m.status === "COMPLETED" && m.result;
+    let isWin = false;
+    if (isCompleted && m.result) {
+      isWin = m.isHome
+        ? m.result.homeScore > m.result.awayScore
+        : m.result.awayScore > m.result.homeScore;
+    }
+
+    let statusText = "예정";
+    let statusClass = "bg-slate-800 text-slate-400 border-slate-700";
+    if (isCompleted && m.result) {
+      statusText = `${m.result.homeScore} : ${m.result.awayScore} ${isWin ? "승" : "패"}`;
+      statusClass = isWin
+        ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40 font-black"
+        : "bg-rose-500/20 text-rose-300 border-rose-500/40 font-black";
+    } else if (isNow) {
+      statusText = "경기 대기";
+      statusClass = "bg-cyan-500/20 text-cyan-300 border-cyan-500/40 font-bold";
+    }
+
+    slots.push({
+      id: `match-${m.id}`,
+      type: "MATCH",
+      tag: "경기",
+      tagClass: "text-cyan-400",
+      logoUrl: opp?.logoUrl || null,
+      title: opp?.teamName || m.eventName || "상대팀",
+      badge: m.isHome ? "홈" : "원정",
+      badgeClass: m.isHome
+        ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
+        : "bg-blue-500/15 text-blue-300 border-blue-500/30",
+      subText: m.format,
+      statusText,
+      statusClass,
+      isCompleted: !!isCompleted,
+    });
+  }
+
+  // 3. 해당 주차 세부 공식 이벤트 (월말 결산일, 메타 패치, 미디어 데이, 시상식 등)
+  const detailedEvents = getWeekDetailedEvents(week);
+  for (const evt of detailedEvents) {
+    if (slots.length >= 3) break;
+    slots.push({
+      id: `detail-${week}-${evt.type}`,
+      type: "EVENT",
+      tag: "이벤트",
+      tagClass:
+        evt.type === "PAYDAY"
+          ? "text-emerald-400"
+          : evt.type === "PATCH"
+          ? "text-cyan-400"
+          : "text-amber-400",
+      icon: evt.icon,
+      title: evt.title,
+      badge:
+        evt.type === "PAYDAY"
+          ? "재정 정산"
+          : evt.type === "PATCH"
+          ? "패치노트"
+          : "공식 일정",
+      badgeClass:
+        evt.type === "PAYDAY"
+          ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
+          : evt.type === "PATCH"
+          ? "bg-cyan-500/15 text-cyan-300 border-cyan-500/30"
+          : "bg-amber-500/15 text-amber-300 border-amber-500/30",
+      statusText: isPast ? "종료" : isNow ? "진행 중" : "예정",
+      statusClass: isPast
+        ? "bg-slate-800 text-slate-400 border-slate-700"
+        : isNow
+        ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40 font-bold"
+        : "bg-slate-800/80 text-slate-400 border-slate-700/60",
+    });
+  }
+
+  // 4. 슬롯이 3개 미만인 경우 루틴 일정으로 정확히 3칸 보장
+  const dummyRoutinePool = [
+    {
+      type: "TRAINING" as const,
+      tag: "훈련",
+      tagClass: "text-purple-400",
+      icon: "🏋️",
+      title: "선수단 주간 훈련",
+      badge: "스탯 육성",
+      badgeClass: "bg-purple-500/15 text-purple-300 border-purple-500/30",
+    },
+    {
+      type: "TACTICS" as const,
+      tag: "전술",
+      tagClass: "text-indigo-400",
+      icon: "📋",
+      title: "전술 분석 회의",
+      badge: "밴픽 전략",
+      badgeClass: "bg-indigo-500/15 text-indigo-300 border-indigo-500/30",
+    },
+    {
+      type: "REST" as const,
+      tag: "휴식",
+      tagClass: "text-teal-400",
+      icon: "☕",
+      title: "컨디션 회복 휴식",
+      badge: "체력 관리",
+      badgeClass: "bg-teal-500/15 text-teal-300 border-teal-500/30",
+    },
+  ];
+
+  let dummyIdx = 0;
+  while (slots.length < 3) {
+    const routine = dummyRoutinePool[dummyIdx % dummyRoutinePool.length];
+    slots.push({
+      id: `routine-${week}-${dummyIdx}`,
+      type: routine.type,
+      tag: routine.tag,
+      tagClass: routine.tagClass,
+      icon: routine.icon,
+      title: routine.title,
+      badge: routine.badge,
+      badgeClass: routine.badgeClass,
+      statusText: isPast ? "완료" : isNow ? "진행 중" : "예정",
+      statusClass: isPast
+        ? "bg-slate-800 text-slate-400 border-slate-700"
+        : isNow
+        ? "bg-cyan-500/20 text-cyan-300 border-cyan-500/40 font-bold"
+        : "bg-slate-800/80 text-slate-400 border-slate-700/60",
+    });
+    dummyIdx++;
+  }
+
+  return slots.slice(0, 3);
+}
