@@ -173,14 +173,8 @@ export default function MyTeamFacilityView() {
         </div>
       </div>
 
-      {/* ================= 2. 4대 시설 2행 2열 (2x2) 그리드 ================= */}
-      {/* 
-        좌상단: 홈 경기장 (arena)
-        우상단: 트레이닝 센터 (training)
-        좌하단: 웰니스 센터 (wellness)
-        우하단: 미디어 스튜디오 (media)
-      */}
-      <div className="grid grid-cols-2 gap-2.5">
+      {/* ================= 2. 4대 시설 카드 리스트 (4행 1열) ================= */}
+      <div className="flex flex-col gap-2.5">
         {FACILITIES.map((facility) => {
           const currentLevel = facilities[facility.id] ?? 1;
           const isMax = currentLevel >= 5;
@@ -191,54 +185,65 @@ export default function MyTeamFacilityView() {
               key={facility.id}
               type="button"
               onClick={() => setSelectedFacilityId(facility.id)}
-              className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/60 shadow-md text-left transition-all duration-150 active:scale-95 cursor-pointer flex flex-col justify-between p-2.5"
+              className="group relative h-[88px] sm:h-24 w-full rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/60 shadow-lg text-left transition-all duration-150 active:scale-[0.98] cursor-pointer flex items-center justify-between p-3.5"
             >
               {/* 시설 배경 이미지 */}
               <img
                 src={facility.imageUrl}
                 alt={facility.nameKr}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
 
-              {/* 어두운 그라데이션 오버레이 */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-black/60 pointer-events-none" />
+              {/* 어두운 그라데이션 오버레이 (텍스트 가독성 확보) */}
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/75 to-slate-950/30 pointer-events-none" />
 
-              {/* 상단 1열: 기능(분류) 뱃지 & 레벨 뱃지 */}
-              <div className="relative z-10 flex items-center justify-between w-full gap-1">
-                {/* 분류 뱃지 (ex: 재정/수익) */}
-                <span
-                  className={`inline-flex items-center px-1.5 py-0.5 rounded-md text-[9px] font-bold border backdrop-blur-md ${facility.categoryBadgeClass}`}
-                >
-                  {facility.category}
-                </span>
+              {/* 좌측 정보 영역 */}
+              <div className="relative z-10 flex flex-col justify-center gap-1 min-w-0 pr-2">
+                {/* 1열: 분류 뱃지 & 레벨 뱃지 & 단계명 */}
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  {/* 분류 뱃지 (ex: 재정/수익) */}
+                  <span
+                    className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold border backdrop-blur-md ${facility.categoryBadgeClass}`}
+                  >
+                    {facility.category}
+                  </span>
 
-                {/* 몇 레벨 시설인지 (ex: Lv.1/5) */}
-                <span
-                  className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md text-[9px] font-mono font-bold border backdrop-blur-md ${
-                    isMax
-                      ? "bg-amber-950/90 text-amber-300 border-amber-500/60 shadow-sm"
-                      : "bg-cyan-950/90 text-cyan-300 border-cyan-500/60"
-                  }`}
-                >
-                  {isMax && <Crown className="w-2.5 h-2.5 text-amber-400" />}
-                  <span>Lv.{currentLevel}/5</span>
-                </span>
-              </div>
+                  {/* 몇 레벨 시설인지 (ex: Lv.1/5) */}
+                  <span
+                    className={`inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md text-[10px] font-mono font-bold border backdrop-blur-md ${
+                      isMax
+                        ? "bg-amber-950/90 text-amber-300 border-amber-500/60 shadow-sm"
+                        : "bg-cyan-950/90 text-cyan-300 border-cyan-500/60"
+                    }`}
+                  >
+                    {isMax && <Crown className="w-2.5 h-2.5 text-amber-400" />}
+                    <span>Lv.{currentLevel} / 5</span>
+                  </span>
 
-              {/* 하단 2열: 시설 이름 & 몇 레벨 시설 명칭 */}
-              <div className="relative z-10 flex flex-col leading-tight mt-auto">
-                <div className="flex items-baseline gap-1 flex-wrap">
-                  <span className="text-sm font-black text-white tracking-tight drop-shadow-md">
+                  {/* 단계 명칭 (ex: 소형 아레나) */}
+                  <span className="text-[11px] font-bold text-cyan-300 drop-shadow-sm truncate">
+                    {currentSpec.name}
+                  </span>
+                </div>
+
+                {/* 2열: 시설 이름 (ex: 홈 경기장 Home Arena) */}
+                <div className="flex items-baseline gap-1.5 mt-0.5">
+                  <span className="text-base sm:text-lg font-black text-white tracking-tight drop-shadow-md">
                     {facility.nameKr}
                   </span>
-                  <span className="text-[9px] text-cyan-300/80 font-mono">
+                  <span className="text-[10px] text-cyan-300/80 font-mono">
                     {facility.nameEn}
                   </span>
                 </div>
-                <span className="text-[10px] font-bold text-cyan-300 drop-shadow-sm mt-0.5 truncate">
-                  Lv.{currentLevel} {currentSpec.name}
-                </span>
+              </div>
+
+              {/* 우측 액션 인디케이터 */}
+              <div className="relative z-10 flex items-center gap-1 text-slate-400 group-hover:text-cyan-300 transition-colors shrink-0">
+                <span className="text-[11px] font-bold hidden sm:inline">상세보기</span>
+                <div className="w-7 h-7 rounded-full bg-slate-950/80 border border-slate-700/80 flex items-center justify-center text-slate-400 group-hover:text-cyan-300 group-hover:border-cyan-500/50 transition-all shadow-sm">
+                  <ChevronRight className="w-4 h-4" />
+                </div>
               </div>
             </button>
           );
