@@ -219,17 +219,17 @@ export default function LeagueStatsView() {
 
   return (
     <div className="flex flex-col gap-3 w-full pb-8 select-none animate-in fade-in duration-200">
-      {/* ================= 1. 상단 서브 네비게이터 바 ================= */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-2.5 sm:p-3 shadow-md flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
-        {/* 3개 메인 탭 전환 버튼 */}
-        <div className="flex items-center bg-slate-950/80 border border-slate-800/90 rounded-xl p-1 shadow-inner shrink-0">
+      {/* ================= 1. 상단 컨트롤 패널 ================= */}
+      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-2.5 shadow-md flex flex-col gap-2">
+        {/* Row 1: 3개 메인 탭 전환 버튼 (전체 너비 3등분 그리드) */}
+        <div className="grid grid-cols-3 gap-1 bg-slate-950/80 border border-slate-800/90 rounded-xl p-1 shadow-inner w-full">
           <button
             type="button"
             onClick={() => {
               setActiveTab("PLAYER");
               setSearchQuery("");
             }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
               activeTab === "PLAYER"
                 ? "bg-cyan-500/20 text-cyan-300 border border-cyan-400/60 shadow-sm"
                 : "text-slate-400 hover:text-white"
@@ -245,7 +245,7 @@ export default function LeagueStatsView() {
               setActiveTab("TEAM");
               setSearchQuery("");
             }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
               activeTab === "TEAM"
                 ? "bg-cyan-500/20 text-cyan-300 border border-cyan-400/60 shadow-sm"
                 : "text-slate-400 hover:text-white"
@@ -261,7 +261,7 @@ export default function LeagueStatsView() {
               setActiveTab("CHAMPION");
               setSearchQuery("");
             }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
               activeTab === "CHAMPION"
                 ? "bg-cyan-500/20 text-cyan-300 border border-cyan-400/60 shadow-sm"
                 : "text-slate-400 hover:text-white"
@@ -272,10 +272,10 @@ export default function LeagueStatsView() {
           </button>
         </div>
 
-        {/* 우측 정렬 및 검색 필터 바 */}
-        <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap justify-between sm:justify-end min-w-0">
+        {/* Row 2: 검색창 & 정렬 드롭다운 */}
+        <div className="flex items-center gap-2 w-full">
           {/* 검색창 */}
-          <div className="relative flex-1 sm:w-44 min-w-[130px]">
+          <div className="relative flex-1 min-w-0">
             <Search className="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
@@ -283,21 +283,18 @@ export default function LeagueStatsView() {
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={
                 activeTab === "PLAYER"
-                  ? "선수/팀 검색..."
+                  ? "선수 또는 팀 검색..."
                   : activeTab === "TEAM"
-                  ? "팀 검색..."
+                  ? "팀 이름 검색..."
                   : "챔피언 검색..."
               }
-              className="w-full pl-8 pr-2.5 py-1.5 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white placeholder-slate-500 outline-none focus:border-cyan-500/60 font-mono transition-colors shadow-inner"
+              className="w-full pl-8 pr-2.5 py-1.5 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-white placeholder-slate-500 outline-none focus:border-cyan-500/60 transition-colors shadow-inner font-sans"
             />
           </div>
 
-          {/* 선수 탭 정렬 셀렉터 */}
-          {activeTab === "PLAYER" && (
-            <div className="flex items-center gap-1.5 shrink-0">
-              <span className="text-[11px] font-bold text-slate-400 hidden sm:inline">
-                정렬:
-              </span>
+          {/* 정렬 드롭다운 */}
+          <div className="flex items-center gap-1 shrink-0">
+            {activeTab === "PLAYER" && (
               <select
                 value={playerSortKey}
                 onChange={(e) => setPlayerSortKey(e.target.value as PlayerSortKey)}
@@ -309,15 +306,9 @@ export default function LeagueStatsView() {
                 <option value="mvpCount">MVP순</option>
                 <option value="matchesPlayed">경기수순</option>
               </select>
-            </div>
-          )}
+            )}
 
-          {/* 팀 탭 정렬 셀렉터 */}
-          {activeTab === "TEAM" && (
-            <div className="flex items-center gap-1.5 shrink-0">
-              <span className="text-[11px] font-bold text-slate-400 hidden sm:inline">
-                정렬:
-              </span>
+            {activeTab === "TEAM" && (
               <select
                 value={teamSortKey}
                 onChange={(e) => setTeamSortKey(e.target.value as TeamSortKey)}
@@ -330,15 +321,9 @@ export default function LeagueStatsView() {
                 <option value="avgKills">킬순</option>
                 <option value="matchesPlayed">경기수순</option>
               </select>
-            </div>
-          )}
+            )}
 
-          {/* 챔피언 탭 정렬 셀렉터 */}
-          {activeTab === "CHAMPION" && (
-            <div className="flex items-center gap-1.5 shrink-0">
-              <span className="text-[11px] font-bold text-slate-400 hidden sm:inline">
-                정렬:
-              </span>
+            {activeTab === "CHAMPION" && (
               <select
                 value={champSortKey}
                 onChange={(e) => setChampSortKey(e.target.value as ChampionSortKey)}
@@ -349,8 +334,8 @@ export default function LeagueStatsView() {
                 <option value="pickCount">픽순</option>
                 <option value="banCount">밴순</option>
               </select>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
 
@@ -364,7 +349,7 @@ export default function LeagueStatsView() {
                 key={tab.id}
                 type="button"
                 onClick={() => setPlayerPosFilter(tab.id)}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
                   isActive
                     ? "bg-slate-800 text-cyan-300 border border-cyan-400/40 shadow-xs"
                     : "text-slate-400 hover:text-white hover:bg-slate-900"
@@ -389,7 +374,7 @@ export default function LeagueStatsView() {
                 key={role}
                 type="button"
                 onClick={() => setChampRoleFilter(role)}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
                   isActive
                     ? "bg-slate-800 text-cyan-300 border border-cyan-400/40 shadow-xs"
                     : "text-slate-400 hover:text-white hover:bg-slate-900"
@@ -400,7 +385,7 @@ export default function LeagueStatsView() {
             );
           })}
           <div className="ml-auto text-[11px] font-mono text-slate-500 pr-2 shrink-0">
-            총 {filteredChampions.length}챔피언
+            총 {filteredChampions.length}개
           </div>
         </div>
       )}
@@ -413,21 +398,17 @@ export default function LeagueStatsView() {
             <table className="w-full text-left text-xs border-collapse">
               <thead>
                 <tr className="bg-slate-950/90 border-b border-slate-800 text-[11px] font-bold text-slate-400">
-                  <th className="py-2.5 px-3 text-center w-12">순위</th>
-                  <th className="py-2.5 px-3 min-w-[150px]">선수</th>
-                  <th className="py-2.5 px-3 min-w-[100px]">소속 팀</th>
-                  <th className="py-2.5 px-3 text-center w-12">G</th>
-                  <th className="py-2.5 px-3 text-center min-w-[105px]">K / D / A</th>
-                  <th className="py-2.5 px-3 text-center w-16">KDA</th>
-                  <th className="py-2.5 px-3 text-center w-16">평점</th>
-                  <th className="py-2.5 px-3 text-center w-14">MVP</th>
-                  <th className="py-2.5 px-3 min-w-[110px]">모스트픽 TOP 3</th>
+                  <th className="py-2 px-1 text-center w-7">#</th>
+                  <th className="py-2 px-2">선수</th>
+                  <th className="py-2 px-1.5 text-center">KDA</th>
+                  <th className="py-2 px-1.5 text-center">평점 / MVP</th>
+                  <th className="py-2 px-2 text-center w-20">모스트픽</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/40 font-mono">
                 {filteredPlayers.length === 0 ? (
                   <tr>
-                    <td colSpan={9} className="py-12 text-center text-slate-500 font-sans">
+                    <td colSpan={5} className="py-12 text-center text-slate-500 font-sans">
                       조회된 선수가 없습니다.
                     </td>
                   </tr>
@@ -448,89 +429,90 @@ export default function LeagueStatsView() {
                       <tr
                         key={player.playerId}
                         className={`transition-colors hover:bg-slate-800/50 ${
-                          isMyPlayer ? "bg-cyan-950/20 font-semibold" : ""
+                          isMyPlayer ? "bg-cyan-950/25 font-semibold" : ""
                         }`}
                       >
                         {/* 순위 */}
-                        <td className="py-2.5 px-3 text-center font-bold">
+                        <td className="py-2 px-1 text-center font-bold">
                           {rank === 1 ? (
-                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-500/20 text-amber-300 font-black border border-amber-500/50 text-[11px]">
+                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-500/20 text-amber-300 font-black border border-amber-500/50 text-[10px]">
                               1
                             </span>
                           ) : rank === 2 ? (
-                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-300/20 text-slate-200 font-black border border-slate-400/50 text-[11px]">
+                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-300/20 text-slate-200 font-black border border-slate-400/50 text-[10px]">
                               2
                             </span>
                           ) : rank === 3 ? (
-                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-700/20 text-amber-500 font-black border border-amber-700/50 text-[11px]">
+                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-700/20 text-amber-500 font-black border border-amber-700/50 text-[10px]">
                               3
                             </span>
                           ) : (
-                            <span className="text-slate-500">{rank}</span>
+                            <span className="text-slate-500 text-[11px]">{rank}</span>
                           )}
                         </td>
 
-                        {/* 선수 정보 (포지션 뱃지 + 닉네임) */}
-                        <td className="py-2.5 px-3">
-                          <div className="flex items-center gap-1.5 min-w-0">
-                            <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-800 border border-slate-700 text-cyan-300 shrink-0">
-                              {getPositionNameKo(player.position)}
+                        {/* 선수 정보 (포지션 뱃지 + 닉네임 / 소속 팀 · 경기수) */}
+                        <td className="py-2 px-2">
+                          <div className="flex flex-col min-w-0">
+                            <div className="flex items-center gap-1.5 min-w-0">
+                              <span className="px-1 py-0.2 rounded text-[9px] font-bold bg-slate-800 border border-slate-700 text-cyan-300 shrink-0">
+                                {getPositionNameKo(player.position)}
+                              </span>
+                              <span
+                                className={`truncate tracking-tight font-sans text-xs ${
+                                  isMyPlayer
+                                    ? "text-cyan-300 font-bold"
+                                    : "text-slate-200 font-semibold"
+                                }`}
+                              >
+                                {player.playerName}
+                              </span>
+                            </div>
+                            <div className="text-[10px] text-slate-400 truncate mt-0.5 font-sans flex items-center gap-1">
+                              <span>{player.teamName}</span>
+                              <span className="text-slate-600">·</span>
+                              <span className="font-mono text-slate-400">{player.matchesPlayed}G</span>
+                            </div>
+                          </div>
+                        </td>
+
+                        {/* KDA & K / D / A */}
+                        <td className="py-2 px-1.5 text-center">
+                          <div className="flex flex-col items-center">
+                            <span className={`text-xs ${kdaColor}`}>
+                              {player.kda.toFixed(2)}
                             </span>
-                            <span
-                              className={`truncate tracking-tight font-sans text-xs ${
-                                isMyPlayer
-                                  ? "text-cyan-300 font-bold"
-                                  : "text-slate-200"
-                              }`}
-                            >
-                              {player.playerName}
+                            <span className="text-[10px] text-slate-400 whitespace-nowrap mt-0.5 font-mono">
+                              <span className="text-slate-200">{player.avgKills}</span>
+                              <span className="text-slate-600">/</span>
+                              <span className="text-rose-400">{player.avgDeaths}</span>
+                              <span className="text-slate-600">/</span>
+                              <span className="text-slate-300">{player.avgAssists}</span>
                             </span>
                           </div>
                         </td>
 
-                        {/* 소속 팀명 */}
-                        <td className="py-2.5 px-3 font-sans truncate text-slate-300">
-                          {player.teamName}
-                        </td>
-
-                        {/* 경기 수 (G) */}
-                        <td className="py-2.5 px-3 text-center text-slate-400">
-                          {player.matchesPlayed}
-                        </td>
-
-                        {/* K / D / A */}
-                        <td className="py-2.5 px-3 text-center text-slate-300 whitespace-nowrap text-[11px]">
-                          <span className="text-white font-bold">{player.avgKills}</span>
-                          <span className="text-slate-500 mx-1">/</span>
-                          <span className="text-rose-400 font-bold">{player.avgDeaths}</span>
-                          <span className="text-slate-500 mx-1">/</span>
-                          <span className="text-slate-300 font-bold">{player.avgAssists}</span>
-                        </td>
-
-                        {/* KDA */}
-                        <td className={`py-2.5 px-3 text-center ${kdaColor}`}>
-                          {player.kda.toFixed(2)}
-                        </td>
-
-                        {/* 평점 */}
-                        <td className="py-2.5 px-3 text-center text-amber-300 font-bold">
-                          ★ {player.avgRating.toFixed(2)}
-                        </td>
-
-                        {/* MVP */}
-                        <td className="py-2.5 px-3 text-center">
-                          {player.mvpCount > 0 ? (
-                            <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">
-                              {player.mvpCount}회
+                        {/* 평점 & MVP */}
+                        <td className="py-2 px-1.5 text-center">
+                          <div className="flex flex-col items-center">
+                            <span className="text-amber-300 font-bold text-xs">
+                              ★ {player.avgRating.toFixed(2)}
                             </span>
-                          ) : (
-                            <span className="text-slate-600">-</span>
-                          )}
+                            <span className="mt-0.5">
+                              {player.mvpCount > 0 ? (
+                                <span className="px-1.5 py-0.2 rounded-full text-[9px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">
+                                  MVP {player.mvpCount}
+                                </span>
+                              ) : (
+                                <span className="text-slate-600 text-[10px]">-</span>
+                              )}
+                            </span>
+                          </div>
                         </td>
 
-                        {/* 모스트픽 TOP 3 (가로 24x24 초상화 + 호버 툴팁) */}
-                        <td className="py-2.5 px-3">
-                          <div className="flex items-center gap-1.5">
+                        {/* 모스트픽 TOP 3 (가로 20x20 초상화 + 호버 툴팁) */}
+                        <td className="py-2 px-2 text-center">
+                          <div className="flex items-center justify-center gap-1">
                             {player.mostPicks.map((pick, i) => {
                               const champ = getChampionById(pick.championId);
                               if (!champ) return null;
@@ -540,18 +522,18 @@ export default function LeagueStatsView() {
                                   className="relative group inline-block"
                                 >
                                   {/* 챔피언 1:1 초상화 */}
-                                  <div className="w-6 h-6 rounded-md overflow-hidden border border-slate-700 bg-slate-950 group-hover:border-cyan-400 transition-colors shadow-xs">
+                                  <div className="w-5 h-5 rounded overflow-hidden border border-slate-700 bg-slate-950 group-hover:border-cyan-400 transition-colors shadow-xs">
                                     <Image
                                       src={champ.images.portrait}
                                       alt={champ.nameKr}
-                                      width={24}
-                                      height={24}
+                                      width={20}
+                                      height={20}
                                       className="w-full h-full object-cover"
                                     />
                                   </div>
 
                                   {/* 호버 시 툴팁: [챔피언명: X전 Y승 (Z%)] */}
-                                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:flex flex-col items-center pointer-events-none z-50">
+                                  <div className="absolute bottom-full right-0 mb-1.5 hidden group-hover:flex flex-col items-center pointer-events-none z-50">
                                     <div className="px-2 py-1 rounded-md bg-slate-950/95 border border-cyan-500/50 shadow-2xl text-[10px] text-white font-mono whitespace-nowrap leading-tight backdrop-blur-md">
                                       <span className="font-bold text-cyan-300 font-sans">
                                         {champ.nameKr}
@@ -580,20 +562,18 @@ export default function LeagueStatsView() {
             <table className="w-full text-left text-xs border-collapse">
               <thead>
                 <tr className="bg-slate-950/90 border-b border-slate-800 text-[11px] font-bold text-slate-400">
-                  <th className="py-2.5 px-3 text-center w-12">순위</th>
-                  <th className="py-2.5 px-3 min-w-[160px]">팀명</th>
-                  <th className="py-2.5 px-3 text-center w-14">경기</th>
-                  <th className="py-2.5 px-3 text-center min-w-[110px]">평균 K / D / A</th>
-                  <th className="py-2.5 px-3 text-center w-16">팀 KDA</th>
-                  <th className="py-2.5 px-3 text-center w-16">평점</th>
-                  <th className="py-2.5 px-3 min-w-[120px]">선취점률 (FB%)</th>
-                  <th className="py-2.5 px-3 min-w-[120px]">오브젝트율 (OBJ%)</th>
+                  <th className="py-2 px-1 text-center w-7">#</th>
+                  <th className="py-2 px-2">팀</th>
+                  <th className="py-2 px-1.5 text-center">KDA</th>
+                  <th className="py-2 px-1 text-center w-14">평점</th>
+                  <th className="py-2 px-1.5 text-center w-16">선취점</th>
+                  <th className="py-2 px-1.5 text-center w-16">오브젝트</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/40 font-mono">
                 {filteredTeams.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="py-12 text-center text-slate-500 font-sans">
+                    <td colSpan={6} className="py-12 text-center text-slate-500 font-sans">
                       조회된 팀이 없습니다.
                     </td>
                   </tr>
@@ -606,107 +586,111 @@ export default function LeagueStatsView() {
                       <tr
                         key={team.teamId}
                         className={`transition-colors hover:bg-slate-800/50 ${
-                          isMyTeam ? "bg-cyan-950/20 font-semibold" : ""
+                          isMyTeam ? "bg-cyan-950/25 font-semibold" : ""
                         }`}
                       >
                         {/* 순위 */}
-                        <td className="py-2.5 px-3 text-center font-bold">
+                        <td className="py-2 px-1 text-center font-bold">
                           {rank === 1 ? (
-                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-500/20 text-amber-300 font-black border border-amber-500/50 text-[11px]">
+                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-500/20 text-amber-300 font-black border border-amber-500/50 text-[10px]">
                               1
                             </span>
                           ) : rank === 2 ? (
-                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-300/20 text-slate-200 font-black border border-slate-400/50 text-[11px]">
+                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-slate-300/20 text-slate-200 font-black border border-slate-400/50 text-[10px]">
                               2
                             </span>
                           ) : rank === 3 ? (
-                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-700/20 text-amber-500 font-black border border-amber-700/50 text-[11px]">
+                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-700/20 text-amber-500 font-black border border-amber-700/50 text-[10px]">
                               3
                             </span>
                           ) : (
-                            <span className="text-slate-500">{rank}</span>
+                            <span className="text-slate-500 text-[11px]">{rank}</span>
                           )}
                         </td>
 
-                        {/* 팀명 (로고 + 이름) */}
-                        <td className="py-2.5 px-3 font-sans">
-                          <div className="flex items-center gap-2">
-                            {team.teamLogo ? (
-                              <Image
-                                src={team.teamLogo}
-                                alt={team.teamName}
-                                width={22}
-                                height={22}
-                                className="w-5 h-5 rounded-md object-contain shrink-0"
-                              />
-                            ) : (
-                              <div className="w-5 h-5 rounded-md bg-slate-800 flex items-center justify-center text-[10px] shrink-0 font-bold">
-                                🛡️
-                              </div>
-                            )}
-                            <span
-                              className={`truncate ${
-                                isMyTeam ? "text-cyan-300 font-bold" : "text-white"
-                              }`}
-                            >
-                              {team.teamName}
-                            </span>
-                            {isMyTeam && (
-                              <span className="px-1.5 py-0.2 rounded text-[9px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 shrink-0">
-                                MY
+                        {/* 팀명 (로고 + 이름 + MY / 경기수) */}
+                        <td className="py-2 px-2 font-sans">
+                          <div className="flex flex-col min-w-0">
+                            <div className="flex items-center gap-1.5 min-w-0">
+                              {team.teamLogo ? (
+                                <Image
+                                  src={team.teamLogo}
+                                  alt={team.teamName}
+                                  width={18}
+                                  height={18}
+                                  className="w-4 h-4 rounded object-contain shrink-0"
+                                />
+                              ) : (
+                                <div className="w-4 h-4 rounded bg-slate-800 flex items-center justify-center text-[9px] shrink-0 font-bold">
+                                  🛡️
+                                </div>
+                              )}
+                              <span
+                                className={`truncate text-xs ${
+                                  isMyTeam ? "text-cyan-300 font-bold" : "text-white font-semibold"
+                                }`}
+                              >
+                                {team.teamName}
                               </span>
-                            )}
+                              {isMyTeam && (
+                                <span className="px-1 py-0.2 rounded text-[8px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 shrink-0">
+                                  MY
+                                </span>
+                              )}
+                            </div>
+                            <div className="text-[10px] text-slate-400 truncate mt-0.5 font-mono">
+                              {team.matchesPlayed}경기 진행
+                            </div>
                           </div>
                         </td>
 
-                        {/* 경기 수 */}
-                        <td className="py-2.5 px-3 text-center text-slate-400">
-                          {team.matchesPlayed}
-                        </td>
-
-                        {/* 평균 K / D / A */}
-                        <td className="py-2.5 px-3 text-center text-slate-300 whitespace-nowrap text-[11px]">
-                          <span className="text-white font-bold">{team.avgKills}</span>
-                          <span className="text-slate-500 mx-1">/</span>
-                          <span className="text-rose-400 font-bold">{team.avgDeaths}</span>
-                          <span className="text-slate-500 mx-1">/</span>
-                          <span className="text-slate-300 font-bold">{team.avgAssists}</span>
-                        </td>
-
-                        {/* 팀 KDA */}
-                        <td className="py-2.5 px-3 text-center font-bold text-cyan-300">
-                          {team.kda.toFixed(2)}
+                        {/* KDA & K / D / A */}
+                        <td className="py-2 px-1.5 text-center">
+                          <div className="flex flex-col items-center">
+                            <span className="text-xs font-bold text-cyan-300">
+                              {team.kda.toFixed(2)}
+                            </span>
+                            <span className="text-[10px] text-slate-400 whitespace-nowrap mt-0.5 font-mono">
+                              <span className="text-slate-200">{team.avgKills}</span>
+                              <span className="text-slate-600">/</span>
+                              <span className="text-rose-400">{team.avgDeaths}</span>
+                              <span className="text-slate-600">/</span>
+                              <span className="text-slate-300">{team.avgAssists}</span>
+                            </span>
+                          </div>
                         </td>
 
                         {/* 평균 평점 */}
-                        <td className="py-2.5 px-3 text-center text-amber-300 font-bold">
-                          ★ {team.avgRating.toFixed(2)}
+                        <td className="py-2 px-1 text-center">
+                          <span className="text-amber-300 font-bold text-xs whitespace-nowrap">
+                            ★ {team.avgRating.toFixed(2)}
+                          </span>
                         </td>
 
-                        {/* 선취점 획득률 (FB%) + 미니 인라인 프로그레스 바 */}
-                        <td className="py-2.5 px-3">
-                          <div className="flex items-center gap-2">
-                            <span className="w-10 text-right text-xs font-bold text-slate-200">
+                        {/* 선취점 획득률 (FB%) + 미니 바 */}
+                        <td className="py-2 px-1.5 text-center">
+                          <div className="flex flex-col items-center gap-1">
+                            <span className="text-[11px] font-bold text-slate-200">
                               {team.firstBloodRate}%
                             </span>
-                            <div className="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                            <div className="w-12 h-1.5 bg-slate-800 rounded-full overflow-hidden">
                               <div
-                                className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full transition-all duration-300"
+                                className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"
                                 style={{ width: `${team.firstBloodRate}%` }}
                               />
                             </div>
                           </div>
                         </td>
 
-                        {/* 오브젝트 제어율 (OBJ%) + 미니 인라인 프로그레스 바 */}
-                        <td className="py-2.5 px-3">
-                          <div className="flex items-center gap-2">
-                            <span className="w-10 text-right text-xs font-bold text-slate-200">
+                        {/* 오브젝트 제어율 (OBJ%) + 미니 바 */}
+                        <td className="py-2 px-1.5 text-center">
+                          <div className="flex flex-col items-center gap-1">
+                            <span className="text-[11px] font-bold text-slate-200">
                               {team.objectiveControlRate}%
                             </span>
-                            <div className="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                            <div className="w-12 h-1.5 bg-slate-800 rounded-full overflow-hidden">
                               <div
-                                className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-300"
+                                className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full"
                                 style={{ width: `${team.objectiveControlRate}%` }}
                               />
                             </div>
@@ -727,22 +711,17 @@ export default function LeagueStatsView() {
             <table className="w-full text-left text-xs border-collapse">
               <thead>
                 <tr className="bg-slate-950/90 border-b border-slate-800 text-[11px] font-bold text-slate-400">
-                  <th className="py-2.5 px-3 text-center w-12">순위</th>
-                  <th className="py-2.5 px-3 min-w-[160px]">챔피언</th>
-                  <th className="py-2.5 px-3 text-center min-w-[95px]">
-                    구단 선정 티어
-                  </th>
-                  <th className="py-2.5 px-3 text-center min-w-[100px]">전적 (승 - 패)</th>
-                  <th className="py-2.5 px-3 text-center w-16">승률</th>
-                  <th className="py-2.5 px-3 text-center w-14">픽</th>
-                  <th className="py-2.5 px-3 text-center w-14">밴</th>
-                  <th className="py-2.5 px-3 text-center min-w-[85px]">밴픽률</th>
+                  <th className="py-2 px-1 text-center w-7">#</th>
+                  <th className="py-2 px-2">챔피언</th>
+                  <th className="py-2 px-1 text-center w-20">구단 티어</th>
+                  <th className="py-2 px-1.5 text-center w-20">승률</th>
+                  <th className="py-2 px-1.5 text-center w-20">밴픽률</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/40 font-mono">
                 {filteredChampions.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="py-12 text-center text-slate-500 font-sans">
+                    <td colSpan={5} className="py-12 text-center text-slate-500 font-sans">
                       조회된 챔피언이 없습니다.
                     </td>
                   </tr>
@@ -765,19 +744,19 @@ export default function LeagueStatsView() {
                         className="transition-colors hover:bg-slate-800/50"
                       >
                         {/* 순위 */}
-                        <td className="py-2.5 px-3 text-center font-bold text-slate-500">
+                        <td className="py-2 px-1 text-center font-bold text-slate-500 text-[11px]">
                           {rank}
                         </td>
 
-                        {/* 챔피언 정보 (1:1 초상화 + 한글명 + 역할군 태그) */}
-                        <td className="py-2.5 px-3">
+                        {/* 챔피언 정보 (1:1 초상화 + 한글명 + 영문/역할 태그) */}
+                        <td className="py-2 px-2">
                           <div className="flex items-center gap-2 min-w-0">
-                            <div className="w-8 h-8 rounded-lg overflow-hidden border border-slate-700 bg-slate-950 shrink-0 shadow-sm">
+                            <div className="w-7 h-7 rounded-lg overflow-hidden border border-slate-700 bg-slate-950 shrink-0 shadow-sm">
                               <Image
                                 src={champ.portrait}
                                 alt={champ.nameKr}
-                                width={32}
-                                height={32}
+                                width={28}
+                                height={28}
                                 className="w-full h-full object-cover"
                               />
                             </div>
@@ -786,7 +765,7 @@ export default function LeagueStatsView() {
                                 {champ.nameKr}
                               </span>
                               <div className="flex items-center gap-1 text-[10px] text-slate-400">
-                                <span className="font-mono text-slate-500 truncate">
+                                <span className="font-mono text-slate-500 truncate max-w-[55px]">
                                   {champ.nameEn}
                                 </span>
                                 <span>·</span>
@@ -799,13 +778,13 @@ export default function LeagueStatsView() {
                         </td>
 
                         {/* 구단 선정 티어 (수정 가능한 드롭다운 뱃지) */}
-                        <td className="py-2.5 px-3 text-center relative">
+                        <td className="py-2 px-1 text-center relative">
                           <button
                             type="button"
                             onClick={() =>
                               setEditingChampId(isDropdownOpen ? null : champ.championId)
                             }
-                            className={`px-2 py-0.5 rounded-md text-[10px] font-bold border inline-flex items-center gap-1 cursor-pointer hover:brightness-110 active:scale-95 transition-all shadow-xs ${getTierBadgeStyle(
+                            className={`px-1.5 py-0.5 rounded-md text-[10px] font-bold border inline-flex items-center gap-1 cursor-pointer hover:brightness-110 active:scale-95 transition-all shadow-xs ${getTierBadgeStyle(
                               champ.customTier
                             )}`}
                             title="클릭하여 구단 선정 티어 변경"
@@ -840,41 +819,38 @@ export default function LeagueStatsView() {
                           )}
                         </td>
 
-                        {/* 전적 (승 - 패) */}
-                        <td className="py-2.5 px-3 text-center text-slate-300 whitespace-nowrap text-[11px]">
-                          <span className="text-emerald-400 font-bold">{champ.wins}승</span>
-                          <span className="text-slate-600 mx-1">-</span>
-                          <span className="text-rose-400 font-bold">{champ.losses}패</span>
+                        {/* 승률 & 전적 */}
+                        <td className="py-2 px-1.5 text-center">
+                          <div className="flex flex-col items-center">
+                            <span className={`text-xs ${winRateColor}`}>
+                              {champ.winRate.toFixed(1)}%
+                            </span>
+                            <span className="text-[10px] text-slate-400 whitespace-nowrap mt-0.5 font-mono">
+                              <span className="text-emerald-400">{champ.wins}승</span>
+                              <span className="text-slate-600 mx-0.5">-</span>
+                              <span className="text-rose-400">{champ.losses}패</span>
+                            </span>
+                          </div>
                         </td>
 
-                        {/* 승률 */}
-                        <td className={`py-2.5 px-3 text-center ${winRateColor}`}>
-                          {champ.winRate.toFixed(1)}%
-                        </td>
-
-                        {/* 픽 횟수 */}
-                        <td className="py-2.5 px-3 text-center text-slate-300">
-                          {champ.pickCount}
-                        </td>
-
-                        {/* 밴 횟수 */}
-                        <td className="py-2.5 px-3 text-center text-slate-400">
-                          {champ.banCount}
-                        </td>
-
-                        {/* 밴픽률 */}
-                        <td className="py-2.5 px-3 text-center">
-                          <span
-                            className={`font-bold ${
-                              champ.pickBanRate >= 70.0
-                                ? "text-cyan-300 font-black"
-                                : champ.pickBanRate >= 40.0
-                                ? "text-white"
-                                : "text-slate-400"
-                            }`}
-                          >
-                            {champ.pickBanRate.toFixed(1)}%
-                          </span>
+                        {/* 밴픽률 & 픽/밴 횟수 */}
+                        <td className="py-2 px-1.5 text-center">
+                          <div className="flex flex-col items-center">
+                            <span
+                              className={`text-xs font-bold ${
+                                champ.pickBanRate >= 70.0
+                                  ? "text-cyan-300 font-black"
+                                  : champ.pickBanRate >= 40.0
+                                  ? "text-white"
+                                  : "text-slate-400"
+                              }`}
+                            >
+                              {champ.pickBanRate.toFixed(1)}%
+                            </span>
+                            <span className="text-[10px] text-slate-400 whitespace-nowrap mt-0.5 font-mono">
+                              P {champ.pickCount} · B {champ.banCount}
+                            </span>
+                          </div>
                         </td>
                       </tr>
                     );

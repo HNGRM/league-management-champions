@@ -69,6 +69,7 @@ body {
 /* 모바일 섀시 전용 커스텀 얇은 스크롤바 */
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
+  height: 4px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
   background: rgba(15, 23, 42, 0.3);
