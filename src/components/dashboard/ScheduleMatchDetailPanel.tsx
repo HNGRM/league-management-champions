@@ -644,11 +644,11 @@ export default function ScheduleMatchDetailModal({
         </div>
 
         {/* ================= 모달 하단 닫기 ================= */}
-        <div className="p-2.5 border-t border-slate-800 bg-slate-950/70 shrink-0 flex justify-end">
+        <div className="p-3 border-t border-slate-800 bg-slate-950/80 shrink-0">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-all cursor-pointer"
+            className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-[0.99] text-slate-200 font-bold text-xs transition-all cursor-pointer shadow-sm text-center"
           >
             닫기
           </button>
