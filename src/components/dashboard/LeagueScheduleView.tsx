@@ -300,58 +300,71 @@ export default function LeagueScheduleView() {
 
               {/* 중앙: 무조건 3개의 통일된 칸 (슬롯) 리스트 */}
               <div className="flex flex-col gap-1.5 w-full">
-                {slots.map((item) => (
-                  <div
-                    key={item.id}
-                    className="flex items-center justify-between p-1.5 px-2 rounded-xl bg-slate-950/70 border border-slate-800/90 text-xs gap-2 min-h-[34px]"
-                  >
-                    <div className="flex items-center gap-1.5 min-w-0">
-                      <span
-                        className={`text-[10px] font-mono font-bold shrink-0 ${item.tagClass}`}
+                {slots.map((item) => {
+                  if (item.isEmpty) {
+                    return (
+                      <div
+                        key={item.id}
+                        className="flex items-center justify-center rounded-xl bg-slate-950/25 border border-dashed border-slate-800/40 min-h-[34px] h-[34px] select-none"
                       >
-                        {item.tag}
-                      </span>
-                      <div className="w-4 h-4 rounded-md bg-slate-900 border border-slate-700 p-0.5 flex items-center justify-center shrink-0 overflow-hidden text-[10px]">
-                        {item.logoUrl ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={item.logoUrl}
-                            alt={item.title}
-                            className="w-full h-full object-contain"
-                          />
-                        ) : item.icon ? (
-                          <span>{item.icon}</span>
-                        ) : (
-                          <Shield className="w-3 h-3 text-slate-500" />
+                        <span className="text-[10px] text-slate-700/50 font-mono">-</span>
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <div
+                      key={item.id}
+                      className="flex items-center justify-between p-1.5 px-2 rounded-xl bg-slate-950/70 border border-slate-800/90 text-xs gap-2 min-h-[34px]"
+                    >
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <span
+                          className={`text-[10px] font-mono font-bold shrink-0 ${item.tagClass}`}
+                        >
+                          {item.tag}
+                        </span>
+                        <div className="w-4 h-4 rounded-md bg-slate-900 border border-slate-700 p-0.5 flex items-center justify-center shrink-0 overflow-hidden text-[10px]">
+                          {item.logoUrl ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={item.logoUrl}
+                              alt={item.title}
+                              className="w-full h-full object-contain"
+                            />
+                          ) : item.icon ? (
+                            <span>{item.icon}</span>
+                          ) : (
+                            <Shield className="w-3 h-3 text-slate-500" />
+                          )}
+                        </div>
+                        <span className="text-[11px] font-bold text-slate-200 truncate max-w-[130px]">
+                          {item.title}
+                        </span>
+                        {item.badge && (
+                          <span
+                            className={`px-1 py-0.2 rounded text-[8px] font-bold border shrink-0 ${item.badgeClass}`}
+                          >
+                            {item.badge}
+                          </span>
+                        )}
+                        {item.subText && (
+                          <span className="text-[9px] font-mono text-slate-400 font-bold shrink-0">
+                            {item.subText}
+                          </span>
                         )}
                       </div>
-                      <span className="text-[11px] font-bold text-slate-200 truncate max-w-[130px]">
-                        {item.title}
-                      </span>
-                      {item.badge && (
-                        <span
-                          className={`px-1 py-0.2 rounded text-[8px] font-bold border shrink-0 ${item.badgeClass}`}
-                        >
-                          {item.badge}
-                        </span>
-                      )}
-                      {item.subText && (
-                        <span className="text-[9px] font-mono text-slate-400 font-bold shrink-0">
-                          {item.subText}
-                        </span>
-                      )}
-                    </div>
 
-                    {/* 경기/이벤트 결과 또는 상태 뱃지 */}
-                    <div className="shrink-0 font-mono">
-                      <span
-                        className={`px-1.5 py-0.5 rounded text-[9px] border ${item.statusClass}`}
-                      >
-                        {item.statusText}
-                      </span>
+                      {/* 경기/이벤트 결과 또는 상태 뱃지 */}
+                      <div className="shrink-0 font-mono">
+                        <span
+                          className={`px-1.5 py-0.5 rounded text-[9px] border ${item.statusClass}`}
+                        >
+                          {item.statusText}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </button>
           );
