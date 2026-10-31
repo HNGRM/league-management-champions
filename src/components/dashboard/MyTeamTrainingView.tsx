@@ -18,6 +18,7 @@ import { Coach } from "@/types/coach";
 import { PlayerTrainingAssignment, getTrainingTypeInfo } from "@/types/training";
 import { getChampionById } from "@/data/champions";
 import { sortPlayersByRoleOrder } from "@/utils/playerAssignment";
+import { useGameStore } from "@/store/useGameStore";
 import {
   getTrainingCoachBuff,
   getWellnessCenterInfo,
@@ -59,13 +60,18 @@ export default function MyTeamTrainingView({
     }, 2200);
   };
 
+  const facilities = useGameStore((state) => state.facilities);
+
   // 훈련 코치 및 웰니스 센터 정보
   const { coach: trainingCoach, buffPercent } = useMemo(
     () => getTrainingCoachBuff(coaches),
     [coaches]
   );
 
-  const wellnessInfo = useMemo(() => getWellnessCenterInfo(1), []);
+  const wellnessInfo = useMemo(
+    () => getWellnessCenterInfo(facilities?.wellness ?? 1),
+    [facilities?.wellness]
+  );
 
   // 주전 순 -> 후보 순 정렬
   const sortedPlayers = useMemo(

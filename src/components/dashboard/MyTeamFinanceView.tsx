@@ -27,6 +27,11 @@ import { Player } from "@/types/player";
 import { Coach } from "@/types/coach";
 import { calculateTeamValueBreakdown } from "@/utils/contractEconomics";
 import { formatKoreanMoney } from "@/utils/format";
+import { useGameStore } from "@/store/useGameStore";
+import {
+  getTotalFacilityMaintenance,
+  DEFAULT_FACILITY_LEVELS,
+} from "@/types/facility";
 
 interface MyTeamFinanceViewProps {
   team: Team | null;
@@ -108,6 +113,50 @@ export default function MyTeamFinanceView({
   team,
   players,
 }: MyTeamFinanceViewProps) {
+  const facilities = useGameStore((state) => state.facilities) ?? DEFAULT_FACILITY_LEVELS;
+
+  // 홈 경기장 레벨에 따른 티켓 & 굿즈 수입 배율
+  const arenaLevel = facilities.arena ?? 1;
+  const arenaMultiplier = [0, 1.0, 1.2, 1.45, 1.75, 2.1][arenaLevel] ?? 1.0;
+  const ticketGoodsAmount = Math.round(80_000_000 * arenaMultiplier);
+
+  // 4대 시설 현재 레벨 합산 유지비
+  const totalFacilityMaintenance = getTotalFacilityMaintenance(facilities);
+
+  // 동적 수입 항목
+  const dynamicIncomeItems: FinanceLineItem[] = useMemo(
+    () => [
+      INCOME_ITEMS[0],
+      {
+        id: "ticket_goods",
+        label: "홈경기 티켓 & 굿즈 판매",
+        amount: ticketGoodsAmount,
+        displayAmount: `+${formatKoreanMoney(ticketGoodsAmount)}`,
+        icon: Ticket,
+      },
+      INCOME_ITEMS[2],
+      INCOME_ITEMS[3],
+    ],
+    [ticketGoodsAmount]
+  );
+
+  // 동적 지출 항목
+  const dynamicExpenseItems: FinanceLineItem[] = useMemo(
+    () => [
+      EXPENSE_ITEMS[0],
+      EXPENSE_ITEMS[1],
+      {
+        id: "facility",
+        label: "시설 유지비",
+        amount: totalFacilityMaintenance,
+        displayAmount: `-${formatKoreanMoney(totalFacilityMaintenance)}`,
+        icon: Wrench,
+      },
+      EXPENSE_ITEMS[3],
+    ],
+    [totalFacilityMaintenance]
+  );
+
   // 팀 가치 산정 (선수단 총 시장가치 + 보유 현금 + 팬덤 가치)
   const { rosterValue, cashBalance, fandomValue, totalValue } = useMemo(
     () => calculateTeamValueBreakdown(team, players),
@@ -116,13 +165,13 @@ export default function MyTeamFinanceView({
 
   // 수입 / 지출 합계 및 이번 시즌 예상 결산 차액
   const totalIncome = useMemo(
-    () => INCOME_ITEMS.reduce((sum, item) => sum + item.amount, 0),
-    []
+    () => dynamicIncomeItems.reduce((sum, item) => sum + item.amount, 0),
+    [dynamicIncomeItems]
   );
 
   const totalExpense = useMemo(
-    () => EXPENSE_ITEMS.reduce((sum, item) => sum + item.amount, 0),
-    []
+    () => dynamicExpenseItems.reduce((sum, item) => sum + item.amount, 0),
+    [dynamicExpenseItems]
   );
 
   const netProfit = totalIncome - totalExpense;
@@ -254,7 +303,7 @@ export default function MyTeamFinanceView({
 
           {/* 4대 수입 세부 항목 */}
           <div className="flex flex-col gap-1.5">
-            {INCOME_ITEMS.map((item) => {
+            {dynamicIncomeItems.map((item) => {
               const Icon = item.icon;
               return (
                 <div
@@ -295,7 +344,7 @@ export default function MyTeamFinanceView({
 
           {/* 4대 지출 세부 항목 */}
           <div className="flex flex-col gap-1.5">
-            {EXPENSE_ITEMS.map((item) => {
+            {dynamicExpenseItems.map((item) => {
               const Icon = item.icon;
               return (
                 <div

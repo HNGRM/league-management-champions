@@ -37,6 +37,7 @@ import { autoAssignCoachRoles } from "@/utils/coachAssignment";
 import MyTeamRosterView from "@/components/dashboard/MyTeamRosterView";
 import MyTeamCoachesView from "@/components/dashboard/MyTeamCoachesView";
 import MyTeamTrainingView from "@/components/dashboard/MyTeamTrainingView";
+import MyTeamFacilityView from "@/components/dashboard/MyTeamFacilityView";
 import MyTeamInfoView from "@/components/dashboard/MyTeamInfoView";
 import MyTeamFinanceView from "@/components/dashboard/MyTeamFinanceView";
 import MyTeamSnsView from "@/components/dashboard/MyTeamSnsView";
@@ -473,6 +474,8 @@ export default function DashboardScreen() {
               mainTab.id === "ROSTER" && sub.id === "COACHES";
             const isMyTeamTrainingTab =
               mainTab.id === "ROSTER" && sub.id === "TRAINING";
+            const isMyTeamFacilityTab =
+              mainTab.id === "ROSTER" && sub.id === "FACILITY";
             const isLeagueStandingsTab =
               mainTab.id === "LEAGUE" && sub.id === "STANDINGS";
 
@@ -522,6 +525,8 @@ export default function DashboardScreen() {
                     onUpdatePlayer={updateMyPlayer}
                     onSetPlayers={setMyPlayers}
                   />
+                ) : isMyTeamFacilityTab ? (
+                  <MyTeamFacilityView />
                 ) : isLeagueStandingsTab ? (
                   <LeagueStandingsView
                     divisions={leagueDivisions}

@@ -17,6 +17,12 @@ import { swapPlayers, swapCoaches, assignCoachRole } from "@/utils/rosterSwap";
 import { autoAssignPlayerRoles } from "@/utils/playerAssignment";
 import { autoAssignCoachRoles } from "@/utils/coachAssignment";
 import { processWeeklyTraining } from "@/utils/trainingCalculator";
+import {
+  FacilityId,
+  FacilityLevels,
+  DEFAULT_FACILITY_LEVELS,
+  getFacilityLevelSpec,
+} from "@/types/facility";
 
 export type GameScreen = "TITLE" | "SLOT_SELECT" | "MANAGER_CREATE" | "TEAM_CREATE" | "DASHBOARD";
 
@@ -81,6 +87,11 @@ interface GameState {
   markMailAsRead: (mailId: string) => void;
   markAllMailsAsRead: () => void;
   updateMailAction: (mailId: string, state: "ACCEPTED" | "REJECTED" | "COMPLETED") => void;
+
+  // 팀 4대 시설 관리
+  facilities: FacilityLevels;
+  upgradeFacility: (facilityId: FacilityId) => boolean;
+  setFacilityLevel: (facilityId: FacilityId, level: number) => void;
 
   // 날짜 및 턴 진행
   currentYear: number;
@@ -197,6 +208,7 @@ export const useGameStore = create<GameState>((set) => ({
       myCoaches: [],
       leagueDivisions: null,
       currentDivision: "D",
+      facilities: DEFAULT_FACILITY_LEVELS,
     }),
 
   currentTeam: null,
@@ -276,6 +288,55 @@ export const useGameStore = create<GameState>((set) => ({
       ),
     })),
 
+  // 팀 4대 시설 초기값 및 액션
+  facilities: DEFAULT_FACILITY_LEVELS,
+  upgradeFacility: (facilityId: FacilityId) => {
+    let success = false;
+    set((state) => {
+      const currentLevel = state.facilities[facilityId] ?? 1;
+      if (currentLevel >= 5) return state;
+      const nextLevel = currentLevel + 1;
+      const nextSpec = getFacilityLevelSpec(facilityId, nextLevel);
+      if (!nextSpec) return state;
+
+      const currentBalance = state.currentTeam?.balance ?? 500_000_000;
+      if (currentBalance < nextSpec.upgradeCost) return state;
+
+      success = true;
+      const newBalance = currentBalance - nextSpec.upgradeCost;
+
+      return {
+        facilities: {
+          ...state.facilities,
+          [facilityId]: nextLevel,
+        },
+        currentTeam: state.currentTeam
+          ? {
+              ...state.currentTeam,
+              balance: newBalance,
+            }
+          : {
+              id: "my_team",
+              name: "팀",
+              shortName: "TEAM",
+              foundedYear: 2026,
+              balance: newBalance,
+              fans: 15_000,
+              roster: state.myPlayers,
+              staff: [],
+            },
+      };
+    });
+    return success;
+  },
+  setFacilityLevel: (facilityId: FacilityId, level: number) =>
+    set((state) => ({
+      facilities: {
+        ...state.facilities,
+        [facilityId]: Math.max(1, Math.min(5, level)),
+      },
+    })),
+
   currentYear: 2026,
   currentWeek: 1,
   advanceTurn: () =>
@@ -283,11 +344,26 @@ export const useGameStore = create<GameState>((set) => ({
       const updatedPlayers = processWeeklyTraining(
         state.myPlayers,
         state.myCoaches,
-        1
+        state.facilities.wellness,
+        state.facilities.training
       );
+
+      // 미디어 스튜디오 레벨에 따른 주간 팬덤 증가율 (Lv1: 0.5% ~ Lv5: 2.5%)
+      const mediaLevel = state.facilities.media ?? 1;
+      const fandomGrowthRate =
+        [0, 0.005, 0.008, 0.012, 0.017, 0.025][mediaLevel] ?? 0.005;
+      const currentFans = state.currentTeam?.fans ?? 15_000;
+      const addedFans = Math.max(10, Math.round(currentFans * fandomGrowthRate));
+
       return {
         currentWeek: state.currentWeek + 1,
         myPlayers: updatedPlayers,
+        currentTeam: state.currentTeam
+          ? {
+              ...state.currentTeam,
+              fans: (state.currentTeam.fans || 15_000) + addedFans,
+            }
+          : state.currentTeam,
       };
     }),
 }));

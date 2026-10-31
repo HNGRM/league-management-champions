@@ -253,10 +253,17 @@ export function smartAutoAssignTraining(players: Player[]): Player[] {
 export function processWeeklyTraining(
   players: Player[],
   coaches: Coach[] = [],
-  wellnessLevel: number = 1
+  wellnessLevel: number = 1,
+  trainingCenterLevel: number = 1
 ): Player[] {
   const { multiplier: coachMultiplier } = getTrainingCoachBuff(coaches);
   const { recoveryPercent } = getWellnessCenterInfo(wellnessLevel);
+
+  // 트레이닝 센터 시설 버프 (+0% ~ +25%)
+  const trainingBonusPercent =
+    [0, 0, 5, 10, 15, 25][Math.max(1, Math.min(5, trainingCenterLevel))] ?? 0;
+  const facilityTrainingMultiplier = 1 + trainingBonusPercent / 100;
+  const combinedTrainingMultiplier = coachMultiplier * facilityTrainingMultiplier;
 
   return players.map((player) => {
     const cloned: Player = JSON.parse(JSON.stringify(player));
@@ -333,7 +340,7 @@ export function processWeeklyTraining(
           currentStat,
           potential,
           age,
-          coachMultiplier
+          combinedTrainingMultiplier
         );
 
         let currentExp = (cloned.statsExp[statExpKey] || 0) + gainedExp;
@@ -358,7 +365,7 @@ export function processWeeklyTraining(
           ] ?? 0;
         const masteryGain = calculateChampionMasteryGain(
           currentMastery,
-          coachMultiplier
+          combinedTrainingMultiplier
         );
         cloned.traitsAndMastery.championMastery[assignment.targetChampionId] =
           Math.min(100, currentMastery + masteryGain);
