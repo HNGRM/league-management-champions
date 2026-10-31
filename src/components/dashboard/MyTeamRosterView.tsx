@@ -293,7 +293,7 @@ export default function MyTeamRosterView({
                   )}
                 </div>
 
-                {/* 2열: 나이, 연차, 종합, 잠재력 */}
+                {/* 2열: 나이, 연차, 종합 */}
                 <div className="flex items-center gap-1.5 text-[10px] text-slate-300 font-medium flex-wrap">
                   <span>{player.profile.age}세</span>
                   <span className="text-slate-600">·</span>
@@ -305,10 +305,6 @@ export default function MyTeamRosterView({
                   <span className="text-slate-600">·</span>
                   <span className="text-amber-300 font-semibold">
                     종합 {ovr}
-                  </span>
-                  <span className="text-slate-600">·</span>
-                  <span className="text-cyan-300 font-semibold">
-                    잠재 {player.talentAndGrowth.potential}
                   </span>
                 </div>
 
