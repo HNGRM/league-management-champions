@@ -795,9 +795,9 @@ export default function LeagueStatsView({
                 <tr className="bg-slate-950/90 border-b border-slate-800 text-[11px] font-bold text-slate-400">
                   <th className="py-2 px-1 text-center w-7">#</th>
                   <th className="py-2 px-2">챔피언</th>
-                  <th className="py-2 px-1 text-center w-20">구단 티어</th>
-                  <th className="py-2 px-1.5 text-center w-20">승률</th>
-                  <th className="py-2 px-1.5 text-center w-20">밴픽률</th>
+                  <th className="py-2 px-1 text-center w-16">티어</th>
+                  <th className="py-2 px-1 text-center w-16">승률</th>
+                  <th className="py-2 px-1 text-center w-16">밴픽률</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/40 font-mono">
@@ -830,7 +830,7 @@ export default function LeagueStatsView({
                           {rank}
                         </td>
 
-                        {/* 챔피언 정보 (1:1 초상화 + 한글명 + 영문/역할 태그) */}
+                        {/* 챔피언 정보 (1:1 초상화 + 한글명 + 영문명) */}
                         <td className="py-2 px-2">
                           <div className="flex items-center gap-2 min-w-0">
                             <div className="w-7 h-7 rounded-lg overflow-hidden border border-slate-700 bg-slate-950 shrink-0 shadow-sm">
@@ -846,17 +846,9 @@ export default function LeagueStatsView({
                               <span className="font-sans font-bold text-white text-xs truncate">
                                 {champ.nameKr}
                               </span>
-                              <div className="flex items-center gap-1 text-[10px] text-slate-400">
-                                <span className="font-mono text-slate-500 truncate max-w-[55px]">
-                                  {champ.nameEn}
-                                </span>
-                                <span>·</span>
-                                <span className="text-cyan-400/90 font-sans font-medium">
-                                  {champ.positions && champ.positions.length > 0
-                                    ? champ.positions.map((p) => getPositionNameKo(p)).join("/")
-                                    : champ.primaryRole}
-                                </span>
-                              </div>
+                              <span className="font-mono text-slate-500 text-[10px] truncate">
+                                {champ.nameEn}
+                              </span>
                             </div>
                           </div>
                         </td>
