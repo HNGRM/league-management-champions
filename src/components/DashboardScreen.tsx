@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 import {
   Shield,
   Users,
@@ -125,6 +125,9 @@ export default function DashboardScreen() {
   const setMyPlayers = useGameStore((state) => state.setMyPlayers);
   const updateMyPlayer = useGameStore((state) => state.updateMyPlayer);
   const advanceTurn = useGameStore((state) => state.advanceTurn);
+  const activeMatchIndex = useGameStore((state) => state.activeMatchIndex);
+  const playCurrentMatch = useGameStore((state) => state.playCurrentMatch);
+  const seasonSchedule = useGameStore((state) => state.seasonSchedule);
   const myCoaches = useGameStore((state) => state.myCoaches);
   const setMyCoaches = useGameStore((state) => state.setMyCoaches);
   const selectedLeague = useGameStore((state) => state.selectedLeague);
@@ -276,6 +279,23 @@ export default function DashboardScreen() {
   const setSubIndex = (index: number) => {
     const clamped = Math.max(0, Math.min(subTabCount - 1, index));
     setActiveSubTabs((prev) => ({ ...prev, [activeMainTab]: clamped }));
+  };
+
+  // 주간 멀티 매치 진행 상태 계산
+  const currentWeekPlayerMatches = useMemo(() => {
+    return (seasonSchedule || []).filter(
+      (m) => m.week === currentWeek && m.isPlayerMatch
+    );
+  }, [seasonSchedule, currentWeek]);
+
+  const hasUnplayedMatch = activeMatchIndex < currentWeekPlayerMatches.length;
+
+  const handleCentralAction = () => {
+    if (hasUnplayedMatch) {
+      playCurrentMatch();
+    } else {
+      advanceTurn();
+    }
   };
 
   // ================= 세부 탭 가로 드래그(스와이프) 이동 =================
@@ -563,17 +583,39 @@ export default function DashboardScreen() {
       <div className="shrink-0 px-3 pt-2 pb-3 border-t border-slate-800/60 bg-slate-950/50 backdrop-blur-sm">
         <div className="grid grid-cols-5 items-end gap-1">
           {[MAIN_TABS[0], MAIN_TABS[1], null, MAIN_TABS[2], MAIN_TABS[3]].map((tab) => {
-            // 중앙: ▶ 주간 진행 버튼 (주간 훈련 및 체력/숙련도 정산 반영)
+            // 중앙: ▶ 경기 진행 및 주간 진행 버튼 (주간 컨테이너 멀티 매치 연동)
             if (!tab) {
               return (
-                <div key="advance" className="flex justify-center">
+                <div key="advance" className="flex justify-center relative">
                   <button
                     type="button"
-                    aria-label="주간 진행"
-                    onClick={advanceTurn}
-                    className="-mt-6 w-16 h-16 rounded-full bg-gradient-to-br from-cyan-400 via-blue-600 to-indigo-600 border-2 border-cyan-200/60 text-white shadow-[0_0_25px_rgba(6,182,212,0.55)] flex items-center justify-center active:scale-95 transition-all cursor-pointer touch-manipulation"
+                    aria-label={
+                      hasUnplayedMatch
+                        ? `${activeMatchIndex + 1}차전 경기 진행`
+                        : "다음 주차로 진행"
+                    }
+                    onClick={handleCentralAction}
+                    className={`-mt-6 w-16 h-16 rounded-full border-2 text-white flex flex-col items-center justify-center active:scale-95 transition-all cursor-pointer touch-manipulation shadow-lg relative ${
+                      hasUnplayedMatch
+                        ? "bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-600 border-cyan-300/70 shadow-[0_0_25px_rgba(6,182,212,0.6)]"
+                        : "bg-gradient-to-br from-emerald-500 via-teal-600 to-cyan-600 border-emerald-300/70 shadow-[0_0_25px_rgba(16,185,129,0.55)]"
+                    }`}
                   >
-                    <Play className="w-7 h-7 fill-white translate-x-0.5" />
+                    {hasUnplayedMatch ? (
+                      <>
+                        <Swords className="w-5 h-5" />
+                        <span className="text-[9px] font-black tracking-tighter -mt-0.5 font-mono">
+                          {activeMatchIndex + 1}차전
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <Play className="w-5 h-5 fill-white translate-x-0.5" />
+                        <span className="text-[9px] font-black tracking-tighter -mt-0.5">
+                          진행
+                        </span>
+                      </>
+                    )}
                   </button>
                 </div>
               );

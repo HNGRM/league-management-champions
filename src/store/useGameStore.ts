@@ -94,9 +94,11 @@ interface GameState {
   upgradeFacility: (facilityId: FacilityId) => boolean;
   setFacilityLevel: (facilityId: FacilityId, level: number) => void;
 
-  // 연간 48주 리그 스케줄
+  // 연간 48주 리그 스케줄 & 주간 멀티 매치 제어
   seasonSchedule: MatchSchedule[];
   setSeasonSchedule: (schedule: MatchSchedule[]) => void;
+  activeMatchIndex: number; // 0: 1차전 대기, 1: 2차전 대기, 2: 모든 경기 완료
+  playCurrentMatch: () => boolean;
 
   // 날짜 및 턴 진행
   currentYear: number;
@@ -344,75 +346,74 @@ export const useGameStore = create<GameState>((set) => ({
 
   seasonSchedule: [],
   setSeasonSchedule: (schedule: MatchSchedule[]) => set({ seasonSchedule: schedule }),
+  activeMatchIndex: 0,
 
-  currentYear: 2027,
-  currentWeek: 1,
-  advanceTurn: () =>
+  playCurrentMatch: () => {
+    let success = false;
     set((state) => {
-      const updatedPlayers = processWeeklyTraining(
-        state.myPlayers,
-        state.myCoaches,
-        state.facilities.wellness,
-        state.facilities.training
+      const currentWeekMatches = state.seasonSchedule.filter(
+        (m) => m.week === state.currentWeek && m.isPlayerMatch
       );
 
-      // 미디어 스튜디오 레벨에 따른 주간 팬덤 증가율 (Lv1: 0.5% ~ Lv5: 2.5%)
-      const mediaLevel = state.facilities.media ?? 1;
-      const fandomGrowthRate =
-        [0, 0.005, 0.008, 0.012, 0.017, 0.025][mediaLevel] ?? 0.005;
-      const currentFans = state.currentTeam?.fans ?? 15_000;
-      const addedFans = Math.max(10, Math.round(currentFans * fandomGrowthRate));
+      const targetMatch = currentWeekMatches[state.activeMatchIndex];
+      if (!targetMatch || targetMatch.status === "COMPLETED") {
+        return state;
+      }
 
-      // 현재 진행 주차(currentWeek)의 경기 결과 정산
-      const currentWeekNum = state.currentWeek;
-      const updatedSchedule = state.seasonSchedule.map((match) => {
-        if (match.week === currentWeekNum && match.status === "SCHEDULED") {
-          const isPlayerMatch = match.isPlayerMatch;
-          const seed = match.week * 19 + match.id.charCodeAt(match.id.length - 1);
-          const playerWon = (seed % 10) >= 3;
-          const isClose = (seed % 3) === 0;
+      success = true;
 
-          let homeScore = 2;
-          let awayScore = 0;
-          let winnerId = match.homeTeamId;
+      // 승패 및 스코어 시뮬레이션
+      const seed = state.currentWeek * 29 + state.activeMatchIndex * 43;
+      const playerWon = (seed % 10) >= 3;
+      const isClose = (seed % 3) === 0;
 
-          if (match.format === "Bo5") {
-            if (isPlayerMatch) {
-              if (playerWon) {
-                homeScore = match.isHome ? 3 : (isClose ? 2 : 1);
-                awayScore = match.isHome ? (isClose ? 2 : 1) : 3;
-                winnerId = match.isHome ? match.homeTeamId : match.awayTeamId;
-              } else {
-                homeScore = match.isHome ? (isClose ? 2 : 1) : 3;
-                awayScore = match.isHome ? 3 : (isClose ? 2 : 1);
-                winnerId = match.isHome ? match.awayTeamId : match.homeTeamId;
-              }
-            } else {
-              homeScore = 3;
-              awayScore = isClose ? 2 : 1;
-              winnerId = match.homeTeamId;
-            }
-          } else {
-            // Bo3
-            if (isPlayerMatch) {
-              if (playerWon) {
-                homeScore = match.isHome ? 2 : (isClose ? 1 : 0);
-                awayScore = match.isHome ? (isClose ? 1 : 0) : 2;
-                winnerId = match.isHome ? match.homeTeamId : match.awayTeamId;
-              } else {
-                homeScore = match.isHome ? (isClose ? 1 : 0) : 2;
-                awayScore = match.isHome ? 2 : (isClose ? 1 : 0);
-                winnerId = match.isHome ? match.awayTeamId : match.homeTeamId;
-              }
-            } else {
-              homeScore = 2;
-              awayScore = isClose ? 1 : 0;
-              winnerId = match.homeTeamId;
-            }
-          }
+      let homeScore = 2;
+      let awayScore = 0;
+      let winnerId = targetMatch.homeTeamId;
 
+      if (targetMatch.format === "Bo5") {
+        if (playerWon) {
+          homeScore = targetMatch.isHome ? 3 : (isClose ? 2 : 1);
+          awayScore = targetMatch.isHome ? (isClose ? 2 : 1) : 3;
+          winnerId = targetMatch.isHome ? targetMatch.homeTeamId : targetMatch.awayTeamId;
+        } else {
+          homeScore = targetMatch.isHome ? (isClose ? 2 : 1) : 3;
+          awayScore = targetMatch.isHome ? 3 : (isClose ? 2 : 1);
+          winnerId = targetMatch.isHome ? targetMatch.awayTeamId : targetMatch.homeTeamId;
+        }
+      } else {
+        // Bo3
+        if (playerWon) {
+          homeScore = targetMatch.isHome ? 2 : (isClose ? 1 : 0);
+          awayScore = targetMatch.isHome ? (isClose ? 1 : 0) : 2;
+          winnerId = targetMatch.isHome ? targetMatch.homeTeamId : targetMatch.awayTeamId;
+        } else {
+          homeScore = targetMatch.isHome ? (isClose ? 1 : 0) : 2;
+          awayScore = targetMatch.isHome ? 2 : (isClose ? 1 : 0);
+          winnerId = targetMatch.isHome ? targetMatch.awayTeamId : targetMatch.homeTeamId;
+        }
+      }
+
+      // 출전 주전 선수(Starter) 5인 체력 -10% 차감
+      const updatedPlayers = state.myPlayers.map((player) => {
+        if (player.contractAndRole?.rosterStatus === "Starter") {
+          const currentStamina = player.conditionAndForm?.stamina ?? 100;
           return {
-            ...match,
+            ...player,
+            conditionAndForm: {
+              ...player.conditionAndForm,
+              stamina: Math.max(0, currentStamina - 10),
+            },
+          };
+        }
+        return player;
+      });
+
+      // 스케줄 상태 업데이트
+      const updatedSchedule = state.seasonSchedule.map((m) => {
+        if (m.id === targetMatch.id) {
+          return {
+            ...m,
             status: "COMPLETED" as const,
             result: {
               homeScore,
@@ -421,8 +422,36 @@ export const useGameStore = create<GameState>((set) => ({
             },
           };
         }
-        return match;
+        return m;
       });
+
+      return {
+        myPlayers: updatedPlayers,
+        seasonSchedule: updatedSchedule,
+        activeMatchIndex: state.activeMatchIndex + 1,
+      };
+    });
+    return success;
+  },
+
+  currentYear: 2027,
+  currentWeek: 1,
+  advanceTurn: () =>
+    set((state) => {
+      // 주간 훈련 정산 (경험치 성장 및 휴식 선수 체력 회복)
+      const updatedPlayers = processWeeklyTraining(
+        state.myPlayers,
+        state.myCoaches,
+        state.facilities.wellness,
+        state.facilities.training
+      );
+
+      // 미디어 스튜디오 팬덤 증가
+      const mediaLevel = state.facilities.media ?? 1;
+      const fandomGrowthRate =
+        [0, 0.005, 0.008, 0.012, 0.017, 0.025][mediaLevel] ?? 0.005;
+      const currentFans = state.currentTeam?.fans ?? 15_000;
+      const addedFans = Math.max(10, Math.round(currentFans * fandomGrowthRate));
 
       // 주차 진행 및 연간 48주 순환
       let nextWeek = state.currentWeek + 1;
@@ -435,7 +464,7 @@ export const useGameStore = create<GameState>((set) => ({
       return {
         currentWeek: nextWeek,
         currentYear: nextYear,
-        seasonSchedule: updatedSchedule,
+        activeMatchIndex: 0, // 다음 주로 턴 이동 시 1차전 대기(0)로 리셋
         myPlayers: updatedPlayers,
         currentTeam: state.currentTeam
           ? {

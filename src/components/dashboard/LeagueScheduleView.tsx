@@ -8,6 +8,7 @@ import {
   SEASON_PHASE_METAS,
   getSeasonPhaseForMonth,
   getWeekMonthInfo,
+  getWeekSpecialBadge,
 } from "@/types/schedule";
 import { generateAnnualSeasonSchedule } from "@/data/scheduleGenerator";
 import { FACILITIES } from "@/types/facility";
@@ -25,6 +26,10 @@ import {
 export default function LeagueScheduleView() {
   const currentYear = useGameStore((state) => state.currentYear);
   const currentWeek = useGameStore((state) => state.currentWeek);
+  const activeMatchIndex = useGameStore((state) => state.activeMatchIndex);
+  const playCurrentMatch = useGameStore((state) => state.playCurrentMatch);
+  const advanceTurn = useGameStore((state) => state.advanceTurn);
+
   const currentTeam = useGameStore((state) => state.currentTeam);
   const selectedTeam = useGameStore((state) => state.selectedTeam);
   const customTeamInfo = useGameStore((state) => state.customTeamInfo);
@@ -74,7 +79,7 @@ export default function LeagueScheduleView() {
     return leagueDivisions?.[currentDivision] || [];
   }, [leagueDivisions, currentDivision]);
 
-  // 스케줄 생성 및 동기화 (기존 스케줄이 없으면 즉시 생성)
+  // 스케줄 생성 및 동기화
   useEffect(() => {
     if (!seasonSchedule || seasonSchedule.length === 0) {
       const generated = generateAnnualSeasonSchedule(
@@ -126,14 +131,10 @@ export default function LeagueScheduleView() {
     return [startWeek, startWeek + 1, startWeek + 2, startWeek + 3];
   }, [selectedMonth]);
 
-  // 선택된 주차의 모든 매치 및 플레이어 매치
+  // 선택된 주차의 매치 목록
   const selectedWeekMatches = useMemo(() => {
     return activeSchedule.filter((m) => m.week === selectedWeek);
   }, [activeSchedule, selectedWeek]);
-
-  const selectedPlayerMatch = useMemo(() => {
-    return selectedWeekMatches.find((m) => m.isPlayerMatch);
-  }, [selectedWeekMatches]);
 
   // 홈 경기장 시설 스펙
   const arenaLevel = facilities?.arena ?? 1;
@@ -144,7 +145,7 @@ export default function LeagueScheduleView() {
     <div className="flex flex-col gap-3 w-full pb-8 select-none animate-in fade-in duration-200">
       {/* ================= 1. 상단 월 네비게이터 & 필터 바 ================= */}
       <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-2.5 shadow-md flex flex-col gap-2">
-        {/* 1행: 월 선택기 & 오늘로 이동 버튼 */}
+        {/* 1행: 월 이동 컨트롤 & 오늘로 이동 버튼 */}
         <div className="flex items-center justify-between gap-2">
           {/* 월 이동기 */}
           <div className="flex items-center bg-slate-950/80 border border-slate-800/90 rounded-xl p-0.5 shadow-inner">
@@ -207,7 +208,7 @@ export default function LeagueScheduleView() {
               }`}
             >
               <Shield className="w-3 h-3" />
-              <span>우리 팀</span>
+              <span>우리 팀 경기만</span>
             </button>
             <button
               type="button"
@@ -225,161 +226,166 @@ export default function LeagueScheduleView() {
         </div>
       </div>
 
-      {/* ================= 2. 월간 4주 캘린더 2x2 그리드 ================= */}
-      <div className="grid grid-cols-2 gap-2">
+      {/* ================= 2. 가로형 와이드 주차 리스트 (4개 Row Cards) ================= */}
+      <div className="flex flex-col gap-2">
         {monthWeeks.map((week) => {
           const { monthWeek } = getWeekMonthInfo(week);
           const isCurrentPlayWeek = week === currentWeek;
           const isSelected = week === selectedWeek;
 
-          // 해당 주차의 매치들
-          const weekAllMatches = activeSchedule.filter((m) => m.week === week);
-          const pMatch = weekAllMatches.find((m) => m.isPlayerMatch);
+          // 해당 주차의 플레이어 경기 목록 (0~2경기)
+          const weekMatches = activeSchedule.filter((m) => m.week === week && m.isPlayerMatch);
+          const specialBadge = getWeekSpecialBadge(week);
 
-          // 매치 유형 확인
-          const isMatchWeek =
-            pMatch &&
-            (pMatch.matchType === "REGULAR" ||
-              pMatch.matchType === "PLAYOFF" ||
-              pMatch.matchType === "PROMOTION");
-
-          // 상대 팀 정보
-          let opponentTeam: { name: string; logoUrl: string | null } | null = null;
-          if (isMatchWeek) {
-            const oppId = pMatch.isHome ? pMatch.awayTeamId : pMatch.homeTeamId;
-            const oppStanding = divisionTeams.find((t) => t.teamId === oppId);
-            opponentTeam = {
-              name: oppStanding?.teamName || "상대팀",
-              logoUrl: oppStanding?.logoUrl || null,
-            };
-          }
-
-          // 경기 결과 산출
-          const isCompleted = pMatch?.status === "COMPLETED" && pMatch.result;
-          let isPlayerWin = false;
-          if (isCompleted && pMatch.result) {
-            const res = pMatch.result;
-            isPlayerWin = pMatch.isHome
-              ? res.homeScore > res.awayScore
-              : res.awayScore > res.homeScore;
-          }
+          // 주차 전체 완료 여부 판정
+          const allMatchesCompleted =
+            weekMatches.length > 0 && weekMatches.every((m) => m.status === "COMPLETED");
 
           return (
             <button
               key={week}
               type="button"
               onClick={() => setSelectedWeek(week)}
-              className={`rounded-xl p-2.5 flex flex-col justify-between text-left transition-all duration-150 cursor-pointer relative overflow-hidden border min-h-[105px] ${
+              className={`w-full rounded-2xl p-2.5 sm:p-3 border transition-all text-left flex flex-col gap-2 relative cursor-pointer ${
                 isSelected
-                  ? "bg-slate-800/95 border-cyan-400 ring-2 ring-cyan-400/50 shadow-[0_0_15px_rgba(6,182,212,0.3)]"
+                  ? "bg-slate-800/95 border-cyan-400 ring-2 ring-cyan-400/50 shadow-[0_0_16px_rgba(6,182,212,0.3)]"
                   : isCurrentPlayWeek
-                  ? "bg-slate-900/90 border-cyan-500/60 hover:border-cyan-400 shadow-sm"
-                  : "bg-slate-900/60 border-slate-800/80 hover:bg-slate-800/60 hover:border-slate-700 shadow-xs"
+                  ? "bg-slate-900/90 border-cyan-500/60 ring-1 ring-cyan-500/30 hover:border-cyan-400 shadow-md"
+                  : "bg-slate-900/60 border-slate-800/90 hover:bg-slate-800/60 hover:border-slate-700 shadow-xs"
               }`}
             >
-              {/* 상단 헤더: 주차 명칭 및 NOW 배지 */}
-              <div className="flex items-center justify-between w-full border-b border-slate-800/60 pb-1.5">
-                <div className="flex items-center gap-1">
-                  <span className="text-[11px] font-black text-white">
+              {/* 상단: 주차 정보 및 현재 진행 배지 */}
+              <div className="flex items-center justify-between w-full border-b border-slate-800/70 pb-1.5">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs font-black text-white">
                     {selectedMonth}월 {monthWeek}주차
                   </span>
-                  <span className="text-[9px] text-slate-400 font-mono">
-                    (W{week})
+                  <span className="text-[10px] text-slate-400 font-mono">
+                    (연간 {week}주차)
                   </span>
                 </div>
 
-                {isCurrentPlayWeek && (
-                  <span className="px-1.5 py-0.2 rounded-full bg-cyan-500 text-slate-950 font-black text-[8px] flex items-center gap-0.5 shadow-sm animate-pulse">
-                    <span className="w-1 h-1 rounded-full bg-slate-950" />
-                    NOW
-                  </span>
-                )}
-              </div>
-
-              {/* 본문 블록: 정규 경기 vs 이벤트 주간 */}
-              <div className="py-1.5 flex-1 flex flex-col justify-center">
-                {isMatchWeek && opponentTeam ? (
-                  <div className="flex flex-col gap-1.5">
-                    {/* 상대 팀 로고 + 팀명 */}
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-5 h-5 rounded-md bg-slate-950 border border-slate-700 p-0.5 flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
-                        {opponentTeam.logoUrl ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={opponentTeam.logoUrl}
-                            alt={opponentTeam.name}
-                            className="w-full h-full object-contain"
-                          />
-                        ) : (
-                          <Shield className="w-3 h-3 text-slate-500" />
-                        )}
-                      </div>
-                      <span className="text-[11px] font-bold text-slate-100 truncate min-w-0">
-                        {opponentTeam.name}
-                      </span>
-                    </div>
-
-                    {/* 배지 행: 장소(홈/원정) & 포맷 */}
-                    <div className="flex items-center gap-1">
-                      <span
-                        className={`px-1 py-0.2 rounded text-[9px] font-bold border ${
-                          pMatch.isHome
-                            ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
-                            : "bg-blue-500/15 text-blue-300 border-blue-500/30"
-                        }`}
-                      >
-                        {pMatch.isHome ? "홈경기" : "원정"}
-                      </span>
-                      <span className="px-1 py-0.2 rounded text-[9px] font-mono font-bold bg-slate-800 text-slate-300 border border-slate-700">
-                        {pMatch.format}
-                      </span>
-                      {filterMode === "ALL" && weekAllMatches.length > 1 && (
-                        <span className="px-1 py-0.2 rounded text-[8px] font-mono text-cyan-400 bg-cyan-950/40 border border-cyan-500/30">
-                          총 {weekAllMatches.length}경기
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                ) : (
-                  /* 비경기 / 공식 이벤트 주간 */
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl p-1 rounded-lg bg-slate-950/70 border border-slate-800 shrink-0">
-                      {pMatch?.eventIcon || "❄️"}
+                <div className="flex items-center gap-1.5">
+                  {isCurrentPlayWeek && (
+                    <span className="px-2 py-0.5 rounded-full bg-cyan-500 text-slate-950 font-black text-[9px] flex items-center gap-1 shadow-sm animate-pulse">
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-950" />
+                      NOW 이번 주
                     </span>
-                    <p className="text-[11px] font-bold text-slate-200 line-clamp-2 leading-tight min-w-0">
-                      {pMatch?.eventName || "공식 이벤트 주간"}
-                    </p>
-                  </div>
-                )}
+                  )}
+                  {!isCurrentPlayWeek && allMatchesCompleted && (
+                    <span className="text-[9px] font-mono font-bold text-slate-400 px-1.5 py-0.2 rounded bg-slate-800">
+                      경기 완료
+                    </span>
+                  )}
+                </div>
               </div>
 
-              {/* 하단 상태 바: 스코어(승패) or 예정/D-Day */}
-              <div className="border-t border-slate-800/60 pt-1 flex items-center justify-between text-[9px] font-mono">
-                {isCompleted && pMatch.result ? (
-                  <span
-                    className={`px-1.5 py-0.2 rounded font-black border ${
-                      isPlayerWin
-                        ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
-                        : "bg-rose-500/20 text-rose-300 border-rose-500/40"
-                    }`}
-                  >
-                    {pMatch.result.homeScore} : {pMatch.result.awayScore} {isPlayerWin ? "승" : "패"}
-                  </span>
-                ) : isCurrentPlayWeek ? (
-                  <span className="px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-bold">
-                    오늘 (D-Day)
-                  </span>
-                ) : week > currentWeek ? (
-                  <span className="text-slate-400">
-                    예정 (D-{(week - currentWeek) * 7})
-                  </span>
-                ) : (
-                  <span className="text-slate-400">완료</span>
+              {/* 중앙/우측: 최대 3개 이내의 핵심 이벤트 뱃지 영역 */}
+              <div className="flex flex-col gap-1.5">
+                {/* 1) 시즌 / 이적 시장 핵심 뱃지 (있을 경우) */}
+                {specialBadge && (
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`px-2 py-0.5 rounded-md text-[10px] font-bold border flex items-center gap-1 shadow-xs ${specialBadge.badgeClass}`}
+                    >
+                      <span className="text-xs">{specialBadge.icon}</span>
+                      <span>{specialBadge.text}</span>
+                    </span>
+                  </div>
                 )}
 
-                <span className="text-[9px] text-slate-500">
-                  {isCompleted ? "종료" : isCurrentPlayWeek ? "진행 중" : "대기"}
-                </span>
+                {/* 2) 경기 뱃지 목록 (1~2개) */}
+                {weekMatches.length > 0 ? (
+                  <div className="flex flex-col gap-1">
+                    {weekMatches.map((m, idx) => {
+                      const oppId = m.isHome ? m.awayTeamId : m.homeTeamId;
+                      const opp = divisionTeams.find((t) => t.teamId === oppId);
+                      const isCompleted = m.status === "COMPLETED" && m.result;
+                      let isWin = false;
+                      if (isCompleted && m.result) {
+                        isWin = m.isHome
+                          ? m.result.homeScore > m.result.awayScore
+                          : m.result.awayScore > m.result.homeScore;
+                      }
+
+                      return (
+                        <div
+                          key={m.id}
+                          className="flex items-center justify-between p-1.5 px-2 rounded-xl bg-slate-950/70 border border-slate-800/90 text-xs gap-2"
+                        >
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            <span className="text-[10px] font-mono text-cyan-400 font-bold shrink-0">
+                              {weekMatches.length > 1 ? `${idx + 1}차전` : "경기"}
+                            </span>
+                            <div className="w-4 h-4 rounded-md bg-slate-900 border border-slate-700 p-0.5 flex items-center justify-center shrink-0 overflow-hidden">
+                              {opp?.logoUrl ? (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                  src={opp.logoUrl}
+                                  alt={opp.teamName}
+                                  className="w-full h-full object-contain"
+                                />
+                              ) : (
+                                <Shield className="w-3 h-3 text-slate-500" />
+                              )}
+                            </div>
+                            <span className="text-[11px] font-bold text-slate-200 truncate max-w-[130px]">
+                              {opp?.teamName || m.eventName || "상대팀"}
+                            </span>
+                            <span
+                              className={`px-1 py-0.2 rounded text-[8px] font-bold border shrink-0 ${
+                                m.isHome
+                                  ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
+                                  : "bg-blue-500/15 text-blue-300 border-blue-500/30"
+                              }`}
+                            >
+                              {m.isHome ? "홈" : "원정"}
+                            </span>
+                            <span className="text-[9px] font-mono text-slate-400 font-bold shrink-0">
+                              {m.format}
+                            </span>
+                          </div>
+
+                          {/* 경기 결과 / 예정 뱃지 */}
+                          <div className="shrink-0 font-mono">
+                            {isCompleted && m.result ? (
+                              <span
+                                className={`px-1.5 py-0.5 rounded text-[10px] font-black border ${
+                                  isWin
+                                    ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
+                                    : "bg-rose-500/20 text-rose-300 border-rose-500/40"
+                                }`}
+                              >
+                                {m.result.homeScore} : {m.result.awayScore}{" "}
+                                {isWin ? "승" : "패"}
+                              </span>
+                            ) : week === currentWeek ? (
+                              <span className="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-[9px] font-bold">
+                                {weekMatches.length > 1
+                                  ? `${idx + 1}차전 대기`
+                                  : "경기 대기"}
+                              </span>
+                            ) : (
+                              <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 text-[9px]">
+                                {weekMatches.length > 1
+                                  ? `${idx + 1}차전 예정`
+                                  : "예정"}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  /* 경기가 없는 주간 */
+                  !specialBadge && (
+                    <div className="flex items-center gap-1.5 py-1 text-slate-400 text-xs">
+                      <span className="text-sm">🏖️</span>
+                      <span className="text-[11px] font-medium">비경기 주간 (훈련 및 전술 정비)</span>
+                    </div>
+                  )
+                )}
               </div>
             </button>
           );
@@ -389,8 +395,9 @@ export default function LeagueScheduleView() {
       {/* ================= 3. 선택 주차 상세 프리뷰 패널 ================= */}
       <ScheduleMatchDetailPanel
         selectedWeek={selectedWeek}
+        currentWeek={currentWeek}
+        activeMatchIndex={activeMatchIndex}
         weekMatches={selectedWeekMatches}
-        playerMatch={selectedPlayerMatch}
         playerTeam={{
           id: playerTeamId,
           name: playerTeamName,
@@ -403,6 +410,8 @@ export default function LeagueScheduleView() {
         facilityArenaName={arenaName}
         players={myPlayers}
         filterMode={filterMode}
+        onPlayMatch={playCurrentMatch}
+        onAdvanceWeek={advanceTurn}
       />
     </div>
   );
