@@ -397,14 +397,14 @@ export default function MyTeamInfoView({
           </div>
         </div>
 
-        {/* 2층: 홈구장 (긴 연고지 도시명도 온전히 표시) */}
+        {/* 2층: 홈 경기장 (긴 연고지 도시명도 온전히 표시) */}
         <div className="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-3.5 flex items-center justify-between gap-3 shadow-sm">
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
               <Building2 className="w-5 h-5" />
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="text-[11px] font-medium text-slate-400">홈구장</span>
+              <span className="text-[11px] font-medium text-slate-400">홈 경기장</span>
               <span className="text-sm sm:text-base font-bold text-white tracking-tight truncate">
                 {homeArena}
               </span>
