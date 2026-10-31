@@ -185,7 +185,7 @@ export default function MyTeamFacilityView() {
               key={facility.id}
               type="button"
               onClick={() => setSelectedFacilityId(facility.id)}
-              className="group relative h-[88px] sm:h-24 w-full rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/60 shadow-lg text-left transition-all duration-150 active:scale-[0.98] cursor-pointer flex items-center justify-between p-3.5"
+              className="group relative h-[115px] sm:h-[125px] w-full rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/60 shadow-lg text-left transition-all duration-150 active:scale-[0.98] cursor-pointer flex items-center justify-between p-4"
             >
               {/* 시설 배경 이미지 */}
               <img
@@ -241,7 +241,7 @@ export default function MyTeamFacilityView() {
               {/* 우측 액션 인디케이터 */}
               <div className="relative z-10 flex items-center gap-1 text-slate-400 group-hover:text-cyan-300 transition-colors shrink-0">
                 <span className="text-[11px] font-bold hidden sm:inline">상세보기</span>
-                <div className="w-7 h-7 rounded-full bg-slate-950/80 border border-slate-700/80 flex items-center justify-center text-slate-400 group-hover:text-cyan-300 group-hover:border-cyan-500/50 transition-all shadow-sm">
+                <div className="w-8 h-8 rounded-full bg-slate-950/80 border border-slate-700/80 flex items-center justify-center text-slate-400 group-hover:text-cyan-300 group-hover:border-cyan-500/50 transition-all shadow-sm">
                   <ChevronRight className="w-4 h-4" />
                 </div>
               </div>
