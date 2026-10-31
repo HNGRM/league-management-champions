@@ -53,7 +53,10 @@ export interface ChampionStatsSummary {
   championId: string;
   nameKr: string;
   nameEn: string;
-  primaryRole: string;
+  primaryRole?: string;
+  positions: Position[]; // 기용 가능 포지션 (["TOP", "JGL", "MID", "BOT", "SUP"])
+  mainPosition?: Position; // 주 포지션
+  positionNamesKr?: string[];
   portrait: string; // 1:1 초상화 경로
   wins: number;
   losses: number;

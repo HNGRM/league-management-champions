@@ -52,15 +52,6 @@ const POSITION_FILTERS: { id: "ALL" | Position; label: string }[] = [
   { id: "SUP", label: "서폿" },
 ];
 
-const CHAMPION_ROLE_FILTERS = [
-  "전체",
-  "물리딜러",
-  "마법딜러",
-  "탱커",
-  "버퍼",
-  "디버퍼",
-];
-
 interface LeagueStatsViewProps {
   divisions?: LeagueDivisions | null;
   currentDivision?: DivisionTier;
@@ -109,8 +100,8 @@ export default function LeagueStatsView({
   // 팀 통계 정렬 상태
   const [teamSortKey, setTeamSortKey] = useState<TeamSortKey>("kda");
 
-  // 챔피언 통계 필터 및 정렬 상태
-  const [champRoleFilter, setChampRoleFilter] = useState<string>("전체");
+  // 챔피언 통계 필터 및 정렬 상태 (포지션 기준: 탑-정글-미드-바텀-서폿)
+  const [champPosFilter, setChampPosFilter] = useState<"ALL" | Position>("ALL");
   const [champSortKey, setChampSortKey] = useState<ChampionSortKey>("pickBanRate");
 
   // 챔피언 커스텀 티어 수정 팝오버 상태
@@ -225,12 +216,12 @@ export default function LeagueStatsView({
     return result;
   }, [teamStats, teamSortKey, searchQuery]);
 
-  // 필터 및 정렬된 챔피언 목록
+  // 필터 및 정렬된 챔피언 목록 (포지션 필터 적용)
   const filteredChampions = useMemo(() => {
     let result = [...championStats];
 
-    if (champRoleFilter !== "전체") {
-      result = result.filter((c) => c.primaryRole === champRoleFilter);
+    if (champPosFilter !== "ALL") {
+      result = result.filter((c) => c.positions?.includes(champPosFilter));
     }
 
     if (searchQuery.trim()) {
@@ -244,7 +235,7 @@ export default function LeagueStatsView({
 
     result.sort((a, b) => b[champSortKey] - a[champSortKey]);
     return result;
-  }, [championStats, champRoleFilter, champSortKey, searchQuery]);
+  }, [championStats, champPosFilter, champSortKey, searchQuery]);
 
   // 티어 뱃지 스타일 헬퍼
   const getTierBadgeStyle = (tier: ChampionTierGrade) => {
@@ -456,20 +447,20 @@ export default function LeagueStatsView({
 
       {activeTab === "CHAMPION" && (
         <div className="flex items-center gap-1 bg-slate-950/70 border border-slate-800/80 rounded-xl p-1 overflow-x-auto custom-scrollbar">
-          {CHAMPION_ROLE_FILTERS.map((role) => {
-            const isActive = champRoleFilter === role;
+          {POSITION_FILTERS.map((tab) => {
+            const isActive = champPosFilter === tab.id;
             return (
               <button
-                key={role}
+                key={tab.id}
                 type="button"
-                onClick={() => setChampRoleFilter(role)}
+                onClick={() => setChampPosFilter(tab.id)}
                 className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
                   isActive
                     ? "bg-slate-800 text-cyan-300 border border-cyan-400/40 shadow-xs"
                     : "text-slate-400 hover:text-white hover:bg-slate-900"
                 }`}
               >
-                {role}
+                {tab.label}
               </button>
             );
           })}
@@ -860,8 +851,10 @@ export default function LeagueStatsView({
                                   {champ.nameEn}
                                 </span>
                                 <span>·</span>
-                                <span className="text-cyan-400/90 font-sans">
-                                  {champ.primaryRole}
+                                <span className="text-cyan-400/90 font-sans font-medium">
+                                  {champ.positions && champ.positions.length > 0
+                                    ? champ.positions.map((p) => getPositionNameKo(p)).join("/")
+                                    : champ.primaryRole}
                                 </span>
                               </div>
                             </div>
