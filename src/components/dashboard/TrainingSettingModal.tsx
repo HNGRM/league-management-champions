@@ -165,7 +165,7 @@ export default function TrainingSettingModal({
     { id: "TOP", label: "탑" },
     { id: "JGL", label: "정글" },
     { id: "MID", label: "미드" },
-    { id: "BOT", label: "원딜" },
+    { id: "BOT", label: "바텀" },
     { id: "SUP", label: "서폿" },
   ];
 
