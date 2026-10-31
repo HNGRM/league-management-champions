@@ -45,6 +45,7 @@ import MyTeamSnsView from "@/components/dashboard/MyTeamSnsView";
 import MailboxView from "@/components/dashboard/MailboxView";
 import LeagueStandingsView from "@/components/dashboard/LeagueStandingsView";
 import LeagueScheduleView from "@/components/dashboard/LeagueScheduleView";
+import LeagueStatsView from "@/components/dashboard/LeagueStatsView";
 import SettingsModal from "@/components/SettingsModal";
 
 // ================= 메인 탭 & 세부 탭 정의 =================
@@ -507,6 +508,8 @@ export default function DashboardScreen() {
               mainTab.id === "LEAGUE" && sub.id === "SCHEDULE";
             const isLeagueStandingsTab =
               mainTab.id === "LEAGUE" && sub.id === "STANDINGS";
+            const isLeagueStatsTab =
+              mainTab.id === "LEAGUE" && sub.id === "STATS";
 
             return (
               <div
@@ -564,6 +567,8 @@ export default function DashboardScreen() {
                     currentDivision={currentDivision}
                     playerLeague={selectedLeague || "KCL"}
                   />
+                ) : isLeagueStatsTab ? (
+                  <LeagueStatsView />
                 ) : (
                   <div className="h-full min-h-[200px] rounded-2xl border border-dashed border-slate-700/70 bg-slate-900/40 flex flex-col items-center justify-center gap-2 text-center p-6">
                     <div className="w-12 h-12 rounded-2xl bg-slate-950/80 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
