@@ -297,7 +297,7 @@ export default function TrainingSettingModal({
                 휴식 모드가 지정되었습니다
               </span>
               <p className="text-[11px] text-slate-400 leading-relaxed max-w-[300px]">
-                훈련을 진행하지 않고 구단 시설(웰니스 센터)에서 체력을 집중적으로
+                훈련을 진행하지 않고 팀 시설(웰니스 센터)에서 체력을 집중적으로
                 회복합니다. (챔피언 연습 미배정)
               </p>
             </div>

@@ -23,7 +23,7 @@ import {
   getWellnessCenterInfo,
   smartAutoAssignTraining,
   getSmartTrainingAssignment,
-} from "@/utils/trainingManager";
+} from "@/utils/trainingCalculator";
 import TrainingSettingModal from "./TrainingSettingModal";
 
 interface MyTeamTrainingViewProps {
@@ -144,18 +144,18 @@ export default function MyTeamTrainingView({
           </button>
         </div>
 
-        {/* 상단 2열: 훈련 코치 현황 & 웰니스 센터 카드 2단 그리드 */}
+        {/* 상단 2열: 훈련 코치 효과 & 웰니스 센터 카드 2단 그리드 */}
         <div className="grid grid-cols-2 gap-2 relative z-10 pt-2 border-t border-slate-800/80 text-xs">
-          {/* 🏋️‍♂️ 훈련 코치 현황 */}
+          {/* 🏋️‍♂️ 훈련 코치 효과 */}
           <div className="p-2.5 rounded-xl bg-slate-950/70 border border-slate-800/80 flex flex-col gap-1">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-bold text-slate-400 flex items-center gap-1">
                 <span>🏋️‍♂️</span>
-                <span>훈련 코치 현황</span>
+                <span>훈련 코치 효과</span>
               </span>
               {trainingCoach ? (
                 <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
-                  +{buffPercent}% 버프
+                  +{buffPercent}% 부여 중
                 </span>
               ) : (
                 <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold bg-slate-800 text-slate-500 border border-slate-700">
@@ -182,7 +182,7 @@ export default function MyTeamTrainingView({
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-bold text-slate-400 flex items-center gap-1">
                 <span>🏥</span>
-                <span>웰니스 센터</span>
+                <span>웰니스 센터 시설</span>
               </span>
               <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
                 +{wellnessInfo.recoveryPercent}% 회복
@@ -191,7 +191,7 @@ export default function MyTeamTrainingView({
 
             <div className="flex items-baseline gap-1 mt-0.5 min-w-0">
               <span className="text-xs font-bold text-white truncate">
-                구단 시설 Lv.{wellnessInfo.level}
+                팀 시설 Lv.{wellnessInfo.level}
               </span>
               <span className="text-[10px] text-slate-400 truncate">
                 (휴식 시 체력 회복)
@@ -290,9 +290,9 @@ export default function MyTeamTrainingView({
                 {/* 체력 표시 및 게이지 */}
                 <div className="flex items-center gap-1.5 shrink-0">
                   {isExhausted && (
-                    <span className="px-1.5 py-0.2 rounded text-[9px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 animate-pulse flex items-center gap-0.5">
+                    <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 animate-pulse flex items-center gap-0.5">
                       <AlertTriangle className="w-2.5 h-2.5" />
-                      탈진 위험
+                      <span>[⚠️ 탈진 위험]</span>
                     </span>
                   )}
                   <span className={`text-xs font-mono font-bold ${staminaColor}`}>
@@ -344,7 +344,7 @@ export default function MyTeamTrainingView({
                   ) : (
                     <div className="flex items-center gap-1.5 bg-slate-950/70 border border-slate-800/80 rounded-xl px-2 py-1">
                       {/* 1:1 초상화 썸네일 (32x32) */}
-                      <div className="w-7 h-7 rounded-lg overflow-hidden relative bg-slate-900 border border-slate-700/80 shrink-0">
+                      <div className="w-8 h-8 rounded-lg overflow-hidden relative bg-slate-900 border border-slate-700/80 shrink-0">
                         <img
                           src={targetChamp.images.portrait}
                           alt={targetChamp.nameKr}
@@ -369,7 +369,7 @@ export default function MyTeamTrainingView({
                     className="px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700/80 hover:border-cyan-500/50 text-slate-300 hover:text-white font-bold text-xs flex items-center gap-1 transition-all cursor-pointer active:scale-95 touch-manipulation shrink-0"
                   >
                     <Settings className="w-3 h-3 text-cyan-400" />
-                    <span>설정</span>
+                    <span>설정 / 변경</span>
                   </button>
                 </div>
               </div>

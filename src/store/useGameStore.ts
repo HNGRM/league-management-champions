@@ -16,7 +16,7 @@ import { createDefaultAvatarDna } from "@/types/avatar";
 import { swapPlayers, swapCoaches, assignCoachRole } from "@/utils/rosterSwap";
 import { autoAssignPlayerRoles } from "@/utils/playerAssignment";
 import { autoAssignCoachRoles } from "@/utils/coachAssignment";
-import { processWeeklyTraining } from "@/utils/trainingManager";
+import { processWeeklyTraining } from "@/utils/trainingCalculator";
 
 export type GameScreen = "TITLE" | "SLOT_SELECT" | "MANAGER_CREATE" | "TEAM_CREATE" | "DASHBOARD";
 
