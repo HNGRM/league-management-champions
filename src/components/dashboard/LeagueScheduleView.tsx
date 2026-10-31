@@ -28,7 +28,6 @@ export default function LeagueScheduleView() {
   const currentWeek = useGameStore((state) => state.currentWeek);
   const activeMatchIndex = useGameStore((state) => state.activeMatchIndex);
   const playCurrentMatch = useGameStore((state) => state.playCurrentMatch);
-  const advanceTurn = useGameStore((state) => state.advanceTurn);
 
   const currentTeam = useGameStore((state) => state.currentTeam);
   const selectedTeam = useGameStore((state) => state.selectedTeam);
@@ -57,6 +56,9 @@ export default function LeagueScheduleView() {
   // 선택된 상세 주차 (1~48, 기본값: 현재 주차)
   const [selectedWeek, setSelectedWeek] = useState<number>(currentWeek);
 
+  // 주차 세부정보 모달 열림 상태
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
   // 필터 모드: "MY_TEAM" (우리 팀 경기만) vs "ALL" (리그 전체 경기)
   const [filterMode, setFilterMode] = useState<"MY_TEAM" | "ALL">("MY_TEAM");
 
@@ -79,9 +81,20 @@ export default function LeagueScheduleView() {
     return leagueDivisions?.[currentDivision] || [];
   }, [leagueDivisions, currentDivision]);
 
-  // 스케줄 생성 및 동기화
+  // 스케줄 생성 및 동기화 (기존 스케줄이 비어있거나 다른 팀 일정인 경우 자동 재생성)
   useEffect(() => {
-    if (!seasonSchedule || seasonSchedule.length === 0) {
+    const isScheduleStale =
+      !seasonSchedule ||
+      seasonSchedule.length === 0 ||
+      (seasonSchedule.length > 0 &&
+        seasonSchedule.some((m) => m.isPlayerMatch) &&
+        !seasonSchedule.some(
+          (m) =>
+            m.isPlayerMatch &&
+            (m.homeTeamId === playerTeamId || m.awayTeamId === playerTeamId)
+        ));
+
+    if (isScheduleStale) {
       const generated = generateAnnualSeasonSchedule(
         divisionTeams,
         playerTeamId,
@@ -245,7 +258,10 @@ export default function LeagueScheduleView() {
             <button
               key={week}
               type="button"
-              onClick={() => setSelectedWeek(week)}
+              onClick={() => {
+                setSelectedWeek(week);
+                setIsModalOpen(true);
+              }}
               className={`w-full rounded-2xl p-2.5 sm:p-3 border transition-all text-left flex flex-col gap-2 relative cursor-pointer ${
                 isSelected
                   ? "bg-slate-800/95 border-cyan-400 ring-2 ring-cyan-400/50 shadow-[0_0_16px_rgba(6,182,212,0.3)]"
@@ -392,8 +408,10 @@ export default function LeagueScheduleView() {
         })}
       </div>
 
-      {/* ================= 3. 선택 주차 상세 프리뷰 패널 ================= */}
+      {/* ================= 3. 선택 주차 상세 프리뷰 패널 (모달) ================= */}
       <ScheduleMatchDetailPanel
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
         selectedWeek={selectedWeek}
         currentWeek={currentWeek}
         activeMatchIndex={activeMatchIndex}
@@ -411,7 +429,6 @@ export default function LeagueScheduleView() {
         players={myPlayers}
         filterMode={filterMode}
         onPlayMatch={playCurrentMatch}
-        onAdvanceWeek={advanceTurn}
       />
     </div>
   );

@@ -12,6 +12,7 @@ export default function SlotSelectScreen() {
   const slots = useGameStore((state) => state.slots);
   const setSlots = useGameStore((state) => state.setSlots);
   const currentUser = useGameStore((state) => state.currentUser);
+  const selectedSlotId = useGameStore((state) => state.selectedSlotId);
   const setSelectedSlotId = useGameStore((state) => state.setSelectedSlotId);
   const resetCreationState = useGameStore((state) => state.resetCreationState);
 
@@ -65,6 +66,9 @@ export default function SlotSelectScreen() {
         );
         setSlots(updated);
       }
+      if (selectedSlotId === slotId) {
+        resetCreationState();
+      }
       showToast(`슬롯 ${slotId}번 팀이 해체되었습니다.`);
       setDisbandSlot(null);
     } catch (err: any) {
@@ -92,6 +96,12 @@ export default function SlotSelectScreen() {
         ...(targetSlot.selectedTeam ? { selectedTeam: targetSlot.selectedTeam } : {}),
         ...(targetSlot.leagueDivisions ? { leagueDivisions: targetSlot.leagueDivisions } : {}),
         currentDivision: targetSlot.currentDivision || "D",
+        currentYear: targetSlot.currentYear || 2027,
+        currentWeek: targetSlot.currentWeek || 1,
+        activeMatchIndex: targetSlot.activeMatchIndex || 0,
+        seasonSchedule: targetSlot.seasonSchedule || [],
+        ...(targetSlot.facilities ? { facilities: targetSlot.facilities } : {}),
+        ...(targetSlot.myCoaches ? { myCoaches: targetSlot.myCoaches } : {}),
       });
       setScreen("DASHBOARD");
       return;

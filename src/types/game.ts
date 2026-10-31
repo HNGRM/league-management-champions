@@ -162,5 +162,10 @@ export interface SaveSlot {
   selectedTeam?: PredefinedTeam | null;
   leagueDivisions?: LeagueDivisions;
   currentDivision?: DivisionTier;
+  currentYear?: number;
+  currentWeek?: number;
+  activeMatchIndex?: number;
+  seasonSchedule?: any[];
+  facilities?: any;
   lastPlayedAt?: string;
 }

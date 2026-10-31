@@ -426,7 +426,14 @@ export default function ManagerCreateScreen() {
         );
       }
 
-      // 팀 생성 완료 -> 메인 게임 화면(대시보드)으로 진입
+      // 팀 생성 완료 -> 1년차 1월 1주차 스토브리그로 스토어 확정 초기화 후 대시보드 진입
+      useGameStore.setState({
+        currentYear: 2027,
+        currentWeek: 1,
+        activeMatchIndex: 0,
+        seasonSchedule: [],
+      });
+
       setScreen("DASHBOARD");
     }
   };

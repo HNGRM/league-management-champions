@@ -55,6 +55,11 @@ export async function fetchUserSlots(userId: string): Promise<SaveSlot[]> {
           myPlayers: saved.game_data?.myPlayers,
           leagueDivisions: saved.game_data?.leagueDivisions,
           currentDivision: saved.game_data?.currentDivision || "D",
+          currentYear: saved.game_year || saved.game_data?.currentYear || 2027,
+          currentWeek: saved.game_week || saved.game_data?.currentWeek || 1,
+          activeMatchIndex: saved.game_data?.activeMatchIndex || 0,
+          seasonSchedule: saved.game_data?.seasonSchedule || [],
+          facilities: saved.game_data?.facilities,
           lastPlayedAt: saved.updated_at,
         });
       } else {
