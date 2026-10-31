@@ -20,7 +20,6 @@ import {
   Calendar,
   Navigation,
   Shield,
-  Trophy,
 } from "lucide-react";
 
 export default function LeagueScheduleView() {
@@ -58,9 +57,6 @@ export default function LeagueScheduleView() {
 
   // 주차 세부정보 모달 열림 상태
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-  // 필터 모드: "MY_TEAM" (우리 팀 경기만) vs "ALL" (리그 전체 경기)
-  const [filterMode, setFilterMode] = useState<"MY_TEAM" | "ALL">("MY_TEAM");
 
   // 플레이어 팀 식별 정보
   const playerTeamId = currentTeam?.id || selectedTeam?.id || "my_team";
@@ -156,87 +152,51 @@ export default function LeagueScheduleView() {
 
   return (
     <div className="flex flex-col gap-3 w-full pb-8 select-none animate-in fade-in duration-200">
-      {/* ================= 1. 상단 월 네비게이터 & 필터 바 ================= */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-2.5 shadow-md flex flex-col gap-2">
-        {/* 1행: 월 이동 컨트롤 & 오늘로 이동 버튼 */}
-        <div className="flex items-center justify-between gap-2">
-          {/* 월 이동기 */}
-          <div className="flex items-center bg-slate-950/80 border border-slate-800/90 rounded-xl p-0.5 shadow-inner">
-            <button
-              type="button"
-              onClick={handlePrevMonth}
-              title="이전달 이동"
-              className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 active:scale-95 transition-all cursor-pointer"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-
-            <div className="px-2.5 py-0.5 flex items-center gap-1.5 justify-center text-center">
-              <Calendar className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-              <span className="text-xs font-black text-white tracking-tight">
-                {displayYear}년 {selectedMonth}월
-              </span>
-            </div>
-
-            <button
-              type="button"
-              onClick={handleNextMonth}
-              title="다음달 이동"
-              className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 active:scale-95 transition-all cursor-pointer"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-
-          {/* 오늘로 이동 버튼 */}
+      {/* ================= 1. 상단 월 네비게이터 & 시즌 안내 바 ================= */}
+      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-2 sm:p-2.5 shadow-md flex items-center justify-between gap-2">
+        {/* 월 이동기 (< 2027년 X월 [시즌 페이즈] >) */}
+        <div className="flex items-center bg-slate-950/80 border border-slate-800/90 rounded-xl p-0.5 shadow-inner min-w-0">
           <button
             type="button"
-            onClick={handleJumpToToday}
-            className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-cyan-500/15 border border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/25 active:scale-95 text-[11px] font-bold transition-all cursor-pointer shadow-xs shrink-0"
+            onClick={handlePrevMonth}
+            title="이전달 이동"
+            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 active:scale-95 transition-all cursor-pointer shrink-0"
           >
-            <Navigation className="w-3 h-3 text-cyan-400" />
-            <span>오늘 (W{currentWeek})</span>
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+
+          <div className="px-2 py-0.5 flex items-center gap-1.5 justify-center text-center min-w-0">
+            <Calendar className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+            <span className="text-xs font-black text-white tracking-tight shrink-0">
+              {displayYear}년 {selectedMonth}월
+            </span>
+            <div
+              className={`px-1.5 py-0.2 rounded-md border text-[9.5px] font-bold flex items-center gap-1 shadow-xs truncate ${phaseMeta.badgeClass}`}
+            >
+              <span>{phaseMeta.icon}</span>
+              <span className="font-mono tracking-tight font-black">{phaseMeta.nameKr}</span>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleNextMonth}
+            title="다음달 이동"
+            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 active:scale-95 transition-all cursor-pointer shrink-0"
+          >
+            <ChevronRight className="w-4 h-4" />
           </button>
         </div>
 
-        {/* 2행: 시즌 페이즈 뱃지 & 필터 토글 */}
-        <div className="flex items-center justify-between gap-2 pt-1.5 border-t border-slate-800/70">
-          {/* 시즌 페이즈 */}
-          <div
-            className={`px-2 py-0.5 rounded-lg border text-[11px] font-bold flex items-center gap-1.5 shadow-xs truncate ${phaseMeta.badgeClass}`}
-          >
-            <span>{phaseMeta.icon}</span>
-            <span className="font-mono tracking-tight font-black">{phaseMeta.nameKr}</span>
-          </div>
-
-          {/* 필터 토글: 우리 팀 vs 전체 */}
-          <div className="flex items-center bg-slate-950/80 border border-slate-800 rounded-lg p-0.5 shrink-0">
-            <button
-              type="button"
-              onClick={() => setFilterMode("MY_TEAM")}
-              className={`px-2 py-0.5 rounded text-[10px] font-bold transition-all cursor-pointer flex items-center gap-1 ${
-                filterMode === "MY_TEAM"
-                  ? "bg-cyan-500 text-slate-950 shadow-sm"
-                  : "text-slate-400 hover:text-slate-200"
-              }`}
-            >
-              <Shield className="w-3 h-3" />
-              <span>우리 팀 경기만</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setFilterMode("ALL")}
-              className={`px-2 py-0.5 rounded text-[10px] font-bold transition-all cursor-pointer flex items-center gap-1 ${
-                filterMode === "ALL"
-                  ? "bg-cyan-500 text-slate-950 shadow-sm"
-                  : "text-slate-400 hover:text-slate-200"
-              }`}
-            >
-              <Trophy className="w-3 h-3" />
-              <span>리그 전체</span>
-            </button>
-          </div>
-        </div>
+        {/* 이번 주차로 이동 버튼 */}
+        <button
+          type="button"
+          onClick={handleJumpToToday}
+          className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-cyan-500/15 border border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/25 active:scale-95 text-[11px] font-bold transition-all cursor-pointer shadow-xs shrink-0"
+        >
+          <Navigation className="w-3 h-3 text-cyan-400" />
+          <span>이번 주차로</span>
+        </button>
       </div>
 
       {/* ================= 2. 가로형 와이드 주차 리스트 (4개 Row Cards) ================= */}
@@ -390,7 +350,7 @@ export default function LeagueScheduleView() {
         facilityArenaLevel={arenaLevel}
         facilityArenaName={arenaName}
         players={myPlayers}
-        filterMode={filterMode}
+        filterMode="MY_TEAM"
         onPlayMatch={playCurrentMatch}
       />
     </div>
