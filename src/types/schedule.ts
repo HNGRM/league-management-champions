@@ -79,13 +79,13 @@ export const SEASON_PHASE_METAS: Record<SeasonPhase, SeasonPhaseMeta> = {
   },
   MSI_INTERNATIONAL: {
     phase: "MSI_INTERNATIONAL",
-    nameKr: "상반기 국제대회",
-    nameEn: "MSI INTERNATIONAL",
+    nameKr: "미드시즌 챔피언스 컵 (MCC)",
+    nameEn: "MID-SEASON CHAMPIONS CUP (MCC)",
     icon: "🏆",
     badgeClass: "bg-purple-500/20 text-purple-300 border-purple-500/40 shadow-[0_0_12px_rgba(168,85,247,0.25)]",
     headerBgClass: "from-purple-950/40 via-indigo-950/20 to-slate-900/60",
     accentText: "text-purple-400",
-    description: "세계 최강 팀들의 미드 시즌 인비테이셔널 & 하위리그 서머 부트캠프",
+    description: "5대 리그 상위 16개 최강팀의 미드시즌 챔피언스 컵 및 서머 부트캠프",
     weeksSpan: "21~24주차 (6월)",
   },
   SUMMER_SEASON: {
@@ -96,18 +96,18 @@ export const SEASON_PHASE_METAS: Record<SeasonPhase, SeasonPhaseMeta> = {
     badgeClass: "bg-amber-500/20 text-amber-300 border-amber-500/40 shadow-[0_0_12px_rgba(245,158,11,0.25)]",
     headerBgClass: "from-amber-950/40 via-orange-950/20 to-slate-900/60",
     accentText: "text-amber-400",
-    description: "월즈 진출권과 승강전의 운명이 걸린 하반기 정규리그",
+    description: "WCC 진출권과 승강전의 운명이 걸린 하반기 정규리그",
     weeksSpan: "25~40주차 (7~10월)",
   },
   WORLDS_INTERNATIONAL: {
     phase: "WORLDS_INTERNATIONAL",
-    nameKr: "하반기 국제대회",
-    nameEn: "WORLDS CHAMPIONSHIP",
+    nameKr: "월드 챔피언스 컵 (WCC)",
+    nameEn: "WORLD CHAMPIONS CUP (WCC)",
     icon: "🌍",
     badgeClass: "bg-rose-500/20 text-rose-300 border-rose-500/40 shadow-[0_0_12px_rgba(244,63,94,0.25)]",
     headerBgClass: "from-rose-950/40 via-red-950/20 to-slate-900/60",
     accentText: "text-rose-400",
-    description: "세계 최고 권위의 월드 챔피언십 토너먼트 및 연간 시즌 결산",
+    description: "세계 최고 권위의 월드 챔피언스 컵 토너먼트 및 연간 시즌 결산",
     weeksSpan: "41~48주차 (11~12월)",
   },
 };
@@ -158,14 +158,14 @@ export function getWeekSpecialBadge(week: number): WeekSpecialBadge | undefined 
     case 21:
       return {
         type: "SEASON_START",
-        text: "MSI 개막",
+        text: "MCC 개막",
         icon: "🚩",
         badgeClass: "bg-purple-500/20 text-purple-300 border-purple-500/40 shadow-xs",
       };
     case 24:
       return {
         type: "SEASON_END",
-        text: "MSI 폐막",
+        text: "MCC 폐막",
         icon: "🏁",
         badgeClass: "bg-slate-500/20 text-slate-300 border-slate-500/40 shadow-xs",
       };
@@ -186,14 +186,14 @@ export function getWeekSpecialBadge(week: number): WeekSpecialBadge | undefined 
     case 41:
       return {
         type: "SEASON_START",
-        text: "월즈 개막",
+        text: "WCC 개막",
         icon: "🚩",
         badgeClass: "bg-rose-500/20 text-rose-300 border-rose-500/40 shadow-xs",
       };
     case 48:
       return {
         type: "SEASON_END",
-        text: "월즈 폐막",
+        text: "WCC 폐막",
         icon: "🏁",
         badgeClass: "bg-slate-500/20 text-slate-300 border-slate-500/40 shadow-xs",
       };
@@ -265,12 +265,12 @@ export function getWeekDetailedEvents(week: number): DetailedEventInfo[] {
     9: "1.2 정기 패치 (암살자 계열 너프, 원거리 딜러 사거리 버프)",
     13: "1.3 정기 패치 (탱커 아이템 상향, 정글 오브젝트 체력 조정)",
     17: "1.4 스프링 PO 패치 (다전제 밴픽 메타 최적화 패치)",
-    21: "1.5 MSI 국제대회 패치 (글로벌 통합 토너먼트 메타 버전)",
+    21: "1.5 MCC 국제대회 패치 (글로벌 통합 토너먼트 메타 버전)",
     25: "1.6 서머 개막 패치 (서머 스플릿 대규모 시스템 패치)",
     29: "1.7 정기 패치 (미드 메이지 상향, 용 버프 수치 조정)",
     33: "1.8 정기 패치 (탑 브루저 조정, 시야 시스템 개선)",
     37: "1.9 서머 PO 패치 (선발전 및 플레이오프 밸런스 패치)",
-    41: "2.0 월즈 패치 (월드 챔피언십 공식 대회 메타 적용)",
+    41: "2.0 WCC 월드 챔피언스 컵 패치 (연말 최종 토너먼트 메타 적용)",
   };
 
   if (patchInfo[week]) {

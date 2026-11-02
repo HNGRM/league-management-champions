@@ -24,6 +24,12 @@ import {
   DEFAULT_FACILITY_LEVELS,
   getFacilityLevelSpec,
 } from "@/types/facility";
+import { TournamentHistory, PlayerCareerRecord, ClubHistoryEntry } from "@/types/record";
+import {
+  generatePresetTournamentHistories,
+  generatePresetPlayerCareers,
+  getInitialClubHistory,
+} from "@/data/records";
 
 export type GameScreen = "TITLE" | "SLOT_SELECT" | "MANAGER_CREATE" | "TEAM_CREATE" | "DASHBOARD";
 
@@ -104,6 +110,16 @@ interface GameState {
   currentYear: number;
   currentWeek: number;
   advanceTurn: () => void;
+
+  // 리그 기록 (3대 아카이브)
+  tournamentHistories: TournamentHistory[];
+  setTournamentHistories: (histories: TournamentHistory[]) => void;
+  addTournamentHistory: (history: TournamentHistory) => void;
+  playerCareerRecords: PlayerCareerRecord[];
+  setPlayerCareerRecords: (records: PlayerCareerRecord[]) => void;
+  clubHistory: ClubHistoryEntry[];
+  setClubHistory: (history: ClubHistoryEntry[]) => void;
+  addClubHistoryEntry: (entry: ClubHistoryEntry) => void;
 }
 
 export const useGameStore = create<GameState>((set) => ({
@@ -221,6 +237,9 @@ export const useGameStore = create<GameState>((set) => ({
       currentWeek: 1,
       activeMatchIndex: 0,
       seasonSchedule: [],
+      tournamentHistories: generatePresetTournamentHistories(2026, "KCL"),
+      playerCareerRecords: generatePresetPlayerCareers(),
+      clubHistory: getInitialClubHistory(2026, "플레이어 구단", "D"),
     }),
 
   currentTeam: null,
@@ -479,4 +498,20 @@ export const useGameStore = create<GameState>((set) => ({
           : state.currentTeam,
       };
     }),
+
+  // 리그 기록 (3대 아카이브)
+  tournamentHistories: generatePresetTournamentHistories(2026, "KCL"),
+  setTournamentHistories: (tournamentHistories) => set({ tournamentHistories }),
+  addTournamentHistory: (history) =>
+    set((state) => ({
+      tournamentHistories: [history, ...state.tournamentHistories],
+    })),
+  playerCareerRecords: generatePresetPlayerCareers(),
+  setPlayerCareerRecords: (playerCareerRecords) => set({ playerCareerRecords }),
+  clubHistory: getInitialClubHistory(2026, "플레이어 구단", "D"),
+  setClubHistory: (clubHistory) => set({ clubHistory }),
+  addClubHistoryEntry: (entry) =>
+    set((state) => ({
+      clubHistory: [...state.clubHistory, entry],
+    })),
 }));

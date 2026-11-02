@@ -214,10 +214,10 @@ export function generateAnnualSeasonSchedule(
     }
 
     // ==============================================================
-    // 3. 6월 (21~24주차) : 상반기 국제대회 (MSI_INTERNATIONAL)
+    // 3. 6월 (21~24주차) : 상반기 국제대회 (MCC_INTERNATIONAL)
     // ==============================================================
     if (week === 21) {
-      // 1경기: MSI 개막 기념 교류전 스크림
+      // 1경기: MCC 개막 기념 교류전 스크림
       addPlayerMatch(schedule, week, month, monthWeek, phase, 0, "SCRIM", "Bo3", playerTeamId, getOpp(1).teamId, true, currentWeek, divisionTier, "서머 대비 교류 스크림");
       continue;
     }
@@ -231,7 +231,7 @@ export function generateAnnualSeasonSchedule(
       continue;
     }
     if (week === 24) {
-      // 0경기: MSI 폐막 & 서머 준비
+      // 0경기: MCC 폐막 & 서머 준비
       continue;
     }
 
@@ -326,14 +326,14 @@ export function generateAnnualSeasonSchedule(
     }
 
     // ==============================================================
-    // 5. 11~12월 (41~48주차) : 하반기 국제대회 (WORLDS_INTERNATIONAL)
+    // 5. 11~12월 (41~48주차) : 하반기 국제대회 (WCC_INTERNATIONAL)
     // ==============================================================
     if (week === 41) {
-      // 0경기: 월즈 개막
+      // 0경기: WCC 개막
       continue;
     }
     if (week === 42) {
-      // 0경기: 스위스 스테이지
+      // 0경기: WCC 조별 토너먼트
       continue;
     }
     if (week === 43) {
@@ -342,7 +342,7 @@ export function generateAnnualSeasonSchedule(
       continue;
     }
     if (week === 44 || week === 45 || week === 46) {
-      // 0경기: 월즈 토너먼트 관전 및 전력 분석
+      // 0경기: WCC 토너먼트 관전 및 전력 분석
       continue;
     }
     if (week === 47) {
