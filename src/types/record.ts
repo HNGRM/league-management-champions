@@ -77,12 +77,34 @@ export interface BracketMatch {
   team2: BracketMatchTeam;
 }
 
-// 16강 전체 대진표 구조
+// 16강 전체 대진표 구조 (싱글 엘리미네이션 - MCC)
 export interface TournamentBracket {
   roundOf16: BracketMatch[];     // 8경기
   quarterFinals: BracketMatch[]; // 4경기
   semiFinals: BracketMatch[];    // 2경기
   finals: BracketMatch;          // 1경기
+}
+
+// 16팀 더블 엘리미네이션 대진표 구조 (WCC 월드 챔피언스 컵)
+export interface DoubleEliminationBracket {
+  // 1. 승자조 (Upper Bracket - 총 15경기)
+  upper: {
+    roundOf16: BracketMatch[];     // 8경기 (16팀)
+    quarterFinals: BracketMatch[]; // 4경기 (8팀)
+    semiFinals: BracketMatch[];    // 2경기 (4팀)
+    upperFinal: BracketMatch;      // 1경기 (승자조 결승 -> 승자는 그랜드 파이널 진출)
+  };
+  // 2. 패자조 (Lower Bracket - 총 14경기)
+  lower: {
+    round1: BracketMatch[];        // 4경기 (승자 16강 패자 8팀 맞대결)
+    round2: BracketMatch[];        // 4경기 (R1 승자 4팀 vs 승자 8강 패자 4팀)
+    round3: BracketMatch[];        // 2경기 (R2 승자 4팀 맞대결)
+    round4: BracketMatch[];        // 2경기 (R3 승자 2팀 vs 승자 준결승 패자 2팀)
+    lowerSemiFinal: BracketMatch;  // 1경기 (R4 승자 2팀 맞대결 -> 패자 최종 4위)
+    lowerFinal: BracketMatch;      // 1경기 (lowerSemiFinal 승자 vs upperFinal 패자 -> 패자 최종 3위)
+  };
+  // 3. 최종 결승 (Grand Final - 1경기)
+  grandFinal: BracketMatch;        // 승자조 1위 vs 패자조 1위 (Bo5 최종 결승)
 }
 
 // 연도별 대회 순위표/결과 보관 인터페이스
@@ -100,6 +122,7 @@ export interface TournamentHistory {
   standings?: TeamStanding[];    // 정규 리그(스프링/서머) 순위표
   cupResults?: CupTeamResult[];  // 국제 컵(MCC/WCC) 16강 토너먼트 결과
   bracket?: TournamentBracket;   // 컵 대회(MCC) 16강 대진표 토너먼트 구조
+  wccBracket?: DoubleEliminationBracket; // 컵 대회(WCC) 16팀 더블 엘리미네이션 토너먼트 구조
 }
 
 // 6대 선수 통산 지표 카테고리

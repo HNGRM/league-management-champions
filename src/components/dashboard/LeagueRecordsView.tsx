@@ -31,8 +31,12 @@ import {
   PlayerCareerRecord,
   ClubHistoryEntry,
   BracketMatch,
+  DoubleEliminationBracket,
 } from "@/types/record";
-import { generateMccTournamentBracket } from "@/data/records";
+import {
+  generateMccTournamentBracket,
+  generateWccDoubleEliminationBracket,
+} from "@/data/records";
 import { DivisionTier, LeagueLanguage } from "@/types/game";
 import { DIVISION_METAS } from "@/data/divisions";
 
@@ -185,6 +189,170 @@ export default function LeagueRecordsView() {
                     team.isWinner
                       ? isFinal
                         ? "text-amber-300 font-black"
+                        : "text-white font-black"
+                      : "text-slate-500 font-semibold"
+                  }`}
+                >
+                  {team.score}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
+
+  // WCC 16팀 더블 엘리미네이션 대진표 조회 및 생성
+  const wccBracket = useMemo(() => {
+    if (!currentHistory || currentHistory.type !== "WCC") return null;
+    return currentHistory.wccBracket || generateWccDoubleEliminationBracket(currentHistory);
+  }, [currentHistory]);
+
+  // WCC 1~4위 요약 정보
+  const wccTop4 = useMemo(() => {
+    if (!currentHistory || currentHistory.type !== "WCC" || !currentHistory.cupResults) return null;
+    const list = currentHistory.cupResults;
+    const champ = list.find((t) => t.rank === 1) || list[0];
+    const runner = list.find((t) => t.rank === 2) || list[1];
+    const third = list.find((t) => t.rank === 3) || list[2];
+    const fourth = list.find((t) => t.rank === 4) || list[3];
+    return { champ, runner, third, fourth };
+  }, [currentHistory]);
+
+  type WccStage = "UPPER" | "LOWER" | "GRAND_FINAL";
+  type WccUpperRound = "R16" | "QF" | "SF" | "FINAL";
+  type WccLowerRound = "R1_2" | "R3_4" | "SEMI" | "FINAL";
+
+  const [activeWccStage, setActiveWccStage] = useState<WccStage>("UPPER");
+  const [activeWccUpperRound, setActiveWccUpperRound] = useState<WccUpperRound>("R16");
+  const [activeWccLowerRound, setActiveWccLowerRound] = useState<WccLowerRound>("R1_2");
+
+  // WCC 매치 카드 렌더러 (승자조 / 패자조 / 그랜드 파이널 톤 차별화)
+  const renderWccMatchCard = (
+    match: BracketMatch,
+    type: "UPPER" | "LOWER" | "GRAND_FINAL"
+  ) => {
+    const isLower = type === "LOWER";
+    const isFinal = type === "GRAND_FINAL";
+
+    return (
+      <div
+        key={match.matchId}
+        className={`w-full rounded-xl border shadow-md overflow-hidden transition-all ${
+          isFinal
+            ? "border-amber-500/70 bg-[#070f2b] shadow-[0_0_15px_rgba(245,158,11,0.2)] hover:border-amber-400"
+            : isLower
+            ? "border-rose-500/40 bg-[#120716] hover:border-rose-400/80"
+            : "border-blue-600/50 bg-[#070f2b] hover:border-blue-400/80"
+        }`}
+      >
+        {/* 매치 헤더 바 */}
+        <div
+          className={`px-3 py-1.5 text-center font-bold text-xs tracking-tight flex items-center justify-between border-b ${
+            isFinal
+              ? "bg-gradient-to-r from-amber-950/80 via-blue-950/90 to-amber-950/80 border-amber-500/50 text-amber-200"
+              : isLower
+              ? "bg-[#250b1d] border-rose-500/40 text-rose-200"
+              : "bg-[#0d1e4c] border-blue-600/50 text-blue-200"
+          }`}
+        >
+          <div className="flex items-center gap-1.5">
+            <span>{match.roundLabel}</span>
+            {isLower ? (
+              <span className="text-[9px] px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40 font-sans font-bold">
+                💀 패배 시 즉시 탈락
+              </span>
+            ) : !isFinal ? (
+              <span className="text-[9px] px-1.5 py-0.2 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30 font-sans">
+                패배 팀은 패자조로 이동 ↘
+              </span>
+            ) : null}
+          </div>
+          <span className="font-mono text-[11px] opacity-80">({match.dateLabel})</span>
+        </div>
+
+        {/* 팀 1 / 팀 2 세트 박스 */}
+        <div
+          className={`divide-y font-sans ${
+            isLower ? "divide-rose-950/80" : "divide-blue-900/60"
+          }`}
+        >
+          {[match.team1, match.team2].map((team, idx) => {
+            return (
+              <div
+                key={team.teamId + idx}
+                className={`grid grid-cols-[1fr_40px_48px] items-center px-3 py-2 transition-colors ${
+                  team.isWinner
+                    ? isFinal
+                      ? "bg-gradient-to-r from-amber-950/30 to-blue-950/50 border-l-4 border-l-amber-400"
+                      : isLower
+                      ? "bg-rose-950/40 border-l-4 border-l-rose-500"
+                      : "bg-blue-950/40 border-l-4 border-l-blue-400"
+                    : "bg-slate-950/40 border-l-4 border-l-transparent opacity-80"
+                }`}
+              >
+                {/* 1. 팀명 + 시드 */}
+                <div className="flex flex-col min-w-0 pr-2">
+                  <div className="flex items-center gap-1.5">
+                    <span
+                      className={`text-xs font-black truncate tracking-tight ${
+                        team.isChampion
+                          ? "text-amber-300"
+                          : team.isWinner
+                          ? isLower
+                            ? "text-rose-300"
+                            : "text-amber-400"
+                          : "text-slate-300"
+                      }`}
+                    >
+                      {team.teamName} ({team.shortName})
+                    </span>
+                    {team.isChampion && (
+                      <span className="text-xs shrink-0" title="WCC 우승">
+                        🏆
+                      </span>
+                    )}
+                  </div>
+                  <span
+                    className={`text-[10px] font-mono truncate leading-none mt-0.5 ${
+                      isLower ? "text-rose-400/80" : "text-cyan-400"
+                    }`}
+                  >
+                    {team.seedInfo}
+                  </span>
+                </div>
+
+                {/* 2. 팀 로고 */}
+                <div
+                  className={`flex items-center justify-center border-l border-r px-1 py-0.5 ${
+                    isLower ? "border-rose-900/40" : "border-blue-900/50"
+                  }`}
+                >
+                  <div className="w-7 h-7 rounded-lg bg-slate-900/90 border border-slate-700/60 overflow-hidden flex items-center justify-center shrink-0 shadow-xs">
+                    {team.logoUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={team.logoUrl}
+                        alt={team.teamName}
+                        className="w-full h-full object-contain p-0.5"
+                      />
+                    ) : (
+                      <span className="font-mono text-[10px] text-cyan-400 font-bold">
+                        {team.shortName.slice(0, 3)}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* 3. 스코어 */}
+                <div
+                  className={`flex items-center justify-center font-mono text-sm font-bold ${
+                    team.isWinner
+                      ? isFinal
+                        ? "text-amber-300 font-black"
+                        : isLower
+                        ? "text-rose-200 font-black"
                         : "text-white font-black"
                       : "text-slate-500 font-semibold"
                   }`}
@@ -553,98 +721,265 @@ export default function LeagueRecordsView() {
             </div>
           )}
 
-          {/* 컵 대회 (WCC) 16강 토너먼트 리스트 (WCC는 건드리지 않고 기존 유지) */}
-          {selectedTournament === "WCC" && currentHistory?.cupResults && (
-            <div className="bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-lg p-4">
-              <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
-                <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
-                  <Award className="w-4 h-4 text-purple-400" /> 16강 본선 토너먼트 최종 성적
-                </span>
-                <span className="text-[11px] text-slate-500">
-                  결승전 스코어: {currentHistory.cupResults[0].matchScore ?? "3 - 2"}
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {currentHistory.cupResults.map((team) => {
-                  const isWinner = team.rank === 1;
-                  const isRunner = team.rank === 2;
-                  const isSemis = team.rank === 3 || team.rank === 4;
-
-                  return (
-                    <div
-                      key={team.teamId}
-                      className={`flex items-center justify-between p-3 rounded-xl border transition-all ${
-                        isWinner
-                          ? "bg-amber-950/20 border-amber-500/40"
-                          : isRunner
-                          ? "bg-slate-800/60 border-slate-600/40"
-                          : isSemis
-                          ? "bg-purple-950/20 border-purple-500/30"
-                          : "bg-slate-900/60 border-slate-800/80"
-                      }`}
-                    >
-                      <div className="flex items-center gap-2.5">
-                        <span
-                          className={`w-6 h-6 rounded-lg text-xs font-black flex items-center justify-center shrink-0 ${
-                            isWinner
-                              ? "bg-amber-500 text-slate-950"
-                              : isRunner
-                              ? "bg-slate-300 text-slate-950"
-                              : isSemis
-                              ? "bg-purple-600 text-purple-100"
-                              : "bg-slate-800 text-slate-400"
-                          }`}
-                        >
-                          {team.rank}
-                        </span>
-
-                        {team.logoUrl ? (
-                          <img
-                            src={team.logoUrl}
-                            alt={team.teamName}
-                            className="w-6 h-6 rounded-full bg-slate-800 border border-slate-700 shrink-0 object-contain"
-                          />
-                        ) : (
-                          <div className="w-6 h-6 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-[10px] text-slate-400 shrink-0">
-                            {team.shortName[0]}
-                          </div>
-                        )}
-
-                        <div>
-                          <div className="flex items-center gap-1.5">
-                            <span className={`text-xs font-bold ${isWinner ? "text-amber-300" : "text-slate-200"}`}>
-                              {team.teamName}
-                            </span>
-                            <span className="text-[10px] text-slate-500 font-mono">
-                              ({team.shortName})
-                            </span>
-                          </div>
-                          <span className="text-[10px] text-cyan-400 font-semibold">
-                            {team.league} 대표
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="text-right">
-                        <span
-                          className={`text-xs font-bold px-2 py-0.5 rounded ${
-                            isWinner
-                              ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
-                              : isRunner
-                              ? "bg-slate-500/20 text-slate-300"
-                              : isSemis
-                              ? "bg-purple-500/20 text-purple-300"
-                              : "text-slate-500"
-                          }`}
-                        >
-                          {team.rankLabel}
-                        </span>
-                      </div>
+          {/* ============================================================== */}
+          {/* WCC 16팀 더블 엘리미네이션 UI (Option 1: 3대 영역 분할 탭 방식)  */}
+          {/* ============================================================== */}
+          {selectedTournament === "WCC" && wccBracket && (
+            <div className="flex flex-col gap-3">
+              {/* 상단 요약 배너: 1위 🏆, 2위 🥈, 3위 🥉, 4위 🎖️ 팀 한 줄 요약 */}
+              {wccTop4 && (
+                <div className="bg-gradient-to-r from-amber-950/40 via-slate-900 to-purple-950/40 border border-amber-500/30 rounded-xl p-2.5 shadow-md">
+                  <div className="text-[11px] font-bold text-amber-300/90 mb-1.5 flex items-center gap-1.5">
+                    <Trophy className="w-3.5 h-3.5 text-amber-400" />
+                    <span>WCC {selectedYear} 최종 순위 TOP 4</span>
+                  </div>
+                  <div className="grid grid-cols-4 gap-1.5 text-center">
+                    <div className="bg-amber-500/10 border border-amber-500/40 rounded-lg p-1.5 flex flex-col items-center">
+                      <span className="text-[10px] font-black text-amber-400 flex items-center gap-0.5">
+                        🏆 1위
+                      </span>
+                      <span className="text-xs font-bold text-slate-100 truncate w-full mt-0.5">
+                        {wccTop4.champ.teamName}
+                      </span>
+                      <span className="text-[9px] text-cyan-400 font-mono">
+                        {wccTop4.champ.league}
+                      </span>
                     </div>
-                  );
-                })}
+                    <div className="bg-slate-500/10 border border-slate-400/30 rounded-lg p-1.5 flex flex-col items-center">
+                      <span className="text-[10px] font-black text-slate-300 flex items-center gap-0.5">
+                        🥈 2위
+                      </span>
+                      <span className="text-xs font-bold text-slate-200 truncate w-full mt-0.5">
+                        {wccTop4.runner.teamName}
+                      </span>
+                      <span className="text-[9px] text-slate-400 font-mono">
+                        {wccTop4.runner.league}
+                      </span>
+                    </div>
+                    <div className="bg-amber-900/10 border border-amber-700/30 rounded-lg p-1.5 flex flex-col items-center">
+                      <span className="text-[10px] font-black text-amber-500 flex items-center gap-0.5">
+                        🥉 3위
+                      </span>
+                      <span className="text-xs font-bold text-slate-300 truncate w-full mt-0.5">
+                        {wccTop4.third.teamName}
+                      </span>
+                      <span className="text-[9px] text-slate-400 font-mono">
+                        {wccTop4.third.league}
+                      </span>
+                    </div>
+                    <div className="bg-purple-950/20 border border-purple-500/30 rounded-lg p-1.5 flex flex-col items-center">
+                      <span className="text-[10px] font-black text-purple-300 flex items-center gap-0.5">
+                        🎖️ 4위
+                      </span>
+                      <span className="text-xs font-bold text-slate-300 truncate w-full mt-0.5">
+                        {wccTop4.fourth.teamName}
+                      </span>
+                      <span className="text-[9px] text-slate-400 font-mono">
+                        {wccTop4.fourth.league}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* 1단계 탭: 3대 영역 분할 (승자조 / 패자조 / 최종 결승) */}
+              <div className="grid grid-cols-3 gap-1.5 p-1 bg-slate-900/90 border border-slate-800 rounded-xl">
+                <button
+                  type="button"
+                  onClick={() => setActiveWccStage("UPPER")}
+                  className={`py-2 px-1 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1 ${
+                    activeWccStage === "UPPER"
+                      ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-md shadow-blue-900/50"
+                      : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
+                  }`}
+                >
+                  <span>🛡️</span>
+                  <span className="truncate">승자조</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveWccStage("LOWER")}
+                  className={`py-2 px-1 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1 ${
+                    activeWccStage === "LOWER"
+                      ? "bg-gradient-to-r from-rose-600 to-pink-600 text-white shadow-md shadow-rose-900/50"
+                      : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
+                  }`}
+                >
+                  <span>⚔️</span>
+                  <span className="truncate">패자조</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveWccStage("GRAND_FINAL")}
+                  className={`py-2 px-1 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1 ${
+                    activeWccStage === "GRAND_FINAL"
+                      ? "bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-950 font-black shadow-md shadow-amber-900/50"
+                      : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
+                  }`}
+                >
+                  <span>🏆</span>
+                  <span className="truncate">최종 결승</span>
+                </button>
               </div>
+
+              {/* 2단계 라운드 서브탭 및 매치 카드 목록 */}
+              {activeWccStage === "UPPER" && (
+                <div className="flex flex-col gap-2.5">
+                  {/* 승자조 라운드 서브탭 */}
+                  <div className="flex items-center gap-1.5 p-1 bg-slate-900/70 border border-blue-900/40 rounded-xl overflow-x-auto">
+                    {[
+                      { key: "R16" as const, label: "16강 (8G)" },
+                      { key: "QF" as const, label: "8강 (4G)" },
+                      { key: "SF" as const, label: "4강 (2G)" },
+                      { key: "FINAL" as const, label: "승자 결승 (1G)" },
+                    ].map((tab) => (
+                      <button
+                        key={tab.key}
+                        type="button"
+                        onClick={() => setActiveWccUpperRound(tab.key)}
+                        className={`flex-1 py-1.5 px-2 rounded-lg text-xs font-bold whitespace-nowrap transition-all ${
+                          activeWccUpperRound === tab.key
+                            ? "bg-blue-600 text-white shadow-sm"
+                            : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
+                        }`}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* 안내 뱃지 */}
+                  <div className="flex items-center justify-between text-[11px] text-blue-300/80 bg-blue-950/30 border border-blue-800/30 px-3 py-1.5 rounded-lg">
+                    <span>🛡️ 승자조 토너먼트 (패배 시 탈락하지 않고 패자조로 이동)</span>
+                    <span className="text-cyan-400 font-mono text-[10px]">Bo5</span>
+                  </div>
+
+                  {/* 매치 목록 */}
+                  <div className="flex flex-col gap-2">
+                    {activeWccUpperRound === "R16" &&
+                      wccBracket.upper.roundOf16.map((m) => renderWccMatchCard(m, "UPPER"))}
+                    {activeWccUpperRound === "QF" &&
+                      wccBracket.upper.quarterFinals.map((m) => renderWccMatchCard(m, "UPPER"))}
+                    {activeWccUpperRound === "SF" &&
+                      wccBracket.upper.semiFinals.map((m) => renderWccMatchCard(m, "UPPER"))}
+                    {activeWccUpperRound === "FINAL" &&
+                      renderWccMatchCard(wccBracket.upper.upperFinal, "UPPER")}
+                  </div>
+                </div>
+              )}
+
+              {activeWccStage === "LOWER" && (
+                <div className="flex flex-col gap-2.5">
+                  {/* 패자조 라운드 서브탭 */}
+                  <div className="flex items-center gap-1.5 p-1 bg-slate-900/70 border border-rose-900/40 rounded-xl overflow-x-auto">
+                    {[
+                      { key: "R1_2" as const, label: "1·2R (8G)" },
+                      { key: "R3_4" as const, label: "3·4R (4G)" },
+                      { key: "SEMI" as const, label: "패자 준결승 (1G)" },
+                      { key: "FINAL" as const, label: "패자 결승 (1G)" },
+                    ].map((tab) => (
+                      <button
+                        key={tab.key}
+                        type="button"
+                        onClick={() => setActiveWccLowerRound(tab.key)}
+                        className={`flex-1 py-1.5 px-2 rounded-lg text-xs font-bold whitespace-nowrap transition-all ${
+                          activeWccLowerRound === tab.key
+                            ? "bg-rose-600 text-white shadow-sm"
+                            : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
+                        }`}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* 긴장감 뱃지 */}
+                  <div className="flex items-center justify-between text-[11px] text-rose-300/90 bg-rose-950/30 border border-rose-800/40 px-3 py-1.5 rounded-lg">
+                    <span>💀 패자조 토너먼트 (패배 시 다음 기회 없이 대회 즉시 탈락)</span>
+                    <span className="text-rose-400 font-mono text-[10px]">Bo5</span>
+                  </div>
+
+                  {/* 매치 목록 */}
+                  <div className="flex flex-col gap-2">
+                    {activeWccLowerRound === "R1_2" && (
+                      <>
+                        <div className="text-[11px] font-bold text-rose-400 px-1 pt-1">
+                          패자조 1라운드 (승자 16강 패자 8팀 맞대결)
+                        </div>
+                        {wccBracket.lower.round1.map((m) => renderWccMatchCard(m, "LOWER"))}
+                        <div className="text-[11px] font-bold text-rose-400 px-1 pt-2">
+                          패자조 2라운드 (1R 승자 4팀 vs 승자 8강 패자 4팀)
+                        </div>
+                        {wccBracket.lower.round2.map((m) => renderWccMatchCard(m, "LOWER"))}
+                      </>
+                    )}
+                    {activeWccLowerRound === "R3_4" && (
+                      <>
+                        <div className="text-[11px] font-bold text-rose-400 px-1 pt-1">
+                          패자조 3라운드 (2R 승자 4팀 맞대결)
+                        </div>
+                        {wccBracket.lower.round3.map((m) => renderWccMatchCard(m, "LOWER"))}
+                        <div className="text-[11px] font-bold text-rose-400 px-1 pt-2">
+                          패자조 4라운드 (3R 승자 2팀 vs 승자 4강 패자 2팀)
+                        </div>
+                        {wccBracket.lower.round4.map((m) => renderWccMatchCard(m, "LOWER"))}
+                      </>
+                    )}
+                    {activeWccLowerRound === "SEMI" && (
+                      <>
+                        <div className="text-[11px] font-bold text-rose-400 px-1 pt-1">
+                          패자조 준결승 (패자는 최종 4위 확정)
+                        </div>
+                        {renderWccMatchCard(wccBracket.lower.lowerSemiFinal, "LOWER")}
+                      </>
+                    )}
+                    {activeWccLowerRound === "FINAL" && (
+                      <>
+                        <div className="text-[11px] font-bold text-rose-400 px-1 pt-1">
+                          패자조 결승 (패자는 최종 3위 확정 / 승자는 그랜드 파이널 진출)
+                        </div>
+                        {renderWccMatchCard(wccBracket.lower.lowerFinal, "LOWER")}
+                      </>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {activeWccStage === "GRAND_FINAL" && (
+                <div className="flex flex-col gap-3">
+                  {/* 단독 Bo5 매치 카드 */}
+                  <div>
+                    <div className="text-[11px] font-bold text-amber-300 px-1 pb-1.5 flex items-center gap-1">
+                      <span>🏆</span>
+                      <span>그랜드 파이널 (승자조 1위 vs 패자조 1위)</span>
+                    </div>
+                    {renderWccMatchCard(wccBracket.grandFinal, "GRAND_FINAL")}
+                  </div>
+
+                  {/* WCC 월드 챔피언 트로피 배너 & 파이널 MVP 카드 */}
+                  <div className="bg-gradient-to-b from-amber-950/40 via-slate-900 to-slate-900 border border-amber-500/50 rounded-2xl p-4 text-center shadow-xl">
+                    <div className="text-3xl mb-1">🏆</div>
+                    <span className="text-[10px] font-black tracking-widest text-amber-400/90 uppercase">
+                      World Champions Cup {selectedYear} Winner
+                    </span>
+                    <h3 className="text-lg sm:text-xl font-black text-amber-200 mt-0.5">
+                      {currentHistory?.winnerTeamName}
+                    </h3>
+                    <p className="text-[11px] text-slate-400 mt-1 font-sans">
+                      세계 최고봉 16개 명문 구단이 격돌한 더블 엘리미네이션 토너먼트 제패
+                    </p>
+
+                    {currentHistory?.finalsMvpName && (
+                      <div className="mt-3 pt-3 border-t border-amber-500/20 inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30">
+                        <Award className="w-4 h-4 text-amber-400" />
+                        <span className="text-xs font-bold text-amber-300">
+                          파이널 MVP: {currentHistory.finalsMvpName}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

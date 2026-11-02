@@ -5,6 +5,7 @@ import {
   CareerStatCategory,
   ClubHistoryEntry,
   CupTeamResult,
+  DoubleEliminationBracket,
   PlayerCareerRecord,
   TournamentBracket,
   TournamentHistory,
@@ -362,6 +363,292 @@ export function generateMccTournamentBracket(
 }
 
 /**
+ * WCC 16팀 더블 엘리미네이션 토너먼트 대진표 생성
+ */
+export function generateWccDoubleEliminationBracket(
+  history: Pick<TournamentHistory, "year" | "winnerTeamName" | "runnerUpTeamName" | "cupResults">
+): DoubleEliminationBracket {
+  const cupTeams = history.cupResults || [];
+
+  const champ = cupTeams.find((t) => t.rank === 1) || cupTeams[0];
+  const runner = cupTeams.find((t) => t.rank === 2) || cupTeams[1];
+  const third = cupTeams.find((t) => t.rank === 3) || cupTeams[2];
+  const fourth = cupTeams.find((t) => t.rank === 4) || cupTeams[3];
+
+  const quarters = cupTeams.filter((t) => t.rank >= 5 && t.rank <= 8);
+  const q1 = quarters[0] || cupTeams[4];
+  const q2 = quarters[1] || cupTeams[5];
+  const q3 = quarters[2] || cupTeams[6];
+  const q4 = quarters[3] || cupTeams[7];
+
+  const round16 = cupTeams.filter((t) => t.rank >= 9);
+  const r1 = round16[0] || cupTeams[8];
+  const r2 = round16[1] || cupTeams[9];
+  const r3 = round16[2] || cupTeams[10];
+  const r4 = round16[3] || cupTeams[11];
+  const r5 = round16[4] || cupTeams[12];
+  const r6 = round16[5] || cupTeams[13];
+  const r7 = round16[6] || cupTeams[14];
+  const r8 = round16[7] || cupTeams[15];
+
+  // 1. 승자조 (Upper Bracket - 총 15경기)
+  const upperRoundOf16: BracketMatch[] = [
+    {
+      matchId: "U-R16-1",
+      roundLabel: "승자 16강 1경기",
+      dateLabel: "11/2",
+      team1: createBracketTeam(champ, 3, true),
+      team2: createBracketTeam(r1, 0, false),
+    },
+    {
+      matchId: "U-R16-2",
+      roundLabel: "승자 16강 2경기",
+      dateLabel: "11/2",
+      team1: createBracketTeam(q1, 3, true),
+      team2: createBracketTeam(r2, 1, false),
+    },
+    {
+      matchId: "U-R16-3",
+      roundLabel: "승자 16강 3경기",
+      dateLabel: "11/3",
+      team1: createBracketTeam(fourth, 3, true),
+      team2: createBracketTeam(r3, 1, false),
+    },
+    {
+      matchId: "U-R16-4",
+      roundLabel: "승자 16강 4경기",
+      dateLabel: "11/3",
+      team1: createBracketTeam(q2, 3, true),
+      team2: createBracketTeam(r4, 2, false),
+    },
+    {
+      matchId: "U-R16-5",
+      roundLabel: "승자 16강 5경기",
+      dateLabel: "11/4",
+      team1: createBracketTeam(runner, 3, true),
+      team2: createBracketTeam(r5, 0, false),
+    },
+    {
+      matchId: "U-R16-6",
+      roundLabel: "승자 16강 6경기",
+      dateLabel: "11/4",
+      team1: createBracketTeam(q3, 3, true),
+      team2: createBracketTeam(r6, 1, false),
+    },
+    {
+      matchId: "U-R16-7",
+      roundLabel: "승자 16강 7경기",
+      dateLabel: "11/5",
+      team1: createBracketTeam(third, 3, true),
+      team2: createBracketTeam(r7, 1, false),
+    },
+    {
+      matchId: "U-R16-8",
+      roundLabel: "승자 16강 8경기",
+      dateLabel: "11/5",
+      team1: createBracketTeam(q4, 3, true),
+      team2: createBracketTeam(r8, 2, false),
+    },
+  ];
+
+  const upperQuarterFinals: BracketMatch[] = [
+    {
+      matchId: "U-QF-1",
+      roundLabel: "승자 8강 1경기",
+      dateLabel: "11/9",
+      team1: createBracketTeam(champ, 3, true),
+      team2: createBracketTeam(q1, 1, false),
+    },
+    {
+      matchId: "U-QF-2",
+      roundLabel: "승자 8강 2경기",
+      dateLabel: "11/9",
+      team1: createBracketTeam(fourth, 3, true),
+      team2: createBracketTeam(q2, 2, false),
+    },
+    {
+      matchId: "U-QF-3",
+      roundLabel: "승자 8강 3경기",
+      dateLabel: "11/10",
+      team1: createBracketTeam(runner, 3, true),
+      team2: createBracketTeam(q3, 1, false),
+    },
+    {
+      matchId: "U-QF-4",
+      roundLabel: "승자 8강 4경기",
+      dateLabel: "11/10",
+      team1: createBracketTeam(third, 3, true),
+      team2: createBracketTeam(q4, 1, false),
+    },
+  ];
+
+  const upperSemiFinals: BracketMatch[] = [
+    {
+      matchId: "U-SF-1",
+      roundLabel: "승자 4강 1경기",
+      dateLabel: "11/16",
+      team1: createBracketTeam(champ, 3, true),
+      team2: createBracketTeam(fourth, 1, false),
+    },
+    {
+      matchId: "U-SF-2",
+      roundLabel: "승자 4강 2경기",
+      dateLabel: "11/17",
+      team1: createBracketTeam(runner, 3, true),
+      team2: createBracketTeam(third, 2, false),
+    },
+  ];
+
+  const upperFinal: BracketMatch = {
+    matchId: "U-FINAL",
+    roundLabel: "승자 결승전 (Upper Final)",
+    dateLabel: "11/23",
+    team1: createBracketTeam(champ, 3, true),
+    team2: createBracketTeam(runner, 2, false),
+  };
+
+  // 2. 패자조 (Lower Bracket - 총 14경기)
+  const lowerRound1: BracketMatch[] = [
+    {
+      matchId: "L-R1-1",
+      roundLabel: "패자 1R 1경기",
+      dateLabel: "11/6",
+      team1: createBracketTeam(r1, 3, true),
+      team2: createBracketTeam(r2, 1, false),
+    },
+    {
+      matchId: "L-R1-2",
+      roundLabel: "패자 1R 2경기",
+      dateLabel: "11/6",
+      team1: createBracketTeam(r3, 3, true),
+      team2: createBracketTeam(r4, 2, false),
+    },
+    {
+      matchId: "L-R1-3",
+      roundLabel: "패자 1R 3경기",
+      dateLabel: "11/7",
+      team1: createBracketTeam(r5, 3, true),
+      team2: createBracketTeam(r6, 1, false),
+    },
+    {
+      matchId: "L-R1-4",
+      roundLabel: "패자 1R 4경기",
+      dateLabel: "11/7",
+      team1: createBracketTeam(r7, 3, true),
+      team2: createBracketTeam(r8, 2, false),
+    },
+  ];
+
+  const lowerRound2: BracketMatch[] = [
+    {
+      matchId: "L-R2-1",
+      roundLabel: "패자 2R 1경기",
+      dateLabel: "11/12",
+      team1: createBracketTeam(q1, 3, true),
+      team2: createBracketTeam(r1, 1, false),
+    },
+    {
+      matchId: "L-R2-2",
+      roundLabel: "패자 2R 2경기",
+      dateLabel: "11/12",
+      team1: createBracketTeam(q2, 3, true),
+      team2: createBracketTeam(r3, 2, false),
+    },
+    {
+      matchId: "L-R2-3",
+      roundLabel: "패자 2R 3경기",
+      dateLabel: "11/13",
+      team1: createBracketTeam(q3, 3, true),
+      team2: createBracketTeam(r5, 1, false),
+    },
+    {
+      matchId: "L-R2-4",
+      roundLabel: "패자 2R 4경기",
+      dateLabel: "11/13",
+      team1: createBracketTeam(q4, 3, true),
+      team2: createBracketTeam(r7, 2, false),
+    },
+  ];
+
+  const lowerRound3: BracketMatch[] = [
+    {
+      matchId: "L-R3-1",
+      roundLabel: "패자 3R 1경기",
+      dateLabel: "11/18",
+      team1: createBracketTeam(q1, 3, true),
+      team2: createBracketTeam(q2, 2, false),
+    },
+    {
+      matchId: "L-R3-2",
+      roundLabel: "패자 3R 2경기",
+      dateLabel: "11/18",
+      team1: createBracketTeam(q3, 3, true),
+      team2: createBracketTeam(q4, 2, false),
+    },
+  ];
+
+  const lowerRound4: BracketMatch[] = [
+    {
+      matchId: "L-R4-1",
+      roundLabel: "패자 4R 1경기",
+      dateLabel: "11/20",
+      team1: createBracketTeam(fourth, 3, true),
+      team2: createBracketTeam(q1, 1, false),
+    },
+    {
+      matchId: "L-R4-2",
+      roundLabel: "패자 4R 2경기",
+      dateLabel: "11/20",
+      team1: createBracketTeam(third, 3, true),
+      team2: createBracketTeam(q3, 1, false),
+    },
+  ];
+
+  const lowerSemiFinal: BracketMatch = {
+    matchId: "L-SEMI",
+    roundLabel: "패자 준결승전 (Lower Semi)",
+    dateLabel: "11/24",
+    team1: createBracketTeam(third, 3, true),
+    team2: createBracketTeam(fourth, 2, false),
+  };
+
+  const lowerFinal: BracketMatch = {
+    matchId: "L-FINAL",
+    roundLabel: "패자 결승전 (Lower Final)",
+    dateLabel: "11/30",
+    team1: createBracketTeam(runner, 3, true),
+    team2: createBracketTeam(third, 1, false),
+  };
+
+  // 3. 최종 결승 (Grand Final - 1경기)
+  const grandFinal: BracketMatch = {
+    matchId: "GRAND-FINAL",
+    roundLabel: "최종 결승전 (Grand Final)",
+    dateLabel: "12/7",
+    team1: createBracketTeam(champ, 3, true, true),
+    team2: createBracketTeam(runner, 2, false, false),
+  };
+
+  return {
+    upper: {
+      roundOf16: upperRoundOf16,
+      quarterFinals: upperQuarterFinals,
+      semiFinals: upperSemiFinals,
+      upperFinal,
+    },
+    lower: {
+      round1: lowerRound1,
+      round2: lowerRound2,
+      round3: lowerRound3,
+      round4: lowerRound4,
+      lowerSemiFinal,
+      lowerFinal,
+    },
+    grandFinal,
+  };
+}
+
+/**
  * 게임 생성 연도(Y_created)를 기준으로 직전 3개년 프리셋 대회 아카이브 생성
  */
 export function generatePresetTournamentHistories(
@@ -434,16 +721,21 @@ export function generatePresetTournamentHistories(
 
     // 4. 월드 챔피언스 컵 (WCC)
     const wccData = generateMockCupResults("WCC", year, playerLeague);
-    histories.push({
+    const wccHistoryBase = {
       id: `${year}_WCC`,
       year,
-      type: "WCC",
+      type: "WCC" as const,
       winnerTeamName: wccData.winnerTeam,
       winnerShortName: wccData.results[0].shortName,
       winnerLogoUrl: wccData.results[0].logoUrl,
       runnerUpTeamName: wccData.runnerUpTeam,
       finalsMvpName: wccData.finalsMvp,
       cupResults: wccData.results,
+    };
+    const wccBracket = generateWccDoubleEliminationBracket(wccHistoryBase);
+    histories.push({
+      ...wccHistoryBase,
+      wccBracket,
     });
   }
 
