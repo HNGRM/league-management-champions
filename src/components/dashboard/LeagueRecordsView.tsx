@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import { getTeamLogo } from "@/data/teamLogos";
 import {
   Trophy,
@@ -29,7 +29,9 @@ import {
   TournamentHistory,
   PlayerCareerRecord,
   ClubHistoryEntry,
+  BracketMatch,
 } from "@/types/record";
+import { generateMccTournamentBracket } from "@/data/records";
 import { DivisionTier, LeagueLanguage } from "@/types/game";
 import { DIVISION_METAS } from "@/data/divisions";
 
@@ -88,6 +90,129 @@ export default function LeagueRecordsView() {
       return true; // MCC, WCC
     });
   }, [tournamentHistories, selectedYear, selectedTournament, selectedDivision]);
+
+  // MCC 16강 토너먼트 대진표(Bracket) 조회 및 생성
+  const mccBracket = useMemo(() => {
+    if (!currentHistory || currentHistory.type !== "MCC") return null;
+    return currentHistory.bracket || generateMccTournamentBracket(currentHistory);
+  }, [currentHistory]);
+
+  const bracketScrollRef = useRef<HTMLDivElement>(null);
+  const [activeBracketRound, setActiveBracketRound] = useState<"ALL" | "R16" | "QF" | "SF" | "FINAL">("ALL");
+
+  const scrollToRound = (round: "ALL" | "R16" | "QF" | "SF" | "FINAL") => {
+    setActiveBracketRound(round);
+    if (!bracketScrollRef.current) return;
+    const colMap: Record<string, number> = {
+      ALL: 0,
+      R16: 0,
+      QF: 190,
+      SF: 380,
+      FINAL: 570,
+    };
+    bracketScrollRef.current.scrollTo({
+      left: colMap[round] ?? 0,
+      behavior: "smooth",
+    });
+  };
+
+  // MCC 매치 카드 렌더러 (Image 2 LoL 녹아웃 스테이지 대진표 스타일)
+  const renderMccMatchCard = (match: BracketMatch, isFinal = false) => {
+    return (
+      <div
+        key={match.matchId}
+        className={`w-[172px] shrink-0 rounded-lg border bg-[#070f2b] shadow-md overflow-hidden transition-all hover:border-blue-400/80 ${
+          isFinal
+            ? "border-amber-500/70 shadow-[0_0_15px_rgba(245,158,11,0.2)]"
+            : "border-blue-600/50"
+        }`}
+      >
+        {/* 매치 헤더 바 */}
+        <div
+          className={`px-2 py-1 text-center font-bold text-[10px] tracking-tight flex items-center justify-between border-b ${
+            isFinal
+              ? "bg-gradient-to-r from-amber-950/80 via-blue-950/90 to-amber-950/80 border-amber-500/50 text-amber-200"
+              : "bg-[#0d1e4c] border-blue-600/50 text-blue-200"
+          }`}
+        >
+          <span>{match.roundLabel}</span>
+          <span className="font-mono opacity-80">({match.dateLabel})</span>
+        </div>
+
+        {/* 팀 1 / 팀 2 세트 박스 */}
+        <div className="divide-y divide-blue-900/60 font-sans">
+          {[match.team1, match.team2].map((team, idx) => {
+            return (
+              <div
+                key={team.teamId + idx}
+                className={`grid grid-cols-[1fr_32px_28px] items-center px-1.5 py-1.5 transition-colors ${
+                  team.isWinner
+                    ? isFinal
+                      ? "bg-gradient-to-r from-amber-950/30 to-blue-950/50 border-l-2 border-l-amber-400"
+                      : "bg-blue-950/40 border-l-2 border-l-blue-400"
+                    : "bg-slate-950/40 border-l-2 border-l-transparent"
+                }`}
+              >
+                {/* 1. 팀명 + 시드 */}
+                <div className="flex flex-col min-w-0 pr-1">
+                  <div className="flex items-center gap-1">
+                    <span
+                      className={`text-[11px] font-black truncate tracking-tight ${
+                        team.isChampion
+                          ? "text-amber-300"
+                          : team.isWinner
+                          ? "text-amber-400"
+                          : "text-slate-400"
+                      }`}
+                    >
+                      {team.shortName}
+                    </span>
+                    {team.isChampion && (
+                      <span className="text-[10px]" title="MCC 우승">🏆</span>
+                    )}
+                  </div>
+                  <span className="text-[9px] text-slate-400 font-mono truncate leading-none mt-0.5">
+                    {team.seedInfo}
+                  </span>
+                </div>
+
+                {/* 2. 팀 로고 */}
+                <div className="flex items-center justify-center border-l border-r border-blue-900/50 px-1 py-0.5">
+                  <div className="w-6 h-6 rounded bg-slate-900/90 border border-slate-700/60 overflow-hidden flex items-center justify-center shrink-0">
+                    {team.logoUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={team.logoUrl}
+                        alt={team.teamName}
+                        className="w-full h-full object-contain p-0.5"
+                      />
+                    ) : (
+                      <span className="font-mono text-[9px] text-cyan-400 font-bold">
+                        {team.shortName.slice(0, 3)}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* 3. 스코어 */}
+                <div
+                  className={`flex items-center justify-center font-mono text-xs font-bold ${
+                    team.isWinner
+                      ? isFinal
+                        ? "text-amber-300 font-black"
+                        : "text-white font-black"
+                      : "text-slate-500 font-semibold"
+                  }`}
+                >
+                  {team.score}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
 
   // 통산 기록 카테고리별 정렬된 선수 목록
   const sortedCareerPlayers = useMemo(() => {
@@ -373,8 +498,136 @@ export default function LeagueRecordsView() {
             </div>
           )}
 
-          {/* 컵 대회 (MCC/WCC) 16강 토너먼트 리스트 */}
-          {currentHistory?.cupResults && (
+          {/* ============================================================== */}
+          {/* MCC 16강 싱글 엘리미네이션 토너먼트 대진표 (Image 2 스타일)          */}
+          {/* ============================================================== */}
+          {selectedTournament === "MCC" && mccBracket && (
+            <div className="rounded-2xl border border-blue-600/40 bg-gradient-to-b from-[#091432] via-[#060d24] to-[#040817] shadow-xl overflow-hidden p-3 sm:p-4 flex flex-col gap-3">
+              {/* 1. 최상단 대회 타이틀 배너 (Image 2 LoL Worlds 대진표 헤더 스타일) */}
+              <div className="rounded-xl bg-gradient-to-r from-blue-950 via-indigo-950 to-blue-950 border border-blue-600/50 p-2.5 sm:p-3 shadow-md flex items-center justify-between gap-2 flex-wrap">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-500/50 flex items-center justify-center text-amber-300 text-lg shadow-xs shrink-0">
+                    🏆
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs sm:text-sm font-black text-blue-100 flex items-center gap-1.5">
+                      <span>{selectedYear} 미드시즌 챔피언스 컵 (MCC)</span>
+                    </span>
+                    <span className="text-[11px] font-bold text-blue-400 tracking-tight">
+                      16강 싱글 엘리미네이션 녹아웃 스테이지 대진표
+                    </span>
+                  </div>
+                </div>
+
+                {/* 모바일 최적화 라운드 바로가기 칩 */}
+                <div className="flex items-center gap-1 bg-slate-950/70 p-1 rounded-lg border border-blue-900/60 shrink-0">
+                  <span className="text-[10px] text-slate-400 font-mono px-1">이동:</span>
+                  {(
+                    [
+                      { id: "ALL", label: "전체" },
+                      { id: "R16", label: "16강" },
+                      { id: "QF", label: "8강" },
+                      { id: "SF", label: "4강" },
+                      { id: "FINAL", label: "결승" },
+                    ] as const
+                  ).map((tab) => (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => scrollToRound(tab.id)}
+                      className={`px-2 py-0.5 rounded text-[10px] font-bold transition-all cursor-pointer ${
+                        activeBracketRound === tab.id
+                          ? "bg-blue-600 text-white shadow-xs"
+                          : "text-slate-400 hover:text-slate-200"
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* 2. 대진표 본문 영역 (가로 스크롤 가능) */}
+              <div
+                ref={bracketScrollRef}
+                className="overflow-x-auto custom-scrollbar pb-2"
+              >
+                <div className="min-w-[760px] flex flex-col">
+                  {/* 라운드 컬럼 헤더 바 (Image 2 스타일) */}
+                  <div className="grid grid-cols-4 bg-[#0a1538] border border-blue-600/50 rounded-lg text-center text-xs font-bold text-blue-200 py-1.5 mb-3 shadow-inner">
+                    <div className="border-r border-blue-900/60">16강</div>
+                    <div className="border-r border-blue-900/60">8강</div>
+                    <div className="border-r border-blue-900/60">4강</div>
+                    <div>결승</div>
+                  </div>
+
+                  {/* 토너먼트 매치 트리 영역 */}
+                  <div className="grid grid-cols-4 gap-3 items-stretch min-h-[660px]">
+                    {/* 1열: 16강 (8경기) */}
+                    <div className="flex flex-col justify-between gap-2.5">
+                      {mccBracket.roundOf16.map((m) => renderMccMatchCard(m))}
+                    </div>
+
+                    {/* 2열: 8강 (4경기) */}
+                    <div className="flex flex-col justify-around py-4">
+                      {mccBracket.quarterFinals.map((m) => renderMccMatchCard(m))}
+                    </div>
+
+                    {/* 3열: 4강 (2경기) */}
+                    <div className="flex flex-col justify-around py-12">
+                      {mccBracket.semiFinals.map((m) => renderMccMatchCard(m))}
+                    </div>
+
+                    {/* 4열: 결승 (1경기 + 우승 쇼케이스) */}
+                    <div className="flex flex-col justify-center items-center gap-4 py-16">
+                      {renderMccMatchCard(mccBracket.finals, true)}
+
+                      {/* 결승전 결과 우승 배너 */}
+                      <div className="w-[172px] rounded-xl bg-gradient-to-br from-amber-500/20 via-slate-900 to-amber-950/40 border border-amber-500/50 p-2.5 flex flex-col items-center text-center shadow-lg">
+                        <div className="w-9 h-9 rounded-full bg-amber-500/20 border border-amber-500/60 flex items-center justify-center text-amber-300 text-lg mb-1 shadow-xs">
+                          🏆
+                        </div>
+                        <span className="text-[10px] text-amber-400 font-bold tracking-wider uppercase">
+                          MCC CHAMPION
+                        </span>
+                        <span className="text-xs font-black text-amber-200 truncate w-full mt-0.5">
+                          {mccBracket.finals.team1.isWinner
+                            ? mccBracket.finals.team1.teamName
+                            : mccBracket.finals.team2.teamName}
+                        </span>
+                        <span className="text-[9px] text-amber-400/80 font-mono mt-0.5">
+                          결승 스코어 {mccBracket.finals.team1.score} : {mccBracket.finals.team2.score}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. 하단 범례 안내 바 (Image 2 스타일) */}
+              <div className="pt-2.5 border-t border-blue-900/60 flex items-center justify-between flex-wrap gap-2 text-[10px] text-slate-400 font-mono">
+                <div className="flex items-center gap-3">
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-xs bg-blue-500 border border-blue-400 inline-block"></span>
+                    <span className="text-slate-300">세트 승리</span>
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-xs bg-amber-400 border border-amber-300 inline-block"></span>
+                    <span className="text-amber-300 font-bold">MCC 챔피언스 컵 우승</span>
+                  </span>
+                </div>
+                {currentHistory?.finalsMvpName && (
+                  <div className="flex items-center gap-1 text-amber-300 font-sans font-bold">
+                    <Award className="w-3.5 h-3.5 text-amber-400" />
+                    <span>결승전 MVP: {currentHistory.finalsMvpName}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* 컵 대회 (WCC) 16강 토너먼트 리스트 (WCC는 건드리지 않고 기존 유지) */}
+          {selectedTournament === "WCC" && currentHistory?.cupResults && (
             <div className="bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-lg p-4">
               <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
                 <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5">

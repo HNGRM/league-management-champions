@@ -55,6 +55,36 @@ export interface CupTeamResult {
   matchScore?: string;           // 결승전 스코어 (예: "3 - 2")
 }
 
+// 16강 토너먼트 대진표(Bracket)용 단일 팀 정보
+export interface BracketMatchTeam {
+  teamId: string;
+  teamName: string;
+  shortName: string;
+  league: LeagueLanguage;
+  seedInfo: string;           // 예: "KCL 1시드", "CCL 2시드" 등
+  logoUrl?: string | null;
+  score: number;              // 세트 득점 (예: 3, 2, 1, 0)
+  isWinner: boolean;          // 승리 여부
+  isChampion?: boolean;       // 최종 우승 여부 (결승전 승리팀)
+}
+
+// 토너먼트 단일 경기
+export interface BracketMatch {
+  matchId: string;            // "R16-1" ~ "R16-8", "QF-1" ~ "QF-4", "SF-1" ~ "SF-2", "FINAL"
+  roundLabel: string;         // "16강 1경기", "8강 1경기", "4강 1경기", "결승전"
+  dateLabel: string;          // "6/2", "6/9", "6/16", "6/21" 등
+  team1: BracketMatchTeam;
+  team2: BracketMatchTeam;
+}
+
+// 16강 전체 대진표 구조
+export interface TournamentBracket {
+  roundOf16: BracketMatch[];     // 8경기
+  quarterFinals: BracketMatch[]; // 4경기
+  semiFinals: BracketMatch[];    // 2경기
+  finals: BracketMatch;          // 1경기
+}
+
 // 연도별 대회 순위표/결과 보관 인터페이스
 export interface TournamentHistory {
   id: string;                    // 예: "2025_SPRING_KCL_A", "2025_WCC"
@@ -69,6 +99,7 @@ export interface TournamentHistory {
   finalsMvpName?: string;        // 결승 MVP
   standings?: TeamStanding[];    // 정규 리그(스프링/서머) 순위표
   cupResults?: CupTeamResult[];  // 국제 컵(MCC/WCC) 16강 토너먼트 결과
+  bracket?: TournamentBracket;   // 컵 대회(MCC) 16강 대진표 토너먼트 구조
 }
 
 // 6대 선수 통산 지표 카테고리
