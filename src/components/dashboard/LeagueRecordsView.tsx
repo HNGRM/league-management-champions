@@ -402,7 +402,7 @@ export default function LeagueRecordsView() {
   }, [currentHistory, mccBracket]);
 
   // MCC 매치 카드 렌더러 (선택된 라운드의 경기 카드)
-  const renderMccMatchCard = (match: BracketMatch, isFinal = false) => {
+  const renderMccMatchCard = (match: BracketMatch, isFinal = false, compact = false) => {
     return (
       <div
         key={match.matchId}
@@ -414,14 +414,16 @@ export default function LeagueRecordsView() {
       >
         {/* 매치 헤더 바 */}
         <div
-          className={`px-3 py-1.5 text-center font-bold text-xs tracking-tight flex items-center justify-between border-b ${
+          className={`text-center font-bold tracking-tight flex items-center justify-between border-b ${
+            compact ? "px-2 py-1 text-[10px]" : "px-3 py-1.5 text-xs"
+          } ${
             isFinal
               ? "bg-gradient-to-r from-amber-950/80 via-blue-950/90 to-amber-950/80 border-amber-500/50 text-amber-200"
               : "bg-[#0d1e4c] border-blue-600/50 text-blue-200"
           }`}
         >
-          <span>{match.roundLabel}</span>
-          <span className="font-mono text-[11px] opacity-80">({match.dateLabel})</span>
+          <span className="truncate">{match.roundLabel}</span>
+          <span className="font-mono text-[10px] opacity-80 shrink-0">({match.dateLabel})</span>
         </div>
 
         {/* 팀 1 / 팀 2 세트 박스 */}
@@ -430,7 +432,11 @@ export default function LeagueRecordsView() {
             return (
               <div
                 key={team.teamId + idx}
-                className={`grid grid-cols-[1fr_40px_48px] items-center px-3 py-2 transition-colors ${
+                className={`grid ${
+                  compact
+                    ? "grid-cols-[1fr_26px_28px] px-2 py-1.5"
+                    : "grid-cols-[1fr_40px_48px] px-3 py-2"
+                } items-center transition-colors ${
                   team.isWinner
                     ? isFinal
                       ? "bg-gradient-to-r from-amber-950/30 to-blue-950/50 border-l-4 border-l-amber-400"
@@ -439,10 +445,12 @@ export default function LeagueRecordsView() {
                 }`}
               >
                 {/* 1. 팀명 + 시드 */}
-                <div className="flex flex-col min-w-0 pr-2">
-                  <div className="flex items-center gap-1.5">
+                <div className="flex flex-col min-w-0 pr-1">
+                  <div className="flex items-center gap-1">
                     <span
-                      className={`text-xs font-black truncate tracking-tight ${
+                      className={`font-black truncate tracking-tight ${
+                        compact ? "text-[11px]" : "text-xs"
+                      } ${
                         team.isChampion
                           ? "text-amber-300"
                           : team.isWinner
@@ -450,20 +458,24 @@ export default function LeagueRecordsView() {
                           : "text-slate-300"
                       }`}
                     >
-                      {team.teamName} ({team.shortName})
+                      {team.teamName}
                     </span>
                     {team.isChampion && (
-                      <span className="text-xs shrink-0" title="MCC 우승">🏆</span>
+                      <span className="text-[10px] shrink-0" title="MCC 우승">🏆</span>
                     )}
                   </div>
-                  <span className="text-[10px] text-cyan-400 font-mono truncate leading-none mt-0.5">
-                    {team.seedInfo}
+                  <span className="text-[9px] text-cyan-400 font-mono truncate leading-none mt-0.5">
+                    {team.shortName} · {team.seedInfo}
                   </span>
                 </div>
 
                 {/* 2. 팀 로고 */}
-                <div className="flex items-center justify-center border-l border-r border-blue-900/50 px-1 py-0.5">
-                  <div className="w-7 h-7 rounded-lg bg-slate-900/90 border border-slate-700/60 overflow-hidden flex items-center justify-center shrink-0 shadow-xs">
+                <div className="flex items-center justify-center border-l border-r border-blue-900/50 px-0.5">
+                  <div
+                    className={`${
+                      compact ? "w-5 h-5 rounded-md" : "w-7 h-7 rounded-lg"
+                    } bg-slate-900/90 border border-slate-700/60 overflow-hidden flex items-center justify-center shrink-0 shadow-xs`}
+                  >
                     {team.logoUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
@@ -472,7 +484,7 @@ export default function LeagueRecordsView() {
                         className="w-full h-full object-contain p-0.5"
                       />
                     ) : (
-                      <span className="font-mono text-[10px] text-cyan-400 font-bold">
+                      <span className="font-mono text-[9px] text-cyan-400 font-bold">
                         {team.shortName.slice(0, 3)}
                       </span>
                     )}
@@ -481,7 +493,9 @@ export default function LeagueRecordsView() {
 
                 {/* 3. 스코어 */}
                 <div
-                  className={`flex items-center justify-center font-mono text-sm font-bold ${
+                  className={`flex items-center justify-center font-mono ${
+                    compact ? "text-xs" : "text-sm"
+                  } font-bold ${
                     team.isWinner
                       ? isFinal
                         ? "text-amber-300 font-black"
@@ -511,7 +525,7 @@ export default function LeagueRecordsView() {
     return computeWccStandings(wccBracket);
   }, [currentHistory, wccBracket]);
 
-  type WccRoundTab = "STANDINGS" | "DAY1" | "DAY2" | "DAY3" | "DAY4" | "FINAL";
+  type WccRoundTab = "STANDINGS" | "R1" | "R2" | "R3" | "R4" | "FINAL";
   const [activeWccRound, setActiveWccRound] = useState<WccRoundTab>("STANDINGS");
 
   // 연도 또는 대회 변경 시 디폴트 탭을 '최종순위'로 리셋
@@ -523,7 +537,8 @@ export default function LeagueRecordsView() {
   // WCC 매치 카드 렌더러 (승자조 / 패자조 / 그랜드 파이널 톤 차별화)
   const renderWccMatchCard = (
     match: BracketMatch,
-    type: "UPPER" | "LOWER" | "GRAND_FINAL"
+    type: "UPPER" | "LOWER" | "GRAND_FINAL",
+    compact = false
   ) => {
     const isLower = type === "LOWER";
     const isFinal = type === "GRAND_FINAL";
@@ -541,7 +556,9 @@ export default function LeagueRecordsView() {
       >
         {/* 매치 헤더 바 */}
         <div
-          className={`px-3 py-1.5 text-center font-bold text-xs tracking-tight flex items-center justify-between border-b ${
+          className={`text-center font-bold tracking-tight flex items-center justify-between border-b ${
+            compact ? "px-2 py-1 text-[10px]" : "px-3 py-1.5 text-xs"
+          } ${
             isFinal
               ? "bg-gradient-to-r from-amber-950/80 via-blue-950/90 to-amber-950/80 border-amber-500/50 text-amber-200"
               : isLower
@@ -549,19 +566,23 @@ export default function LeagueRecordsView() {
               : "bg-[#0d1e4c] border-blue-600/50 text-blue-200"
           }`}
         >
-          <div className="flex items-center gap-1.5">
-            <span>{match.roundLabel}</span>
-            {isLower ? (
-              <span className="text-[9px] px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40 font-sans font-bold">
+          <div className="flex items-center gap-1 min-w-0">
+            <span className="truncate">{match.roundLabel}</span>
+            {isLower && !compact ? (
+              <span className="text-[9px] px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40 font-sans font-bold shrink-0">
                 💀 패배 시 즉시 탈락
               </span>
-            ) : !isFinal ? (
-              <span className="text-[9px] px-1.5 py-0.2 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30 font-sans">
+            ) : isLower && compact ? (
+              <span className="text-[8px] px-1 py-0.2 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40 font-sans font-bold shrink-0">
+                💀탈락
+              </span>
+            ) : !isFinal && !compact ? (
+              <span className="text-[9px] px-1.5 py-0.2 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30 font-sans shrink-0">
                 패배 팀은 패자조로 이동 ↘
               </span>
             ) : null}
           </div>
-          <span className="font-mono text-[11px] opacity-80">({match.dateLabel})</span>
+          <span className="font-mono text-[10px] opacity-80 shrink-0">({match.dateLabel})</span>
         </div>
 
         {/* 팀 1 / 팀 2 세트 박스 */}
@@ -574,7 +595,11 @@ export default function LeagueRecordsView() {
             return (
               <div
                 key={team.teamId + idx}
-                className={`grid grid-cols-[1fr_40px_48px] items-center px-3 py-2 transition-colors ${
+                className={`grid ${
+                  compact
+                    ? "grid-cols-[1fr_26px_28px] px-2 py-1.5"
+                    : "grid-cols-[1fr_40px_48px] px-3 py-2"
+                } items-center transition-colors ${
                   team.isWinner
                     ? isFinal
                       ? "bg-gradient-to-r from-amber-950/30 to-blue-950/50 border-l-4 border-l-amber-400"
@@ -585,10 +610,12 @@ export default function LeagueRecordsView() {
                 }`}
               >
                 {/* 1. 팀명 + 시드 */}
-                <div className="flex flex-col min-w-0 pr-2">
-                  <div className="flex items-center gap-1.5">
+                <div className="flex flex-col min-w-0 pr-1">
+                  <div className="flex items-center gap-1">
                     <span
-                      className={`text-xs font-black truncate tracking-tight ${
+                      className={`font-black truncate tracking-tight ${
+                        compact ? "text-[11px]" : "text-xs"
+                      } ${
                         team.isChampion
                           ? "text-amber-300"
                           : team.isWinner
@@ -598,30 +625,34 @@ export default function LeagueRecordsView() {
                           : "text-slate-300"
                       }`}
                     >
-                      {team.teamName} ({team.shortName})
+                      {team.teamName}
                     </span>
                     {team.isChampion && (
-                      <span className="text-xs shrink-0" title="WCC 우승">
+                      <span className="text-[10px] shrink-0" title="WCC 우승">
                         🏆
                       </span>
                     )}
                   </div>
                   <span
-                    className={`text-[10px] font-mono truncate leading-none mt-0.5 ${
+                    className={`text-[9px] font-mono truncate leading-none mt-0.5 ${
                       isLower ? "text-rose-400/80" : "text-cyan-400"
                     }`}
                   >
-                    {team.seedInfo}
+                    {team.shortName} · {team.seedInfo}
                   </span>
                 </div>
 
                 {/* 2. 팀 로고 */}
                 <div
-                  className={`flex items-center justify-center border-l border-r px-1 py-0.5 ${
+                  className={`flex items-center justify-center border-l border-r px-0.5 ${
                     isLower ? "border-rose-900/40" : "border-blue-900/50"
                   }`}
                 >
-                  <div className="w-7 h-7 rounded-lg bg-slate-900/90 border border-slate-700/60 overflow-hidden flex items-center justify-center shrink-0 shadow-xs">
+                  <div
+                    className={`${
+                      compact ? "w-5 h-5 rounded-md" : "w-7 h-7 rounded-lg"
+                    } bg-slate-900/90 border border-slate-700/60 overflow-hidden flex items-center justify-center shrink-0 shadow-xs`}
+                  >
                     {team.logoUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
@@ -630,7 +661,7 @@ export default function LeagueRecordsView() {
                         className="w-full h-full object-contain p-0.5"
                       />
                     ) : (
-                      <span className="font-mono text-[10px] text-cyan-400 font-bold">
+                      <span className="font-mono text-[9px] text-cyan-400 font-bold">
                         {team.shortName.slice(0, 3)}
                       </span>
                     )}
@@ -639,7 +670,9 @@ export default function LeagueRecordsView() {
 
                 {/* 3. 스코어 */}
                 <div
-                  className={`flex items-center justify-center font-mono text-sm font-bold ${
+                  className={`flex items-center justify-center font-mono ${
+                    compact ? "text-xs" : "text-sm"
+                  } font-bold ${
                     team.isWinner
                       ? isFinal
                         ? "text-amber-300 font-black"
@@ -1112,8 +1145,11 @@ export default function LeagueRecordsView() {
                 {activeMccRound === "STANDINGS" &&
                   renderCupStandingsTable(mccStandings, currentHistory?.finalsMvpName)}
 
-                {activeMccRound === "R16" &&
-                  mccBracket.roundOf16.map((m) => renderMccMatchCard(m))}
+                {activeMccRound === "R16" && (
+                  <div className="grid grid-cols-2 gap-1.5">
+                    {mccBracket.roundOf16.map((m) => renderMccMatchCard(m, false, true))}
+                  </div>
+                )}
 
                 {activeMccRound === "QF" &&
                   mccBracket.quarterFinals.map((m) => renderMccMatchCard(m))}
@@ -1171,19 +1207,19 @@ export default function LeagueRecordsView() {
           )}
 
           {/* ============================================================== */}
-          {/* WCC 16팀 더블 엘리미네이션 UI (최종순위 - DAY 1 ~ 4 - 결승)       */}
+          {/* WCC 16팀 더블 엘리미네이션 UI (최종순위 - R1 ~ R4 - 결승)         */}
           {/* ============================================================== */}
           {selectedTournament === "WCC" && wccBracket && (
             <div className="flex flex-col gap-3">
-              {/* 1. 최종순위 - DAY 1 - DAY 2 - DAY 3 - DAY 4 - 결승 라운드 선택 탭 (6분할 그리드) */}
+              {/* 1. 최종순위 - R1 - R2 - R3 - R4 - 결승 라운드 선택 탭 (6분할 그리드) */}
               <div className="grid grid-cols-6 gap-1 bg-slate-900/90 border border-slate-800 rounded-xl p-1 shadow-xs">
                 {(
                   [
                     { id: "STANDINGS", label: "최종순위" },
-                    { id: "DAY1", label: "DAY 1" },
-                    { id: "DAY2", label: "DAY 2" },
-                    { id: "DAY3", label: "DAY 3" },
-                    { id: "DAY4", label: "DAY 4" },
+                    { id: "R1", label: "R1" },
+                    { id: "R2", label: "R2" },
+                    { id: "R3", label: "R3" },
+                    { id: "R4", label: "R4" },
                     { id: "FINAL", label: "결승" },
                   ] as const
                 ).map((tab) => {
@@ -1205,14 +1241,14 @@ export default function LeagueRecordsView() {
                 })}
               </div>
 
-              {/* 2. 최종순위표 또는 선택된 DAY의 승자조/패자조 경기 목록 */}
+              {/* 2. 최종순위표 또는 선택된 라운드의 승자조/패자조 경기 목록 */}
               <div className="flex flex-col gap-2.5">
                 {/* 1) 최종순위 탭 */}
                 {activeWccRound === "STANDINGS" &&
                   renderCupStandingsTable(wccStandings, currentHistory?.finalsMvpName)}
 
-                {/* 2) DAY 1: 승자 16강 (8G) + 패자 1R (4G) */}
-                {activeWccRound === "DAY1" && (
+                {/* 2) R1: 승자 16강 (8G) + 패자 1R (4G) - 2열 그리드 */}
+                {activeWccRound === "R1" && (
                   <div className="flex flex-col gap-2.5">
                     <div className="flex items-center justify-between text-[11px] text-blue-300 bg-blue-950/30 border border-blue-800/30 px-3 py-1.5 rounded-xl font-bold">
                       <span className="flex items-center gap-1.5">
@@ -1221,7 +1257,9 @@ export default function LeagueRecordsView() {
                       </span>
                       <span className="text-[10px] text-blue-400 font-normal">패배 팀은 패자조 이동 ↘</span>
                     </div>
-                    {wccBracket.upper.roundOf16.map((m) => renderWccMatchCard(m, "UPPER"))}
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {wccBracket.upper.roundOf16.map((m) => renderWccMatchCard(m, "UPPER", true))}
+                    </div>
 
                     <div className="flex items-center justify-between text-[11px] text-rose-300 bg-rose-950/30 border border-rose-800/30 px-3 py-1.5 rounded-xl font-bold mt-2">
                       <span className="flex items-center gap-1.5">
@@ -1230,12 +1268,14 @@ export default function LeagueRecordsView() {
                       </span>
                       <span className="text-[10px] text-rose-400 font-bold">💀 패배 시 즉시 탈락</span>
                     </div>
-                    {wccBracket.lower.round1.map((m) => renderWccMatchCard(m, "LOWER"))}
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {wccBracket.lower.round1.map((m) => renderWccMatchCard(m, "LOWER", true))}
+                    </div>
                   </div>
                 )}
 
-                {/* 3) DAY 2: 승자 8강 (4G) + 패자 2R (4G) */}
-                {activeWccRound === "DAY2" && (
+                {/* 3) R2: 승자 8강 (4G) + 패자 2R (4G) - 2열 그리드 */}
+                {activeWccRound === "R2" && (
                   <div className="flex flex-col gap-2.5">
                     <div className="flex items-center justify-between text-[11px] text-blue-300 bg-blue-950/30 border border-blue-800/30 px-3 py-1.5 rounded-xl font-bold">
                       <span className="flex items-center gap-1.5">
@@ -1244,7 +1284,9 @@ export default function LeagueRecordsView() {
                       </span>
                       <span className="text-[10px] text-blue-400 font-normal">패배 팀은 패자조 이동 ↘</span>
                     </div>
-                    {wccBracket.upper.quarterFinals.map((m) => renderWccMatchCard(m, "UPPER"))}
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {wccBracket.upper.quarterFinals.map((m) => renderWccMatchCard(m, "UPPER", true))}
+                    </div>
 
                     <div className="flex items-center justify-between text-[11px] text-rose-300 bg-rose-950/30 border border-rose-800/30 px-3 py-1.5 rounded-xl font-bold mt-2">
                       <span className="flex items-center gap-1.5">
@@ -1253,12 +1295,14 @@ export default function LeagueRecordsView() {
                       </span>
                       <span className="text-[10px] text-rose-400 font-bold">💀 패배 시 즉시 탈락</span>
                     </div>
-                    {wccBracket.lower.round2.map((m) => renderWccMatchCard(m, "LOWER"))}
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {wccBracket.lower.round2.map((m) => renderWccMatchCard(m, "LOWER", true))}
+                    </div>
                   </div>
                 )}
 
-                {/* 4) DAY 3: 승자 4강 (2G) + 패자 3R (2G) + 패자 4R (2G) */}
-                {activeWccRound === "DAY3" && (
+                {/* 4) R3: 승자 4강 (2G) + 패자 3R (2G) + 패자 4R (2G) */}
+                {activeWccRound === "R3" && (
                   <div className="flex flex-col gap-2.5">
                     <div className="flex items-center justify-between text-[11px] text-blue-300 bg-blue-950/30 border border-blue-800/30 px-3 py-1.5 rounded-xl font-bold">
                       <span className="flex items-center gap-1.5">
@@ -1289,8 +1333,8 @@ export default function LeagueRecordsView() {
                   </div>
                 )}
 
-                {/* 5) DAY 4: 승자 결승 (1G) + 패자 준결승 (1G) + 패자 결승 (1G) */}
-                {activeWccRound === "DAY4" && (
+                {/* 5) R4: 승자 결승 (1G) + 패자 준결승 (1G) + 패자 결승 (1G) */}
+                {activeWccRound === "R4" && (
                   <div className="flex flex-col gap-2.5">
                     <div className="flex items-center justify-between text-[11px] text-blue-300 bg-blue-950/30 border border-blue-800/30 px-3 py-1.5 rounded-xl font-bold">
                       <span className="flex items-center gap-1.5">
