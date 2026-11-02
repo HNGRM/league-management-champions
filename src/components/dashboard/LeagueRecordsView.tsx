@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import { getTeamLogo } from "@/data/teamLogos";
 import {
   Trophy,
@@ -31,6 +31,8 @@ import {
   PlayerCareerRecord,
   ClubHistoryEntry,
   BracketMatch,
+  BracketMatchTeam,
+  TournamentBracket,
   DoubleEliminationBracket,
 } from "@/types/record";
 import {
@@ -55,6 +57,294 @@ const DIVISION_SHORT_NAMES: Record<DivisionTier, string> = {
   C: "리그 C",
   D: "리그 D",
 };
+
+// 컵 대회(MCC, WCC) 16팀 종합 순위표 행 데이터
+export interface CupTournamentStandingsRow {
+  rank: number;
+  rankDisplay: string;
+  isTied: boolean;
+  stageBadgeLabel: string;
+  teamId: string;
+  teamName: string;
+  shortName: string;
+  league: LeagueLanguage;
+  logoUrl?: string | null;
+  matchWins: number;
+  matchLosses: number;
+  setsWon: number;
+  setsLost: number;
+  setDiff: number;
+  isChampion?: boolean;
+}
+
+// MCC 16강 싱글 엘리미네이션 1위~16위 순위 생성 (동점자는 동순위 처리)
+function computeMccStandings(bracket: TournamentBracket): CupTournamentStandingsRow[] {
+  const allMatches: BracketMatch[] = [
+    ...bracket.roundOf16,
+    ...bracket.quarterFinals,
+    ...bracket.semiFinals,
+    bracket.finals,
+  ];
+
+  const statsMap = new Map<
+    string,
+    {
+      team: BracketMatchTeam;
+      matchWins: number;
+      matchLosses: number;
+      setsWon: number;
+      setsLost: number;
+    }
+  >();
+
+  for (const match of allMatches) {
+    for (const [me, opp] of [
+      [match.team1, match.team2],
+      [match.team2, match.team1],
+    ]) {
+      let stat = statsMap.get(me.teamId);
+      if (!stat) {
+        stat = {
+          team: me,
+          matchWins: 0,
+          matchLosses: 0,
+          setsWon: 0,
+          setsLost: 0,
+        };
+        statsMap.set(me.teamId, stat);
+      }
+      if (me.isWinner) {
+        stat.matchWins += 1;
+      } else {
+        stat.matchLosses += 1;
+      }
+      stat.setsWon += me.score;
+      stat.setsLost += opp.score;
+    }
+  }
+
+  const makeRow = (
+    team: BracketMatchTeam,
+    rank: number,
+    stageBadgeLabel: string,
+    isTied: boolean
+  ): CupTournamentStandingsRow => {
+    const stat = statsMap.get(team.teamId);
+    const matchWins = stat ? stat.matchWins : team.isWinner ? 1 : 0;
+    const matchLosses = stat ? stat.matchLosses : team.isWinner ? 0 : 1;
+    const setsWon = stat ? stat.setsWon : team.score;
+    const setsLost = stat ? stat.setsLost : 0;
+    return {
+      rank,
+      rankDisplay: rank.toString(),
+      isTied,
+      stageBadgeLabel,
+      teamId: team.teamId,
+      teamName: team.teamName,
+      shortName: team.shortName,
+      league: team.league,
+      logoUrl: team.logoUrl || getTeamLogo(team.teamId),
+      matchWins,
+      matchLosses,
+      setsWon,
+      setsLost,
+      setDiff: setsWon - setsLost,
+      isChampion: rank === 1,
+    };
+  };
+
+  const sortGroup = (rows: CupTournamentStandingsRow[]) => {
+    return [...rows].sort((a, b) => {
+      if (b.setDiff !== a.setDiff) return b.setDiff - a.setDiff;
+      if (b.setsWon !== a.setsWon) return b.setsWon - a.setsWon;
+      return a.teamName.localeCompare(b.teamName);
+    });
+  };
+
+  const finalsWinner = bracket.finals.team1.isWinner
+    ? bracket.finals.team1
+    : bracket.finals.team2;
+  const finalsLoser = bracket.finals.team1.isWinner
+    ? bracket.finals.team2
+    : bracket.finals.team1;
+
+  const row1 = makeRow(finalsWinner, 1, "우승 🏆", false);
+  const row2 = makeRow(finalsLoser, 2, "준우승 🥈", false);
+
+  const sfLosers = bracket.semiFinals.map((m) =>
+    m.team1.isWinner ? m.team2 : m.team1
+  );
+  const rows3 = sortGroup(
+    sfLosers.map((t) => makeRow(t, 3, "공동 3위 (4강)", true))
+  );
+
+  const qfLosers = bracket.quarterFinals.map((m) =>
+    m.team1.isWinner ? m.team2 : m.team1
+  );
+  const rows5 = sortGroup(
+    qfLosers.map((t) => makeRow(t, 5, "공동 5위 (8강)", true))
+  );
+
+  const r16Losers = bracket.roundOf16.map((m) =>
+    m.team1.isWinner ? m.team2 : m.team1
+  );
+  const rows9 = sortGroup(
+    r16Losers.map((t) => makeRow(t, 9, "공동 9위 (16강)", true))
+  );
+
+  return [row1, row2, ...rows3, ...rows5, ...rows9];
+}
+
+// WCC 16팀 더블 엘리미네이션 1위~16위 순위 생성 (동점자는 동순위 처리)
+function computeWccStandings(
+  bracket: DoubleEliminationBracket
+): CupTournamentStandingsRow[] {
+  const allMatches: BracketMatch[] = [
+    ...bracket.upper.roundOf16,
+    ...bracket.upper.quarterFinals,
+    ...bracket.upper.semiFinals,
+    bracket.upper.upperFinal,
+    ...bracket.lower.round1,
+    ...bracket.lower.round2,
+    ...bracket.lower.round3,
+    ...bracket.lower.round4,
+    bracket.lower.lowerSemiFinal,
+    bracket.lower.lowerFinal,
+    bracket.grandFinal,
+  ];
+
+  const statsMap = new Map<
+    string,
+    {
+      team: BracketMatchTeam;
+      matchWins: number;
+      matchLosses: number;
+      setsWon: number;
+      setsLost: number;
+    }
+  >();
+
+  for (const match of allMatches) {
+    for (const [me, opp] of [
+      [match.team1, match.team2],
+      [match.team2, match.team1],
+    ]) {
+      let stat = statsMap.get(me.teamId);
+      if (!stat) {
+        stat = {
+          team: me,
+          matchWins: 0,
+          matchLosses: 0,
+          setsWon: 0,
+          setsLost: 0,
+        };
+        statsMap.set(me.teamId, stat);
+      }
+      if (me.isWinner) {
+        stat.matchWins += 1;
+      } else {
+        stat.matchLosses += 1;
+      }
+      stat.setsWon += me.score;
+      stat.setsLost += opp.score;
+    }
+  }
+
+  const makeRow = (
+    team: BracketMatchTeam,
+    rank: number,
+    stageBadgeLabel: string,
+    isTied: boolean
+  ): CupTournamentStandingsRow => {
+    const stat = statsMap.get(team.teamId);
+    const matchWins = stat ? stat.matchWins : team.isWinner ? 1 : 0;
+    const matchLosses = stat ? stat.matchLosses : team.isWinner ? 0 : 1;
+    const setsWon = stat ? stat.setsWon : team.score;
+    const setsLost = stat ? stat.setsLost : 0;
+    return {
+      rank,
+      rankDisplay: rank.toString(),
+      isTied,
+      stageBadgeLabel,
+      teamId: team.teamId,
+      teamName: team.teamName,
+      shortName: team.shortName,
+      league: team.league,
+      logoUrl: team.logoUrl || getTeamLogo(team.teamId),
+      matchWins,
+      matchLosses,
+      setsWon,
+      setsLost,
+      setDiff: setsWon - setsLost,
+      isChampion: rank === 1,
+    };
+  };
+
+  const sortGroup = (rows: CupTournamentStandingsRow[]) => {
+    return [...rows].sort((a, b) => {
+      if (b.setDiff !== a.setDiff) return b.setDiff - a.setDiff;
+      if (b.setsWon !== a.setsWon) return b.setsWon - a.setsWon;
+      return a.teamName.localeCompare(b.teamName);
+    });
+  };
+
+  // 1위 & 2위: Grand Final
+  const gfWinner = bracket.grandFinal.team1.isWinner
+    ? bracket.grandFinal.team1
+    : bracket.grandFinal.team2;
+  const gfLoser = bracket.grandFinal.team1.isWinner
+    ? bracket.grandFinal.team2
+    : bracket.grandFinal.team1;
+
+  const row1 = makeRow(gfWinner, 1, "우승 🏆", false);
+  const row2 = makeRow(gfLoser, 2, "준우승 🥈", false);
+
+  // 3위: Lower Final 패자
+  const lfLoser = bracket.lower.lowerFinal.team1.isWinner
+    ? bracket.lower.lowerFinal.team2
+    : bracket.lower.lowerFinal.team1;
+  const row3 = makeRow(lfLoser, 3, "3위 🥉", false);
+
+  // 4위: Lower Semi-Final 패자
+  const lsfLoser = bracket.lower.lowerSemiFinal.team1.isWinner
+    ? bracket.lower.lowerSemiFinal.team2
+    : bracket.lower.lowerSemiFinal.team1;
+  const row4 = makeRow(lsfLoser, 4, "4위 🎖️", false);
+
+  // 공동 5위: Lower Round 4 패자 (2팀)
+  const lr4Losers = bracket.lower.round4.map((m) =>
+    m.team1.isWinner ? m.team2 : m.team1
+  );
+  const rows5 = sortGroup(
+    lr4Losers.map((t) => makeRow(t, 5, "공동 5위 (패자 4R)", true))
+  );
+
+  // 공동 7위: Lower Round 3 패자 (2팀)
+  const lr3Losers = bracket.lower.round3.map((m) =>
+    m.team1.isWinner ? m.team2 : m.team1
+  );
+  const rows7 = sortGroup(
+    lr3Losers.map((t) => makeRow(t, 7, "공동 7위 (패자 3R)", true))
+  );
+
+  // 공동 9위: Lower Round 2 패자 (4팀)
+  const lr2Losers = bracket.lower.round2.map((m) =>
+    m.team1.isWinner ? m.team2 : m.team1
+  );
+  const rows9 = sortGroup(
+    lr2Losers.map((t) => makeRow(t, 9, "공동 9위 (패자 2R)", true))
+  );
+
+  // 공동 13위: Lower Round 1 패자 (4팀)
+  const lr1Losers = bracket.lower.round1.map((m) =>
+    m.team1.isWinner ? m.team2 : m.team1
+  );
+  const rows13 = sortGroup(
+    lr1Losers.map((t) => makeRow(t, 13, "공동 13위 (패자 1R)", true))
+  );
+
+  return [row1, row2, row3, row4, ...rows5, ...rows7, ...rows9, ...rows13];
+}
 
 export default function LeagueRecordsView() {
   const currentYear = useGameStore((state) => state.currentYear);
@@ -102,8 +392,14 @@ export default function LeagueRecordsView() {
     return currentHistory.bracket || generateMccTournamentBracket(currentHistory);
   }, [currentHistory]);
 
-  type MccRoundTab = "R16" | "QF" | "SF" | "FINAL";
-  const [activeMccRound, setActiveMccRound] = useState<MccRoundTab>("R16");
+  type MccRoundTab = "STANDINGS" | "R16" | "QF" | "SF" | "FINAL";
+  const [activeMccRound, setActiveMccRound] = useState<MccRoundTab>("STANDINGS");
+
+  // MCC 1등 ~ 16등 종합 순위 (동점자는 동순위 처리)
+  const mccStandings = useMemo(() => {
+    if (!currentHistory || currentHistory.type !== "MCC" || !mccBracket) return [];
+    return computeMccStandings(mccBracket);
+  }, [currentHistory, mccBracket]);
 
   // MCC 매치 카드 렌더러 (선택된 라운드의 경기 카드)
   const renderMccMatchCard = (match: BracketMatch, isFinal = false) => {
@@ -209,24 +505,25 @@ export default function LeagueRecordsView() {
     return currentHistory.wccBracket || generateWccDoubleEliminationBracket(currentHistory);
   }, [currentHistory]);
 
-  // WCC 1~4위 요약 정보
-  const wccTop4 = useMemo(() => {
-    if (!currentHistory || currentHistory.type !== "WCC" || !currentHistory.cupResults) return null;
-    const list = currentHistory.cupResults;
-    const champ = list.find((t) => t.rank === 1) || list[0];
-    const runner = list.find((t) => t.rank === 2) || list[1];
-    const third = list.find((t) => t.rank === 3) || list[2];
-    const fourth = list.find((t) => t.rank === 4) || list[3];
-    return { champ, runner, third, fourth };
-  }, [currentHistory]);
+  // WCC 1등 ~ 16등 종합 순위 (동점자는 동순위 처리)
+  const wccStandings = useMemo(() => {
+    if (!currentHistory || currentHistory.type !== "WCC" || !wccBracket) return [];
+    return computeWccStandings(wccBracket);
+  }, [currentHistory, wccBracket]);
 
-  type WccStage = "UPPER" | "LOWER" | "GRAND_FINAL";
+  type WccStage = "STANDINGS" | "UPPER" | "LOWER" | "GRAND_FINAL";
   type WccUpperRound = "R16" | "QF" | "SF" | "FINAL";
   type WccLowerRound = "R1_2" | "R3_4" | "SEMI" | "FINAL";
 
-  const [activeWccStage, setActiveWccStage] = useState<WccStage>("UPPER");
+  const [activeWccStage, setActiveWccStage] = useState<WccStage>("STANDINGS");
   const [activeWccUpperRound, setActiveWccUpperRound] = useState<WccUpperRound>("R16");
   const [activeWccLowerRound, setActiveWccLowerRound] = useState<WccLowerRound>("R1_2");
+
+  // 연도 또는 대회 변경 시 디폴트 탭을 '최종순위'로 리셋
+  useEffect(() => {
+    setActiveMccRound("STANDINGS");
+    setActiveWccStage("STANDINGS");
+  }, [selectedTournament, selectedYear]);
 
   // WCC 매치 카드 렌더러 (승자조 / 패자조 / 그랜드 파이널 톤 차별화)
   const renderWccMatchCard = (
@@ -367,7 +664,158 @@ export default function LeagueRecordsView() {
     );
   };
 
-  // 통산 기록 카테고리별 정렬된 선수 목록
+  // 컵 대회(MCC, WCC) 16팀 종합 순위표 렌더러
+  const renderCupStandingsTable = (
+    standings: CupTournamentStandingsRow[],
+    finalsMvp?: string
+  ) => {
+    return (
+      <div className="bg-slate-950/70 border border-slate-800 rounded-2xl overflow-hidden shadow-sm">
+        {/* 테이블 헤더 */}
+        <div className="grid grid-cols-12 px-3 py-2 bg-slate-900/90 border-b border-slate-800 text-[10px] font-mono text-slate-400 font-bold items-center">
+          <div className="col-span-2 text-center"># (순위)</div>
+          <div className="col-span-5 pl-1">팀 (TEAM)</div>
+          <div className="col-span-3 text-center">최종 성적</div>
+          <div className="col-span-2 text-right pr-1">매치 / 세트</div>
+        </div>
+
+        {/* 1위~16위 순위 목록 */}
+        <div className="divide-y divide-slate-800/60 font-sans">
+          {standings.map((team, idx) => {
+            const isWinner = team.rank === 1;
+            const isRunnerUp = team.rank === 2;
+            const isThird = team.rank === 3;
+            const isFourth = team.rank === 4;
+
+            return (
+              <div
+                key={team.teamId + idx}
+                className={`grid grid-cols-12 px-3 py-2 items-center transition-colors relative ${
+                  isWinner
+                    ? "bg-amber-500/10 border-l-4 border-l-amber-400"
+                    : isRunnerUp
+                    ? "bg-slate-500/5 border-l-2 border-l-slate-400/80 hover:bg-slate-900/40"
+                    : isThird
+                    ? "bg-amber-700/5 border-l-2 border-l-amber-700/60 hover:bg-slate-900/40"
+                    : isFourth
+                    ? "bg-purple-950/10 border-l-2 border-l-purple-500/50 hover:bg-slate-900/40"
+                    : "border-l-2 border-l-transparent hover:bg-slate-900/40"
+                }`}
+              >
+                {/* 1. 순위 */}
+                <div className="col-span-2 flex items-center justify-center">
+                  <div className="flex flex-col items-center justify-center">
+                    <span
+                      className={`min-w-6 px-1.5 py-0.5 rounded-md flex items-center justify-center font-mono font-black text-xs ${
+                        isWinner
+                          ? "bg-amber-500 text-slate-950 shadow-xs"
+                          : isRunnerUp
+                          ? "bg-slate-300 text-slate-950 shadow-xs"
+                          : isThird
+                          ? "bg-amber-700 text-amber-100 shadow-xs"
+                          : isFourth
+                          ? "bg-purple-600 text-purple-100 shadow-xs"
+                          : "bg-slate-800 text-slate-400 border border-slate-700/60"
+                      }`}
+                    >
+                      {team.rank}
+                    </span>
+                    {team.isTied && (
+                      <span className="text-[8px] text-slate-500 font-sans mt-0.5 leading-none">
+                        공동
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* 2. 팀 정보 (로고 + 팀명 + 소속 리그) */}
+                <div className="col-span-5 flex items-center gap-2 min-w-0 pl-1 pr-1">
+                  {team.logoUrl ? (
+                    <div className="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 p-0.5 flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={team.logoUrl}
+                        alt={team.teamName}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center font-mono font-black text-[9px] text-cyan-300 shrink-0">
+                      {team.shortName.slice(0, 3)}
+                    </div>
+                  )}
+
+                  <div className="flex flex-col min-w-0">
+                    <div className="flex items-center gap-1 truncate">
+                      <span
+                        className={`text-xs font-bold truncate ${
+                          isWinner ? "text-amber-200" : "text-slate-200"
+                        }`}
+                      >
+                        {team.teamName}
+                      </span>
+                      {isWinner && (
+                        <span className="text-xs shrink-0" title="우승">
+                          🏆
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-1 text-[10px] text-slate-400 font-mono">
+                      <span className="text-cyan-400 font-semibold">{team.league}</span>
+                      <span className="text-slate-600">·</span>
+                      <span className="truncate">{team.shortName}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3. 최종 성적 뱃지 */}
+                <div className="col-span-3 flex items-center justify-center">
+                  <span
+                    className={`text-[10px] font-bold px-1.5 py-0.5 rounded text-center truncate ${
+                      isWinner
+                        ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
+                        : isRunnerUp
+                        ? "bg-slate-400/20 text-slate-200 border border-slate-400/40"
+                        : isThird
+                        ? "bg-amber-700/20 text-amber-400 border border-amber-700/30"
+                        : isFourth
+                        ? "bg-purple-500/20 text-purple-300 border border-purple-500/30"
+                        : "bg-slate-800/80 text-slate-400 border border-slate-700/50"
+                    }`}
+                  >
+                    {team.stageBadgeLabel}
+                  </span>
+                </div>
+
+                {/* 4. 매치 / 세트 기록 */}
+                <div className="col-span-2 text-right pr-1">
+                  <div className="font-mono text-xs font-bold text-slate-200">
+                    {team.matchWins}승 {team.matchLosses}패
+                  </div>
+                  <div className="font-mono text-[9px] text-slate-400">
+                    세트 {team.setDiff >= 0 ? `+${team.setDiff}` : team.setDiff}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 하단 결승 MVP 안내 */}
+        {finalsMvp && (
+          <div className="px-3 py-2 bg-slate-900/90 border-t border-slate-800 flex items-center justify-between text-xs">
+            <div className="flex items-center gap-1.5 text-amber-300 font-bold">
+              <Award className="w-4 h-4 text-amber-400 shrink-0" />
+              <span>대회 파이널 MVP: {finalsMvp}</span>
+            </div>
+            <span className="text-[10px] text-slate-500 font-mono shrink-0">
+              16개 팀 토너먼트 종합 순위표
+            </span>
+          </div>
+        )}
+      </div>
+    );
+  };
   const sortedCareerPlayers = useMemo(() => {
     const list = [...playerCareerRecords];
     switch (selectedCareerCategory) {
@@ -631,14 +1079,15 @@ export default function LeagueRecordsView() {
           )}
 
           {/* ============================================================== */}
-          {/* MCC 16강 싱글 엘리미네이션 토너먼트 (라운드별 세로 경기 목록)         */}
+          {/* MCC 16강 싱글 엘리미네이션 토너먼트 (최종순위 + 라운드별 경기) */}
           {/* ============================================================== */}
           {selectedTournament === "MCC" && mccBracket && (
             <div className="flex flex-col gap-3">
-              {/* 1. 16강 - 8강 - 4강 - 결승 라운드 선택 탭 (4분할 그리드) */}
-              <div className="grid grid-cols-4 gap-1 bg-slate-900/90 border border-slate-800 rounded-xl p-1 shadow-xs">
+              {/* 1. 최종순위 - 16강 - 8강 - 4강 - 결승 라운드 선택 탭 (5분할 그리드) */}
+              <div className="grid grid-cols-5 gap-1 bg-slate-900/90 border border-slate-800 rounded-xl p-1 shadow-xs">
                 {(
                   [
+                    { id: "STANDINGS", label: "최종순위" },
                     { id: "R16", label: "16강" },
                     { id: "QF", label: "8강" },
                     { id: "SF", label: "4강" },
@@ -663,8 +1112,11 @@ export default function LeagueRecordsView() {
                 })}
               </div>
 
-              {/* 2. 선택된 라운드의 경기 목록 (세로 카드 리스트) */}
+              {/* 2. 최종순위표 또는 선택된 라운드의 경기 목록 */}
               <div className="flex flex-col gap-2.5">
+                {activeMccRound === "STANDINGS" &&
+                  renderCupStandingsTable(mccStandings, currentHistory?.finalsMvpName)}
+
                 {activeMccRound === "R16" &&
                   mccBracket.roundOf16.map((m) => renderMccMatchCard(m))}
 
@@ -699,91 +1151,49 @@ export default function LeagueRecordsView() {
                 )}
               </div>
 
-              {/* 3. 하단 범례 안내 바 */}
-              <div className="pt-2 border-t border-slate-800 flex items-center justify-between flex-wrap gap-2 text-[10px] text-slate-400 font-mono px-1">
-                <div className="flex items-center gap-3">
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-xs bg-blue-500 border border-blue-400 inline-block"></span>
-                    <span className="text-slate-300">세트 승리</span>
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-xs bg-amber-400 border border-amber-300 inline-block"></span>
-                    <span className="text-amber-300 font-bold">MCC 우승</span>
-                  </span>
-                </div>
-                {currentHistory?.finalsMvpName && (
-                  <div className="flex items-center gap-1 text-amber-300 font-sans font-bold">
-                    <Award className="w-3.5 h-3.5 text-amber-400" />
-                    <span>결승 MVP: {currentHistory.finalsMvpName}</span>
+              {/* 3. 하단 범례 안내 바 (대진표 탭에서만 노출) */}
+              {activeMccRound !== "STANDINGS" && (
+                <div className="pt-2 border-t border-slate-800 flex items-center justify-between flex-wrap gap-2 text-[10px] text-slate-400 font-mono px-1">
+                  <div className="flex items-center gap-3">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-xs bg-blue-500 border border-blue-400 inline-block"></span>
+                      <span className="text-slate-300">세트 승리</span>
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-xs bg-amber-400 border border-amber-300 inline-block"></span>
+                      <span className="text-amber-300 font-bold">MCC 우승</span>
+                    </span>
                   </div>
-                )}
-              </div>
+                  {currentHistory?.finalsMvpName && (
+                    <div className="flex items-center gap-1 text-amber-300 font-sans font-bold">
+                      <Award className="w-3.5 h-3.5 text-amber-400" />
+                      <span>결승 MVP: {currentHistory.finalsMvpName}</span>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           )}
 
           {/* ============================================================== */}
-          {/* WCC 16팀 더블 엘리미네이션 UI (Option 1: 3대 영역 분할 탭 방식)  */}
+          {/* WCC 16팀 더블 엘리미네이션 UI (Option 1: 4대 영역 분할 탭 방식)  */}
           {/* ============================================================== */}
           {selectedTournament === "WCC" && wccBracket && (
             <div className="flex flex-col gap-3">
-              {/* 상단 요약 배너: 1위 🏆, 2위 🥈, 3위 🥉, 4위 🎖️ 팀 한 줄 요약 */}
-              {wccTop4 && (
-                <div className="bg-gradient-to-r from-amber-950/40 via-slate-900 to-purple-950/40 border border-amber-500/30 rounded-xl p-2.5 shadow-md">
-                  <div className="text-[11px] font-bold text-amber-300/90 mb-1.5 flex items-center gap-1.5">
-                    <Trophy className="w-3.5 h-3.5 text-amber-400" />
-                    <span>WCC {selectedYear} 최종 순위 TOP 4</span>
-                  </div>
-                  <div className="grid grid-cols-4 gap-1.5 text-center">
-                    <div className="bg-amber-500/10 border border-amber-500/40 rounded-lg p-1.5 flex flex-col items-center">
-                      <span className="text-[10px] font-black text-amber-400 flex items-center gap-0.5">
-                        🏆 1위
-                      </span>
-                      <span className="text-xs font-bold text-slate-100 truncate w-full mt-0.5">
-                        {wccTop4.champ.teamName}
-                      </span>
-                      <span className="text-[9px] text-cyan-400 font-mono">
-                        {wccTop4.champ.league}
-                      </span>
-                    </div>
-                    <div className="bg-slate-500/10 border border-slate-400/30 rounded-lg p-1.5 flex flex-col items-center">
-                      <span className="text-[10px] font-black text-slate-300 flex items-center gap-0.5">
-                        🥈 2위
-                      </span>
-                      <span className="text-xs font-bold text-slate-200 truncate w-full mt-0.5">
-                        {wccTop4.runner.teamName}
-                      </span>
-                      <span className="text-[9px] text-slate-400 font-mono">
-                        {wccTop4.runner.league}
-                      </span>
-                    </div>
-                    <div className="bg-amber-900/10 border border-amber-700/30 rounded-lg p-1.5 flex flex-col items-center">
-                      <span className="text-[10px] font-black text-amber-500 flex items-center gap-0.5">
-                        🥉 3위
-                      </span>
-                      <span className="text-xs font-bold text-slate-300 truncate w-full mt-0.5">
-                        {wccTop4.third.teamName}
-                      </span>
-                      <span className="text-[9px] text-slate-400 font-mono">
-                        {wccTop4.third.league}
-                      </span>
-                    </div>
-                    <div className="bg-purple-950/20 border border-purple-500/30 rounded-lg p-1.5 flex flex-col items-center">
-                      <span className="text-[10px] font-black text-purple-300 flex items-center gap-0.5">
-                        🎖️ 4위
-                      </span>
-                      <span className="text-xs font-bold text-slate-300 truncate w-full mt-0.5">
-                        {wccTop4.fourth.teamName}
-                      </span>
-                      <span className="text-[9px] text-slate-400 font-mono">
-                        {wccTop4.fourth.league}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* 1단계 탭: 3대 영역 분할 (승자조 / 패자조 / 최종 결승) */}
-              <div className="grid grid-cols-3 gap-1.5 p-1 bg-slate-900/90 border border-slate-800 rounded-xl">
+              {/* 1단계 탭: 4대 영역 분할 (최종순위 / 승자조 / 패자조 / 최종 결승) */}
+              <div className="grid grid-cols-4 gap-1 p-1 bg-slate-900/90 border border-slate-800 rounded-xl">
+                <button
+                  type="button"
+                  onClick={() => setActiveWccStage("STANDINGS")}
+                  className={`py-2 px-1 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1 ${
+                    activeWccStage === "STANDINGS"
+                      ? "bg-gradient-to-r from-amber-500/20 to-yellow-500/10 text-amber-300 border border-amber-500/40 shadow-xs font-black"
+                      : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
+                  }`}
+                >
+                  <span>🏅</span>
+                  <span className="truncate">최종순위</span>
+                </button>
                 <button
                   type="button"
                   onClick={() => setActiveWccStage("UPPER")}
@@ -821,6 +1231,10 @@ export default function LeagueRecordsView() {
                   <span className="truncate">최종 결승</span>
                 </button>
               </div>
+
+              {/* 최종순위 탭 선택 시 */}
+              {activeWccStage === "STANDINGS" &&
+                renderCupStandingsTable(wccStandings, currentHistory?.finalsMvpName)}
 
               {/* 2단계 라운드 서브탭 및 매치 카드 목록 */}
               {activeWccStage === "UPPER" && (
